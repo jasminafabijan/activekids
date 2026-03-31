@@ -93,7 +93,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
 
         <button
           onClick={handleSearch}
-          className="w-full md:w-auto px-8 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-md hover:shadow-lg"
+          className="btn-primary w-full md:w-auto px-8 py-2 font-semibold rounded-lg focus:outline-none transition-all shadow-md hover:shadow-lg"
         >
           Pronađi
         </button>
