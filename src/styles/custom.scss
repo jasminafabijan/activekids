@@ -3,7 +3,7 @@ $primary-blue: #0b1a3b;
 .btn-primary {
   background-color: $primary-blue;
   color: #fff;
-  border: 1px solid yellow;
+  border: 3px solid red;
 
   &:hover {
     background-color: darken($primary-blue, 5%);
