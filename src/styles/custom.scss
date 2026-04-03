@@ -1,16 +1,25 @@
-$primary-blue: #0b1a3b;
-
-.btn-primary {
-  background-color: $primary-blue;
-  color: #fff;
-  border: 3px solid red;
-
-  &:hover {
-    background-color: darken($primary-blue, 5%);
+@layer components {
+    .btn {
+      @apply inline-flex items-center rounded-full px-4 py-2 text-sm font-bold transition-all;
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+    }
+  
+    .btn:active {
+      transform: translateY(1px);
+    }
+  
+    .btn-primary {
+      @apply bg-primary text-white;
+      box-shadow: 0 10px 22px rgba(11, 26, 59, 0.22);
+    }
+  
+    .btn-primary:hover {
+      box-shadow: 0 14px 28px rgba(11, 26, 59, 0.28);
+    }
+  
+    .btn-primary:focus-visible {
+      @apply outline-none ring-2 ring-primary ring-offset-2;
+    }
   }
-
-  &:focus-visible {
-    outline: 2px solid lighten($primary-blue, 8%);
-    outline-offset: 2px;
-  }
-}

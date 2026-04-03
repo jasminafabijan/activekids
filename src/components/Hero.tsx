@@ -5,14 +5,14 @@ import heroImg4 from '../assets/images/tenis.jpg'
 
 const Hero = () => {
   return (
-    <div className="bg-white text-blue-700 py-16 md:py-24">
+    <div className="bg-white py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="grid gap-10 md:grid-cols-2 items-center">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-800">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
               Pronađite savršene aktivnosti za vašu decu
             </h1>
-            <p className="text-lg md:text-xl text-blue-600 max-w-xl">
+            <p className="text-lg md:text-xl text-primary max-w-xl">
               Sport, ples, muzika, umetnost i još mnogo toga — na jednom mestu, prilagođeno uzrastu i interesovanjima vaše dece.
             </p>
           </div>
