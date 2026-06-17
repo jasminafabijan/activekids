@@ -3,54 +3,74 @@ import heroImg2 from '../assets/images/fudbal.jpg'
 import heroImg3 from '../assets/images/IMG_2980.jpeg'
 import heroImg4 from '../assets/images/tenis.jpg'
 
+const imageSize = 'w-[278px] max-w-full'
+
 const Hero = () => {
   return (
-    <div className="bg-white py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        <div className="grid gap-10 md:grid-cols-2 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
-              Pronađite savršene aktivnosti za vašu decu
-            </h1>
-            <p className="text-lg md:text-xl text-primary max-w-xl">
-              Sport, ples, muzika, umetnost i još mnogo toga — na jednom mestu, prilagođeno uzrastu i interesovanjima vaše dece.
-            </p>
-          </div>
+    <section className="relative overflow-hidden bg-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 -right-40 h-[36rem] w-[36rem] rounded-full opacity-60 blur-3xl"
+        style={{ background: 'var(--mint)' }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-40 -left-40 h-[28rem] w-[28rem] rounded-full opacity-40 blur-3xl"
+        style={{ background: 'var(--peach)' }}
+      />
 
-          <div className="relative h-72 md:h-80 lg:h-96">
-            <div className="absolute inset-y-0 left-6 right-10 flex items-center justify-center gap-4">
-              <div className="space-y-4">
-                <img
-                  src={heroImg1}
-                  alt="Aktivnost za decu"
-                  className="w-36 h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-3xl object-cover shadow-xl border border-white/20 transform -rotate-3 hover:-rotate-1 transition-transform duration-300"
-                />
-                <img
-                  src={heroImg2}
-                  alt="Deca u pokretu"
-                  className="w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-3xl object-cover shadow-xl border border-white/20 transform rotate-3 hover:rotate-1 transition-transform duration-300 translate-x-4"
-                />
-              </div>
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 px-6 py-20 md:py-28 lg:grid-cols-2">
+        <div className="space-y-6">
+          <h1 className="text-4xl font-bold text-primary md:text-5xl lg:text-6xl">
+            Pronađite savršene aktivnosti za vašu decu
+          </h1>
+          <p className="max-w-xl text-lg text-primary md:text-xl">
+            Sport, ples, muzika, umetnost i još mnogo toga — na jednom mestu, prilagođeno uzrastu i interesovanjima vaše dece.
+          </p>
+        </div>
 
-              <div className="space-y-4 translate-y-6">
-                <img
-                  src={heroImg3}
-                  alt="Kreativne radionice"
-                  className="w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-3xl object-cover shadow-xl border border-white/20 transform rotate-2 hover:rotate-0 transition-transform duration-300 -translate-x-2"
-                />
-                <img
-                  src={heroImg4}
-                  alt="Zabavne aktivnosti"
-                  className="w-36 h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-3xl object-cover shadow-xl border border-white/20 transform -rotate-2 hover:rotate-0 transition-transform duration-300 -translate-x-4"
-                />
-              </div>
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none lg:mx-0">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-4 -right-4 z-0 hidden h-16 w-16 rounded-full md:block"
+            style={{ background: 'var(--peach)' }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-6 -left-6 z-0 hidden h-24 w-24 rounded-2xl md:block"
+            style={{ background: 'var(--mint)' }}
+          />
+
+          <div className="relative z-10 grid w-fit grid-cols-[278px_278px] gap-x-[30px] gap-y-[30px]">
+            <div className="flex flex-col gap-[30px]">
+              <img
+                src={heroImg1}
+                alt="Atletika za decu"
+                className={`aspect-[5/4] ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-mint/35`}
+              />
+              <img
+                src={heroImg2}
+                alt="Fudbal za decu"
+                className={`aspect-square ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-peach/35`}
+              />
             </div>
 
-            <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-white/5 blur-3xl" />
+            <div className="flex flex-col gap-[30px] -mt-[30px]">
+              <img
+                src={heroImg3}
+                alt="Ples i balet za decu"
+                className={`${imageSize} h-[334px] rounded-3xl object-cover shadow-card ring-4 ring-peach/35`}
+              />
+              <img
+                src={heroImg4}
+                alt="Tenis za decu"
+                className={`${imageSize} h-[222px] rounded-3xl object-cover shadow-card ring-4 ring-mint/35`}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

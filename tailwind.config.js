@@ -10,6 +10,11 @@ export default {
             primary: "#0B1A3B",
             secondary: "#7C3AED",
             accent: "#F59E0B",
+            mint: "var(--mint)",
+            peach: "var(--peach)",
+        },
+        boxShadow: {
+            card: "var(--shadow-card)",
         },
     },
   },

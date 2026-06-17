@@ -5,7 +5,7 @@ import CategoryCards from './CategoryCards'
 import Navbar from './Navbar'
 
 const HomePage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [, setSelectedCategory] = useState<string | null>(null)
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category)
@@ -13,7 +13,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-20">
       <Navbar />
       <Hero />
       <div className="container mx-auto px-4 py-8">
