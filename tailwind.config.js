@@ -16,6 +16,10 @@ export default {
         boxShadow: {
             card: "var(--shadow-card)",
         },
+        fontFamily: {
+            sans: ['var(--font-sans)'],
+            heading: ['var(--font-heading)'],
+        },
     },
   },
   plugins: [],

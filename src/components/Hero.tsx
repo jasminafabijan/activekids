@@ -21,8 +21,21 @@ const Hero = () => {
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 px-6 py-20 md:py-28 lg:grid-cols-2">
         <div className="space-y-6">
-          <h1 className="text-4xl font-bold text-primary md:text-5xl lg:text-6xl">
-            Pronađite savršene aktivnosti za vašu decu
+          <div className="hero-tag">
+            <span className="hero-tag-dot" aria-hidden="true" />
+            Platforma za roditelje
+          </div>
+
+          <h1 className="hero-title font-extrabold text-primary">
+            <span className="block">Pronađite savršene</span>
+            <span className="block">
+              <span className="relative inline-block">
+                aktivnosti
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none"><path d="M2 8C50 2 150 2 298 8" stroke="var(--peach)" stroke-width="4" stroke-linecap="round"></path></svg>
+              </span>{' '}
+            <span>za</span>
+            </span>
+            <span>vašu decu</span>
           </h1>
           <p className="max-w-xl text-lg text-primary md:text-xl">
             Sport, ples, muzika, umetnost i još mnogo toga — na jednom mestu, prilagođeno uzrastu i interesovanjima vaše dece.
@@ -32,12 +45,12 @@ const Hero = () => {
         <div className="relative mx-auto w-full max-w-md lg:max-w-none lg:mx-0">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -top-4 -right-4 z-0 hidden h-16 w-16 rounded-full md:block"
+            className="pointer-events-none absolute -top-[50px] -right-4 z-20 hidden h-16 w-16 rounded-full md:block"
             style={{ background: 'var(--peach)' }}
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-6 -left-6 z-0 hidden h-24 w-24 rounded-2xl md:block"
+            className="pointer-events-none absolute -bottom-6 -left-6 z-20 hidden h-24 w-24 rounded-2xl md:block"
             style={{ background: 'var(--mint)' }}
           />
 
@@ -46,12 +59,12 @@ const Hero = () => {
               <img
                 src={heroImg1}
                 alt="Atletika za decu"
-                className={`aspect-[5/4] ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-mint/35`}
+                className={`aspect-[5/4] ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-mint/20`}
               />
               <img
                 src={heroImg2}
                 alt="Fudbal za decu"
-                className={`aspect-square ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-peach/35`}
+                className={`aspect-square ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-peach/20`}
               />
             </div>
 
@@ -59,12 +72,12 @@ const Hero = () => {
               <img
                 src={heroImg3}
                 alt="Ples i balet za decu"
-                className={`${imageSize} h-[334px] rounded-3xl object-cover shadow-card ring-4 ring-peach/35`}
+                className={`${imageSize} h-[334px] rounded-3xl object-cover shadow-card ring-4 ring-peach/20`}
               />
               <img
                 src={heroImg4}
                 alt="Tenis za decu"
-                className={`${imageSize} h-[222px] rounded-3xl object-cover shadow-card ring-4 ring-mint/35`}
+                className={`${imageSize} h-[222px] rounded-3xl object-cover shadow-card ring-4 ring-mint/20`}
               />
             </div>
           </div>
