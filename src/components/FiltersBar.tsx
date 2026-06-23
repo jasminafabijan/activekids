@@ -10,6 +10,72 @@ interface FilterValues {
   activity: string
 }
 
+const LocationIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="search-field-icon h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+)
+
+const MapIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="search-field-icon h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z" />
+    <path d="M9 4v14" />
+    <path d="M15 6v14" />
+  </svg>
+)
+
+const SparklesIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="search-field-icon h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M9.94 15.5 11 19l1.06-3.5L15.5 14l-3.44-1.06L11 9.5 9.94 13 6.5 14l3.44 1.5Z" />
+    <path d="M18 4 18.8 6.2 21 7l-2.2.8L18 10l-.8-2.2L15 7l2.2-.8L18 4Z" />
+    <path d="M5 3 5.4 4.2 6.6 4.6 5.4 5 5 6.2 4.6 5 3.4 4.6 4.6 4.2 5 3Z" />
+  </svg>
+)
+
+const SearchIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="h-4 w-4"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </svg>
+)
+
 const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
   const [filters, setFilters] = useState<FilterValues>({
     city: '',
@@ -32,73 +98,82 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-      <div className="flex flex-col md:flex-row gap-4 items-end">
-        <div className="flex-1 w-full">
-          <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">
-            Grad
-          </label>
-          <select
-            id="city"
-            value={filters.city}
-            onChange={(e) => handleChange('city', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-          >
-            <option value="">Izaberite grad</option>
-            {cities.map((city) => (
-              <option key={city} value={city}>
-                {city}
-              </option>
-            ))}
-          </select>
-        </div>
+    <section className="search-bar" aria-label="Pretraga aktivnosti">
+      <div className="search-bar-panel">
+        <div className="search-bar-grid">
+          <div className="search-field">
+            <LocationIcon />
+            <div className="search-field-content">
+              <label htmlFor="city" className="search-field-label">
+                Grad
+              </label>
+              <select
+                id="city"
+                value={filters.city}
+                onChange={(e) => handleChange('city', e.target.value)}
+                className="search-field-select"
+              >
+                <option value="">Izaberite grad</option>
+                {cities.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-        <div className="flex-1 w-full">
-          <label htmlFor="partOfCity" className="block text-sm font-medium text-gray-700 mb-2">
-            Deo grada
-          </label>
-          <select
-            id="partOfCity"
-            value={filters.partOfCity}
-            onChange={(e) => handleChange('partOfCity', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-          >
-            <option value="">Izaberite deo grada</option>
-            {partsOfCity.map((part) => (
-              <option key={part} value={part}>
-                {part}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className="search-field">
+            <MapIcon />
+            <div className="search-field-content">
+              <label htmlFor="partOfCity" className="search-field-label">
+                Deo grada
+              </label>
+              <select
+                id="partOfCity"
+                value={filters.partOfCity}
+                onChange={(e) => handleChange('partOfCity', e.target.value)}
+                className="search-field-select"
+              >
+                <option value="">Izaberite deo grada</option>
+                {partsOfCity.map((part) => (
+                  <option key={part} value={part}>
+                    {part}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-        <div className="flex-1 w-full">
-          <label htmlFor="activity" className="block text-sm font-medium text-gray-700 mb-2">
-            Aktivnost
-          </label>
-          <select
-            id="activity"
-            value={filters.activity}
-            onChange={(e) => handleChange('activity', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-          >
-            <option value="">Izaberite aktivnost</option>
-            {activities.map((activity) => (
-              <option key={activity} value={activity}>
-                {activity}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className="search-field lg-wide:col-span-1">
+            <SparklesIcon />
+            <div className="search-field-content">
+              <label htmlFor="activity" className="search-field-label">
+                Aktivnost
+              </label>
+              <select
+                id="activity"
+                value={filters.activity}
+                onChange={(e) => handleChange('activity', e.target.value)}
+                className="search-field-select"
+              >
+                <option value="">Izaberite aktivnost</option>
+                {activities.map((activity) => (
+                  <option key={activity} value={activity}>
+                    {activity}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-        <button
-          onClick={handleSearch}
-          className="btn-primary w-full md:w-auto px-8 py-2 font-semibold rounded-lg focus:outline-none transition-all shadow-md hover:shadow-lg"
-        >
-          Pronađi
-        </button>
+          <button type="button" onClick={handleSearch} className="search-submit md:col-span-2 lg-wide:col-span-1">
+            <SearchIcon />
+            Pronađi
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 

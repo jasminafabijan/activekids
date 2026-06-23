@@ -37,7 +37,7 @@ const Hero = () => {
             </span>
             <span>vašu decu</span>
           </h1>
-          <p className="max-w-xl text-lg text-primary md:text-xl">
+          <p className="max-w-xl text-lg text-muted md:text-xl">
             Sport, ples, muzika, umetnost i još mnogo toga — na jednom mestu, prilagođeno uzrastu i interesovanjima vaše dece.
           </p>
         </div>

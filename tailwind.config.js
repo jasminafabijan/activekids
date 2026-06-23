@@ -10,6 +10,7 @@ export default {
             primary: "#0B1A3B",
             secondary: "#7C3AED",
             accent: "#F59E0B",
+            muted: 'var(--text-muted)',
             mint: "var(--mint)",
             peach: "var(--peach)",
         },
@@ -19,6 +20,12 @@ export default {
         fontFamily: {
             sans: ['var(--font-sans)'],
             heading: ['var(--font-heading)'],
+        },
+        borderColor: {
+            DEFAULT: 'var(--border)',
+        },
+        screens: {
+            'lg-wide': '1200px',
         },
     },
   },

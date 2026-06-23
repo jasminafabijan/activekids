@@ -3,34 +3,47 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: var(--font-sans);
-  }
+    html {
+        font-family: var(--font-sans);
+    }
 
-  body {
-    @apply m-0 font-sans antialiased;
-  }
+    body {
+        @apply m-0 font-sans antialiased;
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-heading);
-    font-weight: 800;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-heading);
+        font-weight: 800;
+    }
+
+    *,
+    ::before,
+    ::after {
+        border-color: var(--border);
+    }
 }
 
 :root {
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
-    --mint: #c6dfd0;
+    --text-muted: #596475;
+    --border: #e3e8ef;
+    --surface-muted: #f8f9fc;
     --mint: #cbe3d3;
+    --text-gray: #8a929e;
 
     --peach: #eec6b9;
     --shadow-card: 0 24px 48px -12px rgba(11, 26, 59, 0.14);
+    --shadow-panel: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --radius: 1rem;
+    --radius-panel: 28px;
+    --radius-search-panel: 16px;
+    --radius-search-field: 12px;
 }
 
 @layer components {
@@ -78,5 +91,87 @@
     .hero-title {
         font-size: clamp(2rem, 2.5vw + 1.5rem, 4rem);
         line-height: 1.1;
+    }
+
+    .panel-card {
+        @apply bg-white p-6 mb-8;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-panel);
+        box-shadow: var(--shadow-panel);
+    }
+
+    .search-bar {
+        @apply mx-auto mb-8 w-full lg-wide:w-4/5;
+    }
+
+    .search-bar-panel {
+        @apply bg-white p-3 sm:p-4;
+        border: 1px solid rgba(11, 26, 59, 0.05);
+        border-radius: var(--radius-search-panel);
+        box-shadow:
+            0 20px 25px -5px rgba(11, 26, 59, 0.05),
+            0 8px 10px -6px rgba(11, 26, 59, 0.05);
+    }
+
+    .search-bar-grid {
+        @apply grid grid-cols-1 gap-3 md:grid-cols-2 lg-wide:grid-cols-4;
+    }
+
+    .search-field {
+        @apply relative flex min-w-0 items-center gap-2.5 px-4;
+        height: 58px;
+        border-radius: var(--radius-search-field);
+        background-color: var(--surface-muted);
+    }
+
+    .search-field-icon {
+        @apply shrink-0;
+        color: var(--text-gray);
+    }
+
+    .search-field-content {
+        @apply min-w-0 flex-1;
+    }
+
+    .search-field-label {
+        @apply mb-0 block text-[10px] font-semibold uppercase leading-none tracking-[0.14em];
+        color: var(--text-gray);
+    }
+
+    .search-field-select {
+        @apply w-full cursor-pointer appearance-none border-0 bg-transparent p-0 text-sm font-semibold leading-tight text-primary outline-none;
+        background-image: none;
+    }
+
+    .search-bar-panel .search-field-select::-ms-expand {
+        display: none;
+    }
+
+    .search-field-select option {
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .search-submit {
+        @apply inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-white transition-all;
+        height: 58px;
+    }
+
+    .search-submit:active {
+        transform: translateY(1px);
+    }
+
+    .search-submit:focus-visible {
+        @apply outline-none ring-2 ring-primary ring-offset-2;
+    }
+}
+
+@layer utilities {
+    .text-gray {
+        color: var(--text-gray);
+    }
+
+    .text-muted {
+        color: var(--text-muted);
     }
 }
