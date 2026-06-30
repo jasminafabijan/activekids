@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface FiltersBarProps {
   onFilterChange?: (filters: FilterValues) => void
@@ -6,7 +6,7 @@ interface FiltersBarProps {
 
 interface FilterValues {
   city: string
-  partOfCity: string
+  partsOfCity: string[]
   activity: string
 }
 
@@ -79,18 +79,49 @@ const SearchIcon = () => (
 const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
   const [filters, setFilters] = useState<FilterValues>({
     city: '',
-    partOfCity: '',
+    partsOfCity: [],
     activity: '',
   })
+  const [isPartsOpen, setIsPartsOpen] = useState(false)
+  const partsDropdownRef = useRef<HTMLDivElement>(null)
 
   const cities = ['Novi Sad']
   const partsOfCity = ['Liman', 'Grbavica', 'Detelinara']
   const activities = ['Sport', 'Ples', 'Muzika', 'Umetnost', 'Jezici', 'Nauka', 'Tehnologija', 'Priroda']
 
-  const handleChange = (field: keyof FilterValues, value: string) => {
-    const newFilters = { ...filters, [field]: value }
-    setFilters(newFilters)
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (partsDropdownRef.current && !partsDropdownRef.current.contains(event.target as Node)) {
+        setIsPartsOpen(false)
+      }
+    }
+
+    if (isPartsOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isPartsOpen])
+
+  const handleChange = (field: 'city' | 'activity', value: string) => {
+    setFilters((prev) => ({ ...prev, [field]: value }))
   }
+
+  const togglePartOfCity = (part: string) => {
+    setFilters((prev) => {
+      const isSelected = prev.partsOfCity.includes(part)
+      const partsOfCity = isSelected
+        ? prev.partsOfCity.filter((item) => item !== part)
+        : [...prev.partsOfCity, part]
+
+      return { ...prev, partsOfCity }
+    })
+  }
+
+  const partsLabel =
+    filters.partsOfCity.length === 0
+      ? 'Izaberite deo grada'
+      : filters.partsOfCity.join(', ')
 
   const handleSearch = () => {
     console.log('Search filters:', filters)
@@ -123,25 +154,46 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
             </div>
           </div>
 
-          <div className="search-field">
+          <div
+            ref={partsDropdownRef}
+            className={`search-field search-field-dropdown ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
+          >
             <MapIcon />
             <div className="search-field-content">
-              <label htmlFor="partOfCity" className="search-field-label">
+              <span id="partsOfCity-label" className="search-field-label">
                 Deo grada
-              </label>
-              <select
-                id="partOfCity"
-                value={filters.partOfCity}
-                onChange={(e) => handleChange('partOfCity', e.target.value)}
-                className="search-field-select"
+              </span>
+              <button
+                type="button"
+                id="partsOfCity"
+                aria-labelledby="partsOfCity-label"
+                aria-haspopup="listbox"
+                aria-expanded={isPartsOpen}
+                onClick={() => setIsPartsOpen((open) => !open)}
+                className="search-field-trigger"
               >
-                <option value="">Izaberite deo grada</option>
-                {partsOfCity.map((part) => (
-                  <option key={part} value={part}>
-                    {part}
-                  </option>
-                ))}
-              </select>
+                {partsLabel}
+              </button>
+
+              {isPartsOpen && (
+                <div className="search-field-menu" role="listbox" aria-labelledby="partsOfCity-label" aria-multiselectable="true">
+                  {partsOfCity.map((part) => {
+                    const isChecked = filters.partsOfCity.includes(part)
+
+                    return (
+                      <label key={part} className="search-field-option" role="option" aria-selected={isChecked}>
+                        <input
+                          type="checkbox"
+                          className="search-field-checkbox"
+                          checked={isChecked}
+                          onChange={() => togglePartOfCity(part)}
+                        />
+                        <span>{part}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              )}
             </div>
           </div>
 

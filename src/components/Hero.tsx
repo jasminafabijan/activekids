@@ -31,7 +31,7 @@ const Hero = () => {
             <span className="block">
               <span className="relative inline-block">
                 aktivnosti
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none"><path d="M2 8C50 2 150 2 298 8" stroke="var(--peach)" stroke-width="4" stroke-linecap="round"></path></svg>
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none"><path d="M2 8C50 2 150 2 298 8" stroke="var(--peach)" strokeWidth="4" strokeLinecap="round" /></svg>
               </span>{' '}
             <span>za</span>
             </span>
