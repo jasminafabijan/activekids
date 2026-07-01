@@ -21,8 +21,8 @@ const Hero = () => {
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 px-6 py-20 md:py-28 lg:grid-cols-2">
         <div className="space-y-6">
-          <div className="hero-tag">
-            <span className="hero-tag-dot" aria-hidden="true" />
+          <div className="tag tag--pill tag--mint">
+            <span className="tag-dot" aria-hidden="true" />
             Platforma za roditelje
           </div>
 
@@ -59,12 +59,12 @@ const Hero = () => {
               <img
                 src={heroImg1}
                 alt="Atletika za decu"
-                className={`aspect-[5/4] ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-mint/20`}
+                className={`aspect-[5/4] ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-mint-soft`}
               />
               <img
                 src={heroImg2}
                 alt="Fudbal za decu"
-                className={`aspect-square ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-peach/20`}
+                className={`aspect-square ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-peach-soft`}
               />
             </div>
 
@@ -72,12 +72,12 @@ const Hero = () => {
               <img
                 src={heroImg3}
                 alt="Ples i balet za decu"
-                className={`${imageSize} h-[334px] rounded-3xl object-cover shadow-card ring-4 ring-peach/20`}
+                className={`${imageSize} h-[334px] rounded-3xl object-cover shadow-card ring-4 ring-peach-soft`}
               />
               <img
                 src={heroImg4}
                 alt="Tenis za decu"
-                className={`${imageSize} h-[222px] rounded-3xl object-cover shadow-card ring-4 ring-mint/20`}
+                className={`${imageSize} h-[222px] rounded-3xl object-cover shadow-card ring-4 ring-mint-soft`}
               />
             </div>
           </div>

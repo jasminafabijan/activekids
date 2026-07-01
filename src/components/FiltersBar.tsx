@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 
-interface FiltersBarProps {
-  onFilterChange?: (filters: FilterValues) => void
-}
-
-interface FilterValues {
+export type FilterValues = {
   city: string
   partsOfCity: string[]
   activity: string
 }
+
+interface FiltersBarProps {
+  onFilterChange?: (filters: FilterValues) => void
+}
+
+const DEFAULT_CITY = 'Novi Sad'
+
+const cities = [DEFAULT_CITY]
+const partsOfCityOptions = ['Liman', 'Grbavica', 'Detelinara']
+const activities = ['Sport', 'Ples', 'Muzika', 'Umetnost', 'Jezici', 'Nauka', 'Tehnologija', 'Priroda']
 
 const LocationIcon = () => (
   <svg
@@ -78,29 +84,35 @@ const SearchIcon = () => (
 
 const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
   const [filters, setFilters] = useState<FilterValues>({
-    city: '',
+    city: DEFAULT_CITY,
     partsOfCity: [],
     activity: '',
   })
   const [isPartsOpen, setIsPartsOpen] = useState(false)
   const partsDropdownRef = useRef<HTMLDivElement>(null)
 
-  const cities = ['Novi Sad']
-  const partsOfCity = ['Liman', 'Grbavica', 'Detelinara']
-  const activities = ['Sport', 'Ples', 'Muzika', 'Umetnost', 'Jezici', 'Nauka', 'Tehnologija', 'Priroda']
-
   useEffect(() => {
+    if (!isPartsOpen) return
+
     const handleClickOutside = (event: MouseEvent) => {
       if (partsDropdownRef.current && !partsDropdownRef.current.contains(event.target as Node)) {
         setIsPartsOpen(false)
       }
     }
 
-    if (isPartsOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsPartsOpen(false)
+      }
     }
 
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleEscape)
+    }
   }, [isPartsOpen])
 
   const handleChange = (field: 'city' | 'activity', value: string) => {
@@ -124,7 +136,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
       : filters.partsOfCity.join(', ')
 
   const handleSearch = () => {
-    console.log('Search filters:', filters)
+    setIsPartsOpen(false)
     onFilterChange?.(filters)
   }
 
@@ -144,7 +156,6 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
                 onChange={(e) => handleChange('city', e.target.value)}
                 className="search-field-select"
               >
-                <option value="">Izaberite grad</option>
                 {cities.map((city) => (
                   <option key={city} value={city}>
                     {city}
@@ -167,8 +178,8 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
                 type="button"
                 id="partsOfCity"
                 aria-labelledby="partsOfCity-label"
-                aria-haspopup="listbox"
                 aria-expanded={isPartsOpen}
+                aria-controls="partsOfCity-menu"
                 onClick={() => setIsPartsOpen((open) => !open)}
                 className="search-field-trigger"
               >
@@ -176,12 +187,12 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
               </button>
 
               {isPartsOpen && (
-                <div className="search-field-menu" role="listbox" aria-labelledby="partsOfCity-label" aria-multiselectable="true">
-                  {partsOfCity.map((part) => {
+                <div id="partsOfCity-menu" className="search-field-menu" aria-labelledby="partsOfCity-label">
+                  {partsOfCityOptions.map((part) => {
                     const isChecked = filters.partsOfCity.includes(part)
 
                     return (
-                      <label key={part} className="search-field-option" role="option" aria-selected={isChecked}>
+                      <label key={part} className="search-field-option">
                         <input
                           type="checkbox"
                           className="search-field-checkbox"
