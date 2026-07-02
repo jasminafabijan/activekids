@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 export type FilterValues = {
   city: string
   partsOfCity: string[]
+  ages: string[]
   activity: string
 }
 
@@ -14,6 +15,7 @@ const DEFAULT_CITY = 'Novi Sad'
 
 const cities = [DEFAULT_CITY]
 const partsOfCityOptions = ['Liman', 'Grbavica', 'Detelinara']
+const ageOptions = ['3-5 godina', '6-8 godina', '9-12 godina', '13-18 godina']
 const activities = ['Sport', 'Ples', 'Muzika', 'Umetnost', 'Jezici', 'Nauka', 'Tehnologija', 'Priroda']
 
 const LocationIcon = () => (
@@ -46,6 +48,30 @@ const MapIcon = () => (
     <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z" />
     <path d="M9 4v14" />
     <path d="M15 6v14" />
+  </svg>
+)
+
+const AgeIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="search-field-icon h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M8 2v4" />
+    <path d="M16 2v4" />
+    <rect width="18" height="18" x="3" y="4" rx="2" />
+    <path d="M3 10h18" />
+    <path d="M8 14h.01" />
+    <path d="M12 14h.01" />
+    <path d="M16 14h.01" />
+    <path d="M8 18h.01" />
+    <path d="M12 18h.01" />
+    <path d="M16 18h.01" />
   </svg>
 )
 
@@ -86,23 +112,33 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
   const [filters, setFilters] = useState<FilterValues>({
     city: DEFAULT_CITY,
     partsOfCity: [],
+    ages: [],
     activity: '',
   })
   const [isPartsOpen, setIsPartsOpen] = useState(false)
+  const [isAgeOpen, setIsAgeOpen] = useState(false)
   const partsDropdownRef = useRef<HTMLDivElement>(null)
+  const ageDropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!isPartsOpen) return
+    if (!isPartsOpen && !isAgeOpen) return
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (partsDropdownRef.current && !partsDropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node
+
+      if (isPartsOpen && partsDropdownRef.current && !partsDropdownRef.current.contains(target)) {
         setIsPartsOpen(false)
+      }
+
+      if (isAgeOpen && ageDropdownRef.current && !ageDropdownRef.current.contains(target)) {
+        setIsAgeOpen(false)
       }
     }
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsPartsOpen(false)
+        setIsAgeOpen(false)
       }
     }
 
@@ -113,7 +149,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('keydown', handleEscape)
     }
-  }, [isPartsOpen])
+  }, [isPartsOpen, isAgeOpen])
 
   const handleChange = (field: 'city' | 'activity', value: string) => {
     setFilters((prev) => ({ ...prev, [field]: value }))
@@ -130,13 +166,26 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
     })
   }
 
+  const toggleAge = (age: string) => {
+    setFilters((prev) => {
+      const isSelected = prev.ages.includes(age)
+      const ages = isSelected ? prev.ages.filter((item) => item !== age) : [...prev.ages, age]
+
+      return { ...prev, ages }
+    })
+  }
+
   const partsLabel =
     filters.partsOfCity.length === 0
       ? 'Izaberite deo grada'
       : filters.partsOfCity.join(', ')
 
+  const agesLabel =
+    filters.ages.length === 0 ? 'Izaberite uzrast' : filters.ages.join(', ')
+
   const handleSearch = () => {
     setIsPartsOpen(false)
+    setIsAgeOpen(false)
     onFilterChange?.(filters)
   }
 
@@ -144,7 +193,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
     <section className="search-bar" aria-label="Pretraga aktivnosti">
       <div className="search-bar-panel">
         <div className="search-bar-grid">
-          <div className="search-field">
+          <div className="search-field search-field--city">
             <LocationIcon />
             <div className="search-field-content">
               <label htmlFor="city" className="search-field-label">
@@ -167,7 +216,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
 
           <div
             ref={partsDropdownRef}
-            className={`search-field search-field-dropdown ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
+            className={`search-field search-field-dropdown search-field--parts ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
           >
             <MapIcon />
             <div className="search-field-content">
@@ -208,7 +257,50 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
             </div>
           </div>
 
-          <div className="search-field lg-wide:col-span-1">
+          <div
+            ref={ageDropdownRef}
+            className={`search-field search-field-dropdown search-field--age ${isAgeOpen ? 'search-field-dropdown-open' : ''}`}
+          >
+            <AgeIcon />
+            <div className="search-field-content">
+              <span id="age-label" className="search-field-label">
+                Uzrast
+              </span>
+              <button
+                type="button"
+                id="age"
+                aria-labelledby="age-label"
+                aria-expanded={isAgeOpen}
+                aria-controls="age-menu"
+                onClick={() => setIsAgeOpen((open) => !open)}
+                className="search-field-trigger"
+              >
+                {agesLabel}
+              </button>
+
+              {isAgeOpen && (
+                <div id="age-menu" className="search-field-menu" aria-labelledby="age-label">
+                  {ageOptions.map((age) => {
+                    const isChecked = filters.ages.includes(age)
+
+                    return (
+                      <label key={age} className="search-field-option">
+                        <input
+                          type="checkbox"
+                          className="search-field-checkbox"
+                          checked={isChecked}
+                          onChange={() => toggleAge(age)}
+                        />
+                        <span>{age}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="search-field search-field--activity">
             <SparklesIcon />
             <div className="search-field-content">
               <label htmlFor="activity" className="search-field-label">
@@ -230,7 +322,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
             </div>
           </div>
 
-          <button type="button" onClick={handleSearch} className="search-submit md:col-span-2 lg-wide:col-span-1">
+          <button type="button" onClick={handleSearch} className="search-submit md:col-span-2">
             <SearchIcon />
             Pronađi
           </button>

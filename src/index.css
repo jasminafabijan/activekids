@@ -114,7 +114,7 @@
     }
 
     .search-bar {
-        @apply mx-auto mb-8 w-full lg-wide:w-4/5;
+        @apply mx-auto mb-8 w-full;
     }
 
     .search-bar-panel {
@@ -127,14 +127,27 @@
     }
 
     .search-bar-grid {
-        @apply grid grid-cols-1 gap-3 md:grid-cols-2 lg-wide:grid-cols-4;
+        @apply grid grid-cols-1 gap-3 md:grid-cols-2 lg-wide:flex lg-wide:w-full lg-wide:items-stretch;
     }
 
     .search-field {
-        @apply relative flex min-w-0 items-center gap-2.5 px-4;
+        @apply relative flex min-w-0 items-center gap-2.5 px-4 lg-wide:min-w-0 lg-wide:flex-1;
         height: 58px;
         border-radius: var(--radius-search-field);
         background-color: var(--surface-muted);
+    }
+
+    .search-field--city {
+        @apply lg-wide:max-w-[11rem];
+    }
+
+    .search-field--parts {
+        @apply lg-wide:min-w-[13.5rem] lg-wide:flex-[1.35];
+    }
+
+    .search-field--age,
+    .search-field--activity {
+        @apply lg-wide:min-w-[12.5rem] lg-wide:flex-[1.15];
     }
 
     .search-field-icon {
@@ -162,7 +175,7 @@
     }
 
     .search-field-trigger {
-        @apply truncate text-left;
+        @apply whitespace-nowrap text-left;
     }
 
     .search-bar-panel .search-field-select::-ms-expand {
@@ -204,7 +217,7 @@
     }
 
     .search-submit {
-        @apply inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-white transition-all;
+        @apply inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-white transition-all lg-wide:w-auto lg-wide:min-w-[9.5rem] lg-wide:flex-none;
         height: 58px;
     }
 
