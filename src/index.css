@@ -251,7 +251,7 @@
     }
 
     .category-card {
-        @apply flex flex-col items-center justify-center gap-4 rounded-2xl border bg-white px-4 pb-4 pt-5 transition-colors;
+        @apply flex flex-col items-center justify-center gap-4 rounded-2xl border bg-white px-4 pb-4 pt-5 no-underline transition-colors;
         border-color: var(--border);
     }
 
@@ -298,6 +298,79 @@
 
     .categories-footer-copy {
         @apply text-center md:text-right;
+    }
+
+    .category-page-back {
+        @apply inline-flex text-sm font-semibold text-primary transition-colors;
+    }
+
+    .category-page-back:hover {
+        color: var(--text-muted);
+    }
+
+    .category-page-header {
+        @apply mx-auto mb-10 max-w-3xl text-center md:mb-12;
+    }
+
+    .category-page-title {
+        @apply mb-4 text-3xl font-extrabold text-primary md:text-4xl;
+    }
+
+    .category-page-subtitle {
+        @apply text-base leading-relaxed md:text-lg;
+        color: var(--text-muted);
+    }
+
+    .schools-grid {
+        @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg-wide:grid-cols-3;
+    }
+
+    .school-card {
+        @apply flex flex-col overflow-hidden rounded-2xl border bg-white no-underline transition-all;
+        border-color: var(--border);
+        box-shadow:
+            0 4px 6px -1px rgba(11, 26, 59, 0.04),
+            0 2px 4px -2px rgba(11, 26, 59, 0.04);
+    }
+
+    .school-card:hover {
+        box-shadow: var(--shadow-card);
+        transform: translateY(-2px);
+    }
+
+    .school-card:focus-visible {
+        @apply outline-none ring-2 ring-primary ring-offset-2;
+    }
+
+    .school-card-image-wrap {
+        @apply relative h-[180px] overflow-hidden;
+        background-color: var(--surface-muted);
+    }
+
+    .school-card-image {
+        @apply h-full w-full object-cover;
+    }
+
+    .school-card-body {
+        @apply flex flex-col gap-3 p-5;
+    }
+
+    .school-card-title {
+        @apply text-lg font-bold text-primary md:text-xl;
+    }
+
+    .school-card-meta {
+        @apply flex flex-col gap-2;
+    }
+
+    .school-card-meta-item {
+        @apply inline-flex items-center gap-2 text-sm font-medium;
+        color: var(--text-muted);
+    }
+
+    .school-card-meta-icon {
+        @apply h-4 w-4 shrink-0;
+        color: var(--text-gray);
     }
 }
 
