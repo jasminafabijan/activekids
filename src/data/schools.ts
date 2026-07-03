@@ -42,3 +42,8 @@ export const getSchoolsByCategory = (categorySlug: string) =>
 
 export const getSchoolBySlug = (slug: string) =>
   schools.find((school) => school.slug === slug)
+
+export const getDistrictOptions = () =>
+  [...new Set(schools.map((school) => school.district))].sort((a, b) =>
+    a.localeCompare(b, 'sr')
+  )

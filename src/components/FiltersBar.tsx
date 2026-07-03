@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { getDistrictOptions } from '../data/schools'
 
 export type FilterValues = {
   city: string
@@ -14,7 +15,7 @@ interface FiltersBarProps {
 const DEFAULT_CITY = 'Novi Sad'
 
 const cities = [DEFAULT_CITY]
-const partsOfCityOptions = ['Liman', 'Grbavica', 'Detelinara']
+const partsOfCityOptions = getDistrictOptions()
 const ageOptions = ['3-5 godina', '6-8 godina', '9-12 godina', '13-18 godina']
 const activities = ['Sport', 'Ples', 'Muzika', 'Umetnost', 'Jezici', 'Nauka', 'Tehnologija', 'Priroda']
 
@@ -51,7 +52,7 @@ const MapIcon = () => (
   </svg>
 )
 
-const AgeIcon = () => (
+const UsersIcon = () => (
   <svg
     aria-hidden="true"
     className="search-field-icon h-5 w-5"
@@ -62,16 +63,10 @@ const AgeIcon = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path d="M8 2v4" />
-    <path d="M16 2v4" />
-    <rect width="18" height="18" x="3" y="4" rx="2" />
-    <path d="M3 10h18" />
-    <path d="M8 14h.01" />
-    <path d="M12 14h.01" />
-    <path d="M16 14h.01" />
-    <path d="M8 18h.01" />
-    <path d="M12 18h.01" />
-    <path d="M16 18h.01" />
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
   </svg>
 )
 
@@ -193,7 +188,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
     <section className="search-bar" aria-label="Pretraga aktivnosti">
       <div className="search-bar-panel">
         <div className="search-bar-grid">
-          <div className="search-field search-field--city">
+          <div className="search-field">
             <LocationIcon />
             <div className="search-field-content">
               <label htmlFor="city" className="search-field-label">
@@ -216,7 +211,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
 
           <div
             ref={partsDropdownRef}
-            className={`search-field search-field-dropdown search-field--parts ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
+            className={`search-field search-field-dropdown ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
           >
             <MapIcon />
             <div className="search-field-content">
@@ -259,9 +254,9 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
 
           <div
             ref={ageDropdownRef}
-            className={`search-field search-field-dropdown search-field--age ${isAgeOpen ? 'search-field-dropdown-open' : ''}`}
+            className={`search-field search-field-dropdown ${isAgeOpen ? 'search-field-dropdown-open' : ''}`}
           >
-            <AgeIcon />
+            <UsersIcon />
             <div className="search-field-content">
               <span id="age-label" className="search-field-label">
                 Uzrast
@@ -300,7 +295,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
             </div>
           </div>
 
-          <div className="search-field search-field--activity">
+          <div className="search-field">
             <SparklesIcon />
             <div className="search-field-content">
               <label htmlFor="activity" className="search-field-label">
