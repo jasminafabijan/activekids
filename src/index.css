@@ -359,6 +359,154 @@
         @apply h-4 w-4 shrink-0;
         color: var(--text-gray);
     }
+
+    .school-detail {
+        @apply mt-8;
+    }
+
+    .school-detail-grid {
+        @apply mt-8 grid grid-cols-1 gap-8 lg-wide:gap-10;
+    }
+
+    @media (min-width: 1200px) {
+        .school-detail-grid {
+            grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+        }
+    }
+
+    .school-detail-main {
+        @apply min-w-0;
+    }
+
+    .school-detail-sidebar {
+        @apply mt-6 flex min-w-0 flex-col gap-12;
+    }
+
+    .school-detail-image-frame {
+        @apply relative mt-8 mb-12 w-fit max-w-full;
+    }
+
+    .school-detail-deco {
+        @apply pointer-events-none absolute z-0;
+    }
+
+    .school-detail-deco--circle {
+        @apply -left-5 -top-5 h-16 w-16 rounded-full;
+        background-color: var(--peach);
+    }
+
+    .school-detail-deco--square {
+        @apply -bottom-5 -right-5 h-20 w-20 rounded-2xl;
+        background-color: var(--mint);
+    }
+
+    .school-detail-image-wrap {
+        @apply relative z-10 overflow-hidden rounded-3xl border border-white shadow-md;
+        width: 680px;
+        max-width: 100%;
+        height: 400px;
+        background-color: var(--surface-muted);
+    }
+
+    .school-detail-image {
+        @apply block h-full w-full object-cover;
+    }
+
+    .school-detail-header {
+        @apply border-b pb-6;
+        border-color: var(--border);
+    }
+
+    .school-detail-title {
+        @apply mb-4 text-3xl font-extrabold text-primary md:text-4xl;
+    }
+
+    .school-detail-tags {
+        @apply flex flex-wrap gap-3;
+    }
+
+    .school-detail-tag {
+        @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-primary;
+    }
+
+    .school-detail-tag--location {
+        background-color: #f4f6f9;
+    }
+
+    .school-detail-tag--age {
+        background-color: color-mix(in srgb, var(--mint) 45%, white);
+    }
+
+    .school-detail-tag-icon {
+        @apply h-4 w-4 shrink-0;
+    }
+
+    .school-detail-section {
+        @apply mt-8 first:mt-0;
+    }
+
+    .school-detail-sidebar .school-detail-section {
+        @apply mt-0;
+    }
+
+    .school-detail-section-title {
+        @apply relative mb-8 pb-3 text-xl font-bold text-primary md:text-2xl;
+    }
+
+    .school-detail-section-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 2.75rem;
+        height: 4px;
+        border-radius: 9999px;
+        background-color: var(--peach);
+    }
+
+    .school-detail-description {
+        @apply flex flex-col gap-4 text-base leading-relaxed md:text-lg;
+        color: var(--text-muted);
+    }
+
+    .school-detail-map {
+        @apply overflow-hidden rounded-2xl border;
+        border-color: var(--border);
+    }
+
+    .school-detail-map iframe {
+        @apply block h-[220px] w-full border-0 lg-wide:h-[260px];
+    }
+
+    .school-detail-contact {
+        @apply flex flex-col gap-3;
+    }
+
+    .school-detail-contact-link {
+        @apply inline-flex w-full min-w-0 items-center gap-3 rounded-xl border px-4 py-3 text-sm font-semibold text-primary no-underline transition-colors;
+        border-color: var(--border);
+    }
+
+    .school-detail-contact-label {
+        @apply min-w-0 truncate;
+    }
+
+    .school-detail-contact-link:hover {
+        background-color: var(--surface-muted);
+    }
+
+    .school-detail-contact-icon-wrap {
+        @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-primary;
+        background-color: color-mix(in srgb, var(--mint), white);
+    }
+
+    .school-detail-contact-icon {
+        @apply h-5 w-5 shrink-0;
+    }
+
+    .school-detail-contact-icon--facebook {
+        @apply h-7 w-7;
+    }
 }
 
 @layer utilities {
