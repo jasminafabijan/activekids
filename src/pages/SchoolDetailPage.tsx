@@ -1,13 +1,14 @@
 import { type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import SchoolMap from '../components/SchoolMap'
 import { getCategoryBySlug } from '../data/categories'
-import { getSchoolBySlug } from '../data/schools'
+import { formatSchoolAddress, getMapsHref, getSchoolBySlug } from '../data/schools'
 
-const LocationIcon = () => (
+const ContactLocationIcon = () => (
   <svg
     aria-hidden="true"
-    className="school-detail-tag-icon"
+    className="school-detail-contact-icon"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -143,6 +144,9 @@ const SchoolDetailPage = () => {
     },
   ].filter(Boolean) as { label: string; href: string; icon: ReactNode }[]
 
+  const mapAddresses =
+    school.addresses?.filter((address) => address.lat != null && address.lng != null) ?? []
+
   return (
     <div className="min-h-screen bg-white pt-20">
       <Navbar />
@@ -158,10 +162,6 @@ const SchoolDetailPage = () => {
             <h1 className="school-detail-title">{school.name}</h1>
 
             <div className="school-detail-tags">
-              <span className="school-detail-tag school-detail-tag--location">
-                <LocationIcon />
-                {school.district}, {school.city}
-              </span>
               <span className="school-detail-tag school-detail-tag--age">
                 <UsersIcon />
                 {school.ageRange}
@@ -228,20 +228,34 @@ const SchoolDetailPage = () => {
                 </section>
               )}
 
-              {school.mapEmbedUrl && (
+              {(school.addresses?.length || mapAddresses.length > 0) && (
                 <section className="school-detail-section" aria-labelledby="school-location">
                   <h2 id="school-location" className="school-detail-section-title">
                     Lokacija
                   </h2>
-                  <div className="school-detail-map">
-                    <iframe
-                      title={`Mapa lokacije — ${school.name}`}
-                      src={school.mapEmbedUrl}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      allowFullScreen
-                    />
-                  </div>
+                  {school.addresses && school.addresses.length > 0 && (
+                    <div className="school-detail-contact mb-4">
+                      {school.addresses.map((address) => {
+                        const label = formatSchoolAddress(address)
+
+                        return (
+                          <a
+                            key={label}
+                            href={getMapsHref(address)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="school-detail-contact-link"
+                          >
+                            <span className="school-detail-contact-icon-wrap">
+                              <ContactLocationIcon />
+                            </span>
+                            <span className="school-detail-contact-label">{label}</span>
+                          </a>
+                        )
+                      })}
+                    </div>
+                  )}
+                  {mapAddresses.length > 0 && <SchoolMap addresses={school.addresses ?? []} />}
                 </section>
               )}
             </aside>

@@ -9,6 +9,13 @@ export type SchoolContact = {
   instagram?: string
 }
 
+export type SchoolAddress = {
+  street: string
+  city: string
+  lat?: number
+  lng?: number
+}
+
 export type School = {
   id: string
   slug: string
@@ -20,7 +27,7 @@ export type School = {
   imageWebp: string
   imagePng: string
   description?: string[]
-  mapEmbedUrl?: string
+  addresses?: SchoolAddress[]
   contact?: SchoolContact
 }
 
@@ -44,8 +51,10 @@ export const schools: School[] = [
       'Grupe su manje, što omogućava nastavnicima da svakom detetu posvete dovoljno pažnje i podrške tokom časa.',
       'NTC balet je odličan izbor za decu koja tek otkrivaju svet plesa i žele da na zabavan način steknu ljubav prema pokretu i muzici.',
     ],
-    mapEmbedUrl:
-      'https://maps.google.com/maps?q=Centar,+Novi+Sad,+Serbia&z=15&hl=sr&output=embed',
+    addresses: [
+      { street: 'Augusta Cesarca 18', city: 'Novi Sad', lat: 45.2506936, lng: 19.8383143 },
+      { street: 'Zlatne Grede 25', city: 'Novi Sad', lat: 45.2592145, lng: 19.847808 },
+    ],
     contact: {
       website: 'https://ntcucenje.com/ntc-balet/',
       facebook: 'https://www.facebook.com/ntcsistemucenja',
@@ -64,6 +73,44 @@ export const schools: School[] = [
     imagePng: reveransJpg,
   },
 ]
+
+export const formatSchoolAddress = (address: SchoolAddress) =>
+  `${address.street}, ${address.city}`
+
+export const getMapsHref = (address: SchoolAddress) => {
+  const query =
+    address.lat != null && address.lng != null
+      ? `${address.lat},${address.lng}`
+      : formatSchoolAddress(address)
+
+  return `https://maps.google.com/maps?q=${encodeURIComponent(query)}`
+}
+
+export const getGoogleMapsOpenHref = (addresses: SchoolAddress[]) => {
+  const withCoords = addresses.filter(
+    (address): address is SchoolAddress & { lat: number; lng: number } =>
+      address.lat != null && address.lng != null
+  )
+
+  if (withCoords.length === 1) {
+    const { lat, lng } = withCoords[0]
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
+  }
+
+  if (withCoords.length > 1) {
+    const centerLat =
+      withCoords.reduce((sum, address) => sum + address.lat, 0) / withCoords.length
+    const centerLng =
+      withCoords.reduce((sum, address) => sum + address.lng, 0) / withCoords.length
+    return `https://www.google.com/maps/@${centerLat},${centerLng},14z`
+  }
+
+  if (addresses.length > 0) {
+    return getMapsHref(addresses[0])
+  }
+
+  return 'https://www.google.com/maps'
+}
 
 export const getSchoolsByCategory = (categorySlug: string) =>
   schools.filter((school) => school.categorySlug === categorySlug)
