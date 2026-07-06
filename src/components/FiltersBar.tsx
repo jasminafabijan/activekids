@@ -1,23 +1,23 @@
 import { useEffect, useRef, useState } from 'react'
-import { getDistrictOptions } from '../data/schools'
+import {
+  getActivityOptions,
+  getAgeOptions,
+  getCityOptions,
+  getDistrictOptions,
+  type SchoolFilters,
+} from '../data/schools'
 
-export type FilterValues = {
-  city: string
-  partsOfCity: string[]
-  ages: string[]
-  activity: string
-}
+export type FilterValues = SchoolFilters
 
 interface FiltersBarProps {
   onFilterChange?: (filters: FilterValues) => void
 }
 
-const DEFAULT_CITY = 'Novi Sad'
-
-const cities = [DEFAULT_CITY]
 const partsOfCityOptions = getDistrictOptions()
-const ageOptions = ['3-5 godina', '6-8 godina', '9-12 godina', '13-18 godina']
-const activities = ['Sport', 'Ples', 'Muzika', 'Umetnost', 'Jezici', 'Nauka', 'Tehnologija', 'Priroda']
+const ageOptions = getAgeOptions()
+const activityOptions = getActivityOptions()
+const cities = getCityOptions()
+const DEFAULT_CITY = cities[0] ?? ''
 
 const LocationIcon = () => (
   <svg
@@ -308,9 +308,9 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
                 className="search-field-select"
               >
                 <option value="">Izaberite aktivnost</option>
-                {activities.map((activity) => (
-                  <option key={activity} value={activity}>
-                    {activity}
+                {activityOptions.map((activity) => (
+                  <option key={activity.slug} value={activity.slug}>
+                    {activity.name}
                   </option>
                 ))}
               </select>

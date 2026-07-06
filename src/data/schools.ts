@@ -2,6 +2,14 @@ import ntcBaletWebp from '../assets/images/schools/ntc-balet.webp'
 import ntcBaletPng from '../assets/images/schools/ntc-balet.png'
 import reveransWebp from '../assets/images/schools/reverans.webp'
 import reveransJpg from '../assets/images/schools/reverans.jpg'
+import { getCategoryBySlug } from './categories'
+
+export type SchoolFilters = {
+    city: string
+    partsOfCity: string[]
+    ages: string[]
+    activity: string
+}
 
 export type SchoolContact = {
     phone?: string
@@ -164,3 +172,46 @@ export const getDistrictOptions = () =>
     [...new Set(schools.flatMap((school) => getSchoolDistricts(school)))].sort((a, b) =>
         a.localeCompare(b, 'sr')
     )
+
+export const getCityOptions = () =>
+    [...new Set(schools.map((school) => school.city))].sort((a, b) => a.localeCompare(b, 'sr'))
+
+export const getAgeOptions = () =>
+    [...new Set(schools.map((school) => school.ageRange))].sort((a, b) => a.localeCompare(b, 'sr'))
+
+export const getActivityOptions = () =>
+    [...new Set(schools.map((school) => school.categorySlug))]
+        .map((slug) => {
+            const category = getCategoryBySlug(slug)
+            return category ? { slug, name: category.name } : null
+        })
+        .filter((option): option is { slug: string; name: string } => option != null)
+        .sort((a, b) => a.name.localeCompare(b.name, 'sr'))
+
+export const filterSchools = (filters: SchoolFilters) =>
+    schools.filter((school) => {
+        if (filters.city && school.city !== filters.city) {
+            return false
+        }
+
+        if (filters.activity && school.categorySlug !== filters.activity) {
+            return false
+        }
+
+        if (filters.ages.length > 0 && !filters.ages.includes(school.ageRange)) {
+            return false
+        }
+
+        if (filters.partsOfCity.length > 0) {
+            const schoolDistricts = getSchoolDistricts(school)
+            const matchesDistrict = filters.partsOfCity.some((part) =>
+                schoolDistricts.includes(part)
+            )
+
+            if (!matchesDistrict) {
+                return false
+            }
+        }
+
+        return true
+    })
