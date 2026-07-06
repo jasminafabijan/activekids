@@ -14,6 +14,7 @@ export type SchoolContact = {
 export type SchoolAddress = {
     street: string
     city: string
+    district?: string
     lat?: number
     lng?: number
 }
@@ -27,7 +28,7 @@ export type School = {
     district: string
     ageRange: string
     imageWebp: string
-    imagePng: string
+    imageFallback: string
     description?: string[]
     addresses?: SchoolAddress[]
     contact?: SchoolContact
@@ -43,7 +44,7 @@ export const schools: School[] = [
         district: 'Centar',
         ageRange: '3-7 godina',
         imageWebp: ntcBaletWebp,
-        imagePng: ntcBaletPng,
+        imageFallback: ntcBaletPng,
         description: [
             'NTC program baleta predstavlja inovativni pristup razvoju dece koji spaja elemente klasičnog baleta sa principima NTC sistema učenja.',
             'Program je osmišljen od strane dr Ranka Rajovića i balerine Sare Đurakić, sa ciljem da deca kroz pokret razvijaju koordinaciju, motoriku i samopouzdanje.',
@@ -51,8 +52,20 @@ export const schools: School[] = [
             'Grupe su manje, što omogućava nastavnicima da svakom detetu posvete dovoljno pažnje i podrške tokom časa.',
         ],
         addresses: [
-            { street: 'Augusta Cesarca 18', city: 'Novi Sad', lat: 45.2506936, lng: 19.8383143 },
-            { street: 'Zlatne Grede 25', city: 'Novi Sad', lat: 45.2592145, lng: 19.847808 },
+            {
+                street: 'Augusta Cesarca 18',
+                city: 'Novi Sad',
+                district: 'Centar',
+                lat: 45.2506936,
+                lng: 19.8383143,
+            },
+            {
+                street: 'Zlatne Grede 25',
+                city: 'Novi Sad',
+                district: 'Podbara',
+                lat: 45.2592145,
+                lng: 19.847808,
+            },
         ],
         contact: {
             phone: '065 2451 405',
@@ -70,7 +83,7 @@ export const schools: School[] = [
         district: 'Rotkvarija',
         ageRange: '3-7 godina',
         imageWebp: reveransWebp,
-        imagePng: reveransJpg,
+        imageFallback: reveransJpg,
     },
 ]
 
@@ -132,7 +145,22 @@ export const getSchoolsByCategory = (categorySlug: string) =>
 export const getSchoolBySlug = (slug: string) =>
     schools.find((school) => school.slug === slug)
 
+export const getSchoolDistricts = (school: School) => {
+    const fromAddresses =
+        school.addresses
+            ?.map((address) => address.district)
+            .filter((district): district is string => district != null && district.length > 0) ?? []
+
+    if (fromAddresses.length > 0) {
+        return [...new Set(fromAddresses)]
+    }
+
+    return [school.district]
+}
+
+export const formatSchoolDistricts = (school: School) => getSchoolDistricts(school).join(', ')
+
 export const getDistrictOptions = () =>
-    [...new Set(schools.map((school) => school.district))].sort((a, b) =>
+    [...new Set(schools.flatMap((school) => getSchoolDistricts(school)))].sort((a, b) =>
         a.localeCompare(b, 'sr')
     )

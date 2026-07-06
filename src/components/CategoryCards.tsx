@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import balletIcon from '../assets/icons/ballet.svg'
-import { categories } from '../data/categories'
 
 type CategoryIconBg = 'mint' | 'peach'
 
@@ -9,22 +8,12 @@ interface CategoryDisplay {
   name: string
   slug: string
   iconBg: CategoryIconBg
-  emoji?: string
   iconSrc?: string
 }
 
 const categoryDisplay: CategoryDisplay[] = [
-  { id: '1', name: 'Balet', slug: 'balet', iconBg: 'mint', iconSrc: balletIcon },
-  { id: '2', name: 'Ples', slug: 'ples', iconBg: 'peach', emoji: '💃' },
-  { id: '3', name: 'Muzika', slug: 'muzika', iconBg: 'mint', emoji: '🎵' },
-  { id: '4', name: 'Umetnost', slug: 'umetnost', iconBg: 'peach', emoji: '🎨' },
-  { id: '5', name: 'Jezici', slug: 'jezici', iconBg: 'peach', emoji: '🌍' },
-  { id: '6', name: 'Nauka', slug: 'nauka', iconBg: 'mint', emoji: '🔬' },
-  { id: '7', name: 'Tehnologija', slug: 'tehnologija', iconBg: 'peach', emoji: '💻' },
-  { id: '8', name: 'Priroda', slug: 'priroda', iconBg: 'mint', emoji: '🌳' },
+  { id: 'balet', name: 'Balet', slug: 'balet', iconBg: 'mint', iconSrc: balletIcon },
 ]
-
-const categorySlugs = new Set(categories.map((category) => category.slug))
 
 const LocationPinIcon = () => (
   <svg
@@ -56,40 +45,18 @@ const CategoryCards = () => {
       </div>
 
       <div className="categories-grid">
-        {categoryDisplay.map((category) => {
-          const content = (
-            <>
-              <span className={`category-card-icon category-card-icon--${category.iconBg}`}>
-                {category.iconSrc ? (
-                  <img src={category.iconSrc} alt="" className="category-card-icon-image" />
-                ) : (
-                  <span className="category-card-emoji" aria-hidden="true">
-                    {category.emoji}
-                  </span>
-                )}
-              </span>
-              <span className="category-card-label">{category.name}</span>
-            </>
-          )
-
-          if (categorySlugs.has(category.slug)) {
-            return (
-              <Link
-                key={category.id}
-                to={`/kategorija/${category.slug}`}
-                className="category-card"
-              >
-                {content}
-              </Link>
-            )
-          }
-
-          return (
-            <div key={category.id} className="category-card category-card--static">
-              {content}
-            </div>
-          )
-        })}
+        {categoryDisplay.map((category) => (
+          <Link
+            key={category.id}
+            to={`/kategorija/${category.slug}`}
+            className="category-card"
+          >
+            <span className={`category-card-icon category-card-icon--${category.iconBg}`}>
+              <img src={category.iconSrc} alt="" className="category-card-icon-image" />
+            </span>
+            <span className="category-card-label">{category.name}</span>
+          </Link>
+        ))}
       </div>
 
       <div className="categories-footer">

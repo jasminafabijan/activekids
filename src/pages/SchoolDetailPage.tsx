@@ -118,6 +118,16 @@ const InstagramIcon = () => (
   </svg>
 )
 
+type ContactLink = {
+  label: string
+  href: string
+  icon: ReactNode
+  external: boolean
+}
+
+const isContactLink = (link: ContactLink | undefined): link is ContactLink =>
+  link !== undefined
+
 const SchoolDetailPage = () => {
   const { slug } = useParams<{ slug: string }>()
   const school = slug ? getSchoolBySlug(slug) : undefined
@@ -157,38 +167,50 @@ const SchoolDetailPage = () => {
     }
   }
 
-  const contactLinks = [
-    school.contact?.phone && {
-      label: school.contact.phone,
-      href: formatPhoneHref(school.contact.phone),
-      icon: <PhoneIcon />,
-      external: false,
-    },
-    school.contact?.email && {
-      label: school.contact.email,
-      href: `mailto:${school.contact.email}`,
-      icon: <MailIcon />,
-      external: false,
-    },
-    school.contact?.website && {
-      label: formatWebsiteLabel(school.contact.website),
-      href: school.contact.website,
-      icon: <GlobeIcon />,
-      external: true,
-    },
-    school.contact?.facebook && {
-      label: formatFacebookLabel(school.contact.facebook),
-      href: school.contact.facebook,
-      icon: <FacebookIcon />,
-      external: true,
-    },
-    school.contact?.instagram && {
-      label: formatInstagramLabel(school.contact.instagram),
-      href: school.contact.instagram,
-      icon: <InstagramIcon />,
-      external: true,
-    },
-  ].filter(Boolean) as { label: string; href: string; icon: ReactNode; external: boolean }[]
+  const contactLinkItems: Array<ContactLink | undefined> = [
+    school.contact?.phone
+      ? {
+          label: school.contact.phone,
+          href: formatPhoneHref(school.contact.phone),
+          icon: <PhoneIcon />,
+          external: false,
+        }
+      : undefined,
+    school.contact?.email
+      ? {
+          label: school.contact.email,
+          href: `mailto:${school.contact.email}`,
+          icon: <MailIcon />,
+          external: false,
+        }
+      : undefined,
+    school.contact?.website
+      ? {
+          label: formatWebsiteLabel(school.contact.website),
+          href: school.contact.website,
+          icon: <GlobeIcon />,
+          external: true,
+        }
+      : undefined,
+    school.contact?.facebook
+      ? {
+          label: formatFacebookLabel(school.contact.facebook),
+          href: school.contact.facebook,
+          icon: <FacebookIcon />,
+          external: true,
+        }
+      : undefined,
+    school.contact?.instagram
+      ? {
+          label: formatInstagramLabel(school.contact.instagram),
+          href: school.contact.instagram,
+          icon: <InstagramIcon />,
+          external: true,
+        }
+      : undefined,
+  ]
+
+  const contactLinks = contactLinkItems.filter(isContactLink)
 
   const mapAddresses =
     school.addresses?.filter((address) => address.lat != null && address.lng != null) ?? []
@@ -224,7 +246,7 @@ const SchoolDetailPage = () => {
                   <picture>
                     <source srcSet={school.imageWebp} type="image/webp" />
                     <img
-                      src={school.imagePng}
+                      src={school.imageFallback}
                       alt={school.name}
                       loading="eager"
                       decoding="async"
@@ -242,8 +264,8 @@ const SchoolDetailPage = () => {
                     O programu
                   </h2>
                   <div className="school-detail-description">
-                    {school.description.map((paragraph, index) => (
-                      <p key={index}>{paragraph}</p>
+                    {school.description.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
                 </section>
@@ -302,7 +324,7 @@ const SchoolDetailPage = () => {
                       })}
                     </div>
                   )}
-                  {mapAddresses.length > 0 && <SchoolMap addresses={school.addresses ?? []} />}
+                  {mapAddresses.length > 0 && <SchoolMap addresses={mapAddresses} />}
                 </section>
               )}
             </aside>

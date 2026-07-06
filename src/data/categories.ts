@@ -5,14 +5,14 @@ export type Category = {
 }
 
 export const categories: Category[] = [
-  { id: '1', name: 'Balet', slug: 'balet' },
-  { id: '2', name: 'Ples', slug: 'ples' },
-  { id: '3', name: 'Muzika', slug: 'muzika' },
-  { id: '4', name: 'Umetnost', slug: 'umetnost' },
-  { id: '5', name: 'Jezici', slug: 'jezici' },
-  { id: '6', name: 'Nauka', slug: 'nauka' },
-  { id: '7', name: 'Tehnologija', slug: 'tehnologija' },
-  { id: '8', name: 'Priroda', slug: 'priroda' },
+  { id: 'balet', name: 'Balet', slug: 'balet' },
+  { id: 'ples', name: 'Ples', slug: 'ples' },
+  { id: 'muzika', name: 'Muzika', slug: 'muzika' },
+  { id: 'umetnost', name: 'Umetnost', slug: 'umetnost' },
+  { id: 'jezici', name: 'Jezici', slug: 'jezici' },
+  { id: 'nauka', name: 'Nauka', slug: 'nauka' },
+  { id: 'tehnologija', name: 'Tehnologija', slug: 'tehnologija' },
+  { id: 'priroda', name: 'Priroda', slug: 'priroda' },
 ]
 
 export const getCategoryBySlug = (slug: string) =>

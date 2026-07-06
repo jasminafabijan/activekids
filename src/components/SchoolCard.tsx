@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import type { School } from '../data/schools'
+import { formatSchoolDistricts, type School } from '../data/schools'
 
 const LocationIcon = () => (
   <svg
@@ -46,7 +46,7 @@ const SchoolCard = ({ school }: SchoolCardProps) => {
         <picture>
           <source srcSet={school.imageWebp} type="image/webp" />
           <img
-            src={school.imagePng}
+            src={school.imageFallback}
             alt={school.name}
             loading="lazy"
             decoding="async"
@@ -63,7 +63,7 @@ const SchoolCard = ({ school }: SchoolCardProps) => {
         <ul className="school-card-meta">
           <li className="school-card-meta-item">
             <LocationIcon />
-            <span>{school.district}</span>
+            <span>{formatSchoolDistricts(school)}</span>
           </li>
           <li className="school-card-meta-item">
             <UsersIcon />
