@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import SchoolMap from '../components/SchoolMap'
 import { getCategoryBySlug } from '../data/categories'
-import { formatSchoolAddress, getMapsHref, getSchoolBySlug } from '../data/schools'
+import { formatSchoolAddress, formatPhoneHref, getMapsHref, getSchoolBySlug } from '../data/schools'
 
 const ContactLocationIcon = () => (
   <svg
@@ -36,6 +36,37 @@ const UsersIcon = () => (
     <circle cx="9" cy="7" r="4" />
     <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+)
+
+const PhoneIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="school-detail-contact-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+)
+
+const MailIcon = () => (
+  <svg
+    aria-hidden="true"
+    className="school-detail-contact-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
   </svg>
 )
 
@@ -127,22 +158,37 @@ const SchoolDetailPage = () => {
   }
 
   const contactLinks = [
+    school.contact?.phone && {
+      label: school.contact.phone,
+      href: formatPhoneHref(school.contact.phone),
+      icon: <PhoneIcon />,
+      external: false,
+    },
+    school.contact?.email && {
+      label: school.contact.email,
+      href: `mailto:${school.contact.email}`,
+      icon: <MailIcon />,
+      external: false,
+    },
     school.contact?.website && {
       label: formatWebsiteLabel(school.contact.website),
       href: school.contact.website,
       icon: <GlobeIcon />,
+      external: true,
     },
     school.contact?.facebook && {
       label: formatFacebookLabel(school.contact.facebook),
       href: school.contact.facebook,
       icon: <FacebookIcon />,
+      external: true,
     },
     school.contact?.instagram && {
       label: formatInstagramLabel(school.contact.instagram),
       href: school.contact.instagram,
       icon: <InstagramIcon />,
+      external: true,
     },
-  ].filter(Boolean) as { label: string; href: string; icon: ReactNode }[]
+  ].filter(Boolean) as { label: string; href: string; icon: ReactNode; external: boolean }[]
 
   const mapAddresses =
     school.addresses?.filter((address) => address.lat != null && address.lng != null) ?? []
@@ -215,8 +261,9 @@ const SchoolDetailPage = () => {
                       <li key={link.label}>
                         <a
                           href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          {...(link.external
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
                           className="school-detail-contact-link"
                         >
                           <span className="school-detail-contact-icon-wrap">{link.icon}</span>

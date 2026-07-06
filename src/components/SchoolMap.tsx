@@ -20,7 +20,7 @@ const getMapCenter = (points: Array<{ lat: number; lng: number }>) => ({
 
 const getMapZoom = (pointCount: number) => {
   if (pointCount === 1) return 16
-  if (pointCount === 2) return 14
+  if (pointCount === 2) return 15
   return 13
 }
 
