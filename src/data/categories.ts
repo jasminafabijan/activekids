@@ -1,19 +1,41 @@
+import { getCityLocative } from './cities'
+
 export type Category = {
   id: string
   name: string
   slug: string
+  subtitle: string
 }
 
 export const categories: Category[] = [
-  { id: 'balet', name: 'Balet', slug: 'balet' },
-  { id: 'ples', name: 'Ples', slug: 'ples' },
-  { id: 'muzika', name: 'Muzika', slug: 'muzika' },
-  { id: 'umetnost', name: 'Umetnost', slug: 'umetnost' },
-  { id: 'jezici', name: 'Jezici', slug: 'jezici' },
-  { id: 'nauka', name: 'Nauka', slug: 'nauka' },
-  { id: 'tehnologija', name: 'Tehnologija', slug: 'tehnologija' },
-  { id: 'priroda', name: 'Priroda', slug: 'priroda' },
+  {
+    id: 'ballet',
+    name: 'Balet',
+    slug: 'ballet',
+    subtitle: 'Škole klasičnog baleta',
+  },
+  {
+    id: 'jazz-ballet',
+    name: 'Džez balet',
+    slug: 'jazz-ballet',
+    subtitle: 'Škole džez baleta i modernog plesa',
+  },
+  { id: 'dance', name: 'Ples', slug: 'dance', subtitle: 'Škole plesa' },
+  { id: 'music', name: 'Muzika', slug: 'music', subtitle: 'Muzičke škole' },
+  { id: 'art', name: 'Umetnost', slug: 'art', subtitle: 'Umetničke škole' },
+  { id: 'languages', name: 'Jezici', slug: 'languages', subtitle: 'Škole stranih jezika' },
+  { id: 'science', name: 'Nauka', slug: 'science', subtitle: 'Naučni programi za decu' },
+  {
+    id: 'technology',
+    name: 'Tehnologija',
+    slug: 'technology',
+    subtitle: 'Tehnološki programi za decu',
+  },
+  { id: 'nature', name: 'Priroda', slug: 'nature', subtitle: 'Programi na otvorenom' },
 ]
 
 export const getCategoryBySlug = (slug: string) =>
   categories.find((category) => category.slug === slug)
+
+export const formatCategorySubtitle = (category: Category, city: string) =>
+  `${category.subtitle} u ${getCityLocative(city)}`

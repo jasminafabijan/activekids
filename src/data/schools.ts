@@ -2,6 +2,8 @@ import ntcBaletWebp from '../assets/images/schools/ntc-balet.webp'
 import ntcBaletPng from '../assets/images/schools/ntc-balet.png'
 import reveransWebp from '../assets/images/schools/reverans.webp'
 import reveransJpg from '../assets/images/schools/reverans.jpg'
+import masterDanceWebp from '../assets/images/schools/master-dance.webp'
+import masterDanceJpg from '../assets/images/schools/master-dance.jpg'
 import { getCategoryBySlug } from './categories'
 
 export type SchoolFilters = {
@@ -44,10 +46,10 @@ export type School = {
 
 export const schools: School[] = [
     {
-        id: '1',
+        id: 'ntc-balet',
         slug: 'ntc-balet',
         name: 'NTC balet',
-        categorySlug: 'balet',
+        categorySlug: 'ballet',
         city: 'Novi Sad',
         district: 'Centar',
         ageRange: '3-7 godina',
@@ -58,6 +60,8 @@ export const schools: School[] = [
             'Program je osmišljen od strane dr Ranka Rajovića i balerine Sare Đurakić, sa ciljem da deca kroz pokret razvijaju koordinaciju, motoriku i samopouzdanje.',
             'Deca uče osnovne baletne pozicije, ritam i muzikalnost kroz igru, pri čemu se posebna pažnja posvećuje individualnom razvoju svakog deteta.',
             'Grupe su manje, što omogućava nastavnicima da svakom detetu posvete dovoljno pažnje i podrške tokom časa.',
+            'Kroz kombinaciju igre, muzike i strukturisanih zadataka, deca uče da pokret povezuju sa emocijama i maštom.',
+            'Program podstiče samostalnost i radoznalost, uz okruženje u kojem je istraživanje pokreta podržano i svakom koraku dozvoljeno vreme.',
         ],
         addresses: [
             {
@@ -83,15 +87,73 @@ export const schools: School[] = [
         },
     },
     {
-        id: '2',
+        id: 'reverans',
         slug: 'reverans',
         name: 'Baletski studio "Reverans"',
-        categorySlug: 'balet',
+        categorySlug: 'ballet',
         city: 'Novi Sad',
         district: 'Rotkvarija',
         ageRange: '3-7 godina',
         imageWebp: reveransWebp,
         imageFallback: reveransJpg,
+        description: [
+            'Baletski studio "Reverans" osnovan je 2017. godine i posluje u Novom Sadu i Kikindi.',
+            'Studio vodi diplomirana balerina Jovana Banić, koja kroz igru uči decu osnovama baleta, muzikalnosti i koordinacije.',
+            'Program razvija osećaj za ritam, gipkost i pravilno držanje, uz vežbe na parteru i u sredini sale.',
+            'Roditelji mogu da prate napredak dece na javnim nastupima i javnim časovima na kraju svakog polugodišta.',
+            'Kreativni deo programa uključuje improvizacije koje pomažu deci da otkriju sopstveni izraz i povežu ples sa pričom i muzikom.',
+            'Kroz igru deca uče disciplinu i koncentraciju, u toploj atmosferi koja neguje sigurnost i radoznalost.',
+        ],
+        addresses: [
+            {
+                street: 'Dostojevskog 11',
+                city: 'Novi Sad',
+                district: 'Rotkvarija',
+                lat: 45.2576083,
+                lng: 19.8368714,
+            },
+        ],
+        contact: {
+            phone: '064 299 63 83',
+            email: 'reverans.rs@gmail.com',
+            website: 'https://decijisvetbaleta.weebly.com',
+            facebook: 'https://www.facebook.com/reveransnovisad/',
+            instagram: 'https://www.instagram.com/baletski_studio_reverans/',
+        },
+    },
+    {
+        id: 'master-dance',
+        slug: 'master-dance',
+        name: 'Plesni klub "Master dance"',
+        categorySlug: 'jazz-ballet',
+        city: 'Novi Sad',
+        district: 'Grbavica',
+        ageRange: '3-15 godina',
+        imageWebp: masterDanceWebp,
+        imageFallback: masterDanceJpg,
+        description: [
+            'Plesni klub "Master dance" okuplja decu koja kroz ples razvijaju talent, samopouzdanje i ljubav prema pokretu.',
+            'Klub je započeo rad 2005. godine sa osnivačicom Dubravkom Demić, a danas uz nju vredno rade i drugi treneri.',
+            'Naglasak je na džez plesu, uz učenje osnova baletske tehnike koja je neophodna za pravilan razvoj plesača.',
+            'Deca uče kroz koreografije, pažljivo odabranu muziku i kreativne pokrete koji podstiču rad, zajedništvo i radoznalost.',
+            'Polaznici pamte druženja, putovanja i takmičenja, uče organizovanosti i neodustajanju od svojih snova.',
+            'Javne predstave i nastupi daju priliku da roditelji vide koliko deca uživaju u plesu i koliko im klub znači.',
+        ],
+        addresses: [
+            {
+                street: 'Tolstojeva 51',
+                city: 'Novi Sad',
+                district: 'Grbavica',
+                lat: 45.2425798,
+                lng: 19.8317812,
+            },
+        ],
+        contact: {
+            phone: '069 524 59 05',
+            email: 'masterdancens@hotmail.com',
+            facebook: 'https://www.facebook.com/MasterdanceNS/',
+            instagram: 'https://www.instagram.com/masterdance_ns/',
+        },
     },
 ]
 
@@ -173,11 +235,27 @@ export const getDistrictOptions = () =>
         a.localeCompare(b, 'sr')
     )
 
-export const getCityOptions = () =>
-    [...new Set(schools.map((school) => school.city))].sort((a, b) => a.localeCompare(b, 'sr'))
+const parseAgeRange = (ageRange: string) => {
+    const match = ageRange.match(/(\d+)\s*-\s*(\d+)/)
+
+    if (!match) {
+        return { min: 0, max: 0 }
+    }
+
+    return { min: Number(match[1]), max: Number(match[2]) }
+}
 
 export const getAgeOptions = () =>
-    [...new Set(schools.map((school) => school.ageRange))].sort((a, b) => a.localeCompare(b, 'sr'))
+    [...new Set(schools.map((school) => school.ageRange))].sort((a, b) => {
+        const ageA = parseAgeRange(a)
+        const ageB = parseAgeRange(b)
+
+        if (ageA.min !== ageB.min) {
+            return ageA.min - ageB.min
+        }
+
+        return ageA.max - ageB.max
+    })
 
 export const getActivityOptions = () =>
     [...new Set(schools.map((school) => school.categorySlug))]

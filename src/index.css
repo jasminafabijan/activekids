@@ -296,7 +296,7 @@
     }
 
     .category-page-header {
-        @apply mx-auto mb-10 max-w-3xl text-center md:mb-12;
+        @apply mx-auto mb-10 mt-[30px] max-w-3xl text-center md:mb-12;
     }
 
     .category-page-title {

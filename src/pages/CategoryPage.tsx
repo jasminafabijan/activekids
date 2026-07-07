@@ -1,13 +1,35 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import SchoolCard from '../components/SchoolCard'
-import { getCategoryBySlug } from '../data/categories'
+import { getCityOptions } from '../data/cities'
+import { formatCategorySubtitle, getCategoryBySlug } from '../data/categories'
 import { getSchoolsByCategory } from '../data/schools'
+
+const getSelectedCity = (
+  searchParams: URLSearchParams,
+  categoryCities: string[]
+) => {
+  const cityFromQuery = searchParams.get('grad') ?? searchParams.get('city')
+
+  if (cityFromQuery) {
+    return cityFromQuery
+  }
+
+  if (categoryCities.length === 1) {
+    return categoryCities[0]
+  }
+
+  return getCityOptions()[0] ?? 'Novi Sad'
+}
 
 const CategoryPage = () => {
   const { slug } = useParams<{ slug: string }>()
+  const [searchParams] = useSearchParams()
   const category = slug ? getCategoryBySlug(slug) : undefined
   const categorySchools = slug ? getSchoolsByCategory(slug) : []
+  const categoryCities = [...new Set(categorySchools.map((school) => school.city))]
+  const selectedCity = getSelectedCity(searchParams, categoryCities)
+  const visibleSchools = categorySchools.filter((school) => school.city === selectedCity)
 
   if (!category) {
     return (
@@ -34,13 +56,13 @@ const CategoryPage = () => {
         <header className="category-page-header">
           <h1 className="category-page-title">{category.name}</h1>
           <p className="category-page-subtitle">
-            Pronađite škole i programe za decu u kategoriji {category.name.toLowerCase()}.
+            {formatCategorySubtitle(category, selectedCity)}
           </p>
         </header>
 
-        {categorySchools.length > 0 ? (
+        {visibleSchools.length > 0 ? (
           <div className="schools-grid">
-            {categorySchools.map((school) => (
+            {visibleSchools.map((school) => (
               <SchoolCard key={school.id} school={school} />
             ))}
           </div>

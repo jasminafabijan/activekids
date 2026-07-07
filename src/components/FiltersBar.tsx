@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import {
   getActivityOptions,
   getAgeOptions,
-  getCityOptions,
   getDistrictOptions,
   type SchoolFilters,
 } from '../data/schools'
+import { getCityOptions } from '../data/cities'
 
 export type FilterValues = SchoolFilters
 
