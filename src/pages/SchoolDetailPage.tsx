@@ -151,8 +151,15 @@ const SchoolDetailPage = () => {
 
   const formatFacebookLabel = (url: string) => {
     try {
-      const pathname = new URL(url).pathname.replace(/\/$/, '')
-      return pathname || url
+      const parsed = new URL(url)
+      const host = parsed.hostname.replace(/^www\./, '')
+
+      if (parsed.pathname === '/profile.php' || parsed.pathname.startsWith('/people/')) {
+        return host
+      }
+
+      const pathname = parsed.pathname.replace(/\/$/, '').replace(/^\//, '')
+      return pathname ? `${host}/${pathname}` : host
     } catch {
       return url
     }
@@ -194,7 +201,7 @@ const SchoolDetailPage = () => {
       : undefined,
     school.contact?.facebook
       ? {
-          label: formatFacebookLabel(school.contact.facebook),
+          label: school.contact.facebookLabel ?? formatFacebookLabel(school.contact.facebook),
           href: school.contact.facebook,
           icon: <FacebookIcon />,
           external: true,

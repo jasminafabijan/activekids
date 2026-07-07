@@ -6,6 +6,10 @@ import masterDanceWebp from '../assets/images/schools/master-dance.webp'
 import masterDanceJpg from '../assets/images/schools/master-dance.jpg'
 import soccerTeamWebp from '../assets/images/schools/soccerteam.webp'
 import soccerTeamJpeg from '../assets/images/schools/soccerteam.jpeg'
+import dramaStudioWebp from '../assets/images/schools/drama-studio.webp'
+import dramaStudioJpg from '../assets/images/schools/drama-studio.jpg'
+import sinisaMihajlovicWebp from '../assets/images/schools/fk-sinisa-mihajlovic.webp'
+import sinisaMihajlovicJpg from '../assets/images/schools/fk-sinisa-mihajlovic.jpg'
 import { getCategoryBySlug } from './categories'
 
 export type SchoolFilters = {
@@ -20,6 +24,7 @@ export type SchoolContact = {
     email?: string
     website?: string
     facebook?: string
+    facebookLabel?: string
     instagram?: string
 }
 
@@ -53,7 +58,7 @@ export const schools: School[] = [
         name: 'NTC balet',
         categorySlug: 'ballet',
         city: 'Novi Sad',
-        district: 'Centar',
+        district: 'Stari Grad (Centar)',
         ageRange: '3-7 godina',
         imageWebp: ntcBaletWebp,
         imageFallback: ntcBaletPng,
@@ -69,7 +74,7 @@ export const schools: School[] = [
             {
                 street: 'Augusta Cesarca 18',
                 city: 'Novi Sad',
-                district: 'Centar',
+                district: 'Stari Grad (Centar)',
                 lat: 45.2506936,
                 lng: 19.8383143,
             },
@@ -197,6 +202,74 @@ export const schools: School[] = [
             website: 'https://www.soccerteam.rs',
             facebook: 'https://www.facebook.com/soccerteamns',
             instagram: 'https://www.instagram.com/skola_fudbala_soker_tim',
+        },
+    },
+    {
+        id: 'sinisa-mihajlovic',
+        slug: 'sinisa-mihajlovic',
+        name: 'Škola fudbala "Siniša Mihajlović"',
+        categorySlug: 'football',
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        ageRange: '5-14 godina',
+        imageWebp: sinisaMihajlovicWebp,
+        imageFallback: sinisaMihajlovicJpg,
+        description: [
+            'Škola fudbala „Siniša Mihajlović” nalazi se na SPENS-u i bavi se sportskom edukacijom dece koja žele da se amaterski ili profesionalno bave fudbalom.',
+            'Program vode visoko stručno obrazovani treneri — diplomirani treneri fudbala i licencirani treneri Fudbalskog saveza Srbije, osposobljeni za rad sa mlađim kategorijama.',
+            'Škola učestvuje u takmičenjima Fudbalskog saveza Srbije, Fudbalskog saveza Grada Novog Sada i Dečije fudbalske asocijacije, kao i na međunarodnim turnirima.',
+            'Dva puta godišnje organizuju se edukativna putovanja i kampovi u inostranstvu, gde deca kroz treninge i utakmice usavršavaju svoja fudbalska znanja.',
+        ],
+        addresses: [
+            {
+                street: 'Sutjeska 2',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2471273,
+                lng: 19.8454852,
+            },
+        ],
+        contact: {
+            phone: '064 241 00 19',
+            email: 'fcsmihajlovic.ns@gmail.com',
+            website: 'https://fcsinisamihajlovic.com',
+            facebook: 'https://www.facebook.com/profile.php?id=100063768183474',
+            facebookLabel: 'Skola-Fudbala-Sinisa-Mihajlovic',
+            instagram: 'https://www.instagram.com/skolafudbala_sinisamihajlovic/',
+        },
+    },
+    {
+        id: 'drama-studio',
+        slug: 'drama-studio',
+        name: 'Drama Studio',
+        categorySlug: 'acting',
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        ageRange: '7+ godina',
+        imageWebp: dramaStudioWebp,
+        imageFallback: dramaStudioJpg,
+        description: [
+            'Drama Studio je najtraženija škola glume u Srbiji, sa timom vrhunskih predavača i mentora iz sveta pozorišta i filma.',
+            'Škola radi po Sistemu Stanislavskog i nudi individualan pristup svakom polazniku, uz podršku u razvoju samopouzdanja i scenskog izraza.',
+            'Standardni program namenjen je uzrastu od 7 do 23 godine, sa grupama formiranim prema starosti: osnovna škola, srednja škola i stariji uzrast.',
+            'Polaznici pohađaju pet predmeta: glumu, ples, pevanje, scenski pokret i dikciju, kroz osam mesečnih blokova po 2×45 minuta.',
+            'Program pomaže deci da se oslobode treme, nauče pravilno da govore i steknu kulturno ponašanje u sigurnom i podržavajućem okruženju.',
+        ],
+        addresses: [
+            {
+                street: 'Kralja Aleksandra 12',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2541374,
+                lng: 19.8435541,
+            },
+        ],
+        contact: {
+            phone: '061 46 000 47',
+            email: 'info@dramastudio.rs',
+            website: 'https://www.dramastudio.rs/skola-glume-novi-sad/',
+            facebook: 'https://www.facebook.com/dramastudio.rs/',
+            instagram: 'https://www.instagram.com/dramastudio.rs/',
         },
     },
 ]

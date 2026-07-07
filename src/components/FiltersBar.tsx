@@ -245,7 +245,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
 
           <div
             ref={partsDropdownRef}
-            className={`search-field search-field-dropdown ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
+            className={`search-field search-field-dropdown search-field-dropdown-district ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
           >
             <MapIcon />
             <div className="search-field-content">

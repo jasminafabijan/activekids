@@ -1,9 +1,27 @@
+import heroImg1Webp from '../assets/images/atletika.webp'
 import heroImg1 from '../assets/images/atletika.png'
+import heroImg2Webp from '../assets/images/fudbal.webp'
 import heroImg2 from '../assets/images/fudbal.jpg'
-import heroImg3 from '../assets/images/IMG_2980.jpeg'
+import heroImg3Webp from '../assets/images/balet.webp'
+import heroImg3 from '../assets/images/balet.jpg'
+import heroImg4Webp from '../assets/images/tenis.webp'
 import heroImg4 from '../assets/images/tenis.jpg'
 
 const imageSize = 'w-[278px] max-w-full'
+
+type HeroImageProps = {
+  webp: string
+  fallback: string
+  alt: string
+  className: string
+}
+
+const HeroImage = ({ webp, fallback, alt, className }: HeroImageProps) => (
+  <picture>
+    <source srcSet={webp} type="image/webp" />
+    <img src={fallback} alt={alt} decoding="async" className={className} />
+  </picture>
+)
 
 const Hero = () => {
   return (
@@ -56,26 +74,30 @@ const Hero = () => {
 
           <div className="relative z-10 grid w-fit grid-cols-[278px_278px] gap-x-[30px] gap-y-[30px]">
             <div className="flex flex-col gap-[30px]">
-              <img
-                src={heroImg1}
+              <HeroImage
+                webp={heroImg1Webp}
+                fallback={heroImg1}
                 alt="Atletika za decu"
                 className={`aspect-[5/4] ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-mint-soft`}
               />
-              <img
-                src={heroImg2}
+              <HeroImage
+                webp={heroImg2Webp}
+                fallback={heroImg2}
                 alt="Fudbal za decu"
                 className={`aspect-square ${imageSize} rounded-3xl object-cover shadow-card ring-4 ring-peach-soft`}
               />
             </div>
 
             <div className="flex flex-col gap-[30px] -mt-[30px]">
-              <img
-                src={heroImg3}
+              <HeroImage
+                webp={heroImg3Webp}
+                fallback={heroImg3}
                 alt="Ples i balet za decu"
                 className={`${imageSize} h-[334px] rounded-3xl object-cover shadow-card ring-4 ring-peach-soft`}
               />
-              <img
-                src={heroImg4}
+              <HeroImage
+                webp={heroImg4Webp}
+                fallback={heroImg4}
                 alt="Tenis za decu"
                 className={`${imageSize} h-[222px] rounded-3xl object-cover shadow-card ring-4 ring-mint-soft`}
               />
