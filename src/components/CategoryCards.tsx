@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import balletIcon from '../assets/icons/ballet.svg'
+import footballIcon from '../assets/icons/football.svg'
 import jazzDanceIcon from '../assets/icons/jazz-dance.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
@@ -15,6 +16,7 @@ interface CategoryDisplay {
 const categoryDisplay: CategoryDisplay[] = [
   { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon },
   { id: 'jazz-ballet', name: 'Džez balet', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon },
+  { id: 'football', name: 'Fudbal', slug: 'football', iconBg: 'mint', iconSrc: footballIcon },
 ]
 
 const LocationPinIcon = () => (

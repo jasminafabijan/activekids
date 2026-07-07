@@ -20,6 +20,12 @@ export const categories: Category[] = [
     slug: 'jazz-ballet',
     subtitle: 'Škole džez baleta i modernog plesa',
   },
+  {
+    id: 'football',
+    name: 'Fudbal',
+    slug: 'football',
+    subtitle: 'Škole fudbala',
+  },
   { id: 'dance', name: 'Ples', slug: 'dance', subtitle: 'Škole plesa' },
   { id: 'music', name: 'Muzika', slug: 'music', subtitle: 'Muzičke škole' },
   { id: 'art', name: 'Umetnost', slug: 'art', subtitle: 'Umetničke škole' },

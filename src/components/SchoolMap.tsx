@@ -13,11 +13,6 @@ const pinIcon = L.divIcon({
   iconAnchor: [14, 14],
 })
 
-const getMapCenter = (points: Array<{ lat: number; lng: number }>) => ({
-  lat: points.reduce((sum, point) => sum + point.lat, 0) / points.length,
-  lng: points.reduce((sum, point) => sum + point.lng, 0) / points.length,
-})
-
 const getMapZoom = (pointCount: number) => {
   if (pointCount === 1) return 16
   if (pointCount === 2) return 15
@@ -75,8 +70,11 @@ const SchoolMap = ({ addresses }: SchoolMapProps) => {
         return
       }
 
-      const center = getMapCenter(points)
-      map.setView([center.lat, center.lng], getMapZoom(points.length))
+      const bounds = L.featureGroup(markers).getBounds()
+      map.fitBounds(bounds, {
+        padding: [24, 24],
+        maxZoom: getMapZoom(points.length),
+      })
     }
 
     map.whenReady(applyView)

@@ -108,15 +108,17 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
     city: DEFAULT_CITY,
     partsOfCity: [],
     ages: [],
-    activity: '',
+    activities: [],
   })
   const [isPartsOpen, setIsPartsOpen] = useState(false)
   const [isAgeOpen, setIsAgeOpen] = useState(false)
+  const [isActivityOpen, setIsActivityOpen] = useState(false)
   const partsDropdownRef = useRef<HTMLDivElement>(null)
   const ageDropdownRef = useRef<HTMLDivElement>(null)
+  const activityDropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!isPartsOpen && !isAgeOpen) return
+    if (!isPartsOpen && !isAgeOpen && !isActivityOpen) return
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node
@@ -128,12 +130,21 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
       if (isAgeOpen && ageDropdownRef.current && !ageDropdownRef.current.contains(target)) {
         setIsAgeOpen(false)
       }
+
+      if (
+        isActivityOpen &&
+        activityDropdownRef.current &&
+        !activityDropdownRef.current.contains(target)
+      ) {
+        setIsActivityOpen(false)
+      }
     }
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsPartsOpen(false)
         setIsAgeOpen(false)
+        setIsActivityOpen(false)
       }
     }
 
@@ -144,9 +155,9 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('keydown', handleEscape)
     }
-  }, [isPartsOpen, isAgeOpen])
+  }, [isPartsOpen, isAgeOpen, isActivityOpen])
 
-  const handleChange = (field: 'city' | 'activity', value: string) => {
+  const handleChange = (field: 'city', value: string) => {
     setFilters((prev) => ({ ...prev, [field]: value }))
   }
 
@@ -170,6 +181,17 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
     })
   }
 
+  const toggleActivity = (activitySlug: string) => {
+    setFilters((prev) => {
+      const isSelected = prev.activities.includes(activitySlug)
+      const activities = isSelected
+        ? prev.activities.filter((item) => item !== activitySlug)
+        : [...prev.activities, activitySlug]
+
+      return { ...prev, activities }
+    })
+  }
+
   const partsLabel =
     filters.partsOfCity.length === 0
       ? 'Izaberite deo grada'
@@ -178,9 +200,21 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
   const agesLabel =
     filters.ages.length === 0 ? 'Izaberite uzrast' : filters.ages.join(', ')
 
+  const activitiesLabel =
+    filters.activities.length === 0
+      ? 'Izaberite aktivnost'
+      : filters.activities
+          .map(
+            (activitySlug) =>
+              activityOptions.find((activity) => activity.slug === activitySlug)?.name ??
+              activitySlug
+          )
+          .join(', ')
+
   const handleSearch = () => {
     setIsPartsOpen(false)
     setIsAgeOpen(false)
+    setIsActivityOpen(false)
     onFilterChange?.(filters)
   }
 
@@ -295,25 +329,46 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
             </div>
           </div>
 
-          <div className="search-field">
+          <div
+            ref={activityDropdownRef}
+            className={`search-field search-field-dropdown ${isActivityOpen ? 'search-field-dropdown-open' : ''}`}
+          >
             <SparklesIcon />
             <div className="search-field-content">
-              <label htmlFor="activity" className="search-field-label">
+              <span id="activity-label" className="search-field-label">
                 Aktivnost
-              </label>
-              <select
+              </span>
+              <button
+                type="button"
                 id="activity"
-                value={filters.activity}
-                onChange={(e) => handleChange('activity', e.target.value)}
-                className="search-field-select"
+                aria-labelledby="activity-label"
+                aria-expanded={isActivityOpen}
+                aria-controls="activity-menu"
+                onClick={() => setIsActivityOpen((open) => !open)}
+                className="search-field-trigger"
               >
-                <option value="">Izaberite aktivnost</option>
-                {activityOptions.map((activity) => (
-                  <option key={activity.slug} value={activity.slug}>
-                    {activity.name}
-                  </option>
-                ))}
-              </select>
+                {activitiesLabel}
+              </button>
+
+              {isActivityOpen && (
+                <div id="activity-menu" className="search-field-menu" aria-labelledby="activity-label">
+                  {activityOptions.map((activity) => {
+                    const isChecked = filters.activities.includes(activity.slug)
+
+                    return (
+                      <label key={activity.slug} className="search-field-option">
+                        <input
+                          type="checkbox"
+                          className="search-field-checkbox"
+                          checked={isChecked}
+                          onChange={() => toggleActivity(activity.slug)}
+                        />
+                        <span>{activity.name}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              )}
             </div>
           </div>
 

@@ -4,13 +4,15 @@ import reveransWebp from '../assets/images/schools/reverans.webp'
 import reveransJpg from '../assets/images/schools/reverans.jpg'
 import masterDanceWebp from '../assets/images/schools/master-dance.webp'
 import masterDanceJpg from '../assets/images/schools/master-dance.jpg'
+import soccerTeamWebp from '../assets/images/schools/soccerteam.webp'
+import soccerTeamJpeg from '../assets/images/schools/soccerteam.jpeg'
 import { getCategoryBySlug } from './categories'
 
 export type SchoolFilters = {
     city: string
     partsOfCity: string[]
     ages: string[]
-    activity: string
+    activities: string[]
 }
 
 export type SchoolContact = {
@@ -155,6 +157,48 @@ export const schools: School[] = [
             instagram: 'https://www.instagram.com/masterdance_ns/',
         },
     },
+    {
+        id: 'soccer-team',
+        slug: 'soccer-team',
+        name: 'Škola fudbala "Soccer Team"',
+        categorySlug: 'football',
+        city: 'Novi Sad',
+        district: 'Kamenjar',
+        ageRange: '6-14 godina',
+        imageWebp: soccerTeamWebp,
+        imageFallback: soccerTeamJpeg,
+        description: [
+            'Škola fudbala „Soccer Team” osnovana je 2013. godine i sa velikim uspehom funkcioniše na izuzetno visokom nivou.',
+            'Misija kluba je stručno-pedagoški rad sa decom, uz primenu NTC metode kroz koju se kroz igru razvija intelekt i motorika.',
+            'Treninzi se održavaju u savremenim uslovima na sportsko-rekreativnom kompleksu Sport Magic, po najvišim evropskim standardima.',
+            'Program je zabavno-edukativnog karaktera i usmeren je ka uvođenju sporta u svakodnevicu deteta kroz fizičku aktivnost.',
+            'Deca učestvuju u gradskoj ligi i NAUR ligi, gde kroz takmičenja stiču nova prijateljstva, veštine i samopouzdanje.',
+            'Osnivač i vlasnik kluba je diplomirani trener fudbala Stevan Vukomanović, uz stručan kadar koji vodi individualni i timski rad sa igračima.',
+        ],
+        addresses: [
+            {
+                street: 'Podunavska 12',
+                city: 'Novi Sad',
+                district: 'Kamenjar',
+                lat: 45.229195,
+                lng: 19.7970415,
+            },
+            {
+                street: 'Branka Ćopića 259',
+                city: 'Novi Sad',
+                district: 'Adice',
+                lat: 45.2300552,
+                lng: 19.7772718,
+            },
+        ],
+        contact: {
+            phone: '063 768 5080',
+            email: 'soccer.team84@yahoo.com',
+            website: 'https://www.soccerteam.rs',
+            facebook: 'https://www.facebook.com/soccerteamns',
+            instagram: 'https://www.instagram.com/skola_fudbala_soker_tim',
+        },
+    },
 ]
 
 export const formatSchoolAddress = (address: SchoolAddress) =>
@@ -272,7 +316,7 @@ export const filterSchools = (filters: SchoolFilters) =>
             return false
         }
 
-        if (filters.activity && school.categorySlug !== filters.activity) {
+        if (filters.activities.length > 0 && !filters.activities.includes(school.categorySlug)) {
             return false
         }
 
