@@ -10,6 +10,8 @@ import dramaStudioWebp from '../assets/images/schools/drama-studio.webp'
 import dramaStudioJpg from '../assets/images/schools/drama-studio.jpg'
 import sinisaMihajlovicWebp from '../assets/images/schools/fk-sinisa-mihajlovic.webp'
 import sinisaMihajlovicJpg from '../assets/images/schools/fk-sinisa-mihajlovic.jpg'
+import conkicAcademyWebp from '../assets/images/schools/conkic-academy.webp'
+import conkicAcademyJpg from '../assets/images/schools/conkic-academy.jpg'
 import { getCategoryBySlug } from './categories'
 
 export type SchoolFilters = {
@@ -270,6 +272,41 @@ export const schools: School[] = [
             website: 'https://www.dramastudio.rs/skola-glume-novi-sad/',
             facebook: 'https://www.facebook.com/dramastudio.rs/',
             instagram: 'https://www.instagram.com/dramastudio.rs/',
+        },
+    },
+    {
+        id: 'conkic-academy',
+        slug: 'conkic-academy',
+        name: 'Čonkić Tennis Academy',
+        categorySlug: 'tennis',
+        city: 'Novi Sad',
+        district: 'Adice',
+        ageRange: '4-10 godina',
+        imageWebp: conkicAcademyWebp,
+        imageFallback: conkicAcademyJpg,
+        description: [
+            'Čonkić Tennis Academy je porodična akademija sa gotovo pola veka iskustva u igri i treniranju profesionalnih tenisera, osnovana 1970. godine.',
+            'Škola tenisa vodi decu kroz zabavu, izazove i prijateljska takmičenja, uz razvoj tehničkih, taktičkih, fizičkih i mentalnih veština.',
+            'Svi treneri rade po ITF programu razvoja dece — zvaničnom programu Teniskog saveza Srbije — uz individualan pristup unutar grupnih treninga.',
+            'Polaznici napreduju kroz nivoe Crveni, Narandžasti i Zeleni, prema veštinama, što omogućava podršku i početnicima i deci sa takmičarskim ambicijama.',
+            'Prva dva treninga su besplatna; dovoljno je doneti sportsku odeću i dobru volju.',
+            'Akademija okuplja stručne teniske, kondicione i mentalne trenere, sa bogatom tradicijom rada sa juniorskim i profesionalnim igračima.',
+        ],
+        addresses: [
+            {
+                street: 'Veternička 3',
+                city: 'Novi Sad',
+                district: 'Adice',
+                lat: 45.230497,
+                lng: 19.7811422,
+            },
+        ],
+        contact: {
+            phone: '062 503 364',
+            email: 'conkictennis@gmail.com',
+            website: 'https://conkicacademy.com',
+            facebook: 'https://www.facebook.com/conkictennisacademy/',
+            instagram: 'https://www.instagram.com/conkic_tennisacademy',
         },
     },
 ]

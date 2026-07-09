@@ -41,6 +41,22 @@ export const categories: Category[] = [
     pageSubtitle:
       'Istražite škole glume u {city} — za maštu, govor, pokret i više samopouzdanja.',
   },
+  {
+    id: 'basketball',
+    name: 'Košarka',
+    slug: 'basketball',
+    subtitle: 'Škole košarke',
+    pageSubtitle:
+      'Istražite košarkaške škole u {city} — za decu koja vole igru, pokret i izazov pod obručima.',
+  },
+  {
+    id: 'tennis',
+    name: 'Tenis',
+    slug: 'tennis',
+    subtitle: 'Škole tenisa',
+    pageSubtitle:
+      'Istražite škole tenisa u {city} — za fokus, koordinaciju i sigurnost u svakom udarcu.',
+  },
   { id: 'dance', name: 'Ples', slug: 'dance', subtitle: 'Škole plesa' },
   { id: 'music', name: 'Muzika', slug: 'music', subtitle: 'Muzičke škole' },
   { id: 'art', name: 'Umetnost', slug: 'art', subtitle: 'Umetničke škole' },

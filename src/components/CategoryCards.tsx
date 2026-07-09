@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import actingIcon from '../assets/icons/acting.svg'
 import balletIcon from '../assets/icons/ballet.svg'
+import basketballIcon from '../assets/icons/basketball.svg'
 import footballIcon from '../assets/icons/football.svg'
 import jazzDanceIcon from '../assets/icons/jazz-dance.svg'
+import tennisIcon from '../assets/icons/tennis.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
 
@@ -19,6 +21,8 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'jazz-ballet', name: 'Džez balet', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon },
   { id: 'football', name: 'Fudbal', slug: 'football', iconBg: 'mint', iconSrc: footballIcon },
   { id: 'acting', name: 'Gluma', slug: 'acting', iconBg: 'peach', iconSrc: actingIcon },
+  { id: 'basketball', name: 'Košarka', slug: 'basketball', iconBg: 'mint', iconSrc: basketballIcon },
+  { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
 ]
 
 const LocationPinIcon = () => (
