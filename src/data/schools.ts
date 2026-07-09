@@ -12,6 +12,8 @@ import sinisaMihajlovicWebp from '../assets/images/schools/football/fk-sinisa-mi
 import sinisaMihajlovicJpg from '../assets/images/schools/football/fk-sinisa-mihajlovic.jpg'
 import conkicAcademyWebp from '../assets/images/schools/tennis/conkic-academy.webp'
 import conkicAcademyJpg from '../assets/images/schools/tennis/conkic-academy.jpg'
+import sportsWorldWebp from '../assets/images/schools/basketball/sports-world.webp'
+import sportsWorldJpg from '../assets/images/schools/basketball/sports-world.jpg'
 import { getCategoryBySlug } from './categories'
 
 export type SchoolFilters = {
@@ -323,6 +325,49 @@ export const schools: School[] = [
             website: 'https://conkicacademy.com',
             facebook: 'https://www.facebook.com/conkictennisacademy/',
             instagram: 'https://www.instagram.com/conkic_tennisacademy',
+        },
+    },
+    {
+        id: 'kk-sports-world',
+        slug: 'kk-sports-world',
+        name: "KK Sport's World",
+        categorySlug: 'basketball',
+        city: 'Novi Sad',
+        district: 'Salajka',
+        minAge: 6,
+        maxAge: 16,
+        ageLabel: '6–16 godina',
+        imageWebp: sportsWorldWebp,
+        imageFallback: sportsWorldJpg,
+        description: [
+            "Košarkaški klub Sport's World postoji više od 35 godina i specijalizovan je za rad sa mlađim kategorijama.",
+            'U programu se naglašavaju trud, karakter i poštovanje — vrednosti koje pomažu deci da napreduju i na terenu i van njega.',
+            'Klub veruje da su kvalitetne košarkaške osnove u strogom, zabavnom i negujućem okruženju najbolji put ka dugoročnom uspehu.',
+            'Treninzi se održavaju po međunarodnom programu veština i evropskom kurikulumu, uz tim diplomiranih košarkaških trenera.',
+            'Polaznici učestvuju u takmičenjima na nivou grada, Vojvodine i Srbije, kroz uzrasne selekcije od minibasketa do kadeta.',
+        ],
+        addresses: [
+            {
+                street: 'OŠ "Vuk Karadžić", Radoja Domanovića 24',
+                city: 'Novi Sad',
+                district: 'Salajka',
+                lat: 45.2682668,
+                lng: 19.8388342,
+            },
+            {
+                street: 'Đačko igralište, Jirečekova 2',
+                city: 'Novi Sad',
+                district: 'Liman 1',
+                lat: 45.2430605,
+                lng: 19.8534566,
+            },
+        ],
+        contact: {
+            phone: '063 773 3365',
+            email: 'dragpan@gmail.com',
+            website: 'https://kksportsworld.com',
+            facebook: 'https://www.facebook.com/kksportsworld',
+            instagram: 'https://www.instagram.com/kksportsworld/',
         },
     },
 ]
