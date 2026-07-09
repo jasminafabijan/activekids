@@ -67,7 +67,7 @@ const SchoolCard = ({ school }: SchoolCardProps) => {
           </li>
           <li className="school-card-meta-item">
             <UsersIcon />
-            <span>{school.ageRange}</span>
+            <span>{school.ageLabel}</span>
           </li>
         </ul>
       </div>

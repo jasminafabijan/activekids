@@ -17,7 +17,7 @@ import { getCategoryBySlug } from './categories'
 export type SchoolFilters = {
     city: string
     partsOfCity: string[]
-    ages: string[]
+    age: number | null
     activities: string[]
 }
 
@@ -45,7 +45,9 @@ export type School = {
     categorySlug: string
     city: string
     district: string
-    ageRange: string
+    minAge: number
+    maxAge: number | null
+    ageLabel: string
     imageWebp: string
     imageFallback: string
     description?: string[]
@@ -61,7 +63,9 @@ export const schools: School[] = [
         categorySlug: 'ballet',
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
-        ageRange: '3-7 godina',
+        minAge: 3,
+        maxAge: 7,
+        ageLabel: '3–7 godina',
         imageWebp: ntcBaletWebp,
         imageFallback: ntcBaletPng,
         description: [
@@ -102,7 +106,9 @@ export const schools: School[] = [
         categorySlug: 'ballet',
         city: 'Novi Sad',
         district: 'Rotkvarija',
-        ageRange: '3-7 godina',
+        minAge: 3,
+        maxAge: 7,
+        ageLabel: '3–7 godina',
         imageWebp: reveransWebp,
         imageFallback: reveransJpg,
         description: [
@@ -137,7 +143,9 @@ export const schools: School[] = [
         categorySlug: 'jazz-ballet',
         city: 'Novi Sad',
         district: 'Grbavica',
-        ageRange: '3-15 godina',
+        minAge: 3,
+        maxAge: 15,
+        ageLabel: '3–15 godina',
         imageWebp: masterDanceWebp,
         imageFallback: masterDanceJpg,
         description: [
@@ -171,7 +179,9 @@ export const schools: School[] = [
         categorySlug: 'football',
         city: 'Novi Sad',
         district: 'Kamenjar',
-        ageRange: '6-14 godina',
+        minAge: 6,
+        maxAge: 14,
+        ageLabel: '6–14 godina',
         imageWebp: soccerTeamWebp,
         imageFallback: soccerTeamJpeg,
         description: [
@@ -213,7 +223,9 @@ export const schools: School[] = [
         categorySlug: 'football',
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
-        ageRange: '5-14 godina',
+        minAge: 5,
+        maxAge: 14,
+        ageLabel: '5–14 godina',
         imageWebp: sinisaMihajlovicWebp,
         imageFallback: sinisaMihajlovicJpg,
         description: [
@@ -247,7 +259,9 @@ export const schools: School[] = [
         categorySlug: 'acting',
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
-        ageRange: '7+ godina',
+        minAge: 7,
+        maxAge: null,
+        ageLabel: '7+ godina',
         imageWebp: dramaStudioWebp,
         imageFallback: dramaStudioJpg,
         description: [
@@ -281,7 +295,9 @@ export const schools: School[] = [
         categorySlug: 'tennis',
         city: 'Novi Sad',
         district: 'Adice',
-        ageRange: '4-10 godina',
+        minAge: 4,
+        maxAge: 10,
+        ageLabel: '4–10 godina',
         imageWebp: conkicAcademyWebp,
         imageFallback: conkicAcademyJpg,
         description: [
@@ -389,27 +405,33 @@ export const getDistrictOptions = () =>
         a.localeCompare(b, 'sr')
     )
 
-const parseAgeRange = (ageRange: string) => {
-    const match = ageRange.match(/(\d+)\s*-\s*(\d+)/)
+const formatAgeOptionLabel = (age: number) => {
+    const remainder = age % 10
+    const isTeen = age >= 10 && age <= 20
 
-    if (!match) {
-        return { min: 0, max: 0 }
+    if (remainder >= 2 && remainder <= 4 && !isTeen) {
+        return `${age} godine`
     }
 
-    return { min: Number(match[1]), max: Number(match[2]) }
+    return `${age} godina`
 }
 
-export const getAgeOptions = () =>
-    [...new Set(schools.map((school) => school.ageRange))].sort((a, b) => {
-        const ageA = parseAgeRange(a)
-        const ageB = parseAgeRange(b)
+export const getAgeOptions = () => {
+    const minAge = Math.min(...schools.map((school) => school.minAge))
+    const finiteMaxAges = schools
+        .map((school) => school.maxAge)
+        .filter((age): age is number => age != null)
+    const maxFiniteAge = Math.max(...finiteMaxAges)
+    const hasOpenEndedRange = schools.some((school) => school.maxAge == null)
+    const finalAge = hasOpenEndedRange ? maxFiniteAge + 1 : maxFiniteAge
 
-        if (ageA.min !== ageB.min) {
-            return ageA.min - ageB.min
-        }
-
-        return ageA.max - ageB.max
+    return Array.from({ length: finalAge - minAge + 1 }, (_, index) => {
+        const value = minAge + index
+        const isOpenEnded = hasOpenEndedRange && value === finalAge
+        const label = isOpenEnded ? `${value}+ godina` : formatAgeOptionLabel(value)
+        return { value, label }
     })
+}
 
 export const getActivityOptions = () =>
     [...new Set(schools.map((school) => school.categorySlug))]
@@ -430,7 +452,10 @@ export const filterSchools = (filters: SchoolFilters) =>
             return false
         }
 
-        if (filters.ages.length > 0 && !filters.ages.includes(school.ageRange)) {
+        if (
+            filters.age != null &&
+            (filters.age < school.minAge || (school.maxAge != null && filters.age > school.maxAge))
+        ) {
             return false
         }
 

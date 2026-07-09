@@ -239,7 +239,7 @@ const SchoolDetailPage = () => {
             <div className="school-detail-tags">
               <span className="school-detail-tag school-detail-tag--age">
                 <UsersIcon />
-                {school.ageRange}
+                {school.ageLabel}
               </span>
             </div>
           </header>

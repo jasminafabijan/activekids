@@ -207,6 +207,14 @@
         background-color: var(--surface-muted);
     }
 
+    .search-field-option-text {
+        @apply block w-full border-0 bg-transparent text-left;
+    }
+
+    .search-field-option-active {
+        background-color: color-mix(in srgb, var(--mint) 28%, white);
+    }
+
     .search-field-checkbox {
         @apply h-4 w-4 shrink-0 cursor-pointer rounded border accent-primary;
         border-color: var(--border);

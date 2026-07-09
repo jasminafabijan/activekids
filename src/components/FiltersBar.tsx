@@ -107,7 +107,7 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
   const [filters, setFilters] = useState<FilterValues>({
     city: DEFAULT_CITY,
     partsOfCity: [],
-    ages: [],
+    age: null,
     activities: [],
   })
   const [isPartsOpen, setIsPartsOpen] = useState(false)
@@ -172,13 +172,9 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
     })
   }
 
-  const toggleAge = (age: string) => {
-    setFilters((prev) => {
-      const isSelected = prev.ages.includes(age)
-      const ages = isSelected ? prev.ages.filter((item) => item !== age) : [...prev.ages, age]
-
-      return { ...prev, ages }
-    })
+  const selectAge = (age: number | null) => {
+    setFilters((prev) => ({ ...prev, age }))
+    setIsAgeOpen(false)
   }
 
   const toggleActivity = (activitySlug: string) => {
@@ -197,8 +193,8 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
       ? 'Izaberite deo grada'
       : filters.partsOfCity.join(', ')
 
-  const agesLabel =
-    filters.ages.length === 0 ? 'Izaberite uzrast' : filters.ages.join(', ')
+  const selectedAgeOption = ageOptions.find((option) => option.value === filters.age)
+  const agesLabel = selectedAgeOption?.label ?? 'Svi uzrasti'
 
   const activitiesLabel =
     filters.activities.length === 0
@@ -309,21 +305,23 @@ const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
 
               {isAgeOpen && (
                 <div id="age-menu" className="search-field-menu" aria-labelledby="age-label">
-                  {ageOptions.map((age) => {
-                    const isChecked = filters.ages.includes(age)
-
-                    return (
-                      <label key={age} className="search-field-option">
-                        <input
-                          type="checkbox"
-                          className="search-field-checkbox"
-                          checked={isChecked}
-                          onChange={() => toggleAge(age)}
-                        />
-                        <span>{age}</span>
-                      </label>
-                    )
-                  })}
+                  <button
+                    type="button"
+                    className={`search-field-option search-field-option-text ${filters.age == null ? 'search-field-option-active' : ''}`}
+                    onClick={() => selectAge(null)}
+                  >
+                    Svi uzrasti
+                  </button>
+                  {ageOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      className={`search-field-option search-field-option-text ${filters.age === option.value ? 'search-field-option-active' : ''}`}
+                      onClick={() => selectAge(option.value)}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
