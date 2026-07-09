@@ -37,12 +37,16 @@ const UsersIcon = () => (
 
 interface SchoolCardProps {
   school: School
+  categoryLabel?: string
 }
 
-const SchoolCard = ({ school }: SchoolCardProps) => {
+const SchoolCard = ({ school, categoryLabel }: SchoolCardProps) => {
   return (
     <Link to={`/skola/${school.slug}`} className="school-card">
       <div className="school-card-image-wrap">
+        {categoryLabel && (
+          <span className="school-card-category-tag">{categoryLabel}</span>
+        )}
         <picture>
           <source srcSet={school.imageWebp} type="image/webp" />
           <img
