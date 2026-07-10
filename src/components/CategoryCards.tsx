@@ -4,6 +4,7 @@ import balletIcon from '../assets/icons/ballet.svg'
 import basketballIcon from '../assets/icons/basketball.svg'
 import footballIcon from '../assets/icons/football.svg'
 import jazzDanceIcon from '../assets/icons/jazz-dance.svg'
+import karateIcon from '../assets/icons/karate.svg'
 import tennisIcon from '../assets/icons/tennis.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
@@ -23,6 +24,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'acting', name: 'Gluma', slug: 'acting', iconBg: 'peach', iconSrc: actingIcon },
   { id: 'basketball', name: 'Košarka', slug: 'basketball', iconBg: 'mint', iconSrc: basketballIcon },
   { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
+  { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
 ]
 
 const LocationPinIcon = () => (

@@ -6,20 +6,24 @@
       user-select: none;
     }
   
-    .btn:active {
-      transform: translateY(1px);
-    }
-  
-    .btn-primary {
-      @apply bg-primary text-white;
+    .btn-navy {
+      @apply bg-primary text-white transition-all;
       box-shadow: 0 10px 22px rgba(11, 26, 59, 0.22);
     }
-  
-    .btn-primary:hover {
+
+    .btn-navy:hover {
       box-shadow: 0 14px 28px rgba(11, 26, 59, 0.28);
     }
-  
-    .btn-primary:focus-visible {
+
+    .btn-navy:focus-visible {
       @apply outline-none ring-2 ring-primary ring-offset-2;
+    }
+
+    .btn-navy:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      @apply btn-navy;
     }
   }

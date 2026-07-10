@@ -60,17 +60,25 @@
         transform: translateY(1px);
     }
 
-    .btn-primary {
-        @apply bg-primary text-white;
+    .btn-navy {
+        @apply bg-primary text-white transition-all;
         box-shadow: 0 10px 22px rgba(11, 26, 59, 0.22);
     }
 
-    .btn-primary:hover {
+    .btn-navy:hover {
         box-shadow: 0 14px 28px rgba(11, 26, 59, 0.28);
     }
 
-    .btn-primary:focus-visible {
+    .btn-navy:focus-visible {
         @apply outline-none ring-2 ring-primary ring-offset-2;
+    }
+
+    .btn-navy:active {
+        transform: translateY(1px);
+    }
+
+    .btn-primary {
+        @apply btn-navy;
     }
 
     .tag {
@@ -221,16 +229,8 @@
     }
 
     .search-submit {
-        @apply inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-white transition-all md:col-span-2 lg-wide:col-auto lg-wide:w-auto lg-wide:min-w-[9.5rem] lg-wide:flex-none;
+        @apply btn-navy inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-2xl px-6 text-sm font-semibold md:col-span-2 lg-wide:col-auto lg-wide:w-auto lg-wide:min-w-[9.5rem] lg-wide:flex-none;
         height: 58px;
-    }
-
-    .search-submit:active {
-        transform: translateY(1px);
-    }
-
-    .search-submit:focus-visible {
-        @apply outline-none ring-2 ring-primary ring-offset-2;
     }
 
     .categories-section {
@@ -585,6 +585,105 @@
 
     .school-detail-contact-icon--facebook {
         @apply h-7 w-7;
+    }
+
+    .add-activity-modal {
+        @apply fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6;
+    }
+
+    .add-activity-modal-backdrop {
+        @apply absolute inset-0 border-0;
+        background-color: rgba(11, 26, 59, 0.45);
+        backdrop-filter: blur(4px);
+        cursor: pointer;
+    }
+
+    .add-activity-modal-dialog {
+        @apply relative z-10 w-full max-w-2xl overflow-y-auto bg-white px-6 py-8 sm:px-10;
+        max-height: calc(100vh - 2rem);
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow-card);
+    }
+
+    .add-activity-modal-close {
+        @apply absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border-0 bg-transparent text-gray transition-colors;
+    }
+
+    .add-activity-modal-close:hover {
+        background-color: var(--surface-muted);
+        color: var(--text-muted);
+    }
+
+    .add-activity-modal-close svg {
+        @apply h-5 w-5;
+    }
+
+    .add-activity-modal-title {
+        @apply mb-4 mt-6 text-center text-2xl font-extrabold text-primary sm:text-[1.75rem];
+    }
+
+    .add-activity-modal-intro {
+        @apply mb-6 space-y-3 text-center text-sm leading-relaxed sm:text-base;
+        color: var(--text-muted);
+    }
+
+    .add-activity-modal-checklist {
+        @apply mb-5 rounded-2xl px-4 py-5 sm:px-5;
+        background-color: color-mix(in srgb, var(--surface-muted) 80%, #e8edf5);
+    }
+
+    .add-activity-modal-checklist-title {
+        @apply mb-4 text-sm font-bold text-primary;
+    }
+
+    .add-activity-modal-checklist-list {
+        @apply m-0 flex list-none flex-col gap-3 p-0;
+    }
+
+    .add-activity-modal-checklist-item {
+        @apply flex items-center gap-3 text-sm font-medium text-primary;
+    }
+
+    .add-activity-modal-checklist-icon {
+        @apply mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-primary;
+        background-color: color-mix(in srgb, var(--peach) 45%, white);
+    }
+
+    .add-activity-modal-checklist-icon svg {
+        @apply h-4 w-4;
+    }
+
+    .add-activity-modal-note {
+        @apply mb-6 text-center text-sm leading-relaxed;
+        color: var(--text-muted);
+    }
+
+    .add-activity-modal-actions {
+        @apply mb-4 flex flex-col gap-4 md:flex-row md:gap-5;
+    }
+
+    .add-activity-modal-btn {
+        @apply inline-flex w-full items-center justify-center gap-2.5 rounded-xl px-5 py-3.5 text-sm font-bold text-white no-underline transition-all md:flex-1;
+    }
+
+    .add-activity-modal-btn svg,
+    .add-activity-modal-btn-icon {
+        @apply h-5 w-5 shrink-0;
+    }
+
+    .add-activity-modal-btn--email {
+        @apply btn-navy;
+    }
+
+    .add-activity-modal-btn--viber {
+        @apply border bg-white text-primary;
+        border-color: rgba(11, 26, 59, 0.5);
+        box-shadow: none;
+    }
+
+    .add-activity-modal-btn--viber:hover {
+        background-color: var(--surface-muted);
+        box-shadow: none;
     }
 }
 

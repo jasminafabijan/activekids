@@ -57,6 +57,14 @@ export const categories: Category[] = [
     pageSubtitle:
       'Istražite škole tenisa u {city} — za fokus, koordinaciju i sigurnost u svakom udarcu.',
   },
+  {
+    id: 'karate',
+    name: 'Karate',
+    slug: 'karate',
+    subtitle: 'Škole karatea',
+    pageSubtitle:
+      'Istražite karate klubove u {city} — za fokus, disciplinu i sigurnost u pokretu.',
+  },
   { id: 'dance', name: 'Ples', slug: 'dance', subtitle: 'Škole plesa' },
   { id: 'music', name: 'Muzika', slug: 'music', subtitle: 'Muzičke škole' },
   { id: 'art', name: 'Umetnost', slug: 'art', subtitle: 'Umetničke škole' },
