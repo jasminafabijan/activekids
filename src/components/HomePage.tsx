@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLayoutEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { jumpToCategories } from '../utils/scrollToElement'
 import CategoryCards from './CategoryCards'
 import FiltersBar, { type FilterValues } from './FiltersBar'
 import Hero from './Hero'
@@ -7,12 +8,15 @@ import Navbar from './Navbar'
 
 const HomePage = () => {
   const navigate = useNavigate()
+  const location = useLocation()
 
-  useEffect(() => {
-    if (window.location.hash === '#kategorije') {
-      document.getElementById('kategorije')?.scrollIntoView({ behavior: 'smooth' })
+  useLayoutEffect(() => {
+    if (location.hash !== '#kategorije') {
+      return
     }
-  }, [])
+
+    jumpToCategories()
+  }, [location.pathname, location.hash])
 
   const handleFilterChange = (filters: FilterValues) => {
     const searchParams = new URLSearchParams()
@@ -37,7 +41,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="page-shell">
       <Navbar />
       <Hero />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">

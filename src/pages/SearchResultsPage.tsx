@@ -69,7 +69,7 @@ const SearchResultsPage = () => {
   const showCategoryTag = filters.activities.length === 0
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <Link to="/" className="category-page-back">

@@ -141,7 +141,7 @@ const SchoolDetailPage = () => {
 
   if (!school) {
     return (
-      <div className="min-h-screen bg-white pt-20">
+      <div className="page-shell">
         <Navbar />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <p className="text-muted">Škola nije pronađena.</p>
@@ -229,7 +229,7 @@ const SchoolDetailPage = () => {
     school.addresses?.filter((address) => address.lat != null && address.lng != null) ?? []
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         {category && (

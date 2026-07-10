@@ -33,7 +33,7 @@ const CategoryPage = () => {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-white pt-20">
+      <div className="page-shell">
         <Navbar />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <p className="text-muted">Kategorija nije pronađena.</p>
@@ -46,7 +46,7 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <Link to="/" className="category-page-back">
