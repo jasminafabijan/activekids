@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getCategoryBySlug } from '../data/categories'
-import { getActivityOptions, schools } from '../data/schools'
+import { formatSchoolCategoryNames, getActivityOptions, schools } from '../data/schools'
 import './admin.css'
 
 const VERIFIED_STORAGE_KEY = 'activekids-admin-verified'
@@ -29,11 +28,11 @@ const AdminPage = () => {
     const filtered =
       sportFilter === ''
         ? schools
-        : schools.filter((school) => school.categorySlug === sportFilter)
+        : schools.filter((school) => school.categorySlugs.includes(sportFilter))
 
     return [...filtered].sort((a, b) => {
-      const sportA = getCategoryBySlug(a.categorySlug)?.name ?? a.categorySlug
-      const sportB = getCategoryBySlug(b.categorySlug)?.name ?? b.categorySlug
+      const sportA = formatSchoolCategoryNames(a)
+      const sportB = formatSchoolCategoryNames(b)
       const bySport = sportA.localeCompare(sportB, 'sr')
 
       if (bySport !== 0) {
@@ -107,8 +106,7 @@ const AdminPage = () => {
           </thead>
           <tbody>
             {rows.map((school) => {
-              const sportName =
-                getCategoryBySlug(school.categorySlug)?.name ?? school.categorySlug
+              const sportName = formatSchoolCategoryNames(school)
               const isVerified = Boolean(verified[school.id])
 
               return (

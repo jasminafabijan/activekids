@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CategoryCards from './CategoryCards'
 import FiltersBar, { type FilterValues } from './FiltersBar'
@@ -6,6 +7,12 @@ import Navbar from './Navbar'
 
 const HomePage = () => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (window.location.hash === '#kategorije') {
+      document.getElementById('kategorije')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [])
 
   const handleFilterChange = (filters: FilterValues) => {
     const searchParams = new URLSearchParams()

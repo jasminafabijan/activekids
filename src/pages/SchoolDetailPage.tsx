@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import SchoolMap from '../components/SchoolMap'
 import { getCategoryBySlug } from '../data/categories'
@@ -130,8 +130,14 @@ const isContactLink = (link: ContactLink | undefined): link is ContactLink =>
 
 const SchoolDetailPage = () => {
   const { slug } = useParams<{ slug: string }>()
+  const [searchParams] = useSearchParams()
   const school = slug ? getSchoolBySlug(slug) : undefined
-  const category = school ? getCategoryBySlug(school.categorySlug) : undefined
+  const categorySlugFromQuery = searchParams.get('kategorija')
+  const activeCategorySlug =
+    school && categorySlugFromQuery && school.categorySlugs.includes(categorySlugFromQuery)
+      ? categorySlugFromQuery
+      : school?.categorySlugs[0]
+  const category = activeCategorySlug ? getCategoryBySlug(activeCategorySlug) : undefined
 
   if (!school) {
     return (

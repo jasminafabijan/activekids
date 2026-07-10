@@ -63,7 +63,7 @@ const CategoryPage = () => {
         {visibleSchools.length > 0 ? (
           <div className="schools-grid">
             {visibleSchools.map((school) => (
-              <SchoolCard key={school.id} school={school} />
+              <SchoolCard key={school.id} school={school} categoryContext={slug} />
             ))}
           </div>
         ) : (

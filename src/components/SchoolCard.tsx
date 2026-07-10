@@ -38,11 +38,17 @@ const UsersIcon = () => (
 interface SchoolCardProps {
   school: School
   categoryLabel?: string
+  categoryContext?: string
 }
 
-const SchoolCard = ({ school, categoryLabel }: SchoolCardProps) => {
+const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps) => {
+  const schoolHref =
+    categoryContext != null
+      ? `/skola/${school.slug}?kategorija=${categoryContext}`
+      : `/skola/${school.slug}`
+
   return (
-    <Link to={`/skola/${school.slug}`} className="school-card">
+    <Link to={schoolHref} className="school-card">
       <div className="school-card-image-wrap">
         {categoryLabel && (
           <span className="school-card-category-tag">{categoryLabel}</span>

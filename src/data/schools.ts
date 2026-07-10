@@ -2,8 +2,10 @@ import ntcBaletWebp from '../assets/images/schools/ballet/ntc-balet.webp'
 import ntcBaletPng from '../assets/images/schools/ballet/ntc-balet.png'
 import reveransWebp from '../assets/images/schools/ballet/reverans.webp'
 import reveransJpg from '../assets/images/schools/ballet/reverans.jpg'
-import masterDanceWebp from '../assets/images/schools/jazz-ballet/master-dance.webp'
-import masterDanceJpg from '../assets/images/schools/jazz-ballet/master-dance.jpg'
+import pointeDanceWebp from '../assets/images/schools/ballet/pointe-dance.webp'
+import pointeDancePng from '../assets/images/schools/ballet/pointe-dance.png'
+import masterDanceWebp from '../assets/images/schools/dance/master-dance.webp'
+import masterDanceJpg from '../assets/images/schools/dance/master-dance.jpg'
 import soccerTeamWebp from '../assets/images/schools/football/soccerteam.webp'
 import soccerTeamJpeg from '../assets/images/schools/football/soccerteam.jpeg'
 import dramaStudioWebp from '../assets/images/schools/acting/drama-studio.webp'
@@ -46,7 +48,7 @@ export type School = {
     id: string
     slug: string
     name: string
-    categorySlug: string
+    categorySlugs: string[]
     city: string
     district: string
     minAge: number
@@ -64,7 +66,7 @@ export const schools: School[] = [
         id: 'ntc-balet',
         slug: 'ntc-balet',
         name: 'NTC balet',
-        categorySlug: 'ballet',
+        categorySlugs: ['ballet'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
         minAge: 3,
@@ -107,7 +109,7 @@ export const schools: School[] = [
         id: 'reverans',
         slug: 'reverans',
         name: 'Baletski studio "Reverans"',
-        categorySlug: 'ballet',
+        categorySlugs: ['ballet'],
         city: 'Novi Sad',
         district: 'Rotkvarija',
         minAge: 3,
@@ -141,10 +143,43 @@ export const schools: School[] = [
         },
     },
     {
+        id: 'pointe-dance-serbia',
+        slug: 'pointe-dance-serbia',
+        name: 'Pointe Dance Serbia',
+        categorySlugs: ['ballet', 'jazz-ballet'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 3,
+        maxAge: null,
+        ageLabel: '3+ godina',
+        imageWebp: pointeDanceWebp,
+        imageFallback: pointeDancePng,
+        description: [
+            'Pointe Dance Serbia okuplja decu koja kroz ples razvijaju koordinaciju, muzikalnost i samopouzdanje u podržavajućem okruženju.',
+            'Program obuhvata klasičan balet i moderan ples, uz rad na tehnici, izražajnosti i kreativnom pokretu prilagođenom uzrastu.',
+            'Deca uče kroz strukturisane časove, koreografije i nastupe koji podstiču disciplinu, timski duh i ljubav prema plesu.',
+        ],
+        addresses: [
+            {
+                street: 'Kralja Aleksandra 12, TC Pariski magazin',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2541374,
+                lng: 19.8435541,
+            },
+        ],
+        contact: {
+            phone: '060 301 3332',
+            email: 'mitrovicmilana@yahoo.com',
+            facebook: 'https://www.facebook.com/pointedanceserbia/',
+            instagram: 'https://www.instagram.com/pointedanceserbia/',
+        },
+    },
+    {
         id: 'master-dance',
         slug: 'master-dance',
         name: 'Plesni klub "Master dance"',
-        categorySlug: 'jazz-ballet',
+        categorySlugs: ['jazz-ballet'],
         city: 'Novi Sad',
         district: 'Grbavica',
         minAge: 3,
@@ -180,7 +215,7 @@ export const schools: School[] = [
         id: 'soccer-team',
         slug: 'soccer-team',
         name: 'Škola fudbala "Soccer Team"',
-        categorySlug: 'football',
+        categorySlugs: ['football'],
         city: 'Novi Sad',
         district: 'Kamenjar',
         minAge: 6,
@@ -224,7 +259,7 @@ export const schools: School[] = [
         id: 'sinisa-mihajlovic',
         slug: 'sinisa-mihajlovic',
         name: 'Škola fudbala "Siniša Mihajlović"',
-        categorySlug: 'football',
+        categorySlugs: ['football'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
         minAge: 5,
@@ -260,7 +295,7 @@ export const schools: School[] = [
         id: 'drama-studio',
         slug: 'drama-studio',
         name: 'Drama Studio',
-        categorySlug: 'acting',
+        categorySlugs: ['acting'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
         minAge: 7,
@@ -296,7 +331,7 @@ export const schools: School[] = [
         id: 'conkic-academy',
         slug: 'conkic-academy',
         name: 'Čonkić Tennis Academy',
-        categorySlug: 'tennis',
+        categorySlugs: ['tennis'],
         city: 'Novi Sad',
         district: 'Adice',
         minAge: 4,
@@ -333,7 +368,7 @@ export const schools: School[] = [
         id: 'kk-sports-world',
         slug: 'kk-sports-world',
         name: "KK Sport's World",
-        categorySlug: 'basketball',
+        categorySlugs: ['basketball'],
         city: 'Novi Sad',
         district: 'Salajka',
         minAge: 6,
@@ -376,7 +411,7 @@ export const schools: School[] = [
         id: 'karate-klub-mawashi',
         slug: 'karate-klub-mawashi',
         name: 'Karate klub Mawashi',
-        categorySlug: 'karate',
+        categorySlugs: ['karate'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
         minAge: 3,
@@ -469,7 +504,12 @@ export const getGoogleMapsOpenHref = (addresses: SchoolAddress[]) => {
 }
 
 export const getSchoolsByCategory = (categorySlug: string) =>
-    schools.filter((school) => school.categorySlug === categorySlug)
+    schools.filter((school) => school.categorySlugs.includes(categorySlug))
+
+export const formatSchoolCategoryNames = (school: School) =>
+    school.categorySlugs
+        .map((slug) => getCategoryBySlug(slug)?.name ?? slug)
+        .join(', ')
 
 export const getSchoolBySlug = (slug: string) =>
     schools.find((school) => school.slug === slug)
@@ -523,7 +563,7 @@ export const getAgeOptions = () => {
 }
 
 export const getActivityOptions = () =>
-    [...new Set(schools.map((school) => school.categorySlug))]
+    [...new Set(schools.flatMap((school) => school.categorySlugs))]
         .map((slug) => {
             const category = getCategoryBySlug(slug)
             return category ? { slug, name: category.name } : null
@@ -537,7 +577,10 @@ export const filterSchools = (filters: SchoolFilters) =>
             return false
         }
 
-        if (filters.activities.length > 0 && !filters.activities.includes(school.categorySlug)) {
+        if (
+            filters.activities.length > 0 &&
+            !filters.activities.some((activity) => school.categorySlugs.includes(activity))
+        ) {
             return false
         }
 

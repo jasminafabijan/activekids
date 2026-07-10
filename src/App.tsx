@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Footer from './components/Footer'
 import HomePage from './components/HomePage'
 import AdminPage from './pages/AdminPage'
 import CategoryPage from './pages/CategoryPage'
@@ -15,6 +16,7 @@ function App() {
         <Route path="/skola/:slug" element={<SchoolDetailPage />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

@@ -19,11 +19,11 @@ export const categories: Category[] = [
   },
   {
     id: 'jazz-ballet',
-    name: 'Džez balet',
+    name: 'Moderan ples',
     slug: 'jazz-ballet',
-    subtitle: 'Škole džez baleta i modernog plesa',
+    subtitle: 'Škole modernog plesa',
     pageSubtitle:
-      'Istražite škole džez baleta i modernog plesa u {city} — za energiju, ritam i slobodniji plesni izraz.',
+      'Istražite škole modernog plesa u {city} — za energiju, ritam i slobodniji plesni izraz.',
   },
   {
     id: 'football',

@@ -1,8 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import SchoolCard from '../components/SchoolCard'
-import { getCategoryBySlug } from '../data/categories'
-import { filterSchools, type SchoolFilters } from '../data/schools'
+import { filterSchools, formatSchoolCategoryNames, type SchoolFilters } from '../data/schools'
 
 const getArrayParam = (value: string | null) => {
   if (!value) {
@@ -91,9 +90,11 @@ const SearchResultsPage = () => {
                 key={school.id}
                 school={school}
                 categoryLabel={
-                  showCategoryTag
-                    ? getCategoryBySlug(school.categorySlug)?.name
-                    : undefined
+                  showCategoryTag ? formatSchoolCategoryNames(school) : undefined
+                }
+                categoryContext={
+                  filters.activities.find((activity) => school.categorySlugs.includes(activity)) ??
+                  school.categorySlugs[0]
                 }
               />
             ))}

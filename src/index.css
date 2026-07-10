@@ -291,19 +291,6 @@
         @apply text-base font-semibold text-primary md:text-lg;
     }
 
-    .categories-footer {
-        @apply mt-10 flex flex-col items-center justify-between gap-3 text-sm md:mt-12 md:flex-row;
-        color: var(--text-gray);
-    }
-
-    .categories-footer-note {
-        @apply inline-flex items-center gap-2;
-    }
-
-    .categories-footer-copy {
-        @apply text-center md:text-right;
-    }
-
     .category-page-back {
         @apply inline-flex text-sm font-semibold text-primary transition-colors;
     }
@@ -684,6 +671,77 @@
     .add-activity-modal-btn--viber:hover {
         background-color: var(--surface-muted);
         box-shadow: none;
+    }
+
+    .site-footer {
+        @apply bg-primary text-white;
+    }
+
+    .site-footer-inner {
+        @apply mx-auto max-w-7xl px-6 py-12 sm:px-6 sm:py-14;
+    }
+
+    .site-footer-top {
+        @apply flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between;
+    }
+
+    .site-footer-brand {
+        @apply max-w-md;
+    }
+
+    .site-footer-logo-link {
+        @apply inline-block;
+    }
+
+    .site-footer-logo {
+        @apply h-10 w-auto object-contain;
+    }
+
+    .site-footer-description {
+        @apply mt-5 text-sm leading-relaxed;
+        color: rgba(255, 255, 255, 0.72);
+    }
+
+    .site-footer-links {
+        @apply text-left;
+    }
+
+    .site-footer-links-title {
+        @apply mb-4 text-xs font-bold uppercase tracking-[0.14em];
+        color: var(--mint);
+    }
+
+    .site-footer-nav {
+        @apply flex flex-col gap-3;
+    }
+
+    .site-footer-link {
+        @apply inline-block border-0 bg-transparent p-0 text-left text-sm font-medium no-underline transition-colors;
+        color: rgba(255, 255, 255, 0.72);
+        cursor: pointer;
+    }
+
+    .site-footer-link:hover {
+        color: #fff;
+    }
+
+    .site-footer-divider {
+        @apply my-8 h-px w-full;
+        background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .site-footer-bottom {
+        @apply flex flex-nowrap items-center justify-between gap-6 text-sm leading-relaxed;
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+    .site-footer-copyright,
+    .site-footer-disclaimer {
+        @apply m-0 shrink-0 whitespace-nowrap;
+    }
+
+    .site-footer-disclaimer {
+        @apply text-right;
     }
 }
 
