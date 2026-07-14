@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logoWhite from '../assets/images/logo-white.png'
+import logoWhite from '../assets/images/kiddokompas-logo-white.png'
 import AddActivityModal from './AddActivityModal'
 
 const Footer = () => {
@@ -15,12 +15,12 @@ const Footer = () => {
                             <Link to="/" className="site-footer-logo-link">
                                 <img
                                     src={logoWhite}
-                                    alt="ActiveKids"
+                                    alt="KiddoKompas"
                                     className="site-footer-logo"
                                 />
                             </Link>
                             <p className="site-footer-description">
-                                ActiveKids pomaže roditeljima da brže pronađu aktivnosti koje odgovaraju
+                                KiddoKompas pomaže roditeljima da brže pronađu aktivnosti koje odgovaraju
                                 uzrastu, lokaciji i interesovanjima deteta.
                             </p>
                         </div>
@@ -50,7 +50,7 @@ const Footer = () => {
                     <div className="site-footer-divider" aria-hidden="true" />
 
                     <div className="site-footer-bottom">
-                        <p className="site-footer-copyright">© 2026 ActiveKids. Sva prava zadržana.</p>
+                        <p className="site-footer-copyright">© 2026 KiddoKompas. Sva prava zadržana.</p>
                         <p className="site-footer-disclaimer">
                             Svi podaci su informativni — za tačne termine, cene i grupe kontaktirajte direktno školu ili organizatora.
                         </p>

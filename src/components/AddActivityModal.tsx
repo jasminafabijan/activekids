@@ -4,10 +4,10 @@ import viberIcon from '../assets/icons/viber.svg'
 const CONTACT_EMAIL = 'jf@jasminafabijan.com'
 const VIBER_PHONE = '38163590020'
 
-const EMAIL_SUBJECT = 'Dodavanje aktivnosti na ActiveKids'
+const EMAIL_SUBJECT = 'Dodavanje aktivnosti na KiddoKompas'
 const EMAIL_BODY = `Zdravo,
 
-Želeo/la bih da dodam svoju školu/aktivnost na ActiveKids.
+Želeo/la bih da dodam svoju školu/aktivnost na KiddoKompas.
 
 Naziv:
 Adresa / deo grada:
@@ -161,7 +161,7 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                 </button>
 
                 <h2 id="add-activity-modal-title" className="add-activity-modal-title">
-                    Dodajte svoju školicu na ActiveKids
+                    Dodajte svoju školicu na KiddoKompas
                 </h2>
 
                 <div className="add-activity-modal-intro">

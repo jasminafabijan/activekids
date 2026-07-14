@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/kiddokompas-logo.png'
 import { scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
 
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <Link to="/" className="flex items-center gap-2">
                         <img
                             src={logo}
-                            alt="ActiveKids logo"
+                            alt="KiddoKompas logo"
                             className="h-14 w-auto object-contain"
                         />
                     </Link>

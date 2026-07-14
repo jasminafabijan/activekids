@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { formatSchoolCategoryNames, getActivityOptions, schools } from '../data/schools'
 import './admin.css'
 
-const VERIFIED_STORAGE_KEY = 'activekids-admin-verified'
+const VERIFIED_STORAGE_KEY = 'kiddokompas-admin-verified'
 
 const loadVerifiedState = (): Record<string, boolean> => {
   try {
