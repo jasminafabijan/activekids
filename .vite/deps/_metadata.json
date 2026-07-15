@@ -1,0 +1,49 @@
+{
+  "hash": "3b80da6b",
+  "configHash": "e7caf140",
+  "lockfileHash": "688a155e",
+  "browserHash": "3322f5f1",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../../kiddokompas/node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "80357d9a",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../../kiddokompas/node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "56d53a1e",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../../kiddokompas/node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "99575c03",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../../kiddokompas/node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "1935ba41",
+      "needsInterop": false
+    },
+    "leaflet": {
+      "src": "../../../kiddokompas/node_modules/leaflet/dist/leaflet-src.js",
+      "file": "leaflet.js",
+      "fileHash": "397bdbb0",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-DOCH57RF": {
+      "file": "chunk-DOCH57RF.js"
+    },
+    "chunk-HWBQTAQ7": {
+      "file": "chunk-HWBQTAQ7.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}
