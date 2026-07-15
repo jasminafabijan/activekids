@@ -12,6 +12,12 @@ import dramaStudioWebp from '../assets/images/schools/acting/drama-studio.webp'
 import dramaStudioJpg from '../assets/images/schools/acting/drama-studio.jpg'
 import sinisaMihajlovicWebp from '../assets/images/schools/football/fk-sinisa-mihajlovic.webp'
 import sinisaMihajlovicJpg from '../assets/images/schools/football/fk-sinisa-mihajlovic.jpg'
+import vojvodinaWebp from '../assets/images/schools/football/fk-vojvodina.webp'
+import vojvodinaPng from '../assets/images/schools/football/fk-vojvodina.png'
+import rfkWebp from '../assets/images/schools/football/rfk.webp'
+import rfkJpg from '../assets/images/schools/football/rfk.jpg'
+import mladostGatWebp from '../assets/images/schools/football/fk-mladost-gat.webp'
+import mladostGatJpg from '../assets/images/schools/football/fk-mladost-gat.jpg'
 import conkicAcademyWebp from '../assets/images/schools/tennis/conkic-academy.webp'
 import conkicAcademyJpg from '../assets/images/schools/tennis/conkic-academy.jpg'
 import sportsWorldWebp from '../assets/images/schools/basketball/sports-world.webp'
@@ -289,6 +295,112 @@ export const schools: School[] = [
             facebook: 'https://www.facebook.com/profile.php?id=100063768183474',
             facebookLabel: 'Skola-Fudbala-Sinisa-Mihajlovic',
             instagram: 'https://www.instagram.com/skolafudbala_sinisamihajlovic/',
+        },
+    },
+    {
+        id: 'fk-vojvodina',
+        slug: 'fk-vojvodina',
+        name: 'FK Vojvodina',
+        categorySlugs: ['football'],
+        city: 'Novi Sad',
+        district: 'Veternik',
+        minAge: 6,
+        maxAge: 18,
+        ageLabel: '6–18 godina',
+        imageWebp: vojvodinaWebp,
+        imageFallback: vojvodinaPng,
+        description: [
+            'Škola fudbala FK Vojvodina deo je omladinske škole „Ilija Pantelić” i predstavlja jednu od najpoznatijih fudbalskih akademija u regionu.',
+            'Cilj programa je rano otkrivanje talenata i sistematična priprema mladih igrača za višu konkurenciju.',
+            'Treninzi se održavaju u Fudbalskom centru „Vujadin Boškov”, jednom od najopremljenijih fudbalskih centara u Srbiji.',
+            'U sklopu omladinske škole radi i Golmanska akademija, gde specijalizovani treneri razvijaju golmanske veštine pod UEFA licencama.',
+        ],
+        addresses: [
+            {
+                street: 'Novosadski put 114',
+                city: 'Veternik',
+                district: 'Veternik',
+                lat: 45.239919,
+                lng: 19.7753537,
+            },
+        ],
+        contact: {
+            phone: '064 183 8512',
+            email: 'vosiniklinci@gmail.com',
+            website: 'https://www.fkvojvodina.rs/omladinska-skola/upis-u-skolu-fudbala/',
+            facebook: 'https://www.facebook.com/FudbalskiKlubVojvodina/',
+            instagram: 'https://www.instagram.com/fk_vojvodina/',
+        },
+    },
+    {
+        id: 'rfk-novi-sad',
+        slug: 'rfk-novi-sad',
+        name: 'RFK Novi Sad',
+        categorySlugs: ['football'],
+        city: 'Novi Sad',
+        district: 'Detelinara',
+        minAge: 6,
+        maxAge: 14,
+        ageLabel: '6–14 godina',
+        imageWebp: rfkWebp,
+        imageFallback: rfkJpg,
+        description: [
+            'Omladinska škola RFK Novi Sad mesto je gde deca ne dolaze samo da uče fudbal, već i da rastu kao sportisti i kao ljudi.',
+            'Treninzi se održavaju na terenima Sportskog centra RFK Novi Sad, uz svlačionice, opremu i stručno osoblje.',
+            'Škola nudi rad sa licenciranim trenerima, stalno praćenje razvoja igrača i mogućnost napredovanja ka starijim selekcijama i prvom timu.',
+            'Program pokriva kategorije od petlića do pionira, u prijateljskoj atmosferi uz fer-plej pristup.',
+        ],
+        addresses: [
+            {
+                street: 'Rumenačka 152',
+                city: 'Novi Sad',
+                district: 'Detelinara',
+                lat: 45.2660357,
+                lng: 19.8155818,
+            },
+        ],
+        contact: {
+            phone: '063 804 2298',
+            email: 'cedomir.kopcanski.nfk@gmail.com',
+            website: 'https://rfknovisad.com/omladinska-skola/',
+            facebook: 'https://www.facebook.com/NoviSadFK/',
+            instagram: 'https://www.instagram.com/rfknovisad1921/',
+        },
+    },
+    {
+        id: 'fk-mladost-gat',
+        slug: 'fk-mladost-gat',
+        name: 'FK Mladost GAT',
+        categorySlugs: ['football'],
+        city: 'Novi Sad',
+        district: 'Satelit',
+        minAge: 5,
+        maxAge: 10,
+        ageLabel: '5–10 godina',
+        imageWebp: mladostGatWebp,
+        imageFallback: mladostGatJpg,
+        description: [
+            'Škola fudbala Mladost GAT Novi Sad je sportska akademija posvećena razvoju mladih fudbalera.',
+            'Misija škole je da kroz kvalitetne treninge, stručan rad i takmičarski duh pomogne deci da razviju svoj potencijal na terenu i van njega.',
+            'Klub pored škole fudbala ima i selekcije pionira, kadeta i omladinaca.',
+            'Treninzi se održavaju na stadionu FK Mladost GAT — GAT Areni.',
+            'Rad vode iskusni treneri koji kombinuju sportsku edukaciju sa podrškom u razvoju discipline i timskog duha.',
+        ],
+        addresses: [
+            {
+                street: 'Bulevar Jovana Dučića 39',
+                city: 'Novi Sad',
+                district: 'Satelit',
+                lat: 45.2479549,
+                lng: 19.7904004,
+            },
+        ],
+        contact: {
+            phone: '(021) 6400 079',
+            website: 'https://fkmladostgat.com/omladinska-skola/',
+            facebook: 'https://www.facebook.com/profile.php?id=100083685032597',
+            facebookLabel: 'FK-Mladost-GAT',
+            instagram: 'https://www.instagram.com/fkmladostgatnovisad/',
         },
     },
     {
