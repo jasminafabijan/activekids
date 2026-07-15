@@ -716,7 +716,7 @@
     }
 
     .site-footer-logo {
-        @apply h-10 w-auto object-contain;
+        @apply h-12 w-auto object-contain;
     }
 
     .site-footer-description {
