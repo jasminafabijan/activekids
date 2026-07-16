@@ -6,18 +6,20 @@ import {
   type SchoolFilters,
 } from '../data/schools'
 import { getCityOptions } from '../data/cities'
+import { getDefaultFilters } from '../utils/searchFilters'
 
 export type FilterValues = SchoolFilters
 
 interface FiltersBarProps {
   onFilterChange?: (filters: FilterValues) => void
+  initialFilters?: Partial<FilterValues>
 }
 
 const partsOfCityOptions = getDistrictOptions()
 const ageOptions = getAgeOptions()
 const activityOptions = getActivityOptions()
+const defaultFilters = getDefaultFilters()
 const cities = getCityOptions()
-const DEFAULT_CITY = cities[0] ?? ''
 
 const LocationIcon = () => (
   <svg
@@ -103,13 +105,11 @@ const SearchIcon = () => (
   </svg>
 )
 
-const FiltersBar = ({ onFilterChange }: FiltersBarProps) => {
-  const [filters, setFilters] = useState<FilterValues>({
-    city: DEFAULT_CITY,
-    partsOfCity: [],
-    age: null,
-    activities: [],
-  })
+const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
+  const [filters, setFilters] = useState<FilterValues>(() => ({
+    ...defaultFilters,
+    ...initialFilters,
+  }))
   const [isPartsOpen, setIsPartsOpen] = useState(false)
   const [isAgeOpen, setIsAgeOpen] = useState(false)
   const [isActivityOpen, setIsActivityOpen] = useState(false)

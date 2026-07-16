@@ -1,6 +1,11 @@
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { jumpToCategories } from '../utils/scrollToElement'
+import {
+  clearPendingHomeFilters,
+  filtersToSearchParams,
+  getPendingHomeFilters,
+} from '../utils/searchFilters'
 import CategoryCards from './CategoryCards'
 import FiltersBar, { type FilterValues } from './FiltersBar'
 import Hero from './Hero'
@@ -9,6 +14,7 @@ import Navbar from './Navbar'
 const HomePage = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const [initialFilters] = useState(() => getPendingHomeFilters())
 
   useLayoutEffect(() => {
     if (location.hash !== '#kategorije') {
@@ -18,26 +24,19 @@ const HomePage = () => {
     jumpToCategories()
   }, [location.pathname, location.hash])
 
+  // Clear after mount so a later remount (or refresh) does not restore filters.
+  // Timeout + cleanup keeps React Strict Mode double-mount from wiping them early.
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      clearPendingHomeFilters()
+    }, 0)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [])
+
   const handleFilterChange = (filters: FilterValues) => {
-    const searchParams = new URLSearchParams()
-
-    if (filters.city) {
-      searchParams.set('city', filters.city)
-    }
-
-    if (filters.partsOfCity.length > 0) {
-      searchParams.set('partsOfCity', filters.partsOfCity.join(','))
-    }
-
-    if (filters.age != null) {
-      searchParams.set('age', String(filters.age))
-    }
-
-    if (filters.activities.length > 0) {
-      searchParams.set('activities', filters.activities.join(','))
-    }
-
-    navigate(`/pretraga?${searchParams.toString()}`)
+    const params = filtersToSearchParams(filters).toString()
+    navigate(`/pretraga${params ? `?${params}` : ''}`)
   }
 
   return (
@@ -45,7 +44,7 @@ const HomePage = () => {
       <Navbar />
       <Hero />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <FiltersBar onFilterChange={handleFilterChange} />
+        <FiltersBar initialFilters={initialFilters} onFilterChange={handleFilterChange} />
 
         <CategoryCards />
       </div>

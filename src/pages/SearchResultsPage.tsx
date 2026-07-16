@@ -2,29 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import SchoolCard from '../components/SchoolCard'
 import { filterSchools, formatSchoolCategoryNames, type SchoolFilters } from '../data/schools'
-
-const getArrayParam = (value: string | null) => {
-  if (!value) {
-    return []
-  }
-
-  return value
-    .split(',')
-    .map((item) => item.trim())
-    .filter((item) => item.length > 0)
-}
-
-const getFiltersFromSearchParams = (searchParams: URLSearchParams): SchoolFilters => {
-  const ageParam = searchParams.get('age')
-  const parsedAge = ageParam ? Number(ageParam) : NaN
-
-  return {
-    city: searchParams.get('city') ?? '',
-    partsOfCity: getArrayParam(searchParams.get('partsOfCity')),
-    age: Number.isFinite(parsedAge) ? parsedAge : null,
-    activities: getArrayParam(searchParams.get('activities')),
-  }
-}
+import { getFiltersFromSearchParams, stashHomeFilters } from '../utils/searchFilters'
 
 const formatSchoolCountLabel = (count: number) => {
   const mod10 = count % 10
@@ -72,12 +50,16 @@ const SearchResultsPage = () => {
     <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <Link to="/" className="category-page-back">
+        <Link
+          to="/"
+          className="category-page-back"
+          onClick={() => stashHomeFilters(filters)}
+        >
           ← Nazad na pretragu
         </Link>
 
         <header className="category-page-header">
-          <h1 className="category-page-title">Aktivnosti za vaše dete</h1>
+          <h1 className="category-page-title">Rezultati pretrage</h1>
           <p className="category-page-subtitle">
             {getResultsSubtitle(results.length, filters)}
           </p>
