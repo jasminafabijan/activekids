@@ -10,6 +10,7 @@ import CategoryCards from './CategoryCards'
 import FiltersBar, { type FilterValues } from './FiltersBar'
 import Hero from './Hero'
 import Navbar from './Navbar'
+import RecentlyAddedSection from './RecentlyAddedSection'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -51,6 +52,7 @@ const HomePage = () => {
         <FiltersBar initialFilters={initialFilters} onFilterChange={handleFilterChange} />
 
         <CategoryCards />
+        <RecentlyAddedSection />
       </div>
     </div>
   )

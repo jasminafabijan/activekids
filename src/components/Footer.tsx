@@ -1,10 +1,20 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logoWhite from '../assets/images/kiddokompas-logo-white.png'
+import { scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
 
 const Footer = () => {
     const [isAddActivityOpen, setIsAddActivityOpen] = useState(false)
+    const location = useLocation()
+
+    const handleCategoriesClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        if (location.pathname === '/') {
+            event.preventDefault()
+            scrollToCategories()
+            window.history.replaceState(null, '', '/#kategorije')
+        }
+    }
 
     return (
         <>
@@ -30,7 +40,11 @@ const Footer = () => {
                                 Linkovi
                             </div>
                             <nav className="site-footer-nav" aria-labelledby="footer-links-label">
-                                <Link to="/#kategorije" className="site-footer-link">
+                                <Link
+                                    to="/#kategorije"
+                                    onClick={handleCategoriesClick}
+                                    className="site-footer-link"
+                                >
                                     Kategorije
                                 </Link>
                                 <button

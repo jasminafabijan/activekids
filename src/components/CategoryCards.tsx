@@ -10,19 +10,23 @@ import tennisIcon from '../assets/icons/tennis.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
 
+const CATEGORY_ICON_BASE_SIZE_PX = 64
+
 interface CategoryDisplay {
   id: string
   name: string
   slug: string
   iconBg: CategoryIconBg
   iconSrc?: string
+  /** Extra pixels added to the base icon height (64px). */
+  iconSizeAdjustPx?: number
 }
 
 const categoryDisplay: CategoryDisplay[] = [
-  { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon },
-  { id: 'jazz-ballet', name: 'Moderan ples', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon },
-  { id: 'football', name: 'Fudbal', slug: 'football', iconBg: 'mint', iconSrc: footballIcon },
-  { id: 'acting', name: 'Gluma', slug: 'acting', iconBg: 'peach', iconSrc: actingIcon },
+  { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
+  { id: 'jazz-ballet', name: 'Moderan ples', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },
+  { id: 'football', name: 'Fudbal', slug: 'football', iconBg: 'mint', iconSrc: footballIcon, iconSizeAdjustPx: -2 },
+  { id: 'acting', name: 'Gluma', slug: 'acting', iconBg: 'peach', iconSrc: actingIcon, iconSizeAdjustPx: -6 },
   { id: 'basketball', name: 'Košarka', slug: 'basketball', iconBg: 'mint', iconSrc: basketballIcon },
   { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
   { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
@@ -38,23 +42,32 @@ const CategoryCards = () => {
           Istražite po interesovanjima
         </h2>
         <p className="categories-subtitle">
-          Odaberite oblast koja najviše odgovara vašem detetu i otkrijte programe u vašem kraju.
+          Odaberite oblast koja najviše odgovara vašem detetu i otkrijte programe u vašem kraju
         </p>
       </div>
 
       <div className="categories-grid">
-        {categoryDisplay.map((category) => (
-          <Link
-            key={category.id}
-            to={`/kategorija/${category.slug}`}
-            className="category-card"
-          >
-            <span className={`category-card-icon category-card-icon--${category.iconBg}`}>
-              <img src={category.iconSrc} alt="" className="category-card-icon-image" />
-            </span>
-            <span className="category-card-label">{category.name}</span>
-          </Link>
-        ))}
+        {categoryDisplay.map((category) => {
+          const iconSizePx = CATEGORY_ICON_BASE_SIZE_PX + (category.iconSizeAdjustPx ?? 0)
+
+          return (
+            <Link
+              key={category.id}
+              to={`/kategorija/${category.slug}`}
+              className="category-card"
+            >
+              <span className={`category-card-icon category-card-icon--${category.iconBg}`}>
+                <img
+                  src={category.iconSrc}
+                  alt=""
+                  className="category-card-icon-image"
+                  style={{ height: iconSizePx, maxHeight: iconSizePx }}
+                />
+              </span>
+              <span className="category-card-label">{category.name}</span>
+            </Link>
+          )
+        })}
       </div>
     </section>
   )

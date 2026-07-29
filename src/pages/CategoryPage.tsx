@@ -37,7 +37,7 @@ const CategoryPage = () => {
         <Navbar />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <p className="text-muted">Kategorija nije pronađena.</p>
-          <Link to="/" className="mt-4 inline-block text-sm font-semibold text-primary">
+          <Link to="/#kategorije" className="mt-4 inline-block text-sm font-semibold text-primary">
             ← Nazad na početnu
           </Link>
         </div>
@@ -49,7 +49,7 @@ const CategoryPage = () => {
     <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <Link to="/" className="category-page-back">
+        <Link to="/#kategorije" className="category-page-back">
           ← Nazad na početnu
         </Link>
 

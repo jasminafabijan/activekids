@@ -22,6 +22,12 @@ import conkicAcademyWebp from '../assets/images/schools/tennis/conkic-academy.we
 import conkicAcademyJpg from '../assets/images/schools/tennis/conkic-academy.jpg'
 import sportsWorldWebp from '../assets/images/schools/basketball/sports-world.webp'
 import sportsWorldJpg from '../assets/images/schools/basketball/sports-world.jpg'
+import kkLdWebp from '../assets/images/schools/basketball/kk-ld.webp'
+import kkLdJpg from '../assets/images/schools/basketball/kk-ld.jpg'
+import champ07Webp from '../assets/images/schools/basketball/champ-07.webp'
+import champ07Jpg from '../assets/images/schools/basketball/champ-07.jpg'
+import kkStarWebp from '../assets/images/schools/basketball/kk-star.webp'
+import kkStarJpg from '../assets/images/schools/basketball/kk-star.jpg'
 import mawashiWebp from '../assets/images/schools/karate/mawashi.webp'
 import mawashiJpg from '../assets/images/schools/karate/mawashi.jpg'
 import granicarWebp from '../assets/images/schools/riding/granicar.webp'
@@ -600,6 +606,121 @@ export const schools: School[] = [
             instagram: 'https://www.instagram.com/granicarns',
         },
     },
+    {
+        id: 'kk-ld',
+        slug: 'kk-ld',
+        name: 'Košarkaški klub LD',
+        categorySlugs: ['basketball'],
+        city: 'Novi Sad',
+        district: 'Telep',
+        minAge: 6,
+        maxAge: 16,
+        ageLabel: '6–16 godina',
+        imageWebp: kkLdWebp,
+        imageFallback: kkLdJpg,
+        description: [
+            'Košarkaški klub LD osnovan je 2011. godine u Novom Sadu, sa ciljem da privuče i usmeri decu ka bavljenju košarkom.',
+            'Osnivači kluba svoj igrački i trenerski iskustvo prenose na dečake i devojčice koji tek otkrivaju prve košarkaške korake.',
+            'Rad je organizovan tako da svako dete ima priliku da ispolji talenat, druži se sa vršnjacima i uči kroz pobede i poraze.',
+            'U klubu se jednako cene košarkaški napredak, školski uspeh i odnos prema drugovima u timu.',
+            'Kroz treninge i takmičenja polaznici razvijaju radne navike, disciplinu, samostalnost i osećaj pripadnosti kolektivu.',
+        ],
+        addresses: [
+            {
+                street: 'OŠ "Nikola Tesla", Futoški put 25a',
+                city: 'Novi Sad',
+                district: 'Telep',
+                lat: 45.2469675,
+                lng: 19.8138278,
+            },
+            {
+                street: 'SC Meridiana, Stojana Novakovića 2',
+                city: 'Novi Sad',
+                district: 'Detelinara',
+                lat: 45.2548022,
+                lng: 19.8069969,
+            },
+        ],
+        contact: {
+            phone: '065 55 06 526',
+            email: 'kklubld@gmail.com',
+            website: 'https://www.kk-ld.com',
+            facebook: 'https://www.facebook.com/profile.php?id=100057053606676',
+            facebookLabel: 'Košarkaški klub LD',
+        },
+    },
+    {
+        id: 'champ-07',
+        slug: 'champ-07',
+        name: 'Champ 07',
+        categorySlugs: ['basketball'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 7,
+        maxAge: 12,
+        ageLabel: '7–12 godina',
+        imageWebp: champ07Webp,
+        imageFallback: champ07Jpg,
+        description: [
+            'Dečiji sportski klub Champ 07 već više od dve decenije radi sa decom kroz više sportskih programa, uključujući i košarku.',
+            'Treninzi košarke zasnivaju se na humanom, pedagoškom pristupu u kojem je svako dete u fokusu — na treningu i na utakmici.',
+            'Program nudi dozirano fizičko, intelektualno i emotivno opterećenje, uz naglasak na igru, radost i kvalitetno provedeno slobodno vreme.',
+            'Klub okuplja trenere posvećene radu sa mlađim uzrastima i stvaranju okruženja u kojem se greške i uspesi jednako doživljavaju kao deo učenja.',
+            'Pored redovnih treninga, Champ 07 decu uključuje i u šire sportske aktivnosti i druženja u okviru kluba.',
+        ],
+        addresses: [
+            {
+                street: '(DIF) Lovćenska 16',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2477013,
+                lng: 19.8477071,
+            },
+        ],
+        contact: {
+            phone: '064 65 21 282',
+            email: 'bobanch07@yahoo.com',
+            website: 'https://www.ch07.rs/sport/kosarka/',
+            facebook: 'https://www.facebook.com/SKLavovi07',
+            facebookLabel: 'SK Lavovi 07',
+            instagram: 'https://www.instagram.com/sc_champ_07/',
+        },
+    },
+    {
+        id: 'kk-star',
+        slug: 'kk-star',
+        name: 'Košarkaški klub Star',
+        categorySlugs: ['basketball'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 6,
+        maxAge: null,
+        ageLabel: '6+ godina',
+        imageWebp: kkStarWebp,
+        imageFallback: kkStarJpg,
+        description: [
+            'Košarkaški klub Star iz Novog Sada osnovan je 2004. godine i okuplja decu i mlade kroz školu košarke i rad mlađih kategorija.',
+            'Klub neguje ljubav prema košarci kroz redovne treninge, takmičenja i zajedničke sportske aktivnosti.',
+            'Program je namenjen deci koja žele da nauče osnove igre, napreduju u timu i razvijaju sportske navike.',
+            'Star je aktivan u lokalnoj košarkaškoj zajednici i redovno organizuje upise i programe za nove članove.',
+        ],
+        addresses: [
+            {
+                street: 'SPENS, Sutjeska 2',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2471273,
+                lng: 19.8454852,
+            },
+        ],
+        contact: {
+            phone: '063 865 6949',
+            email: 'kkstar.direktor@gmail.com',
+            facebook: 'https://www.facebook.com/kkstarnovisad/',
+            facebookLabel: 'kkstarnovisad',
+            instagram: 'https://www.instagram.com/kkstarnovisad/',
+        },
+    },
 ]
 
 export const formatSchoolAddress = (address: SchoolAddress) =>
@@ -656,6 +777,9 @@ export const getGoogleMapsOpenHref = (addresses: SchoolAddress[]) => {
 
 export const getSchoolsByCategory = (categorySlug: string) =>
     schools.filter((school) => school.categorySlugs.includes(categorySlug))
+
+/** Newest schools are appended at the end of `schools`; this always returns the latest entries. */
+export const getRecentlyAddedSchools = (count = 3) => schools.slice(-count).reverse()
 
 export const formatSchoolCategoryNames = (school: School) =>
     school.categorySlugs
