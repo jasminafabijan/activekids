@@ -4,7 +4,7 @@ import { jumpToCategories } from '../utils/scrollToElement'
 import {
   clearPendingHomeFilters,
   filtersToSearchParams,
-  getPendingHomeFilters,
+  getInitialHomeFilters,
 } from '../utils/searchFilters'
 import CategoryCards from './CategoryCards'
 import FiltersBar, { type FilterValues } from './FiltersBar'
@@ -14,7 +14,7 @@ import Navbar from './Navbar'
 const HomePage = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const [initialFilters] = useState(() => getPendingHomeFilters())
+  const [initialFilters] = useState(() => getInitialHomeFilters(location.state))
 
   useLayoutEffect(() => {
     if (location.hash !== '#kategorije') {
@@ -24,15 +24,19 @@ const HomePage = () => {
     jumpToCategories()
   }, [location.pathname, location.hash])
 
-  // Clear after mount so a later remount (or refresh) does not restore filters.
+  // Clear after mount so refresh does not restore filters.
   // Timeout + cleanup keeps React Strict Mode double-mount from wiping them early.
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       clearPendingHomeFilters()
+
+      if (location.state) {
+        navigate('.', { replace: true, state: null })
+      }
     }, 0)
 
     return () => window.clearTimeout(timeoutId)
-  }, [])
+  }, [location.state, navigate])
 
   const handleFilterChange = (filters: FilterValues) => {
     const params = filtersToSearchParams(filters).toString()

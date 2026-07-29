@@ -1,8 +1,18 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import SchoolCard from '../components/SchoolCard'
-import { filterSchools, formatSchoolCategoryNames, type SchoolFilters } from '../data/schools'
-import { getFiltersFromSearchParams, stashHomeFilters } from '../utils/searchFilters'
+import { getCategoryBySlug } from '../data/categories'
+import {
+  filterSchools,
+  formatSchoolCategoryNames,
+  type School,
+  type SchoolFilters,
+} from '../data/schools'
+import {
+  getFiltersFromSearchParams,
+  stashHomeFilters,
+  type HomeLocationState,
+} from '../utils/searchFilters'
 
 const formatSchoolCountLabel = (count: number) => {
   const mod10 = count % 10
@@ -40,11 +50,28 @@ const getResultsSubtitle = (count: number, filters: SchoolFilters) => {
   return `Pronašli smo ${label}.`
 }
 
+const getSchoolCategoryLabel = (school: School, filters: SchoolFilters) => {
+  // One selected activity is already clear from the filter — no tag needed.
+  if (filters.activities.length === 1) {
+    return undefined
+  }
+
+  if (filters.activities.length === 0) {
+    return formatSchoolCategoryNames(school)
+  }
+
+  // Multiple activities selected — show which of them apply to this school.
+  return filters.activities
+    .filter((activity) => school.categorySlugs.includes(activity))
+    .map((slug) => getCategoryBySlug(slug)?.name ?? slug)
+    .join(', ')
+}
+
 const SearchResultsPage = () => {
   const [searchParams] = useSearchParams()
   const filters = getFiltersFromSearchParams(searchParams)
   const results = filterSchools(filters)
-  const showCategoryTag = filters.activities.length === 0
+  const backState: HomeLocationState = { filters }
 
   return (
     <div className="page-shell">
@@ -52,6 +79,7 @@ const SearchResultsPage = () => {
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <Link
           to="/"
+          state={backState}
           className="category-page-back"
           onClick={() => stashHomeFilters(filters)}
         >
@@ -71,9 +99,7 @@ const SearchResultsPage = () => {
               <SchoolCard
                 key={school.id}
                 school={school}
-                categoryLabel={
-                  showCategoryTag ? formatSchoolCategoryNames(school) : undefined
-                }
+                categoryLabel={getSchoolCategoryLabel(school, filters)}
                 categoryContext={
                   filters.activities.find((activity) => school.categorySlugs.includes(activity)) ??
                   school.categorySlugs[0]

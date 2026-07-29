@@ -172,6 +172,14 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
     })
   }
 
+  const selectAllPartsOfCity = () => {
+    setFilters((prev) => ({ ...prev, partsOfCity: [...partsOfCityOptions] }))
+  }
+
+  const clearPartsOfCity = () => {
+    setFilters((prev) => ({ ...prev, partsOfCity: [] }))
+  }
+
   const selectAge = (age: number | null) => {
     setFilters((prev) => ({ ...prev, age }))
     setIsAgeOpen(false)
@@ -186,6 +194,17 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
 
       return { ...prev, activities }
     })
+  }
+
+  const selectAllActivities = () => {
+    setFilters((prev) => ({
+      ...prev,
+      activities: activityOptions.map((activity) => activity.slug),
+    }))
+  }
+
+  const clearActivities = () => {
+    setFilters((prev) => ({ ...prev, activities: [] }))
   }
 
   const partsLabel =
@@ -262,6 +281,15 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
 
               {isPartsOpen && (
                 <div id="partsOfCity-menu" className="search-field-menu" aria-labelledby="partsOfCity-label">
+                  <button
+                    type="button"
+                    className="search-field-option search-field-option-text search-field-option-bulk"
+                    onClick={
+                      filters.partsOfCity.length > 0 ? clearPartsOfCity : selectAllPartsOfCity
+                    }
+                  >
+                    {filters.partsOfCity.length > 0 ? 'Izbriši sve' : 'Označi sve'}
+                  </button>
                   {partsOfCityOptions.map((part) => {
                     const isChecked = filters.partsOfCity.includes(part)
 
@@ -350,6 +378,15 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
 
               {isActivityOpen && (
                 <div id="activity-menu" className="search-field-menu" aria-labelledby="activity-label">
+                  <button
+                    type="button"
+                    className="search-field-option search-field-option-text search-field-option-bulk"
+                    onClick={
+                      filters.activities.length > 0 ? clearActivities : selectAllActivities
+                    }
+                  >
+                    {filters.activities.length > 0 ? 'Izbriši sve' : 'Označi sve'}
+                  </button>
                   {activityOptions.map((activity) => {
                     const isChecked = filters.activities.includes(activity.slug)
 

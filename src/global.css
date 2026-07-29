@@ -240,6 +240,12 @@
         @apply block w-full border-0 bg-transparent text-left;
     }
 
+    .search-field-option-bulk {
+        @apply mb-0.5 font-semibold;
+        border-bottom: 1px solid rgba(11, 26, 59, 0.08);
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
     .search-field-option-active {
         background-color: color-mix(in srgb, var(--mint) 28%, white);
     }

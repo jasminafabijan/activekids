@@ -5,6 +5,7 @@ import basketballIcon from '../assets/icons/basketball.svg'
 import footballIcon from '../assets/icons/football.svg'
 import jazzDanceIcon from '../assets/icons/jazz-dance.svg'
 import karateIcon from '../assets/icons/karate.svg'
+import ridingIcon from '../assets/icons/riding.svg'
 import tennisIcon from '../assets/icons/tennis.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
@@ -25,6 +26,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'basketball', name: 'Košarka', slug: 'basketball', iconBg: 'mint', iconSrc: basketballIcon },
   { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
   { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
+  { id: 'riding', name: 'Jahanje', slug: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
 ]
 
 const CategoryCards = () => {

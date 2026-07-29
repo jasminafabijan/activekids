@@ -14,6 +14,13 @@ const getArrayParam = (value: string | null) => {
     .filter((item) => item.length > 0)
 }
 
+const cloneFilters = (filters: SchoolFilters): SchoolFilters => ({
+  city: filters.city,
+  partsOfCity: [...filters.partsOfCity],
+  age: filters.age,
+  activities: [...filters.activities],
+})
+
 export const getDefaultFilters = (): SchoolFilters => ({
   city: DEFAULT_CITY,
   partsOfCity: [],
@@ -56,25 +63,41 @@ export const filtersToSearchParams = (filters: SchoolFilters) => {
   return searchParams
 }
 
+export type HomeLocationState = {
+  filters?: SchoolFilters
+}
+
 let pendingHomeFilters: SchoolFilters | null = null
 
 export const stashHomeFilters = (filters: SchoolFilters) => {
-  pendingHomeFilters = filters
-}
-
-export const getPendingHomeFilters = (): SchoolFilters => {
-  if (!pendingHomeFilters) {
-    return getDefaultFilters()
-  }
-
-  return {
-    ...getDefaultFilters(),
-    ...pendingHomeFilters,
-    partsOfCity: [...pendingHomeFilters.partsOfCity],
-    activities: [...pendingHomeFilters.activities],
-  }
+  pendingHomeFilters = cloneFilters(filters)
 }
 
 export const clearPendingHomeFilters = () => {
   pendingHomeFilters = null
+}
+
+const getFiltersFromLocationState = (state: unknown): SchoolFilters | null => {
+  const filters = (state as HomeLocationState | null)?.filters
+
+  if (!filters) {
+    return null
+  }
+
+  return {
+    ...getDefaultFilters(),
+    ...filters,
+    partsOfCity: Array.isArray(filters.partsOfCity) ? [...filters.partsOfCity] : [],
+    activities: Array.isArray(filters.activities) ? [...filters.activities] : [],
+  }
+}
+
+export const getInitialHomeFilters = (state: unknown): SchoolFilters => {
+  // Prefer in-memory stash from "Nazad na pretragu" click — survives SPA sessions
+  // that began with a document reload (when history.state alone would be ignored).
+  if (pendingHomeFilters) {
+    return cloneFilters(pendingHomeFilters)
+  }
+
+  return getFiltersFromLocationState(state) ?? getDefaultFilters()
 }
