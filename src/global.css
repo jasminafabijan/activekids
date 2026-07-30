@@ -125,12 +125,6 @@
         background-color: color-mix(in srgb, var(--mint) 80%, #6aaf8f);
     }
 
-    .hero-underline {
-        @apply pointer-events-none absolute -bottom-1 left-0 w-full;
-        height: 0.38em;
-        min-height: 10px;
-    }
-
     .hero-title {
         font-size: clamp(2rem, 2.5vw + 1.5rem, 4rem);
         line-height: 1.1;

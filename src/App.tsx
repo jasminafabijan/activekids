@@ -1,11 +1,15 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './components/HomePage'
-import AdminPage from './pages/AdminPage'
 import CategoryPage from './pages/CategoryPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import SchoolDetailPage from './pages/SchoolDetailPage'
+
+const AdminPage = import.meta.env.DEV
+  ? lazy(() => import('./pages/AdminPage'))
+  : null
 
 function App() {
   return (
@@ -18,7 +22,16 @@ function App() {
             <Route path="/pretraga" element={<SearchResultsPage />} />
             <Route path="/kategorija/:slug" element={<CategoryPage />} />
             <Route path="/skola/:slug" element={<SchoolDetailPage />} />
-            <Route path="/admin" element={<AdminPage />} />
+            {AdminPage ? (
+              <Route
+                path="/admin"
+                element={
+                  <Suspense fallback={null}>
+                    <AdminPage />
+                  </Suspense>
+                }
+              />
+            ) : null}
           </Routes>
         </main>
         <Footer />

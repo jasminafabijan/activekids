@@ -74,13 +74,12 @@ const AdminPage = () => {
 
       <div className="admin-page-toolbar">
         <label className="admin-filter">
-          <span className="admin-filter-label">Sport</span>
           <select
             className="admin-filter-select"
             value={sportFilter}
             onChange={(event) => setSportFilter(event.target.value)}
           >
-            <option value="">Svi sportovi</option>
+            <option value="">Sve aktivnosti</option>
             {sportOptions.map((option) => (
               <option key={option.slug} value={option.slug}>
                 {option.name}
@@ -97,7 +96,7 @@ const AdminPage = () => {
               <th className="admin-table-col-check" scope="col">
                 <span className="sr-only">Provereno</span>
               </th>
-              <th scope="col">Sport</th>
+              <th scope="col">Aktivnost</th>
               <th scope="col">Škola</th>
               <th scope="col">Websajt</th>
               <th scope="col">Email</th>
