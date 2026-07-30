@@ -73,6 +73,14 @@ export const categories: Category[] = [
     pageSubtitle:
       'Istražite škole jahanja u {city} — za prirodu, povezanost sa konjima i miran ritam van grada.',
   },
+  {
+    id: 'folklore',
+    name: 'Folklor',
+    slug: 'folklore',
+    subtitle: 'Škole folklora',
+    pageSubtitle:
+      'Istražite škole folklora u {city} — za tradiciju, igru, pesmu i druženje kroz narodne običaje.',
+  },
   { id: 'dance', name: 'Ples', slug: 'dance', subtitle: 'Škole plesa' },
   { id: 'music', name: 'Muzika', slug: 'music', subtitle: 'Muzičke škole' },
   { id: 'art', name: 'Umetnost', slug: 'art', subtitle: 'Umetničke škole' },

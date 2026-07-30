@@ -113,9 +113,13 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
   const [isPartsOpen, setIsPartsOpen] = useState(false)
   const [isAgeOpen, setIsAgeOpen] = useState(false)
   const [isActivityOpen, setIsActivityOpen] = useState(false)
+  const [partsQuery, setPartsQuery] = useState('')
+  const [activitiesQuery, setActivitiesQuery] = useState('')
   const partsDropdownRef = useRef<HTMLDivElement>(null)
   const ageDropdownRef = useRef<HTMLDivElement>(null)
   const activityDropdownRef = useRef<HTMLDivElement>(null)
+  const partsSearchRef = useRef<HTMLInputElement>(null)
+  const activitiesSearchRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!isPartsOpen && !isAgeOpen && !isActivityOpen) return
@@ -157,6 +161,24 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
     }
   }, [isPartsOpen, isAgeOpen, isActivityOpen])
 
+  useEffect(() => {
+    if (!isPartsOpen) {
+      setPartsQuery('')
+      return
+    }
+
+    partsSearchRef.current?.focus()
+  }, [isPartsOpen])
+
+  useEffect(() => {
+    if (!isActivityOpen) {
+      setActivitiesQuery('')
+      return
+    }
+
+    activitiesSearchRef.current?.focus()
+  }, [isActivityOpen])
+
   const handleChange = (field: 'city', value: string) => {
     setFilters((prev) => ({ ...prev, [field]: value }))
   }
@@ -172,8 +194,18 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
     })
   }
 
+  const normalizedPartsQuery = partsQuery.trim().toLocaleLowerCase('sr')
+  const filteredPartsOfCityOptions = partsOfCityOptions.filter((part) =>
+    part.toLocaleLowerCase('sr').includes(normalizedPartsQuery)
+  )
+
   const selectAllPartsOfCity = () => {
-    setFilters((prev) => ({ ...prev, partsOfCity: [...partsOfCityOptions] }))
+    setFilters((prev) => ({
+      ...prev,
+      partsOfCity: [
+        ...new Set([...prev.partsOfCity, ...filteredPartsOfCityOptions]),
+      ],
+    }))
   }
 
   const clearPartsOfCity = () => {
@@ -196,10 +228,20 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
     })
   }
 
+  const normalizedActivitiesQuery = activitiesQuery.trim().toLocaleLowerCase('sr')
+  const filteredActivityOptions = activityOptions.filter((activity) =>
+    activity.name.toLocaleLowerCase('sr').includes(normalizedActivitiesQuery)
+  )
+
   const selectAllActivities = () => {
     setFilters((prev) => ({
       ...prev,
-      activities: activityOptions.map((activity) => activity.slug),
+      activities: [
+        ...new Set([
+          ...prev.activities,
+          ...filteredActivityOptions.map((activity) => activity.slug),
+        ]),
+      ],
     }))
   }
 
@@ -281,6 +323,17 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
 
               {isPartsOpen && (
                 <div id="partsOfCity-menu" className="search-field-menu" aria-labelledby="partsOfCity-label">
+                  <div className="search-field-menu-search">
+                    <input
+                      ref={partsSearchRef}
+                      type="search"
+                      value={partsQuery}
+                      onChange={(e) => setPartsQuery(e.target.value)}
+                      placeholder="Pretraži deo grada..."
+                      className="search-field-menu-search-input"
+                      aria-label="Pretraži deo grada"
+                    />
+                  </div>
                   <button
                     type="button"
                     className="search-field-option search-field-option-text search-field-option-bulk"
@@ -290,21 +343,27 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
                   >
                     {filters.partsOfCity.length > 0 ? 'Izbriši sve' : 'Označi sve'}
                   </button>
-                  {partsOfCityOptions.map((part) => {
-                    const isChecked = filters.partsOfCity.includes(part)
+                  <div className="search-field-menu-options">
+                    {filteredPartsOfCityOptions.length > 0 ? (
+                      filteredPartsOfCityOptions.map((part) => {
+                        const isChecked = filters.partsOfCity.includes(part)
 
-                    return (
-                      <label key={part} className="search-field-option">
-                        <input
-                          type="checkbox"
-                          className="search-field-checkbox"
-                          checked={isChecked}
-                          onChange={() => togglePartOfCity(part)}
-                        />
-                        <span>{part}</span>
-                      </label>
-                    )
-                  })}
+                        return (
+                          <label key={part} className="search-field-option">
+                            <input
+                              type="checkbox"
+                              className="search-field-checkbox"
+                              checked={isChecked}
+                              onChange={() => togglePartOfCity(part)}
+                            />
+                            <span>{part}</span>
+                          </label>
+                        )
+                      })
+                    ) : (
+                      <p className="search-field-menu-empty">Nema rezultata</p>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -333,23 +392,25 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
 
               {isAgeOpen && (
                 <div id="age-menu" className="search-field-menu" aria-labelledby="age-label">
-                  <button
-                    type="button"
-                    className={`search-field-option search-field-option-text ${filters.age == null ? 'search-field-option-active' : ''}`}
-                    onClick={() => selectAge(null)}
-                  >
-                    Svi uzrasti
-                  </button>
-                  {ageOptions.map((option) => (
+                  <div className="search-field-menu-options">
                     <button
-                      key={option.value}
                       type="button"
-                      className={`search-field-option search-field-option-text ${filters.age === option.value ? 'search-field-option-active' : ''}`}
-                      onClick={() => selectAge(option.value)}
+                      className={`search-field-option search-field-option-text ${filters.age == null ? 'search-field-option-active' : ''}`}
+                      onClick={() => selectAge(null)}
                     >
-                      {option.label}
+                      Svi uzrasti
                     </button>
-                  ))}
+                    {ageOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        className={`search-field-option search-field-option-text ${filters.age === option.value ? 'search-field-option-active' : ''}`}
+                        onClick={() => selectAge(option.value)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -378,6 +439,17 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
 
               {isActivityOpen && (
                 <div id="activity-menu" className="search-field-menu" aria-labelledby="activity-label">
+                  <div className="search-field-menu-search">
+                    <input
+                      ref={activitiesSearchRef}
+                      type="search"
+                      value={activitiesQuery}
+                      onChange={(e) => setActivitiesQuery(e.target.value)}
+                      placeholder="Pretraži aktivnost..."
+                      className="search-field-menu-search-input"
+                      aria-label="Pretraži aktivnost"
+                    />
+                  </div>
                   <button
                     type="button"
                     className="search-field-option search-field-option-text search-field-option-bulk"
@@ -387,21 +459,27 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
                   >
                     {filters.activities.length > 0 ? 'Izbriši sve' : 'Označi sve'}
                   </button>
-                  {activityOptions.map((activity) => {
-                    const isChecked = filters.activities.includes(activity.slug)
+                  <div className="search-field-menu-options">
+                    {filteredActivityOptions.length > 0 ? (
+                      filteredActivityOptions.map((activity) => {
+                        const isChecked = filters.activities.includes(activity.slug)
 
-                    return (
-                      <label key={activity.slug} className="search-field-option">
-                        <input
-                          type="checkbox"
-                          className="search-field-checkbox"
-                          checked={isChecked}
-                          onChange={() => toggleActivity(activity.slug)}
-                        />
-                        <span>{activity.name}</span>
-                      </label>
-                    )
-                  })}
+                        return (
+                          <label key={activity.slug} className="search-field-option">
+                            <input
+                              type="checkbox"
+                              className="search-field-checkbox"
+                              checked={isChecked}
+                              onChange={() => toggleActivity(activity.slug)}
+                            />
+                            <span>{activity.name}</span>
+                          </label>
+                        )
+                      })
+                    ) : (
+                      <p className="search-field-menu-empty">Nema rezultata</p>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

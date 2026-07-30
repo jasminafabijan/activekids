@@ -47,6 +47,10 @@ const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps)
       ? `/skola/${school.slug}?kategorija=${categoryContext}`
       : `/skola/${school.slug}`
 
+  const locationLabel = [formatSchoolDistricts(school), school.city]
+    .filter((part) => part.length > 0)
+    .join(', ')
+
   return (
     <Link to={schoolHref} className="school-card">
       <div className="school-card-image-wrap">
@@ -73,7 +77,7 @@ const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps)
         <ul className="school-card-meta">
           <li className="school-card-meta-item">
             <LocationIcon />
-            <span>{formatSchoolDistricts(school)}</span>
+            <span>{locationLabel}</span>
           </li>
           <li className="school-card-meta-item">
             <UsersIcon />

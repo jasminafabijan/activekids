@@ -4,6 +4,8 @@ import reveransWebp from '../assets/images/schools/ballet/reverans.webp'
 import reveransJpg from '../assets/images/schools/ballet/reverans.jpg'
 import pointeDanceWebp from '../assets/images/schools/ballet/pointe-dance.webp'
 import pointeDancePng from '../assets/images/schools/ballet/pointe-dance.png'
+import dobrilaNovkovWebp from '../assets/images/schools/ballet/dobrila-novkov.webp'
+import dobrilaNovkovPng from '../assets/images/schools/ballet/dobrila-novkov.png'
 import masterDanceWebp from '../assets/images/schools/dance/master-dance.webp'
 import masterDanceJpg from '../assets/images/schools/dance/master-dance.jpg'
 import soccerTeamWebp from '../assets/images/schools/football/soccerteam.webp'
@@ -32,6 +34,10 @@ import mawashiWebp from '../assets/images/schools/karate/mawashi.webp'
 import mawashiJpg from '../assets/images/schools/karate/mawashi.jpg'
 import granicarWebp from '../assets/images/schools/riding/granicar.webp'
 import granicarJpg from '../assets/images/schools/riding/granicar.jpg'
+import kudNeraWebp from '../assets/images/schools/folklore/kud-nera.webp'
+import kudNeraJpg from '../assets/images/schools/folklore/kud-nera.jpg'
+import champ07FootballWebp from '../assets/images/schools/football/champ-07.webp'
+import champ07FootballPng from '../assets/images/schools/football/champ-07.png'
 import { getCategoryBySlug } from './categories'
 
 export type SchoolFilters = {
@@ -183,7 +189,7 @@ export const schools: School[] = [
             },
         ],
         contact: {
-            phone: '060 301 3332',
+            phone: '060 30 13 332',
             email: 'mitrovicmilana@yahoo.com',
             facebook: 'https://www.facebook.com/pointedanceserbia/',
             instagram: 'https://www.instagram.com/pointedanceserbia/',
@@ -262,7 +268,7 @@ export const schools: School[] = [
             },
         ],
         contact: {
-            phone: '063 768 5080',
+            phone: '063 76 85 080',
             email: 'soccer.team84@yahoo.com',
             website: 'https://www.soccerteam.rs',
             facebook: 'https://www.facebook.com/soccerteamns',
@@ -297,7 +303,7 @@ export const schools: School[] = [
             },
         ],
         contact: {
-            phone: '064 241 00 19',
+            phone: '064 24 10 019',
             email: 'fcsmihajlovic.ns@gmail.com',
             website: 'https://fcsinisamihajlovic.com',
             facebook: 'https://www.facebook.com/profile.php?id=100063768183474',
@@ -404,7 +410,7 @@ export const schools: School[] = [
             },
         ],
         contact: {
-            phone: '(021) 6400 079',
+            phone: '021 64 00 079',
             website: 'https://fkmladostgat.com/omladinska-skola/',
             facebook: 'https://www.facebook.com/profile.php?id=100083685032597',
             facebookLabel: 'FK-Mladost-GAT',
@@ -520,7 +526,7 @@ export const schools: School[] = [
             },
         ],
         contact: {
-            phone: '063 773 3365',
+            phone: '063 77 33 365',
             email: 'dragpan@gmail.com',
             website: 'https://kksportsworld.com',
             facebook: 'https://www.facebook.com/kksportsworld',
@@ -563,7 +569,7 @@ export const schools: School[] = [
             },
         ],
         contact: {
-            phone: '063 161 4403',
+            phone: '063 16 14 403',
             email: 'karateklubmawashi@live.com',
             facebook: 'https://www.facebook.com/karateklubmawashi/',
             instagram: 'https://www.instagram.com/karateklubmawashi/',
@@ -721,6 +727,116 @@ export const schools: School[] = [
             instagram: 'https://www.instagram.com/kkstarnovisad/',
         },
     },
+    {
+        id: 'kud-nera',
+        slug: 'kud-nera',
+        name: 'KUD Nera',
+        categorySlugs: ['folklore'],
+        city: 'Novi Sad',
+        district: 'Salajka',
+        minAge: 4,
+        maxAge: null,
+        ageLabel: '4+ godina',
+        imageWebp: kudNeraWebp,
+        imageFallback: kudNeraJpg,
+        description: [
+            'Kulturno-umetničko društvo Nera iz Novog Sada neguje folklor kroz dečiji, rekreativni i veteranski sastav.',
+            'Dečiji folklorni sastav uči narodne igre i pesme iz raznih krajeva Srbije, uz zagrevanje, vežbe i rad na ritmu i pokretu.',
+            'Kroz probe i nastupe deca razvijaju motoriku, osećaj za igru i pesmu, upoznaju vršnjake i stiču iskustvo na koncertima i festivalima.',
+            'KUD Nera je poznat i po festivalu veteranskog folklora „Ravnica“, kojim promoviše tradiciju, nošnju i srpsko kolo.',
+            'Probe se održavaju dva puta nedeljno, a društvo redovno prima nove članove u dečije i ostale sastave.',
+        ],
+        addresses: [
+            {
+                street: 'Šajkaška 26',
+                city: 'Novi Sad',
+                district: 'Salajka',
+                lat: 45.2727198,
+                lng: 19.8381287,
+            },
+        ],
+        contact: {
+            phone: '063 82 43 794',
+            email: 'kudnera@gmail.com',
+            website: 'https://kudnera.rs',
+            facebook: 'https://www.facebook.com/kud.nera',
+            facebookLabel: 'kud.nera',
+        },
+    },
+    {
+        id: 'champ-07-fudbal',
+        slug: 'champ-07-fudbal',
+        name: 'Champ 07',
+        categorySlugs: ['football'],
+        city: 'Novi Sad',
+        district: 'Liman 1',
+        minAge: 5,
+        maxAge: 12,
+        ageLabel: '5–12 godina',
+        imageWebp: champ07FootballWebp,
+        imageFallback: champ07FootballPng,
+        description: [
+            'Fudbalska sekcija dečijeg sportskog kluba Champ 07 u Novom Sadu namenjena je prvim fudbalskim koracima i rekreativnom sportu.',
+            'U klubu nema selekcije — svako dete ima svoje mesto u timu i važno je treneru grupe kojoj pripada.',
+            'Program se zasniva na igri i zabavi, bez pritiska lige, obaveznih turnira svakog vikenda i ugovora sa decom i roditeljima.',
+            'Cilj je zdravo i kvalitetno okruženje trenera, saigrača i roditelja, u kojem se uče vrednosti rekreativnog sporta.',
+            'Treninzi se održavaju u sali na Đačkom, a klub već godinama radi sa mladim zaljubljenicima u fudbal.',
+        ],
+        addresses: [
+            {
+                street: 'Sala na Đačkom, Dr Vase Savića 3',
+                city: 'Novi Sad',
+                district: 'Liman 1',
+                lat: 45.2438472,
+                lng: 19.8519854,
+            },
+        ],
+        contact: {
+            phone: '064 65 21 282',
+            email: 'bobanch07@yahoo.com',
+            website: 'https://www.ch07.rs/sport/fudbal/',
+            facebook: 'https://www.facebook.com/SKLavovi07',
+            facebookLabel: 'SK Lavovi 07',
+            instagram: 'https://www.instagram.com/sc_champ_07/',
+        },
+    },
+    {
+        id: 'dobrila-novkov',
+        slug: 'dobrila-novkov',
+        name: 'Baletska škola Dobrile Novkov „La Sylphide“',
+        categorySlugs: ['ballet'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 3,
+        maxAge: null,
+        ageLabel: '3+ godina',
+        imageWebp: dobrilaNovkovWebp,
+        imageFallback: dobrilaNovkovPng,
+        description: [
+            'Privatna baletska škola Dobrile Novkov „La Sylphide“ u Novom Sadu više od tri decenije nudi klasično baletsko obrazovanje.',
+            'Nastava se izvodi po ruskom metodu Akademije Vaganove, uz rad na gipkosti, izdržljivosti, disciplini i pažnji na detalje.',
+            'Program obuhvata predškolske grupe, klase baletske osnovne škole sa verifikovanim svedočanstvima i pripremu za srednju baletsku školu.',
+            'Na kraju školske godine škola priređuje gala predstavu, a učenici nastupaju i na lokalnim manifestacijama i humanitarnim koncertima.',
+            'Školu je do sada pohađalo više od hiljadu učenika — od onih koji uživaju u baletu do onih koji nastavljaju profesionalni put.',
+        ],
+        addresses: [
+            {
+                street: 'Svetozara Miletića 47',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2576699,
+                lng: 19.8430092,
+            },
+        ],
+        contact: {
+            phone: '063 70 36 556',
+            email: 'dobrila.novkov@gmail.com',
+            website: 'https://www.ballet-dobrilanovkov.com',
+            facebook: 'https://www.facebook.com/klasicanbaletnovisad',
+            facebookLabel: 'klasicanbaletnovisad',
+            instagram: 'https://www.instagram.com/klasican_balet/',
+        },
+    },
 ]
 
 export const formatSchoolAddress = (address: SchoolAddress) =>
@@ -776,7 +892,9 @@ export const getGoogleMapsOpenHref = (addresses: SchoolAddress[]) => {
 }
 
 export const getSchoolsByCategory = (categorySlug: string) =>
-    schools.filter((school) => school.categorySlugs.includes(categorySlug))
+    schools
+        .filter((school) => school.categorySlugs.includes(categorySlug))
+        .sort((a, b) => a.name.localeCompare(b.name, 'sr'))
 
 /** Newest schools are appended at the end of `schools`; this always returns the latest entries. */
 export const getRecentlyAddedSchools = (count = 3) => schools.slice(-count).reverse()

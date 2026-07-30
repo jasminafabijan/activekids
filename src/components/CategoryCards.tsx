@@ -6,7 +6,9 @@ import footballIcon from '../assets/icons/football.svg'
 import jazzDanceIcon from '../assets/icons/jazz-dance.svg'
 import karateIcon from '../assets/icons/karate.svg'
 import ridingIcon from '../assets/icons/riding.svg'
+import folkloreIcon from '../assets/icons/folklore.svg'
 import tennisIcon from '../assets/icons/tennis.svg'
+import { getSchoolsByCategory } from '../data/schools'
 
 type CategoryIconBg = 'mint' | 'peach'
 
@@ -31,7 +33,19 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
   { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
   { id: 'riding', name: 'Jahanje', slug: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
+  { id: 'folklore', name: 'Folklor', slug: 'folklore', iconBg: 'mint', iconSrc: folkloreIcon, iconSizeAdjustPx: 2 },
 ]
+
+const categoriesBySchoolCount = [...categoryDisplay].sort((a, b) => {
+  const countDiff =
+    getSchoolsByCategory(b.slug).length - getSchoolsByCategory(a.slug).length
+
+  if (countDiff !== 0) {
+    return countDiff
+  }
+
+  return a.name.localeCompare(b.name, 'sr')
+})
 
 const CategoryCards = () => {
   return (
@@ -47,7 +61,7 @@ const CategoryCards = () => {
       </div>
 
       <div className="categories-grid">
-        {categoryDisplay.map((category) => {
+        {categoriesBySchoolCount.map((category) => {
           const iconSizePx = CATEGORY_ICON_BASE_SIZE_PX + (category.iconSizeAdjustPx ?? 0)
 
           return (
