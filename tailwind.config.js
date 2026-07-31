@@ -24,9 +24,6 @@ export default {
         borderColor: {
             DEFAULT: 'var(--border)',
         },
-        screens: {
-            'lg-wide': '1200px',
-        },
     },
   },
   plugins: [],

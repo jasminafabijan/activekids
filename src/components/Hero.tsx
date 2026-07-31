@@ -1,86 +1,65 @@
-import heroImg1Webp from '../assets/images/atletika.webp'
-import heroImg1 from '../assets/images/atletika.png'
-import heroImg3Webp from '../assets/images/balet.webp'
-import heroImg3 from '../assets/images/balet.jpg'
-import heroImg4Webp from '../assets/images/tenis.webp'
-import heroImg4 from '../assets/images/tenis.jpg'
+import { lazy, Suspense, useSyncExternalStore } from 'react'
 
-type HeroImageProps = {
-    webp: string
-    fallback: string
-    alt: string
-    className: string
+const HeroMedia = lazy(() => import('./HeroMedia'))
+
+const HERO_MEDIA_QUERY = '(min-width: 1024px)'
+
+const subscribeHeroMedia = (onChange: () => void) => {
+    const mediaQuery = window.matchMedia(HERO_MEDIA_QUERY)
+    mediaQuery.addEventListener('change', onChange)
+    return () => mediaQuery.removeEventListener('change', onChange)
 }
 
-const HeroImage = ({ webp, fallback, alt, className }: HeroImageProps) => (
-    <picture>
-        <source srcSet={webp} type="image/webp" />
-        <img src={fallback} alt={alt} decoding="async" className={className} />
-    </picture>
-)
+const getHeroMediaSnapshot = () => window.matchMedia(HERO_MEDIA_QUERY).matches
+
+const useShowHeroMedia = () =>
+    useSyncExternalStore(subscribeHeroMedia, getHeroMediaSnapshot, () => false)
 
 const Hero = () => {
-    return (
-        <section className="relative overflow-hidden bg-white">
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-32 -right-40 h-[36rem] w-[36rem] rounded-full opacity-60 blur-3xl"
-                style={{ background: 'var(--mint)' }}
-            />
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -bottom-40 -left-40 h-[28rem] w-[28rem] rounded-full opacity-40 blur-3xl"
-                style={{ background: 'var(--peach)' }}
-            />
+    const showMedia = useShowHeroMedia()
 
-            <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 px-6 py-14 md:py-16 lg:grid-cols-[1.4fr_1fr]">
-                <div className="space-y-5">
-                    <div className="tag tag--pill tag--mint">
+    return (
+        <section className="hero">
+            <div className="hero-gradients" aria-hidden="true">
+                <div className="hero-gradient hero-gradient--mint" />
+                <div className="hero-gradient hero-gradient--peach" />
+            </div>
+
+            <div className="hero-inner">
+                <div className="hero-copy">
+                    <div className="tag tag--pill tag--mint self-start">
                         <span className="tag-dot" aria-hidden="true" />
                         Platforma za roditelje
                     </div>
 
-                    <h1
-                        className="hero-title font-extrabold text-primary"
-                        style={{ fontSize: '56px', lineHeight: 1.1, marginBottom: '2rem' }}
-                    >
-                        <span className="block">Pronađite savršene</span>
-                        <span className="block whitespace-nowrap">
-                            <span className="relative inline-block">
+                    <h1 className="hero-title text-primary">
+                        <span className="hero-title-line">Pronađite savršene</span>
+                        <span className="hero-title-line hero-title-line--accent">
+                            <span className="hero-title-underline">
                                 aktivnosti
-                                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none"><path d="M2 8C50 2 150 2 298 8" stroke="var(--peach)" strokeWidth="4" strokeLinecap="round" /></svg>
+                                <svg viewBox="0 0 300 12" fill="none" aria-hidden="true">
+                                    <path
+                                        d="M2 8C50 2 150 2 298 8"
+                                        stroke="var(--peach)"
+                                        strokeWidth="4"
+                                        strokeLinecap="round"
+                                    />
+                                </svg>
                             </span>{' '}
                             za vašu decu
                         </span>
                     </h1>
-                    <p className="max-w-xxl text-lg text-muted md:text-xl">
-                        Sport, ples, muzika, umetnost i još mnogo toga — sve na jednom mestu, uz jednostavno filtriranje po lokaciji,{' '}
-                        uzrastu i interesovanju.
+                    <p className="hero-lead">
+                        Sport, ples, muzika, umetnost i još mnogo toga — sve na jednom mestu, uz
+                        jednostavno filtriranje po lokaciji, uzrastu i interesovanju.
                     </p>
                 </div>
 
-                <div className="relative w-full">
-                    <div className="relative mx-auto h-[340px] w-[417px] max-w-full lg:ml-auto lg:mr-0">
-                        <HeroImage
-                            webp={heroImg1Webp}
-                            fallback={heroImg1}
-                            alt="Atletika za decu"
-                            className="absolute top-0 right-0 z-10 h-[231px] w-[188px] max-w-full rounded-3xl object-cover shadow-card ring-4 ring-mint-soft"
-                        />
-                        <HeroImage
-                            webp={heroImg3Webp}
-                            fallback={heroImg3}
-                            alt="Ples i balet za decu"
-                            className="absolute top-[70px] left-0 z-10 h-[257px] w-[209px] max-w-full rounded-3xl object-cover shadow-card ring-4 ring-peach-soft"
-                        />
-                        <HeroImage
-                            webp={heroImg4Webp}
-                            fallback={heroImg4}
-                            alt="Tenis za decu"
-                            className="absolute -bottom-[20px] left-[180px] z-20 h-[178px] w-[178px] max-w-full rounded-full object-cover shadow-card ring-4 ring-peach-soft"
-                        />
-                    </div>
-                </div>
+                {showMedia ? (
+                    <Suspense fallback={null}>
+                        <HeroMedia />
+                    </Suspense>
+                ) : null}
             </div>
         </section>
     )
