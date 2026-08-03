@@ -714,7 +714,7 @@
     }
 
     .school-detail-grid {
-        @apply mt-8 grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,7fr)_minmax(0,3fr)] xl:gap-10;
+        @apply mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,3fr)] lg:gap-10;
     }
 
     .school-detail-main {
@@ -726,7 +726,8 @@
     }
 
     .school-detail-image-frame {
-        @apply relative mt-8 mb-12 w-fit max-w-full;
+        @apply relative mt-8 mb-12 w-fit;
+        max-width: 92%;
     }
 
     .school-detail-deco {
@@ -1065,17 +1066,16 @@
     }
 
     .site-footer-bottom {
-        @apply flex flex-nowrap items-center justify-between gap-6 text-sm leading-relaxed;
+        @apply flex flex-col gap-3 text-sm leading-relaxed md:flex-row md:items-baseline md:justify-between md:gap-8;
         color: rgba(255, 255, 255, 0.55);
     }
 
-    .site-footer-copyright,
-    .site-footer-disclaimer {
-        @apply m-0 shrink-0 whitespace-nowrap;
+    .site-footer-copyright {
+        @apply m-0 shrink-0;
     }
 
     .site-footer-disclaimer {
-        @apply text-right;
+        @apply m-0 md:min-w-0 md:text-right;
     }
 }
 

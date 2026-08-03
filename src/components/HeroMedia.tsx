@@ -1,7 +1,7 @@
 import heroImg1Webp from '../assets/images/atletika.webp'
 import heroImg1 from '../assets/images/atletika.png'
 import heroImg3Webp from '../assets/images/balet.webp'
-import heroImg3 from '../assets/images/balet.jpg'
+import heroImg3 from '../assets/images/balet.png'
 import heroImg4Webp from '../assets/images/tenis.webp'
 import heroImg4 from '../assets/images/tenis.jpg'
 

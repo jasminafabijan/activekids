@@ -50,6 +50,14 @@ export const categories: Category[] = [
       'Istražite košarkaške škole u {city} — za decu koja vole igru, pokret i izazov pod obručima.',
   },
   {
+    id: 'volleyball',
+    name: 'Odbojka',
+    slug: 'volleyball',
+    subtitle: 'Škole odbojke',
+    pageSubtitle:
+      'Istražite škole odbojke u {city} — za igru, timski duh i sportski razvoj kroz mrežu.',
+  },
+  {
     id: 'tennis',
     name: 'Tenis',
     slug: 'tennis',

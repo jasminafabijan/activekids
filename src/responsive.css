@@ -18,6 +18,18 @@
     }
 }
 
+@media (min-width: 640px) and (max-width: 1023.98px) {
+    .school-detail-image-wrap {
+        height: 340px;
+    }
+}
+
+@media (max-width: 639.98px) {
+    .school-detail-image-wrap {
+        height: 280px;
+    }
+}
+
 /* 4 category cards per row */
 @media (min-width: 768px) and (max-width: 1023.98px) {
     .category-card {
