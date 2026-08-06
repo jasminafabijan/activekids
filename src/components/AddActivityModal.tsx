@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
-import viberIcon from '../assets/icons/viber.svg'
+import clipboardCheckIcon from '../assets/icons/clipboard-check.svg'
 
 const CONTACT_EMAIL = 'jf@jasminafabijan.com'
 const VIBER_PHONE = '38163590020'
+const GOOGLE_FORM_URL = 'https://forms.gle/wbNGCLzZQC1JKTtTA'
 
 const EMAIL_SUBJECT = 'Dodavanje aktivnosti na KiddoKompas'
 const EMAIL_BODY = `Zdravo,
@@ -20,7 +21,7 @@ Kratak opis:
 
 const submitItems = [
     {
-        label: 'Naziv škole ili aktivnosti',
+        label: 'Naziv škole, kluba ili aktivnosti',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M10 12h4" strokeLinecap="round" strokeLinejoin="round" />
@@ -32,7 +33,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Adresa(e) na kojoj se održavaju aktivnosti',
+        label: 'Lokacija(e) održavanja aktivnosti',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" strokeLinecap="round" strokeLinejoin="round" />
@@ -41,7 +42,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Za koji uzrast primate decu',
+        label: 'Uzrast kojem je aktivnost namenjena',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
@@ -193,19 +194,76 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                 </p>
 
                 <div className="add-activity-modal-actions">
-                    <a href={getEmailHref()} className="add-activity-modal-btn add-activity-modal-btn--email">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                            <rect width="20" height="16" x="2" y="4" rx="2" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        Pošalji email
-                    </a>
+                    <p className="add-activity-modal-actions-label">Izaberite kako želite da pošaljete</p>
+
                     <a
-                        href={getViberHref()}
-                        className="add-activity-modal-btn add-activity-modal-btn--viber"
+                        href={GOOGLE_FORM_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="add-activity-modal-option add-activity-modal-option--recommended"
                     >
-                        <img src={viberIcon} alt="" className="add-activity-modal-btn-icon" aria-hidden="true" />
-                        Pošalji poruku na Viber
+                        <span className="add-activity-modal-option-icon add-activity-modal-option-icon--form" aria-hidden="true">
+                            <img
+                                src={clipboardCheckIcon}
+                                alt=""
+                                width={22}
+                                height={22}
+                                className="add-activity-modal-option-icon-img"
+                            />
+                        </span>
+                        <span className="add-activity-modal-option-copy">
+                            <span className="add-activity-modal-option-title-row">
+                                <span className="add-activity-modal-option-title">Popunite formu</span>
+                                <span className="add-activity-modal-option-badge">Preporučeno</span>
+                            </span>
+                            <span className="add-activity-modal-option-subtitle">
+                                Vodi vas kroz sva polja, oko 2 minuta
+                            </span>
+                        </span>
+                        <span className="add-activity-modal-option-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="m9 18 6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </span>
+                    </a>
+
+                    <a href={getEmailHref()} className="add-activity-modal-option">
+                        <span className="add-activity-modal-option-icon add-activity-modal-option-icon--email" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </span>
+                        <span className="add-activity-modal-option-copy">
+                            <span className="add-activity-modal-option-title">Pošaljite email</span>
+                            <span className="add-activity-modal-option-subtitle">
+                                Ako vam je lakše da napišete svojim rečima
+                            </span>
+                        </span>
+                        <span className="add-activity-modal-option-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="m9 18 6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </span>
+                    </a>
+
+                    <a href={getViberHref()} className="add-activity-modal-option">
+                        <span className="add-activity-modal-option-icon add-activity-modal-option-icon--viber" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12.04 2C6.58 2 2.13 6.17 2.13 11.3c0 2.1.78 4.03 2.1 5.58L2 22l5.35-1.72c1.37.6 2.9.94 4.69.94 5.46 0 9.91-4.17 9.91-9.3S17.5 2 12.04 2zm5.05 13.22c-.21.59-1.22 1.12-1.68 1.19-.43.07-.98.1-1.58-.1-.36-.12-.83-.27-1.43-.53-2.52-1.09-4.16-3.63-4.29-3.8-.12-.17-1.02-1.35-1.02-2.58 0-1.22.64-1.82.87-2.07.23-.25.5-.31.67-.31h.48c.16 0 .37-.06.58.44.21.52.72 1.77.78 1.9.06.13.1.28.02.45-.08.17-.12.28-.24.43-.12.15-.25.33-.36.44-.12.12-.24.25-.1.48.14.23.62 1.02 1.33 1.65.91.82 1.68 1.07 1.92 1.19.24.12.38.1.52-.06.14-.16.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.15 1.17z" />
+                            </svg>
+                        </span>
+                        <span className="add-activity-modal-option-copy">
+                            <span className="add-activity-modal-option-title">Pošaljite poruku na Viber</span>
+                            <span className="add-activity-modal-option-subtitle">
+                                Brzo pitanje ili slanje fotografija
+                            </span>
+                        </span>
+                        <span className="add-activity-modal-option-chevron" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="m9 18 6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </span>
                     </a>
                 </div>
             </div>

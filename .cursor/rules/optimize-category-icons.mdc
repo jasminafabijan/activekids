@@ -1,0 +1,23 @@
+---
+description: Always optimize new category icons before adding them
+globs: src/assets/icons/**/*,src/components/CategoryCards.tsx
+alwaysApply: false
+---
+
+# Category icon optimization
+
+Whenever adding a **new category icon** (or wiring a user-provided icon), **optimize it before committing** — do not wait to be reminded.
+
+## Requirements
+
+- Do **not** ship SVG files that embed large base64 PNG/JPEG rasters (often 100KB–1MB+).
+- Prefer a clean **vector SVG** in brand colors (`#1B2D45` / `#0B1A3B`, `#F9BA9C` / peach, `#9BE1BD` / mint), similar to `ballet.svg`, `basketball.svg`, `tennis.svg` (~10–20KB).
+- If the source must stay raster: resize for display (~192px longest side for 64px UI), export **WebP** (or optimized PNG), and import that in `CategoryCards`.
+- Target roughly **under ~30KB** for an icon asset unless a vector legitimately needs more.
+- Check file size after adding: `wc -c src/assets/icons/<name>.*`
+
+## Workflow
+
+1. Inspect the provided icon (size, base64/`<image>`, path count).
+2. Optimize (retrace to vector, or compress/resize raster).
+3. Only then wire it in `CategoryCards` / category data.

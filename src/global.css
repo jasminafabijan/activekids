@@ -33,6 +33,7 @@
 :root {
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --primary: #0b1a3b;
     --text-muted: #596475;
     --border: #e3e8ef;
     --surface-muted: #f8f9fc;
@@ -700,12 +701,12 @@
     }
 
     .school-card-meta-item {
-        @apply inline-flex items-center gap-2 text-sm font-medium;
+        @apply inline-flex items-start gap-2 text-sm font-medium;
         color: var(--text-muted);
     }
 
     .school-card-meta-icon {
-        @apply h-4 w-4 shrink-0;
+        @apply h-4 w-4 shrink-0 mt-0.5;
         color: var(--text-gray);
     }
 
@@ -818,8 +819,9 @@
     }
 
     .school-detail-map {
-        @apply overflow-hidden rounded-2xl border;
+        @apply relative z-0 overflow-hidden rounded-2xl border;
         border-color: var(--border);
+        isolation: isolate;
     }
 
     .school-detail-map-canvas {
@@ -910,7 +912,7 @@
     }
 
     .add-activity-modal {
-        @apply fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6;
+        @apply fixed inset-0 z-[1100] flex items-center justify-center p-4 sm:p-6;
     }
 
     .add-activity-modal-backdrop {
@@ -981,31 +983,90 @@
     }
 
     .add-activity-modal-actions {
-        @apply mb-4 flex flex-col gap-4 md:flex-row md:gap-5;
+        @apply mb-4 flex flex-col gap-3;
     }
 
-    .add-activity-modal-btn {
-        @apply inline-flex w-full items-center justify-center gap-2.5 rounded-xl px-5 py-3.5 text-sm font-bold text-white no-underline transition-all md:flex-1;
+    .add-activity-modal-actions-label {
+        @apply m-0 mb-1 text-center text-[11px] font-bold uppercase tracking-[0.14em];
+        color: var(--text-gray);
     }
 
-    .add-activity-modal-btn svg,
-    .add-activity-modal-btn-icon {
-        @apply h-5 w-5 shrink-0;
+    .add-activity-modal-option {
+        @apply flex w-full items-center gap-3.5 rounded-2xl border bg-white px-4 py-3.5 text-left no-underline transition-colors;
+        border-color: rgba(11, 26, 59, 0.12);
     }
 
-    .add-activity-modal-btn--email {
-        @apply btn-navy;
-    }
-
-    .add-activity-modal-btn--viber {
-        @apply border bg-white text-primary;
-        border-color: rgba(11, 26, 59, 0.5);
-        box-shadow: none;
-    }
-
-    .add-activity-modal-btn--viber:hover {
+    .add-activity-modal-option:hover {
         background-color: var(--surface-muted);
-        box-shadow: none;
+    }
+
+    .add-activity-modal-option--recommended {
+        border-width: 2px;
+        border-color: var(--primary);
+    }
+
+    .add-activity-modal-option--recommended:hover {
+        background-color: color-mix(in srgb, var(--primary) 4%, white);
+    }
+
+    .add-activity-modal-option-icon {
+        @apply inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full;
+    }
+
+    .add-activity-modal-option-icon svg,
+    .add-activity-modal-option-icon-img {
+        display: block;
+        width: 1.35rem;
+        height: 1.35rem;
+        flex-shrink: 0;
+    }
+
+    .add-activity-modal-option-icon--form {
+        background-color: var(--primary);
+    }
+
+    .add-activity-modal-option-icon--email,
+    .add-activity-modal-option-icon--viber {
+        background-color: #eef1f5;
+    }
+
+    .add-activity-modal-option-icon--email {
+        color: var(--primary);
+    }
+
+    .add-activity-modal-option-icon--viber {
+        color: #7360f2;
+    }
+
+    .add-activity-modal-option-copy {
+        @apply flex min-w-0 flex-1 flex-col gap-0.5;
+    }
+
+    .add-activity-modal-option-title-row {
+        @apply flex flex-wrap items-center gap-2;
+    }
+
+    .add-activity-modal-option-title {
+        @apply text-sm font-bold text-primary sm:text-[0.9375rem];
+    }
+
+    .add-activity-modal-option-badge {
+        @apply rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.06em];
+        background-color: color-mix(in srgb, var(--peach) 55%, white);
+        color: color-mix(in srgb, var(--primary) 70%, #8b3a2a);
+    }
+
+    .add-activity-modal-option-subtitle {
+        @apply text-xs leading-snug sm:text-[0.8125rem];
+        color: var(--text-muted);
+    }
+
+    .add-activity-modal-option-chevron {
+        @apply inline-flex shrink-0 text-gray;
+    }
+
+    .add-activity-modal-option-chevron svg {
+        @apply h-4 w-4;
     }
 
     .site-footer {

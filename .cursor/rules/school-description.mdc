@@ -1,0 +1,14 @@
+---
+description: School descriptions must not repeat age or address
+globs: src/data/schoolCategories/**/*.ts
+alwaysApply: false
+---
+
+# School description content
+
+When writing `description` paragraphs for a school:
+
+- **Do not** repeat age / uzrast (already shown via `ageLabel` / tags).
+- **Do not** repeat street address, district, or venue location (already shown via `addresses` / map / meta).
+- Focus on program, approach, atmosphere, and what makes the school distinctive.
+- Avoid phrases like „za uzrast…“, „od X godina“, „na adresi…“, „treninzi se održavaju u…“ when that only restates structured fields.

@@ -1,0 +1,14 @@
+---
+description: Format Serbian phone numbers in school contact data
+globs: src/data/schoolCategories/**/*.ts
+alwaysApply: false
+---
+
+# Phone number formatting
+
+When adding or editing school `contact.phone` values:
+
+- After the operator prefix (`06x` / `021` / etc.), if the remaining local part has **7 digits**, group them as **3 2 2**.
+- Example: `0641464904` → `064 146 49 04`
+- Example: `0641433335` → `064 143 33 35`
+- Do not invent a different grouping for 7-digit local parts.

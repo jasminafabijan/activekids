@@ -9,6 +9,7 @@ import ridingIcon from '../assets/icons/riding.svg'
 import folkloreIcon from '../assets/icons/folklore.svg'
 import tennisIcon from '../assets/icons/tennis.svg'
 import volleyballIcon from '../assets/icons/volleyball.webp'
+import danceSportIcon from '../assets/icons/dance-sport.svg'
 import { getSchoolsByCategory } from '../data/schools'
 
 type CategoryIconBg = 'mint' | 'peach'
@@ -28,10 +29,11 @@ interface CategoryDisplay {
 const categoryDisplay: CategoryDisplay[] = [
   { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
   { id: 'jazz-ballet', name: 'Moderan ples', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },
+  { id: 'dance-sport', name: 'Sportski ples', slug: 'dance-sport', iconBg: 'mint', iconSrc: danceSportIcon, iconSizeAdjustPx: 10 },
   { id: 'football', name: 'Fudbal', slug: 'football', iconBg: 'mint', iconSrc: footballIcon, iconSizeAdjustPx: -2 },
   { id: 'acting', name: 'Gluma', slug: 'acting', iconBg: 'peach', iconSrc: actingIcon, iconSizeAdjustPx: -6 },
   { id: 'basketball', name: 'Košarka', slug: 'basketball', iconBg: 'mint', iconSrc: basketballIcon },
-  { id: 'volleyball', name: 'Odbojka', slug: 'volleyball', iconBg: 'peach', iconSrc: volleyballIcon, iconSizeAdjustPx: -2 },
+  { id: 'volleyball', name: 'Odbojka', slug: 'volleyball', iconBg: 'peach', iconSrc: volleyballIcon, iconSizeAdjustPx: -10 },
   { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
   { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
   { id: 'riding', name: 'Jahanje', slug: 'riding', iconBg: 'peach', iconSrc: ridingIcon },

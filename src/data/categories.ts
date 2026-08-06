@@ -26,6 +26,14 @@ export const categories: Category[] = [
       'Istražite škole modernog plesa u {city} — za energiju, ritam i slobodniji plesni izraz.',
   },
   {
+    id: 'dance-sport',
+    name: 'Sportski ples',
+    slug: 'dance-sport',
+    subtitle: 'Škole sportskog plesa',
+    pageSubtitle:
+      'Istražite škole sportskog plesa u {city} — za ritam, gracioznost i sigurnost u svakom koraku.',
+  },
+  {
     id: 'football',
     name: 'Fudbal',
     slug: 'football',
@@ -55,7 +63,7 @@ export const categories: Category[] = [
     slug: 'volleyball',
     subtitle: 'Škole odbojke',
     pageSubtitle:
-      'Istražite škole odbojke u {city} — za igru, timski duh i sportski razvoj kroz mrežu.',
+      'Istražite škole odbojke u {city} — za razvoj koordinacije i timskog duha u igri preko mreže.',
   },
   {
     id: 'tennis',
