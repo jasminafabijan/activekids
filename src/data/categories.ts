@@ -82,6 +82,14 @@ export const categories: Category[] = [
       'Istražite karate klubove u {city} — za fokus, disciplinu i sigurnost u pokretu.',
   },
   {
+    id: 'boxing',
+    name: 'Boks',
+    slug: 'boxing',
+    subtitle: 'Škole boksa',
+    pageSubtitle:
+      'Istražite škole boksa u {city} — za disciplinu, koordinaciju i zdrav sportski duh.',
+  },
+  {
     id: 'riding',
     name: 'Jahanje',
     slug: 'riding',

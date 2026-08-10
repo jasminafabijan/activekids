@@ -39,8 +39,8 @@
     }
 
     .category-card-icon {
-        min-height: 3.5rem;
-        min-width: 3.5rem;
+        height: 3.5rem;
+        width: 3.5rem;
         transform: scale(0.9);
         transform-origin: center;
     }
@@ -61,8 +61,8 @@
     }
 
     .category-card-icon {
-        min-height: 3.25rem;
-        min-width: 3.25rem;
+        height: 3.25rem;
+        width: 3.25rem;
         transform: scale(0.82);
         transform-origin: center;
     }
@@ -122,8 +122,8 @@
     }
 
     .category-card-icon {
-        min-height: 2.75rem;
-        min-width: 2.75rem;
+        height: 2.75rem;
+        width: 2.75rem;
         transform: scale(0.78);
         transform-origin: center;
     }
@@ -195,6 +195,45 @@
         font-size: 0.95rem;
         font-weight: 600;
         box-shadow: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-inner {
+        max-width: 52rem;
+        padding-top: 3.5rem;
+        padding-bottom: 4.5rem;
+    }
+
+    .about-intro {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+        text-align: left;
+        margin-bottom: 3.5rem;
+    }
+
+    .about-intro-media {
+        width: 17.5rem;
+    }
+
+    .about-intro-copy {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .about-body {
+        font-size: 1.0625rem;
+        line-height: 1.75;
+    }
+
+    .about-quote {
+        font-size: 1.25rem;
+        margin-block: 2.5rem;
+    }
+
+    .about-cta {
+        padding-block: 4.5rem;
     }
 }
 

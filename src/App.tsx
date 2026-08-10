@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './components/HomePage'
+import AboutPage from './pages/AboutPage'
 import CategoryPage from './pages/CategoryPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import SchoolDetailPage from './pages/SchoolDetailPage'
@@ -19,6 +20,7 @@ function App() {
         <main className="app-shell-main">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/o-nama" element={<AboutPage />} />
             <Route path="/pretraga" element={<SearchResultsPage />} />
             <Route path="/kategorija/:slug" element={<CategoryPage />} />
             <Route path="/skola/:slug" element={<SchoolDetailPage />} />

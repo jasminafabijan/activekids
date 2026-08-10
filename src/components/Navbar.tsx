@@ -95,6 +95,13 @@ const Navbar = () => {
                         >
                             Kategorije
                         </Link>
+                        <Link
+                            to="/o-nama"
+                            onClick={() => setIsMenuOpen(false)}
+                            className="navbar-categories-link site-navbar-menu-link"
+                        >
+                            O nama
+                        </Link>
                         <button
                             type="button"
                             className="btn btn-primary site-navbar-cta"

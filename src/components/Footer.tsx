@@ -47,6 +47,9 @@ const Footer = () => {
                                 >
                                     Kategorije
                                 </Link>
+                                <Link to="/o-nama" className="site-footer-link">
+                                    O nama
+                                </Link>
                                 <button
                                     type="button"
                                     className="site-footer-link"
