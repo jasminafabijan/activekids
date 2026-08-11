@@ -235,6 +235,21 @@
     .about-cta {
         padding-block: 4.5rem;
     }
+
+    .legal-inner {
+        padding-top: 3.5rem;
+        padding-bottom: 3rem;
+    }
+
+    .legal-body {
+        font-size: 1.0625rem;
+        line-height: 1.75;
+    }
+
+    .legal-body > h2 {
+        font-size: 1.25rem;
+        margin-top: 2.5rem;
+    }
 }
 
 @media (min-width: 640px) {

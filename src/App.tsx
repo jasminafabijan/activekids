@@ -5,6 +5,7 @@ import ScrollToTop from './components/ScrollToTop'
 import HomePage from './components/HomePage'
 import AboutPage from './pages/AboutPage'
 import CategoryPage from './pages/CategoryPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import SchoolDetailPage from './pages/SchoolDetailPage'
 
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/o-nama" element={<AboutPage />} />
+            <Route path="/politika-privatnosti" element={<PrivacyPolicyPage />} />
             <Route path="/pretraga" element={<SearchResultsPage />} />
             <Route path="/kategorija/:slug" element={<CategoryPage />} />
             <Route path="/skola/:slug" element={<SchoolDetailPage />} />

@@ -17,7 +17,7 @@ const RecentlyAddedSection = () => {
       aria-labelledby="recently-added-title"
     >
       <div className="categories-header">
-        <span className="tag tag--pill tag--mint mb-4">Rastemo</span>
+        <span className="tag tag--pill tag--mint">Rastemo</span>
         <h2 id="recently-added-title" className="categories-title">
             Novo na KiddoKompasu
         </h2>

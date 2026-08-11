@@ -11,6 +11,7 @@ import folkloreIcon from '../assets/icons/folklore.svg'
 import tennisIcon from '../assets/icons/tennis.svg'
 import volleyballIcon from '../assets/icons/volleyball.webp'
 import danceSportIcon from '../assets/icons/dance-sport.svg'
+import swimmingIcon from '../assets/icons/swimming.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
 
@@ -33,6 +34,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
   { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
   { id: 'boxing', name: 'Boks', slug: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
+  { id: 'swimming', name: 'Plivanje', slug: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -1 },
   { id: 'riding', name: 'Jahanje', slug: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
   { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
   { id: 'jazz-ballet', name: 'Moderan ples', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },
@@ -45,7 +47,7 @@ const CategoryCards = () => {
   return (
     <section id="kategorije" className="categories-section" aria-labelledby="categories-title">
       <div className="categories-header">
-        <span className="tag tag--pill tag--peach mb-4">Kategorije</span>
+        <span className="tag tag--pill tag--peach">Kategorije</span>
         <h2 id="categories-title" className="categories-title">
           Istražite po interesovanjima
         </h2>

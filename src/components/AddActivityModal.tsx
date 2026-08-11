@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import clipboardCheckIcon from '../assets/icons/clipboard-check.svg'
 
-const CONTACT_EMAIL = 'jf@jasminafabijan.com'
+const CONTACT_EMAIL = 'info@kiddokompas.rs'
 const VIBER_PHONE = '38163590020'
 const GOOGLE_FORM_URL = 'https://forms.gle/wbNGCLzZQC1JKTtTA'
 

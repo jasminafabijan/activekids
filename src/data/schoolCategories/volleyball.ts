@@ -2,6 +2,8 @@ import champ07VolleyballWebp from '../../assets/images/schools/volleyball/champ-
 import champ07VolleyballJpg from '../../assets/images/schools/volleyball/champ-07.jpg'
 import okVojvodinaWebp from '../../assets/images/schools/volleyball/ok-vojvodina.webp'
 import okVojvodinaJpg from '../../assets/images/schools/volleyball/ok-vojvodina.jpg'
+import nsTimWebp from '../../assets/images/schools/volleyball/ns-tim.webp'
+import nsTimJpg from '../../assets/images/schools/volleyball/ns-tim.jpg'
 
 import type { School } from './types'
 
@@ -84,6 +86,47 @@ export const volleyballSchools: School[] = [
             facebook: 'https://www.facebook.com/SKLavovi07',
             facebookLabel: 'SK Lavovi 07',
             instagram: 'https://www.instagram.com/sc_champ_07/',
+        },
+    },
+    {
+        id: 'ns-tim',
+        slug: 'ns-tim',
+        name: 'OK „NS-TIM”',
+        categorySlugs: ['volleyball'],
+        city: 'Novi Sad',
+        district: 'Rotkvarija',
+        minAge: 7,
+        maxAge: 15,
+        ageLabel: '7–15 godina',
+        imageWebp: nsTimWebp,
+        imageFallback: nsTimJpg,
+        description: [
+            'Škola odbojke „Kosta Trifković” odbojkaškog kluba NS-TIM jedna je od škola odbojke u Novom Sadu sa najdužom tradicijom — neprekidno radi više od dve decenije u istoimenoj osnovnoj školi.',
+            'Vode je bivši odbojkaši i sportski stručnjaci Svetlana i Dragan Klašnić, uz edukovane trenere koji su potekli iz kluba.',
+            'Program je namenjen devojčicama i obuhvata zdrav razvoj, sportsko vaspitanje, rad u kolektivu, razvoj motorike i usvajanje odbojkaških veština.',
+            'Polaznice nastupaju na turnirima u mini odbojci, igraju prijateljske i prvenstvene mečeve i učestvuju na odbojkaškim kampovima.',
+            'Školovanje traje pet odbojkaških godina, uz grupe podeljene prema uzrastu i nivou usvojene tehnike.',
+        ],
+        addresses: [
+            {
+                street: 'OŠ „Kosta Trifković”, Berislava Berića 2',
+                city: 'Novi Sad',
+                district: 'Rotkvarija',
+                lat: 45.2643036,
+                lng: 19.8359461,
+            },
+            {
+                street: 'Tehnička škola „Mileva Marić Anštajn”, Gagarinova 1',
+                city: 'Novi Sad',
+                district: 'Banatić',
+                lat: 45.2618571,
+                lng: 19.8280068,
+            },
+        ],
+        contact: {
+            phone: '069 477 04 74',
+            email: 'odbojkaski.klub.ns.tim@gmail.com',
+            website: 'https://odbojkaskiklubnsti.wixsite.com/ns-tim/about1-c1plb',
         },
     },
 ]
