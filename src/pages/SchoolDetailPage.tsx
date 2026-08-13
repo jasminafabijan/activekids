@@ -234,7 +234,7 @@ const SchoolDetailPage = () => {
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         {category && (
           <Link to={`/kategorija/${category.slug}`} className="category-page-back">
-            ← Nazad na {category.name}
+            ← Nazad na {category.nameAccusative ?? category.name}
           </Link>
         )}
 

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 const CONTACT_EMAIL = 'info@kiddokompas.rs'
-const LAST_UPDATED = '10. avgust 2026.'
+const LAST_UPDATED = '12. avgust 2026.'
 
 const PrivacyPolicyPage = () => {
   return (
@@ -46,17 +46,16 @@ const PrivacyPolicyPage = () => {
               koje objavljujemo u katalogu radi informisanja roditelja.
             </li>
             <li>
-                <strong>Fotografije</strong> - Ako nam šaljete fotografiju za prikaz aktivnosti, potrebno je da imate pravo da tu fotografiju pošaljete i dozvolite njeno korišćenje na sajtu. Posebno obratite pažnju da ne šaljete fotografije dece ili drugih osoba bez odgovarajuće saglasnosti.</li>
-            <li>
-              <strong>Tehničke podatke o korišćenju sajta</strong> — npr. tip
-              uređaja/pregledača, IP adresa u skraćenom ili anonimizovanom obliku,
-              stranice koje ste posetili, ukoliko su uključeni alati analitike ili
-              hostinga.
+              <strong>Fotografije</strong> — ako nam šaljete fotografiju za prikaz
+              aktivnosti, potrebno je da imate pravo da tu fotografiju pošaljete i
+              dozvolite njeno korišćenje na sajtu. Posebno obratite pažnju da ne
+              šaljete fotografije dece ili drugih osoba bez odgovarajuće saglasnosti.
             </li>
           </ul>
           <p>
-            KiddoKompas trenutno ne zahteva kreiranje korisničkog naloga, niti
-            prikuplja podatke o deci radi profilisanja ili marketinga.
+            KiddoKompas trenutno ne zahteva kreiranje korisničkog naloga, ne koristi
+            Google Analytics niti slične alate za praćenje posetilaca, i ne prikuplja
+            podatke o deci radi profilisanja ili marketinga.
           </p>
 
           <h2>3. Svrha obrade</h2>
@@ -65,15 +64,14 @@ const PrivacyPolicyPage = () => {
             <li>održavali i unapređivali katalog aktivnosti,</li>
             <li>odgovorili na predloge i upite koje nam pošaljete,</li>
             <li>proverili i ažurirali informacije o školama i klubovima,</li>
-            <li>razumeli kako se sajt koristi i popravili greške ili performanse,</li>
             <li>ispunili zakonske obaveze, ako postoje.</li>
           </ul>
 
           <h2>4. Pravni osnov</h2>
           <p>
             Obrada se zasniva na: (a) vašem pristanku ili zahtevu kada nam dobrovoljno
-            pošaljete podatke; (b) legitimnom interesu da vodimo informativni katalog i
-            poboljšamo sajt; i (c) zakonskim obavezama, kada je to primenljivo.
+            pošaljete podatke; (b) legitimnom interesu da vodimo informativni katalog; i
+            (c) zakonskim obavezama, kada je to primenljivo.
           </p>
 
           <h2>5. Kome delimo podatke</h2>
@@ -107,9 +105,11 @@ const PrivacyPolicyPage = () => {
             važe njihove politike privatnosti.
             </p>
 
-          <h2>6. Kolačići i slične tehnologije</h2>
+          <h2>6. Kolačići i analitika</h2>
           <p>
-            Sajt trenutno ne koristi marketing kolačiće. Može koristiti neophodne tehničke kolačiće ili slične tehnologije potrebne za osnovno funkcionisanje sajta. Ako naknadno uvedemo analitiku, ova politika će biti ažurirana sa dodatnim informacijama o kolačićima.
+            Sajt trenutno ne postavlja kolačiće i ne koristi alate analitike (uključujući
+            Google Analytics) niti slične tehnologije za praćenje posetilaca. Ako se to
+            ubuduće promeni, ova politika biće ažurirana pre uvođenja takvih alata.
           </p>
 
           <h2>7. Čuvanje podataka</h2>

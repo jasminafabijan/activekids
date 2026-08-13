@@ -34,7 +34,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
   { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
   { id: 'boxing', name: 'Boks', slug: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
-  { id: 'swimming', name: 'Plivanje', slug: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -1 },
+  { id: 'swimming', name: 'Plivanje', slug: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -18 },
   { id: 'riding', name: 'Jahanje', slug: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
   { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
   { id: 'jazz-ballet', name: 'Moderan ples', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },

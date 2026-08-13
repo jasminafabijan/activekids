@@ -6,6 +6,8 @@ export type Category = {
   slug: string
   subtitle: string
   pageSubtitle?: string
+  /** Accusative form for phrases like „Nazad na …”. Defaults to `name`. */
+  nameAccusative?: string
 }
 
 export const categories: Category[] = [
@@ -52,6 +54,7 @@ export const categories: Category[] = [
   {
     id: 'basketball',
     name: 'Košarka',
+    nameAccusative: 'košarku',
     slug: 'basketball',
     subtitle: 'Škole košarke',
     pageSubtitle:
@@ -60,6 +63,7 @@ export const categories: Category[] = [
   {
     id: 'volleyball',
     name: 'Odbojka',
+    nameAccusative: 'odbojku',
     slug: 'volleyball',
     subtitle: 'Škole odbojke',
     pageSubtitle:

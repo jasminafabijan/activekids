@@ -10,6 +10,8 @@ import mladostGatWebp from '../../assets/images/schools/football/fk-mladost-gat.
 import mladostGatJpg from '../../assets/images/schools/football/fk-mladost-gat.jpg'
 import champ07FootballWebp from '../../assets/images/schools/football/champ-07.webp'
 import champ07FootballPng from '../../assets/images/schools/football/champ-07.png'
+import bolesnikovWebp from '../../assets/images/schools/football/bolesnikov.webp'
+import bolesnikovJpg from '../../assets/images/schools/football/bolesnikov.jpg'
 
 import type { School } from './types'
 
@@ -236,5 +238,40 @@ export const footballSchools: School[] = [
             facebook: 'https://www.facebook.com/soccerteamns',
             instagram: 'https://www.instagram.com/skola_fudbala_soker_tim',
         },
-    }
+    },
+    {
+        id: 'bolesnikov',
+        slug: 'bolesnikov',
+        name: 'FK „Prof. Bolesnikov”',
+        categorySlugs: ['football'],
+        city: 'Novi Sad',
+        district: 'Adamovićevo naselje',
+        minAge: 5,
+        maxAge: 13,
+        ageLabel: '5–13 godina',
+        imageWebp: bolesnikovWebp,
+        imageFallback: bolesnikovJpg,
+        description: [
+            'Fudbalski klub „Prof. Bolesnikov” osnovan je 2005. godine i danas okuplja više od 200 članova — dečaka i devojčica u školi fudbala.',
+            'Stručni štab čine profesionalni treneri sa igračkim iskustvom i odgovarajućim stručnim obrazovanjem.',
+            'Klub trenira na sopstvenim terenima: tri terena sa veštačkom travom i jedan sa prirodnom, uz svlačionice i prateće sadržaje.',
+            'Program je namenjen deci koja žele da nauče fudbal u organizovanom okruženju, kroz redovne treninge i rad sa licenciranim kadrom.',
+        ],
+        addresses: [
+            {
+                street: 'Ilije Garašanina 10',
+                city: 'Novi Sad',
+                district: 'Adamovićevo naselje',
+                lat: 45.2311365,
+                lng: 19.8047405,
+            },
+        ],
+        contact: {
+            phone: '063 520 465',
+            email: 'fkprofbolesnikovnovisad@gmail.com',
+            facebook: 'https://www.facebook.com/fudbalskiklubprofesorbolesnikov',
+            facebookLabel: 'FK Prof. Bolesnikov',
+            instagram: 'https://www.instagram.com/fk_prof_bolesnikov_novi_sad/',
+        },
+    },
 ]

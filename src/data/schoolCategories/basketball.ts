@@ -6,6 +6,8 @@ import champ07Webp from '../../assets/images/schools/basketball/champ-07.webp'
 import champ07Jpg from '../../assets/images/schools/basketball/champ-07.jpg'
 import kkStarWebp from '../../assets/images/schools/basketball/kk-star.webp'
 import kkStarJpg from '../../assets/images/schools/basketball/kk-star.jpg'
+import sportKeyWebp from '../../assets/images/schools/basketball/sport-key.webp'
+import sportKeyJpg from '../../assets/images/schools/basketball/sport-key.jpg'
 
 import type { School } from './types'
 
@@ -167,5 +169,39 @@ export const basketballSchools: School[] = [
             facebookLabel: 'kkstarnovisad',
             instagram: 'https://www.instagram.com/kkstarnovisad/',
         },
-    }
+    },
+    {
+        id: 'sport-key',
+        slug: 'sport-key',
+        name: 'KK Sport-Key',
+        categorySlugs: ['basketball'],
+        city: 'Novi Sad',
+        district: 'Sajmište',
+        minAge: 6,
+        maxAge: null,
+        ageLabel: '6+ godina',
+        imageWebp: sportKeyWebp,
+        imageFallback: sportKeyJpg,
+        description: [
+            'KK Sport-Key je škola košarke i košarkaški klub u Novom Sadu, sa dugom tradicijom rada sa decom i mladima.',
+            'Klub neguje sportsko vaspitanje i razvoj ličnosti — pored košarkaških veština, naglasak je na vrednostima koje pomažu i van terena.',
+            'Treninzi i takmičenja odvijaju se u sopstvenom sportskom centru „Dejan Sremčević”, sa dve sale i kompletnom pratećom infrastrukturom.',
+            'Upis novih članova traje tokom cele godine, a rad je organizovan po uzrasnim grupama sa stručnim trenerskim kadrom.',
+        ],
+        addresses: [
+            {
+                street: 'Školska 4 (SC „Dejan Sremčević”)',
+                city: 'Novi Sad',
+                district: 'Sajmište',
+                lat: 45.2496325,
+                lng: 19.8357009,
+            },
+        ],
+        contact: {
+            phone: '069 226 79 16',
+            facebook: 'https://www.facebook.com/p/sport-key-100042121190117/',
+            facebookLabel: 'sport-key',
+            instagram: 'https://www.instagram.com/kksportkey/',
+        },
+    },
 ]

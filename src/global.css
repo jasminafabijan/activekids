@@ -627,6 +627,7 @@
         @apply w-auto object-contain;
         height: 64px;
         max-height: 64px;
+        max-width: none;
     }
 
     .category-card-emoji {
