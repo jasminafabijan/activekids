@@ -37,7 +37,7 @@ export const footballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Sala na Đačkom, Dr Vase Savića 3',
+                street: 'Dr Vase Savića 3, Sala na Đačkom',
                 city: 'Novi Sad',
                 district: 'Liman 1',
                 lat: 45.2438472,

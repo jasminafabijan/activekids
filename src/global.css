@@ -110,9 +110,9 @@
 
     .site-navbar-logo {
         display: block;
-        height: 2.75rem;
+        height: 3.25rem;
         width: auto;
-        max-width: min(11rem, 100%);
+        max-width: min(13rem, 100%);
         object-fit: contain;
     }
 
@@ -635,7 +635,9 @@
     }
 
     .category-card-label {
-        @apply text-base font-semibold text-primary md:text-lg;
+        @apply w-full text-center text-base font-semibold text-primary md:text-lg;
+        line-height: 1.25;
+        text-wrap: balance;
     }
 
     .category-page-back {

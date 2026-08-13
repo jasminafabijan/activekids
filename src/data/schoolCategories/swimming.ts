@@ -24,7 +24,7 @@ export const swimmingSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Bazeni SPENS-a, Sutjeska 2',
+                street: 'Sutjeska 2, Bazeni SPENS-a',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,

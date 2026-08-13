@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
-import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { useLocation, useParams, useSearchParams } from 'react-router-dom'
+import BackLink from '../components/BackLink'
 import Navbar from '../components/Navbar'
 import SchoolMap from '../components/SchoolMap'
 import { getCategoryBySlug } from '../data/categories'
@@ -128,10 +129,39 @@ type ContactLink = {
 const isContactLink = (link: ContactLink | undefined): link is ContactLink =>
   link !== undefined
 
+type SchoolLocationState = {
+  from?: string
+}
+
+const getSchoolBack = (
+  from: string | undefined,
+  categoryName: string | undefined,
+  categorySlug: string | undefined
+) => {
+  if (from === '/' || from?.startsWith('/#')) {
+    return { to: '/', label: 'Nazad na početnu' }
+  }
+
+  if (from?.startsWith('/pretraga')) {
+    return { to: from, label: 'Nazad na pretragu' }
+  }
+
+  if (categorySlug) {
+    return {
+      to: `/kategorija/${categorySlug}`,
+      label: `Nazad na ${categoryName ?? categorySlug}`,
+    }
+  }
+
+  return { to: '/', label: 'Nazad na početnu' }
+}
+
 const SchoolDetailPage = () => {
   const { slug } = useParams<{ slug: string }>()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const school = slug ? getSchoolBySlug(slug) : undefined
+  const from = (location.state as SchoolLocationState | null)?.from
   const categorySlugFromQuery = searchParams.get('kategorija')
   const activeCategorySlug =
     school && categorySlugFromQuery && school.categorySlugs.includes(categorySlugFromQuery)
@@ -145,9 +175,9 @@ const SchoolDetailPage = () => {
         <Navbar />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <p className="text-muted">Škola nije pronađena.</p>
-          <Link to="/" className="mt-4 inline-block text-sm font-semibold text-primary">
+          <BackLink to="/" className="mt-4 inline-block text-sm font-semibold text-primary">
             ← Nazad na početnu
-          </Link>
+          </BackLink>
         </div>
       </div>
     )
@@ -227,16 +257,19 @@ const SchoolDetailPage = () => {
 
   const mapAddresses =
     school.addresses?.filter((address) => address.lat != null && address.lng != null) ?? []
+  const back = getSchoolBack(
+    from,
+    category?.nameAccusative ?? category?.name,
+    category?.slug
+  )
 
   return (
     <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        {category && (
-          <Link to={`/kategorija/${category.slug}`} className="category-page-back">
-            ← Nazad na {category.nameAccusative ?? category.name}
-          </Link>
-        )}
+        <BackLink to={back.to} className="category-page-back">
+          ← {back.label}
+        </BackLink>
 
         <article className="school-detail">
           <header className="school-detail-header">

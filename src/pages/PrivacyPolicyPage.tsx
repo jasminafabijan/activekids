@@ -107,9 +107,7 @@ const PrivacyPolicyPage = () => {
 
           <h2>6. Kolačići i analitika</h2>
           <p>
-            Sajt trenutno ne postavlja kolačiće i ne koristi alate analitike (uključujući
-            Google Analytics) niti slične tehnologije za praćenje posetilaca. Ako se to
-            ubuduće promeni, ova politika biće ažurirana pre uvođenja takvih alata.
+            Možemo koristiti osnovnu statistiku posećenosti kako bismo razumeli koje stranice se najviše koriste i unapredili sadržaj sajta. Ti podaci se ne koriste za praćenje korisnika kroz druge sajtove, oglašavanje ili profilisanje dece.
           </p>
 
           <h2>7. Čuvanje podataka</h2>
@@ -130,8 +128,7 @@ const PrivacyPolicyPage = () => {
           </p>
           <p>
             Za ostvarivanje prava pišite na{' '}
-            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Potrudićemo se da
-            odgovorimo u razumnom roku.
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Na pitanja i zahteve u vezi sa podacima odgovaramo u najkraćem mogućem roku.
           </p>
 
           <h2>9. Tačnost podataka u katalogu</h2>

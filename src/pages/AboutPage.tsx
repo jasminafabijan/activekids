@@ -13,7 +13,7 @@ const AboutPage = () => {
 
       <div className="about-inner">
         <header className="about-intro">
-          <div className="about-intro-media" aria-hidden="true">
+          <div className="about-intro-media">
             <span className="about-intro-blob about-intro-blob--peach" />
             <span className="about-intro-blob about-intro-blob--mint" />
             <picture>
@@ -38,10 +38,10 @@ const AboutPage = () => {
 
         <div className="about-body">
           <p>
-            KiddoKompas je nastao iz jedne sasvim praktične roditeljske potrebe: da se na jednom mestu mogu lako pronaći sve dostupne aktivnosti za decu u vašem gradu.
+            KiddoKompas je nastao iz jedne sasvim praktične roditeljske potrebe: da se na jednom mestu lakše pronađu aktivnosti za decu u vašem gradu.
           </p>
           <p>
-          Dok sam tražila aktivnosti za svoje devojčice, nedostajalo mi je jedno mesto koje bi olakšalo početak potrage - da mogu brzo da vidim koje škole i klubovi su opcija, u zavisnosti od uzrasta, interesovanja i lokacije.
+            Dok sam tražila aktivnosti za svoje devojčice, nedostajalo mi je jedno mesto koje bi olakšalo početak potrage - da mogu brzo da vidim koje aktivnosti su opcija, gde se održavaju i kojem uzrastu su namenjene.
           </p>
 
           <blockquote className="about-quote">
@@ -49,7 +49,7 @@ const AboutPage = () => {
           </blockquote>
 
           <p>
-            Pošto je izrada web sajtova moj posao, odlučila sam da napravim upravo takvo mesto - za sebe i za sve roditelje koji traže aktivnosti za svoju decu.
+            Pošto je izrada web sajtova moj posao, odlučila sam da napravim upravo takvo mesto — za sebe i za sve roditelje koji traže aktivnosti za svoju decu.
           </p>
 
           <aside className="about-notice" role="note">

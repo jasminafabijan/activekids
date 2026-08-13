@@ -102,6 +102,15 @@ export const categories: Category[] = [
       'Istražite škole plivanja u {city} — za decu koja vole vodu ili tek treba da je zavole.',
   },
   {
+    id: 'developmental-gymnastics',
+    name: 'Razvojna gimnastika',
+    nameAccusative: 'razvojnu gimnastiku',
+    slug: 'developmental-gymnastics',
+    subtitle: 'Škole razvojne gimnastike',
+    pageSubtitle:
+      'Istražite škole razvojne gimnastike u {city} — za koordinaciju, držanje i motoričku osnovu kroz igru.',
+  },
+  {
     id: 'riding',
     name: 'Jahanje',
     slug: 'riding',

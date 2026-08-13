@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useNavigationType } from 'react-router-dom'
+import { hasSavedScroll } from '../utils/scrollRestoration'
 import { jumpToCategories } from '../utils/scrollToElement'
 import {
   clearPendingHomeFilters,
@@ -15,6 +16,7 @@ import RecentlyAddedSection from './RecentlyAddedSection'
 const HomePage = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const navigationType = useNavigationType()
   const [initialFilters] = useState(() => getInitialHomeFilters(location.state))
 
   useLayoutEffect(() => {
@@ -22,8 +24,16 @@ const HomePage = () => {
       return
     }
 
-    jumpToCategories()
-  }, [location.pathname, location.hash])
+    if (navigationType === 'PUSH') {
+      jumpToCategories()
+      return
+    }
+
+    // Direct visit / refresh of /#kategorije. Back/forward keeps saved scroll.
+    if (navigationType === 'POP' && !hasSavedScroll(location.key)) {
+      jumpToCategories()
+    }
+  }, [location.hash, location.key, navigationType])
 
   // Clear after mount so refresh does not restore filters.
   // Timeout + cleanup keeps React Strict Mode double-mount from wiping them early.

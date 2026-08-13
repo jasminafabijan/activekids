@@ -33,7 +33,7 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: '(DIF) Lovćenska 16',
+                street: 'Lovćenska 16, Fakultet sporta (DIF)',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2477013,
@@ -70,14 +70,14 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'OŠ "Vuk Karadžić", Radoja Domanovića 24',
+                street: 'Radoja Domanovića 24, OŠ "Vuk Karadžić"',
                 city: 'Novi Sad',
                 district: 'Salajka',
                 lat: 45.2682668,
                 lng: 19.8388342,
             },
             {
-                street: 'Đačko igralište, Jirečekova 2',
+                street: 'Jirečekova 2, Đačko igralište',
                 city: 'Novi Sad',
                 district: 'Liman 1',
                 lat: 45.2430605,
@@ -113,14 +113,14 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'OŠ "Nikola Tesla", Futoški put 25a',
+                street: 'Futoški put 25a, OŠ "Nikola Tesla"',
                 city: 'Novi Sad',
                 district: 'Telep',
                 lat: 45.2469675,
                 lng: 19.8138278,
             },
             {
-                street: 'SC Meridiana, Stojana Novakovića 2',
+                street: 'Stojana Novakovića 2, SC Meridiana',
                 city: 'Novi Sad',
                 district: 'Detelinara',
                 lat: 45.2548022,
@@ -155,7 +155,7 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'SPENS, Sutjeska 2',
+                street: 'Sutjeska 2, SPENS',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,

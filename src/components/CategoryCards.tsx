@@ -12,6 +12,7 @@ import tennisIcon from '../assets/icons/tennis.svg'
 import volleyballIcon from '../assets/icons/volleyball.webp'
 import danceSportIcon from '../assets/icons/dance-sport.svg'
 import swimmingIcon from '../assets/icons/swimming.svg'
+import developmentalGymnasticsIcon from '../assets/icons/developmental-gymnastics.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
 
@@ -35,6 +36,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
   { id: 'boxing', name: 'Boks', slug: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
   { id: 'swimming', name: 'Plivanje', slug: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -18 },
+  { id: 'developmental-gymnastics', name: 'Razvojna gimnastika', slug: 'developmental-gymnastics', iconBg: 'peach', iconSrc: developmentalGymnasticsIcon, iconSizeAdjustPx: -6 },
   { id: 'riding', name: 'Jahanje', slug: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
   { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
   { id: 'jazz-ballet', name: 'Moderan ples', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },

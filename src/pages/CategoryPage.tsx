@@ -1,4 +1,5 @@
-import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
+import BackLink from '../components/BackLink'
 import Navbar from '../components/Navbar'
 import SchoolCard from '../components/SchoolCard'
 import { getCityOptions } from '../data/cities'
@@ -37,9 +38,9 @@ const CategoryPage = () => {
         <Navbar />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <p className="text-muted">Kategorija nije pronađena.</p>
-          <Link to="/#kategorije" className="mt-4 inline-block text-sm font-semibold text-primary">
+          <BackLink to="/#kategorije" className="mt-4 inline-block text-sm font-semibold text-primary">
             ← Nazad na početnu
-          </Link>
+          </BackLink>
         </div>
       </div>
     )
@@ -49,9 +50,9 @@ const CategoryPage = () => {
     <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <Link to="/#kategorije" className="category-page-back">
+        <BackLink to="/#kategorije" className="category-page-back">
           ← Nazad na početnu
-        </Link>
+        </BackLink>
 
         <header className="category-page-header">
           <h1 className="category-page-title">{category.name}</h1>

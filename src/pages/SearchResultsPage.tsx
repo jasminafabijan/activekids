@@ -1,4 +1,5 @@
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
+import BackLink from '../components/BackLink'
 import Navbar from '../components/Navbar'
 import SchoolCard from '../components/SchoolCard'
 import { getCategoryBySlug } from '../data/categories'
@@ -77,23 +78,25 @@ const SearchResultsPage = () => {
     <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <Link
+        <BackLink
           to="/"
           state={backState}
           className="category-page-back"
           onClick={() => stashHomeFilters(filters)}
         >
           ← Nazad na pretragu
-        </Link>
+        </BackLink>
 
         <header className="category-page-header">
           <h1 className="category-page-title">Rezultati pretrage</h1>
-          <p className="category-page-subtitle">
-            {getResultsSubtitle(results.length, filters)}
-          </p>
+          {results.length > 0 && (
+            <p className="category-page-subtitle">
+              {getResultsSubtitle(results.length, filters)}
+            </p>
+          )}
         </header>
 
-        {results.length > 0 && (
+        {results.length > 0 ? (
           <div className="schools-grid">
             {results.map((school) => (
               <SchoolCard
@@ -107,6 +110,11 @@ const SearchResultsPage = () => {
               />
             ))}
           </div>
+        ) : (
+          <p className="text-muted text-center">
+            Nema rezultata za izabrane kriterijume. Pokušajte da izmenite uzrast, aktivnost
+            ili deo grada.
+          </p>
         )}
       </main>
     </div>

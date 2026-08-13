@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { formatSchoolDistricts, type School } from '../data/schools'
 
 const LocationIcon = () => (
@@ -42,17 +42,19 @@ interface SchoolCardProps {
 }
 
 const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps) => {
+  const location = useLocation()
   const schoolHref =
     categoryContext != null
       ? `/skola/${school.slug}?kategorija=${categoryContext}`
       : `/skola/${school.slug}`
+  const from = `${location.pathname}${location.search}${location.hash}`
 
   const locationLabel = [formatSchoolDistricts(school), school.city]
     .filter((part) => part.length > 0)
     .join(', ')
 
   return (
-    <Link to={schoolHref} className="school-card">
+    <Link to={schoolHref} state={{ from }} className="school-card">
       <div className="school-card-image-wrap">
         {categoryLabel && (
           <span className="school-card-category-tag">{categoryLabel}</span>

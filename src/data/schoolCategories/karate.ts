@@ -2,6 +2,8 @@ import mawashiWebp from '../../assets/images/schools/karate/mawashi.webp'
 import mawashiJpg from '../../assets/images/schools/karate/mawashi.jpg'
 import sokoWebp from '../../assets/images/schools/karate/soko.webp'
 import sokoJpg from '../../assets/images/schools/karate/soko.jpg'
+import karateKlubNoviSadWebp from '../../assets/images/schools/karate/karate-klub-novi-sad.webp'
+import karateKlubNoviSadJpg from '../../assets/images/schools/karate/karate-klub-novi-sad.jpg'
 
 import type { School } from './types'
 
@@ -27,14 +29,14 @@ export const karateSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'SPENS, Sutjeska 2',
+                street: 'Sutjeska 2, SPENS',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,
                 lng: 19.8454852,
             },
             {
-                street: 'OŠ "Svetozar Marković Toza", Janka Čmelika 89',
+                street: 'Janka Čmelika 89, OŠ "Svetozar Marković Toza"',
                 city: 'Novi Sad',
                 district: 'Detelinara',
                 lat: 45.2633666,
@@ -80,6 +82,40 @@ export const karateSchools: School[] = [
             email: 'kksoko1978@hotmail.com',
             website: 'https://www.karateklubsokonovisad.com/',
             facebook: 'https://www.facebook.com/kksokonovisad',
+        },
+    },
+    {
+        id: 'karate-klub-novi-sad',
+        slug: 'karate-klub-novi-sad',
+        name: 'Karate klub Novi Sad',
+        categorySlugs: ['karate'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 6,
+        maxAge: null,
+        ageLabel: '6+ godina',
+        imageWebp: karateKlubNoviSadWebp,
+        imageFallback: karateKlubNoviSadJpg,
+        description: [
+            'Karate klub Novi Sad vodi školu karatea u autentičnom japanskom dođou, uz program koji spaja tradicionalnu veštinu, samoodbranu i olimpijski sport.',
+            'Sa decom rade višedecenijski majstori karatea i kvalifikovani sportski pedagozi, u manjim grupama i uz javne treninge na kojima su dobrodošli i roditelji.',
+            'Obuka je postupna — kroz kihon, kate i kumite, uz ispite za pojaseve po programu ITKF i JKA — a naglasak je na samodisciplini, samokontroli i poštovanju.',
+            'Klub ne favorizuje agresivnost: svaka forma počinje odbranom, a trening je vođen tako da razvija karakter, pažnju i zdrav odnos prema naporu.',
+        ],
+        addresses: [
+            {
+                street: 'Sutjeska 2, SPENS',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2471273,
+                lng: 19.8454852,
+            },
+        ],
+        contact: {
+            phone: '063 505 371',
+            email: 'info@shobu.rs',
+            website: 'https://www.shobu.rs/?page_id=392',
+            facebook: 'https://www.facebook.com/karateklubnovisad/',
         },
     },
 ]

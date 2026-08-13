@@ -10,12 +10,13 @@ const EMAIL_BODY = `Zdravo,
 
 Želeo/la bih da dodam svoju školu/aktivnost na KiddoKompas.
 
-Naziv:
-Adresa / deo grada:
-Uzrast dece:
+Naziv škole, kluba ili aktivnosti:
+Lokacija(e) održavanja aktivnosti:
+Uzrast kojem je aktivnost namenjena:
 Telefon:
 Sajt / Instagram / Facebook:
 Kratak opis:
+Link do fotografije ili napomena kako šaljete fotografiju:
 
 (Hvala!)`
 
@@ -194,7 +195,7 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                 </p>
 
                 <div className="add-activity-modal-actions">
-                    <p className="add-activity-modal-actions-label">Izaberite kako želite da pošaljete</p>
+                    <p className="add-activity-modal-actions-label">Izaberite način slanja</p>
 
                     <a
                         href={GOOGLE_FORM_URL}
@@ -256,7 +257,7 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                         <span className="add-activity-modal-option-copy">
                             <span className="add-activity-modal-option-title">Pošaljite poruku na Viber</span>
                             <span className="add-activity-modal-option-subtitle">
-                                Brzo pitanje ili slanje fotografija
+                                Pošaljite podatke direktno u Viber poruku
                             </span>
                         </span>
                         <span className="add-activity-modal-option-chevron" aria-hidden="true">
