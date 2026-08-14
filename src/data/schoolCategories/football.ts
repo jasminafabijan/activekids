@@ -37,7 +37,7 @@ export const footballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Dr Vase Savića 3, Sala na Đačkom',
+                street: 'Sala na Đačkom, Dr Vase Savića 3',
                 city: 'Novi Sad',
                 district: 'Liman 1',
                 lat: 45.2438472,
@@ -74,7 +74,7 @@ export const footballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Bulevar Jovana Dučića 39',
+                street: 'GAT Arena, Bulevar Jovana Dučića 39',
                 city: 'Novi Sad',
                 district: 'Satelit',
                 lat: 45.2479549,
@@ -109,7 +109,7 @@ export const footballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Novosadski put 114',
+                street: 'Fudbalski centar „Vujadin Boškov”, Novosadski put 114',
                 city: 'Veternik',
                 district: 'Veternik',
                 lat: 45.239919,
@@ -144,7 +144,7 @@ export const footballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Rumenačka 152',
+                street: 'Sportski centar RFK Novi Sad, Rumenačka 152',
                 city: 'Novi Sad',
                 district: 'Detelinara',
                 lat: 45.2660357,
@@ -179,7 +179,7 @@ export const footballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Sutjeska 2',
+                street: 'SPENS, Sutjeska 2',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,
@@ -217,7 +217,7 @@ export const footballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Podunavska 12',
+                street: 'Sport Magic, Podunavska 12',
                 city: 'Novi Sad',
                 district: 'Kamenjar',
                 lat: 45.229195,

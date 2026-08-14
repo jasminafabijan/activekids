@@ -33,7 +33,7 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Lovćenska 16, Fakultet sporta (DIF)',
+                street: 'Fakultet sporta (DIF), Lovćenska 16',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2477013,
@@ -70,14 +70,14 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Radoja Domanovića 24, OŠ "Vuk Karadžić"',
+                street: 'OŠ "Vuk Karadžić", Radoja Domanovića 24',
                 city: 'Novi Sad',
                 district: 'Salajka',
                 lat: 45.2682668,
                 lng: 19.8388342,
             },
             {
-                street: 'Jirečekova 2, Đačko igralište',
+                street: 'Đačko igralište, Jirečekova 2',
                 city: 'Novi Sad',
                 district: 'Liman 1',
                 lat: 45.2430605,
@@ -113,14 +113,14 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Futoški put 25a, OŠ "Nikola Tesla"',
+                street: 'OŠ "Nikola Tesla", Futoški put 25a',
                 city: 'Novi Sad',
                 district: 'Telep',
                 lat: 45.2469675,
                 lng: 19.8138278,
             },
             {
-                street: 'Stojana Novakovića 2, SC Meridiana',
+                street: 'SC Meridiana, Stojana Novakovića 2',
                 city: 'Novi Sad',
                 district: 'Detelinara',
                 lat: 45.2548022,
@@ -155,7 +155,7 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Sutjeska 2, SPENS',
+                street: 'SPENS, Sutjeska 2',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,
@@ -190,7 +190,7 @@ export const basketballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Školska 4 (SC „Dejan Sremčević”)',
+                street: 'SC „Dejan Sremčević”, Školska 4',
                 city: 'Novi Sad',
                 district: 'Sajmište',
                 lat: 45.2496325,

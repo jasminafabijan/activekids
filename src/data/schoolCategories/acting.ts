@@ -25,7 +25,7 @@ export const actingSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Kralja Aleksandra 12',
+                street: 'TC Pariski magazin, Kralja Aleksandra 12',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2541374,

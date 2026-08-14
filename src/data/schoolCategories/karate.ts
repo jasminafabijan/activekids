@@ -29,14 +29,14 @@ export const karateSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Sutjeska 2, SPENS',
+                street: 'SPENS, Sutjeska 2',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,
                 lng: 19.8454852,
             },
             {
-                street: 'Janka Čmelika 89, OŠ "Svetozar Marković Toza"',
+                street: 'OŠ "Svetozar Marković Toza", Janka Čmelika 89',
                 city: 'Novi Sad',
                 district: 'Detelinara',
                 lat: 45.2633666,
@@ -104,7 +104,7 @@ export const karateSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Sutjeska 2, SPENS',
+                street: 'SPENS, Sutjeska 2',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,

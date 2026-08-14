@@ -29,14 +29,14 @@ export const volleyballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Sutjeska 2, SPC Vojvodina (SPENS)',
+                street: 'SPC Vojvodina (SPENS), Sutjeska 2',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,
                 lng: 19.8454852,
             },
             {
-                street: 'Pajevićeva, OŠ „Vasa Stajić“',
+                street: 'OŠ „Vasa Stajić“, Pajevićeva',
                 city: 'Novi Sad',
                 district: 'Adamovićevo naselje',
                 lat: 45.2463531,
@@ -72,7 +72,7 @@ export const volleyballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Lovćenska 16, Fakultet sporta (DIF)',
+                street: 'Fakultet sporta (DIF), Lovćenska 16',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2477013,
@@ -109,14 +109,14 @@ export const volleyballSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Berislava Berića 2, OŠ „Kosta Trifković”',
+                street: 'OŠ „Kosta Trifković”, Berislava Berića 2',
                 city: 'Novi Sad',
                 district: 'Rotkvarija',
                 lat: 45.2643036,
                 lng: 19.8359461,
             },
             {
-                street: 'Gagarinova 1, Tehnička škola „Mileva Marić Anštajn”',
+                street: 'Tehnička škola „Mileva Marić Anštajn”, Gagarinova 1',
                 city: 'Novi Sad',
                 district: 'Banatić',
                 lat: 45.2618571,

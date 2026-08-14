@@ -62,7 +62,7 @@ export const boxingSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Sutjeska 2, SPENS',
+                street: 'SPENS, Sutjeska 2',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2471273,

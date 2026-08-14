@@ -24,7 +24,7 @@ export const developmentalGymnasticsSchools: School[] = [
         ],
         addresses: [
             {
-                street: 'Lovćenska 16, Sala na Fakultetu sporta (DIF)',
+                street: 'Sala na Fakultetu sporta (DIF), Lovćenska 16',
                 city: 'Novi Sad',
                 district: 'Stari Grad (Centar)',
                 lat: 45.2477013,
