@@ -94,6 +94,14 @@ export const categories: Category[] = [
       'Istražite škole boksa u {city} — za disciplinu, koordinaciju i zdrav sportski duh.',
   },
   {
+    id: 'chess',
+    name: 'Šah',
+    slug: 'chess',
+    subtitle: 'Škole šaha',
+    pageSubtitle:
+      'Istražite škole šaha u {city} — za koncentraciju, strpljenje i logičko razmišljanje.',
+  },
+  {
     id: 'swimming',
     name: 'Plivanje',
     slug: 'swimming',

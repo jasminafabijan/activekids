@@ -36,31 +36,43 @@ const Footer = () => {
                         </div>
 
                         <div className="site-footer-links">
-                            <div className="site-footer-links-title" id="footer-links-label">
-                                Linkovi
+                            <div className="site-footer-links-group">
+                                <div className="site-footer-links-title" id="footer-explore-label">
+                                    Istraži
+                                </div>
+                                <nav className="site-footer-nav" aria-labelledby="footer-explore-label">
+                                    <Link
+                                        to="/#kategorije"
+                                        onClick={handleCategoriesClick}
+                                        className="site-footer-link"
+                                    >
+                                        Kategorije
+                                    </Link>
+                                    <Link to="/mapa" className="site-footer-link">
+                                        Mapa
+                                    </Link>
+                                    <Link to="/o-nama" className="site-footer-link">
+                                        O nama
+                                    </Link>
+                                </nav>
                             </div>
-                            <nav className="site-footer-nav" aria-labelledby="footer-links-label">
-                                <Link
-                                    to="/#kategorije"
-                                    onClick={handleCategoriesClick}
-                                    className="site-footer-link"
-                                >
-                                    Kategorije
-                                </Link>
-                                <Link to="/o-nama" className="site-footer-link">
-                                    O nama
-                                </Link>
-                                <button
-                                    type="button"
-                                    className="site-footer-link"
-                                    onClick={() => setIsAddActivityOpen(true)}
-                                >
-                                    Dodaj aktivnost
-                                </button>
-                                <Link to="/politika-privatnosti" className="site-footer-link">
-                                    Politika privatnosti
-                                </Link>
-                            </nav>
+                            <div className="site-footer-links-group">
+                                <div className="site-footer-links-title" id="footer-info-label">
+                                    Informacije
+                                </div>
+                                <nav className="site-footer-nav" aria-labelledby="footer-info-label">
+                                    <button
+                                        type="button"
+                                        className="site-footer-link"
+                                        onClick={() => setIsAddActivityOpen(true)}
+                                    >
+                                        Dodaj aktivnost
+                                    </button>
+                                    <Link to="/politika-privatnosti" className="site-footer-link">
+                                        Politika privatnosti
+                                    </Link>
+                                </nav>
+                            </div>
                         </div>
                     </div>
 

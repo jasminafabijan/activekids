@@ -1,17 +1,13 @@
 import L from 'leaflet'
 import { useEffect, useMemo, useRef } from 'react'
-import type { SchoolAddress } from '../data/schools'
-import { formatSchoolAddress, getGoogleMapsOpenHref } from '../data/schools'
+import type { School, SchoolAddress } from '../data/schools'
+import { getGoogleMapsOpenHref } from '../data/schools'
+import { attachActivePinState, mapPinIcon } from '../utils/mapPin'
+import { attachMarkerOverlapZoom } from '../utils/mapOverlapZoom'
+import { buildSchoolMapPopupHtml, schoolMapPopupOptions } from '../utils/mapPopup'
 import 'leaflet/dist/leaflet.css'
 
 const MAP_TILE_URL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-
-const pinIcon = L.divIcon({
-  className: 'school-map-pin',
-  html: '<span class="school-map-pin-dot" aria-hidden="true"></span>',
-  iconSize: [28, 28],
-  iconAnchor: [14, 14],
-})
 
 const getMapZoom = (pointCount: number) => {
   if (pointCount === 1) return 16
@@ -21,9 +17,10 @@ const getMapZoom = (pointCount: number) => {
 
 interface SchoolMapProps {
   addresses: SchoolAddress[]
+  school?: Pick<School, 'name' | 'ageLabel'>
 }
 
-const SchoolMap = ({ addresses }: SchoolMapProps) => {
+const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<L.Map | null>(null)
 
@@ -56,11 +53,21 @@ const SchoolMap = ({ addresses }: SchoolMapProps) => {
     }).addTo(map)
 
     const markers = points.map((address) => {
-      const marker = L.marker([address.lat, address.lng], { icon: pinIcon })
-      marker.bindPopup(formatSchoolAddress(address))
+      const marker = L.marker([address.lat, address.lng], { icon: mapPinIcon })
+      marker.bindPopup(
+        school
+          ? buildSchoolMapPopupHtml(address.street, [
+              { name: school.name, ageLabel: school.ageLabel },
+            ])
+          : buildSchoolMapPopupHtml(address.street, []),
+        schoolMapPopupOptions
+      )
       marker.addTo(map)
       return marker
     })
+
+    const detachOverlapZoom = attachMarkerOverlapZoom(map, markers)
+    const detachActivePin = attachActivePinState(map)
 
     const applyView = () => {
       map.invalidateSize()
@@ -83,10 +90,12 @@ const SchoolMap = ({ addresses }: SchoolMapProps) => {
     mapInstanceRef.current = map
 
     return () => {
+      detachOverlapZoom()
+      detachActivePin()
       map.remove()
       mapInstanceRef.current = null
     }
-  }, [points])
+  }, [points, school])
 
   if (points.length === 0) return null
 

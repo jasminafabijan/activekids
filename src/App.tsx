@@ -8,6 +8,7 @@ import CategoryPage from './pages/CategoryPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import SchoolDetailPage from './pages/SchoolDetailPage'
+import MapPage from './pages/MapPage'
 
 const AdminPage = import.meta.env.DEV
   ? lazy(() => import('./pages/AdminPage'))
@@ -26,6 +27,7 @@ function App() {
             <Route path="/pretraga" element={<SearchResultsPage />} />
             <Route path="/kategorija/:slug" element={<CategoryPage />} />
             <Route path="/skola/:slug" element={<SchoolDetailPage />} />
+            <Route path="/mapa" element={<MapPage />} />
             {AdminPage ? (
               <Route
                 path="/admin"

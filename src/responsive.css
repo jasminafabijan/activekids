@@ -30,6 +30,30 @@
     }
 }
 
+@media (max-width: 767.98px) {
+    .map-page-body {
+        flex-direction: column-reverse;
+        min-height: 0;
+    }
+
+    .map-page-list {
+        width: 100%;
+        max-width: none;
+        max-height: 48vh;
+        border-right: none;
+        border-top: 1px solid var(--border);
+    }
+
+    .map-page-map {
+        height: min(52vh, 28rem);
+        min-height: 18rem;
+    }
+
+    .map-page-body .catalog-map-canvas {
+        min-height: 18rem;
+    }
+}
+
 /* 4 category cards per row */
 @media (min-width: 768px) and (max-width: 1023.98px) {
     .category-card {

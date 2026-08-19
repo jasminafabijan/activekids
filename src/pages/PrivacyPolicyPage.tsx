@@ -54,8 +54,8 @@ const PrivacyPolicyPage = () => {
           </ul>
           <p>
             KiddoKompas trenutno ne zahteva kreiranje korisničkog naloga, ne koristi
-            Google Analytics niti slične alate za praćenje posetilaca, i ne prikuplja
-            podatke o deci radi profilisanja ili marketinga.
+            Google Analytics, marketinške alate niti podatke o deci za profilisanje ili
+            oglašavanje.
           </p>
 
           <h2>3. Svrha obrade</h2>

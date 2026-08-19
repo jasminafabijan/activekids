@@ -146,6 +146,10 @@ const getSchoolBack = (
     return { to: from, label: 'Nazad na pretragu' }
   }
 
+  if (from?.startsWith('/mapa')) {
+    return { to: from, label: 'Nazad na mapu' }
+  }
+
   if (categorySlug) {
     return {
       to: `/kategorija/${categorySlug}`,
@@ -346,7 +350,7 @@ const SchoolDetailPage = () => {
               {(school.addresses?.length || mapAddresses.length > 0) && (
                 <section className="school-detail-section" aria-labelledby="school-location">
                   <h2 id="school-location" className="school-detail-section-title">
-                    Lokacija
+                    {(school.addresses?.length ?? 0) > 1 ? 'Lokacije' : 'Lokacija'}
                   </h2>
                   {school.addresses && school.addresses.length > 0 && (
                     <div className="school-detail-contact mb-4">
@@ -370,7 +374,12 @@ const SchoolDetailPage = () => {
                       })}
                     </div>
                   )}
-                  {mapAddresses.length > 0 && <SchoolMap addresses={mapAddresses} />}
+                  {mapAddresses.length > 0 && (
+                    <SchoolMap
+                      addresses={mapAddresses}
+                      school={{ name: school.name, ageLabel: school.ageLabel }}
+                    />
+                  )}
                 </section>
               )}
             </aside>

@@ -1,23 +1,25 @@
 ---
-description: Always optimize new category icons before adding them
+description: Always optimize new category icons before adding them — crop viewBox, file size, and optical size
 globs: src/assets/icons/**/*,src/components/CategoryCards.tsx
-alwaysApply: false
+alwaysApply: true
 ---
 
 # Category icon optimization
 
-Whenever adding a **new category icon** (or wiring a user-provided icon), **optimize it before committing** — do not wait to be reminded.
+Whenever adding a **new category icon** (or wiring a user-provided icon), **optimize it in the same turn, before wiring it** — do not wait to be reminded. File-size cleanup without a tight crop is not done.
 
 ## Requirements
 
 - Do **not** ship SVG files that embed large base64 PNG/JPEG rasters (often 100KB–1MB+).
 - Prefer a clean **vector SVG** in brand colors (`#1B2D45` / `#0B1A3B`, `#F9BA9C` / peach, `#9BE1BD` / mint), similar to `ballet.svg`, `basketball.svg`, `tennis.svg` (~10–20KB).
+- **Crop the `viewBox` tightly around the artwork** (see `boxing.svg`). A 1024×1024 canvas with a small drawing in the middle will look tiny at 64px. Optical size is part of optimization.
+- Do **not** use a large negative `iconSizeAdjustPx` to hide padding; fix the viewBox instead. Default display size is 64px in a 72px tile.
 - If the source must stay raster: resize for display (~192px longest side for 64px UI), export **WebP** (or optimized PNG), and import that in `CategoryCards`.
 - Target roughly **under ~30KB** for an icon asset unless a vector legitimately needs more.
 - Check file size after adding: `wc -c src/assets/icons/<name>.*`
 
 ## Workflow
 
-1. Inspect the provided icon (size, base64/`<image>`, path count).
-2. Optimize (retrace to vector, or compress/resize raster).
+1. Inspect the provided icon (size, base64/`<image>`, path count, **artwork vs viewBox padding**).
+2. Optimize (retrace to vector, or compress/resize raster) **and crop the viewBox**.
 3. Only then wire it in `CategoryCards` / category data.

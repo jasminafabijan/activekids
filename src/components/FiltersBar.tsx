@@ -13,6 +13,8 @@ export type FilterValues = SchoolFilters
 interface FiltersBarProps {
   onFilterChange?: (filters: FilterValues) => void
   initialFilters?: Partial<FilterValues>
+  hideDistrict?: boolean
+  applyOnChange?: boolean
 }
 
 const partsOfCityOptions = getDistrictOptions()
@@ -105,7 +107,12 @@ const SearchIcon = () => (
   </svg>
 )
 
-const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
+const FiltersBar = ({
+  onFilterChange,
+  initialFilters,
+  hideDistrict = false,
+  applyOnChange = false,
+}: FiltersBarProps) => {
   const [filters, setFilters] = useState<FilterValues>(() => ({
     ...defaultFilters,
     ...initialFilters,
@@ -120,6 +127,20 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
   const activityDropdownRef = useRef<HTMLDivElement>(null)
   const partsSearchRef = useRef<HTMLInputElement>(null)
   const activitiesSearchRef = useRef<HTMLInputElement>(null)
+  const skipLiveApply = useRef(true)
+
+  useEffect(() => {
+    if (!applyOnChange) {
+      return
+    }
+
+    if (skipLiveApply.current) {
+      skipLiveApply.current = false
+      return
+    }
+
+    onFilterChange?.(filters)
+  }, [applyOnChange, filters, onFilterChange])
 
   useEffect(() => {
     if (!isPartsOpen && !isAgeOpen && !isActivityOpen) return
@@ -275,8 +296,21 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
     onFilterChange?.(filters)
   }
 
+  const hasActiveFilters =
+    filters.age != null || filters.activities.length > 0 || filters.partsOfCity.length > 0
+
+  const clearFilters = () => {
+    setFilters((prev) => ({
+      ...defaultFilters,
+      city: prev.city,
+    }))
+  }
+
   return (
-    <section className="search-bar" aria-label="Pretraga aktivnosti">
+    <section
+      className={`search-bar${hideDistrict ? ' search-bar--no-district' : ''}`}
+      aria-label="Pretraga aktivnosti"
+    >
       <div className="search-bar-panel">
         <div className="search-bar-grid">
           <div className="search-field">
@@ -300,10 +334,11 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
             </div>
           </div>
 
-          <div
-            ref={partsDropdownRef}
-            className={`search-field search-field-dropdown search-field-dropdown-district ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
-          >
+          {!hideDistrict && (
+            <div
+              ref={partsDropdownRef}
+              className={`search-field search-field-dropdown search-field-dropdown-district ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
+            >
             <MapIcon />
             <div className="search-field-content">
               <span id="partsOfCity-label" className="search-field-label">
@@ -368,6 +403,7 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
               )}
             </div>
           </div>
+          )}
 
           <div
             ref={ageDropdownRef}
@@ -485,11 +521,18 @@ const FiltersBar = ({ onFilterChange, initialFilters }: FiltersBarProps) => {
             </div>
           </div>
 
-          <button type="button" onClick={handleSearch} className="search-submit md:col-span-2">
-            <SearchIcon />
-            Pronađi
-          </button>
+          {applyOnChange ? null : (
+            <button type="button" onClick={handleSearch} className="search-submit">
+              <SearchIcon />
+              Pronađi
+            </button>
+          )}
         </div>
+        {applyOnChange && hasActiveFilters ? (
+          <button type="button" className="search-clear" onClick={clearFilters}>
+            Ukloni filter
+          </button>
+        ) : null}
       </div>
     </section>
   )

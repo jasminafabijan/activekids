@@ -1,5 +1,5 @@
 import { useEffect, useId, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/images/kiddokompas-logo.png'
 import { scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
@@ -95,13 +95,22 @@ const Navbar = () => {
                         >
                             Kategorije
                         </Link>
-                        <Link
+                        <NavLink
+                            to="/mapa"
+                            end
+                            onClick={() => setIsMenuOpen(false)}
+                            className="navbar-categories-link site-navbar-menu-link"
+                        >
+                            Mapa
+                        </NavLink>
+                        <NavLink
                             to="/o-nama"
+                            end
                             onClick={() => setIsMenuOpen(false)}
                             className="navbar-categories-link site-navbar-menu-link"
                         >
                             O nama
-                        </Link>
+                        </NavLink>
                         <button
                             type="button"
                             className="btn btn-primary site-navbar-cta"

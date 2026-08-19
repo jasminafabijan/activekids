@@ -4,6 +4,8 @@ import okVojvodinaWebp from '../../assets/images/schools/volleyball/ok-vojvodina
 import okVojvodinaJpg from '../../assets/images/schools/volleyball/ok-vojvodina.jpg'
 import nsTimWebp from '../../assets/images/schools/volleyball/ns-tim.webp'
 import nsTimJpg from '../../assets/images/schools/volleyball/ns-tim.jpg'
+import zokNoviSadWebp from '../../assets/images/schools/volleyball/zok-novi-sad.webp'
+import zokNoviSadJpg from '../../assets/images/schools/volleyball/zok-novi-sad.jpg'
 
 import type { School } from './types'
 
@@ -127,6 +129,40 @@ export const volleyballSchools: School[] = [
             phone: '069 477 04 74',
             email: 'odbojkaski.klub.ns.tim@gmail.com',
             website: 'https://odbojkaskiklubnsti.wixsite.com/ns-tim/about1-c1plb',
+        },
+    },
+    {
+        id: 'zok-novi-sad',
+        slug: 'zok-novi-sad',
+        name: 'ŽOK „Novi Sad”',
+        categorySlugs: ['volleyball'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 7,
+        maxAge: null,
+        ageLabel: '7+ godina',
+        imageWebp: zokNoviSadWebp,
+        imageFallback: zokNoviSadJpg,
+        description: [
+            'Ženski odbojkaški klub Novi Sad osnovan je 1999. i od početka je prepoznatljiv po radu sa mlađim kategorijama — kroz klub je prošlo više od 2000 devojčica.',
+            'Školica odbojke prima nove članice, a zatim slede takmičarske selekcije od predpionirki i pionirki do kadetkinja, juniorki i seniorki.',
+            'Program neguje tehniku, timski rad, fer-plej i zdrav razvoj, uz redovna takmičenja u vojvođanskim i nacionalnim ligama.',
+            'Seniorska ekipa igra u Prvoj ligi Srbije, a mlađe ekipe čine sopstvenu bazu iz koje se biraju igračice za prvi tim.',
+        ],
+        addresses: [
+            {
+                street: 'SPC Vojvodina (SPENS), Sutjeska 3',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2471273,
+                lng: 19.8454852,
+            },
+        ],
+        contact: {
+            phone: '060 036 50 06',
+            email: 'zoknovisad@yahoo.com',
+            website: 'https://zoknovisad.org.rs/',
+            instagram: 'https://www.instagram.com/zoknovisad/',
         },
     },
 ]

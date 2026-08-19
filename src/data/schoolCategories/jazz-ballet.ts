@@ -2,6 +2,8 @@ import masterDanceWebp from '../../assets/images/schools/dance/master-dance.webp
 import masterDanceJpg from '../../assets/images/schools/dance/master-dance.jpg'
 import impulsWebp from '../../assets/images/schools/dance/impuls.webp'
 import impulsJpg from '../../assets/images/schools/dance/impuls.png'
+import laJazzWebp from '../../assets/images/schools/dance/la-jazz.webp'
+import laJazzJpg from '../../assets/images/schools/dance/la-jazz.jpg'
 
 import type { School } from './types'
 
@@ -89,6 +91,53 @@ export const jazzBalletSchools: School[] = [
             website: 'https://studioimpuls.org/',
             facebook: 'https://www.facebook.com/impulsdancens/',
             instagram: 'https://www.instagram.com/impulsdancestudio/',
+        },
+    },
+    {
+        id: 'la-jazz',
+        slug: 'la-jazz',
+        name: 'Plesni studio La Jazz',
+        categorySlugs: ['jazz-ballet'],
+        city: 'Novi Sad',
+        district: 'Rotkvarija',
+        minAge: 3,
+        maxAge: null,
+        ageLabel: '3+ godina',
+        imageWebp: laJazzWebp,
+        imageFallback: laJazzJpg,
+        description: [
+            'Plesni studio La Jazz vodi časove jazz baleta, show dance-a i modernog plesa, uz osnove klasične tehnike i gimnastike.',
+            'Grupe su podeljene po uzrastu — od Mini Jazz programa za najmlađe, preko dečijih i juniorskih klasa, do rekreacije za starije.',
+            'Časove vode instruktori sa iskustvom u radu sa decom, sa naglaskom na ritam, držanje, kreativnost i nastupe na festivalima i takmičenjima.',
+        ],
+        addresses: [
+            {
+                street: 'Pavla Papa 16 (sala u dvorištu)',
+                city: 'Novi Sad',
+                district: 'Rotkvarija',
+                lat: 45.2551345,
+                lng: 19.8390452,
+            },
+            {
+                street: 'Kopernikova 34 (sala u dvorištu)',
+                city: 'Novi Sad',
+                district: 'Detelinara',
+                lat: 45.2559546,
+                lng: 19.8153622,
+            },
+            {
+                street: 'Petefi Šandora 153',
+                city: 'Novi Sad',
+                district: 'Telep',
+                lat: 45.2410274,
+                lng: 19.7963396,
+            },
+        ],
+        contact: {
+            phone: '060 584 50 30',
+            email: 'lajazzstudio@gmail.com',
+            facebook: 'https://www.facebook.com/p/La-Jazz-Studio-61558281309067/',
+            instagram: 'https://www.instagram.com/la_jazz_studio/',
         },
     },
 ]

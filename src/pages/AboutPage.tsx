@@ -41,7 +41,7 @@ const AboutPage = () => {
             KiddoKompas je nastao iz jedne sasvim praktične roditeljske potrebe: da se na jednom mestu lakše pronađu aktivnosti za decu u vašem gradu.
           </p>
           <p>
-            Dok sam tražila aktivnosti za svoje devojčice, nedostajalo mi je jedno mesto koje bi olakšalo početak potrage - da mogu brzo da vidim koje aktivnosti su opcija, gde se održavaju i kojem uzrastu su namenjene.
+            Dok sam tražila aktivnosti za svoje devojčice, nedostajalo mi je jedno mesto koje bi olakšalo početak potrage — da mogu brzo da vidim koje aktivnosti su opcija, gde se održavaju i kojem uzrastu su namenjene.
           </p>
 
           <blockquote className="about-quote">

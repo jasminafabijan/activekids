@@ -1,0 +1,14 @@
+---
+description: New schools must be inside Novi Sad city proper, not surrounding settlements
+globs: src/data/schoolCategories/**/*.ts,src/data/schools.ts
+alwaysApply: true
+---
+
+# Geographic scope for new schools
+
+When adding a school, the **training venue** must be in **Novi Sad city proper**.
+
+- Do **not** add schools whose listed training address is in surrounding settlements such as Rumenka, Futog, Veternik, Kać, Budisava, Begeč, Čenej, or similar.
+- Club headquarters outside the city do not count if kids actually train there; only confirmed training halls in NS urban districts belong in the catalog.
+- If a club trains both in the city and outside it, list **only** the Novi Sad city venues.
+- Do not invent suburban streets. If the only confirmed hall is outside the city, pick a different school.
