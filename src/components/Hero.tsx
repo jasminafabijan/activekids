@@ -1,4 +1,5 @@
 import { lazy, Suspense, useSyncExternalStore } from 'react'
+import { useI18n } from '../i18n/useI18n'
 
 const HeroMedia = lazy(() => import('./HeroMedia'))
 
@@ -17,6 +18,7 @@ const useShowHeroMedia = () =>
 
 const Hero = () => {
     const showMedia = useShowHeroMedia()
+    const { t } = useI18n()
 
     return (
         <section className="hero">
@@ -29,14 +31,14 @@ const Hero = () => {
                 <div className="hero-copy">
                     <div className="tag tag--pill tag--mint self-start">
                         <span className="tag-dot" aria-hidden="true" />
-                        Platforma za roditelje
+                        {t('hero.tag')}
                     </div>
 
                     <h1 className="hero-title text-primary">
-                        <span className="hero-title-line">Pronađite savršene</span>
+                        <span className="hero-title-line">{t('hero.titleLine1')}</span>
                         <span className="hero-title-line hero-title-line--accent">
                             <span className="hero-title-underline">
-                                aktivnosti
+                                {t('hero.titleAccent')}
                                 <svg viewBox="0 0 300 12" fill="none" aria-hidden="true">
                                     <path
                                         d="M2 8C50 2 150 2 298 8"
@@ -46,12 +48,11 @@ const Hero = () => {
                                     />
                                 </svg>
                             </span>{' '}
-                            za vašu decu
+                            {t('hero.titleLine2')}
                         </span>
                     </h1>
                     <p className="hero-lead">
-                        Sport, ples, muzika, umetnost i još mnogo toga — sve na jednom mestu, uz
-                        jednostavno filtriranje po lokaciji, uzrastu i interesovanju.
+                        {t('hero.lead')}
                     </p>
                 </div>
 

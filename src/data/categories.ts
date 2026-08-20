@@ -1,162 +1,284 @@
 import { getCityLocative } from './cities'
+import { getLocalizedText } from '../i18n/helpers'
+import type { Lang, LocalizedText } from '../i18n/types'
 
 export type Category = {
   id: string
-  name: string
+  name: LocalizedText
+  /** Stable legacy slug (same as id). Still accepted in Serbian URLs. */
   slug: string
-  subtitle: string
-  pageSubtitle?: string
-  /** Accusative form for phrases like „Nazad na …”. Defaults to `name`. */
+  /** Localized route slugs. `id` stays the canonical key. */
+  slugs: { sr: string; en: string }
+  subtitle: LocalizedText
+  pageSubtitle?: LocalizedText
+  /** Serbian accusative for phrases like „Nazad na …”. English uses `name`. */
   nameAccusative?: string
 }
 
 export const categories: Category[] = [
   {
     id: 'ballet',
-    name: 'Balet',
+    name: { sr: 'Balet', en: 'Ballet' },
     slug: 'ballet',
-    subtitle: 'Škole klasičnog baleta',
-    pageSubtitle:
-      'Istražite škole klasičnog baleta u {city} — za gracioznost, držanje i ljubav prema sceni.',
+    slugs: { sr: 'balet', en: 'ballet' },
+    subtitle: { sr: 'Škole klasičnog baleta', en: 'Classical ballet schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole klasičnog baleta u {city} — za gracioznost, držanje i ljubav prema sceni.',
+      en: 'Explore classical ballet schools in {city} — for grace, posture and a love of the stage.',
+    },
   },
   {
     id: 'jazz-ballet',
-    name: 'Moderan ples',
+    name: { sr: 'Moderan ples', en: 'Modern dance' },
     slug: 'jazz-ballet',
-    subtitle: 'Škole modernog plesa',
-    pageSubtitle:
-      'Istražite škole modernog plesa u {city} — za energiju, ritam i slobodniji plesni izraz.',
+    slugs: { sr: 'moderan-ples', en: 'modern-dance' },
+    subtitle: { sr: 'Škole modernog plesa', en: 'Modern dance schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole modernog plesa u {city} — za energiju, ritam i slobodniji plesni izraz.',
+      en: 'Explore modern dance schools in {city} — for energy, rhythm and a freer dance expression.',
+    },
   },
   {
     id: 'dance-sport',
-    name: 'Sportski ples',
+    name: { sr: 'Sportski ples', en: 'DanceSport' },
     slug: 'dance-sport',
-    subtitle: 'Škole sportskog plesa',
-    pageSubtitle:
-      'Istražite škole sportskog plesa u {city} — za ritam, gracioznost i sigurnost u svakom koraku.',
+    slugs: { sr: 'sportski-ples', en: 'dancesport' },
+    subtitle: { sr: 'Škole sportskog plesa', en: 'DanceSport schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole sportskog plesa u {city} — za ritam, gracioznost i sigurnost u svakom koraku.',
+      en: 'Explore DanceSport schools in {city} — for rhythm, grace and confidence in every step.',
+    },
   },
   {
     id: 'football',
-    name: 'Fudbal',
+    name: { sr: 'Fudbal', en: 'Football' },
     slug: 'football',
-    subtitle: 'Škole fudbala',
-    pageSubtitle:
-      'Istražite škole fudbala u {city} — za igru, timski duh i sportsku energiju.',
+    slugs: { sr: 'fudbal', en: 'football' },
+    subtitle: { sr: 'Škole fudbala', en: 'Football schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole fudbala u {city} — za igru, timski duh i sportsku energiju.',
+      en: 'Explore football schools in {city} — for play, teamwork and sporting energy.',
+    },
   },
   {
     id: 'acting',
-    name: 'Gluma',
+    name: { sr: 'Gluma', en: 'Acting' },
     slug: 'acting',
-    subtitle: 'Škole glume',
-    pageSubtitle:
-      'Istražite škole glume u {city} — za maštu, govor, pokret i više samopouzdanja.',
+    slugs: { sr: 'gluma', en: 'acting' },
+    subtitle: { sr: 'Škole glume', en: 'Acting schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole glume u {city} — za maštu, govor, pokret i više samopouzdanja.',
+      en: 'Explore acting schools in {city} — for imagination, speech, movement and more confidence.',
+    },
   },
   {
     id: 'basketball',
-    name: 'Košarka',
+    name: { sr: 'Košarka', en: 'Basketball' },
     nameAccusative: 'košarku',
     slug: 'basketball',
-    subtitle: 'Škole košarke',
-    pageSubtitle:
-      'Istražite košarkaške škole u {city} — za decu koja vole igru, pokret i izazov pod obručima.',
+    slugs: { sr: 'kosarka', en: 'basketball' },
+    subtitle: { sr: 'Škole košarke', en: 'Basketball schools' },
+    pageSubtitle: {
+      sr: 'Istražite košarkaške škole u {city} — za decu koja vole igru, pokret i izazov pod obručima.',
+      en: 'Explore basketball schools in {city} — for children who love the game, movement and a challenge under the hoop.',
+    },
   },
   {
     id: 'volleyball',
-    name: 'Odbojka',
+    name: { sr: 'Odbojka', en: 'Volleyball' },
     nameAccusative: 'odbojku',
     slug: 'volleyball',
-    subtitle: 'Škole odbojke',
-    pageSubtitle:
-      'Istražite škole odbojke u {city} — za razvoj koordinacije i timskog duha u igri preko mreže.',
+    slugs: { sr: 'odbojka', en: 'volleyball' },
+    subtitle: { sr: 'Škole odbojke', en: 'Volleyball schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole odbojke u {city} — za razvoj koordinacije i timskog duha u igri preko mreže.',
+      en: 'Explore volleyball schools in {city} — for coordination and teamwork in the game over the net.',
+    },
   },
   {
     id: 'tennis',
-    name: 'Tenis',
+    name: { sr: 'Tenis', en: 'Tennis' },
     slug: 'tennis',
-    subtitle: 'Škole tenisa',
-    pageSubtitle:
-      'Istražite škole tenisa u {city} — za fokus, koordinaciju i sigurnost u svakom udarcu.',
+    slugs: { sr: 'tenis', en: 'tennis' },
+    subtitle: { sr: 'Škole tenisa', en: 'Tennis schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole tenisa u {city} — za fokus, koordinaciju i sigurnost u svakom udarcu.',
+      en: 'Explore tennis schools in {city} — for focus, coordination and confidence in every stroke.',
+    },
   },
   {
     id: 'karate',
-    name: 'Karate',
+    name: { sr: 'Karate', en: 'Karate' },
     slug: 'karate',
-    subtitle: 'Škole karatea',
-    pageSubtitle:
-      'Istražite karate klubove u {city} — za fokus, disciplinu i sigurnost u pokretu.',
+    slugs: { sr: 'karate', en: 'karate' },
+    subtitle: { sr: 'Škole karatea', en: 'Karate schools' },
+    pageSubtitle: {
+      sr: 'Istražite karate klubove u {city} — za fokus, disciplinu i sigurnost u pokretu.',
+      en: 'Explore karate clubs in {city} — for focus, discipline and confidence in movement.',
+    },
   },
   {
     id: 'boxing',
-    name: 'Boks',
+    name: { sr: 'Boks', en: 'Boxing' },
     slug: 'boxing',
-    subtitle: 'Škole boksa',
-    pageSubtitle:
-      'Istražite škole boksa u {city} — za disciplinu, koordinaciju i zdrav sportski duh.',
+    slugs: { sr: 'boks', en: 'boxing' },
+    subtitle: { sr: 'Škole boksa', en: 'Boxing schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole boksa u {city} — za disciplinu, koordinaciju i zdrav sportski duh.',
+      en: 'Explore boxing schools in {city} — for discipline, coordination and a healthy sporting spirit.',
+    },
   },
   {
     id: 'chess',
-    name: 'Šah',
+    name: { sr: 'Šah', en: 'Chess' },
     slug: 'chess',
-    subtitle: 'Škole šaha',
-    pageSubtitle:
-      'Istražite škole šaha u {city} — za koncentraciju, strpljenje i logičko razmišljanje.',
+    slugs: { sr: 'sah', en: 'chess' },
+    subtitle: { sr: 'Škole šaha', en: 'Chess schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole šaha u {city} — za koncentraciju, strpljenje i logičko razmišljanje.',
+      en: 'Explore chess schools in {city} — for concentration, patience and logical thinking.',
+    },
   },
   {
     id: 'swimming',
-    name: 'Plivanje',
+    name: { sr: 'Plivanje', en: 'Swimming' },
     slug: 'swimming',
-    subtitle: 'Škole plivanja',
-    pageSubtitle:
-      'Istražite škole plivanja u {city} — za decu koja vole vodu ili tek treba da je zavole.',
+    slugs: { sr: 'plivanje', en: 'swimming' },
+    subtitle: { sr: 'Škole plivanja', en: 'Swimming schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole plivanja u {city} — za decu koja vole vodu ili tek treba da je zavole.',
+      en: 'Explore swimming schools in {city} — for children who already love the water, or are just about to.',
+    },
   },
   {
     id: 'developmental-gymnastics',
-    name: 'Razvojna gimnastika',
+    name: { sr: 'Razvojna gimnastika', en: 'Developmental gymnastics' },
     nameAccusative: 'razvojnu gimnastiku',
     slug: 'developmental-gymnastics',
-    subtitle: 'Škole razvojne gimnastike',
-    pageSubtitle:
-      'Istražite škole razvojne gimnastike u {city} — za koordinaciju, držanje i motoričku osnovu kroz igru.',
+    slugs: { sr: 'razvojna-gimnastika', en: 'developmental-gymnastics' },
+    subtitle: { sr: 'Škole razvojne gimnastike', en: 'Developmental gymnastics schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole razvojne gimnastike u {city} — za koordinaciju, držanje i motoričku osnovu kroz igru.',
+      en: 'Explore developmental gymnastics schools in {city} — for coordination, posture and a motor foundation through play.',
+    },
   },
   {
     id: 'riding',
-    name: 'Jahanje',
+    name: { sr: 'Jahanje', en: 'Horse riding' },
     slug: 'riding',
-    subtitle: 'Škole jahanja',
-    pageSubtitle:
-      'Istražite škole jahanja u {city} — za prirodu, povezanost sa konjima i miran ritam van grada.',
+    slugs: { sr: 'jahanje', en: 'riding' },
+    subtitle: { sr: 'Škole jahanja', en: 'Horse riding schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole jahanja u {city} — za prirodu, povezanost sa konjima i miran ritam van grada.',
+      en: 'Explore horse riding schools in {city} — for nature, a bond with horses and a calm rhythm away from city streets.',
+    },
   },
   {
     id: 'folklore',
-    name: 'Folklor',
+    name: { sr: 'Folklor', en: 'Folklore' },
     slug: 'folklore',
-    subtitle: 'Škole folklora',
-    pageSubtitle:
-      'Istražite škole folklora u {city} — za tradiciju, igru, pesmu i druženje kroz narodne običaje.',
+    slugs: { sr: 'folklor', en: 'folklore' },
+    subtitle: { sr: 'Škole folklora', en: 'Folklore schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole folklora u {city} — za tradiciju, igru, pesmu i druženje kroz narodne običaje.',
+      en: 'Explore folklore schools in {city} — for tradition, dance, song and getting together through folk customs.',
+    },
   },
-  { id: 'dance', name: 'Ples', slug: 'dance', subtitle: 'Škole plesa' },
-  { id: 'music', name: 'Muzika', slug: 'music', subtitle: 'Muzičke škole' },
-  { id: 'art', name: 'Umetnost', slug: 'art', subtitle: 'Umetničke škole' },
-  { id: 'languages', name: 'Jezici', slug: 'languages', subtitle: 'Škole stranih jezika' },
-  { id: 'science', name: 'Nauka', slug: 'science', subtitle: 'Naučni programi za decu' },
+  {
+    id: 'dance',
+    name: { sr: 'Ples', en: 'Dance' },
+    slug: 'dance',
+    slugs: { sr: 'ples', en: 'dance' },
+    subtitle: { sr: 'Škole plesa', en: 'Dance schools' },
+  },
+  {
+    id: 'music',
+    name: { sr: 'Muzika', en: 'Music' },
+    slug: 'music',
+    slugs: { sr: 'muzika', en: 'music' },
+    subtitle: { sr: 'Muzičke škole', en: 'Music schools' },
+  },
+  {
+    id: 'art',
+    name: { sr: 'Umetnost', en: 'Art' },
+    slug: 'art',
+    slugs: { sr: 'umetnost', en: 'art' },
+    subtitle: { sr: 'Umetničke škole', en: 'Art schools' },
+  },
+  {
+    id: 'languages',
+    name: { sr: 'Jezici', en: 'Languages' },
+    slug: 'languages',
+    slugs: { sr: 'jezici', en: 'languages' },
+    subtitle: { sr: 'Škole stranih jezika', en: 'Foreign language schools' },
+  },
+  {
+    id: 'science',
+    name: { sr: 'Nauka', en: 'Science' },
+    slug: 'science',
+    slugs: { sr: 'nauka', en: 'science' },
+    subtitle: { sr: 'Naučni programi za decu', en: 'Science programs for children' },
+  },
   {
     id: 'technology',
-    name: 'Tehnologija',
+    name: { sr: 'Tehnologija', en: 'Technology' },
     slug: 'technology',
-    subtitle: 'Tehnološki programi za decu',
+    slugs: { sr: 'tehnologija', en: 'technology' },
+    subtitle: { sr: 'Tehnološki programi za decu', en: 'Technology programs for children' },
   },
-  { id: 'nature', name: 'Priroda', slug: 'nature', subtitle: 'Programi na otvorenom' },
+  {
+    id: 'nature',
+    name: { sr: 'Priroda', en: 'Nature' },
+    slug: 'nature',
+    slugs: { sr: 'priroda', en: 'nature' },
+    subtitle: { sr: 'Programi na otvorenom', en: 'Outdoor programs' },
+  },
 ]
 
 export const getCategoryBySlug = (slug: string) =>
-  categories.find((category) => category.slug === slug)
+  categories.find(
+    (category) =>
+      category.id === slug ||
+      category.slug === slug ||
+      category.slugs.sr === slug ||
+      category.slugs.en === slug
+  )
 
-export const formatCategorySubtitle = (category: Category, city: string) => {
-  const cityLocative = getCityLocative(city)
+export const getCategorySlug = (category: Category, lang: Lang) => category.slugs[lang]
 
-  if (category.pageSubtitle) {
-    return category.pageSubtitle.replace('{city}', cityLocative)
+/** Map a category id or either-language slug to the slug used in `targetLang` routes. */
+export const localizeCategorySlug = (slug: string, targetLang: Lang) => {
+  const category = getCategoryBySlug(slug)
+  return category ? getCategorySlug(category, targetLang) : slug
+}
+
+export const getCategoryName = (category: Category, lang: Lang) =>
+  getLocalizedText(category.name, lang, `category:${category.id}:name`)
+
+export const getCategoryNameBySlug = (slug: string, lang: Lang) => {
+  const category = getCategoryBySlug(slug)
+  return category ? getCategoryName(category, lang) : slug
+}
+
+export const getCategoryNameAccusative = (category: Category, lang: Lang) => {
+  if (lang === 'sr' && category.nameAccusative) {
+    return category.nameAccusative
   }
 
-  return `${category.subtitle} u ${cityLocative}`
+  return getCategoryName(category, lang)
+}
+
+export const formatCategorySubtitle = (category: Category, city: string, lang: Lang) => {
+  const cityText = lang === 'en' ? city : getCityLocative(city)
+
+  if (category.pageSubtitle) {
+    return getLocalizedText(
+      category.pageSubtitle,
+      lang,
+      `category:${category.id}:pageSubtitle`
+    ).replace('{city}', cityText)
+  }
+
+  const subtitle = getLocalizedText(category.subtitle, lang, `category:${category.id}:subtitle`)
+  return lang === 'en' ? `${subtitle} in ${cityText}` : `${subtitle} u ${cityText}`
 }

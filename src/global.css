@@ -215,6 +215,74 @@
         min-width: 0;
     }
 
+    .site-navbar-tools {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 2;
+        flex-shrink: 0;
+    }
+
+    .lang-switch {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0;
+        height: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .lang-switch-item {
+        display: inline-flex;
+        align-items: baseline;
+    }
+
+    .lang-switch-sep {
+        margin-inline: 0.35rem;
+        font-family: var(--font-heading);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 1;
+        color: var(--text-gray);
+    }
+
+    .lang-switch-option {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.1rem 0 0.2rem;
+        border-radius: 0;
+        font-family: var(--font-heading);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        color: var(--text-gray);
+        text-decoration: none;
+    }
+
+    a.lang-switch-option:hover {
+        color: var(--primary);
+    }
+
+    .lang-switch-option.is-active {
+        background: transparent;
+        color: var(--primary);
+        font-weight: 800;
+        box-shadow: inset 0 -2px 0 var(--peach);
+    }
+
+    .lang-switch.site-navbar-lang-menu {
+        display: none;
+    }
+
+    .site-navbar-divider {
+        display: none;
+    }
+
     .site-navbar-cta {
         height: 48px;
         box-sizing: border-box;
@@ -444,7 +512,7 @@
     }
 
     .search-bar-panel {
-        @apply bg-white p-3 sm:p-4 xl:mx-auto xl:w-[90%];
+        @apply relative bg-white p-3 sm:p-4 xl:mx-auto xl:w-[90%];
         border: 1px solid rgba(11, 26, 59, 0.05);
         border-radius: var(--radius-search-panel);
         box-shadow:
@@ -586,12 +654,19 @@
     }
 
     .search-clear {
-        @apply mt-3 w-full border-0 bg-transparent p-0 text-center text-sm font-semibold text-primary transition-colors;
+        @apply absolute left-0 right-0 z-[1] w-full border-0 bg-transparent p-0 text-center text-sm font-semibold transition-colors;
+        top: 100%;
+        margin-top: 0.25rem;
+        color: var(--text-muted);
+        text-decoration: underline;
+        text-decoration-color: var(--border);
+        text-underline-offset: 0.18em;
         cursor: pointer;
     }
 
     .search-clear:hover {
-        color: var(--text-muted);
+        color: var(--primary);
+        text-decoration-color: var(--text-gray);
     }
 
     .categories-section {

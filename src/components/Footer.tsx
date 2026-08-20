@@ -1,18 +1,21 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logoWhite from '../assets/images/kiddokompas-logo-white.png'
+import { isHomePath } from '../i18n/routes'
+import { useI18n } from '../i18n/useI18n'
 import { scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
 
 const Footer = () => {
     const [isAddActivityOpen, setIsAddActivityOpen] = useState(false)
     const location = useLocation()
+    const { t, path } = useI18n()
 
     const handleCategoriesClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-        if (location.pathname === '/') {
+        if (isHomePath(location.pathname)) {
             event.preventDefault()
             scrollToCategories()
-            window.history.replaceState(null, '', '/#kategorije')
+            window.history.replaceState(null, '', path.homeCategories)
         }
     }
 
@@ -22,7 +25,7 @@ const Footer = () => {
                 <div className="site-footer-inner">
                     <div className="site-footer-top">
                         <div className="site-footer-brand">
-                            <Link to="/" className="site-footer-logo-link">
+                            <Link to={path.home} className="site-footer-logo-link">
                                 <img
                                     src={logoWhite}
                                     alt="KiddoKompas"
@@ -30,35 +33,34 @@ const Footer = () => {
                                 />
                             </Link>
                             <p className="site-footer-description">
-                                KiddoKompas pomaže roditeljima da brže pronađu aktivnosti koje odgovaraju
-                                uzrastu, lokaciji i interesovanjima deteta.
+                                {t('footer.description')}
                             </p>
                         </div>
 
                         <div className="site-footer-links">
                             <div className="site-footer-links-group">
                                 <div className="site-footer-links-title" id="footer-explore-label">
-                                    Istraži
+                                    {t('footer.explore')}
                                 </div>
                                 <nav className="site-footer-nav" aria-labelledby="footer-explore-label">
                                     <Link
-                                        to="/#kategorije"
+                                        to={path.homeCategories}
                                         onClick={handleCategoriesClick}
                                         className="site-footer-link"
                                     >
-                                        Kategorije
+                                        {t('nav.categories')}
                                     </Link>
-                                    <Link to="/mapa" className="site-footer-link">
-                                        Mapa
+                                    <Link to={path.map} className="site-footer-link">
+                                        {t('nav.map')}
                                     </Link>
-                                    <Link to="/o-nama" className="site-footer-link">
-                                        O nama
+                                    <Link to={path.about} className="site-footer-link">
+                                        {t('nav.about')}
                                     </Link>
                                 </nav>
                             </div>
                             <div className="site-footer-links-group">
                                 <div className="site-footer-links-title" id="footer-info-label">
-                                    Informacije
+                                    {t('footer.info')}
                                 </div>
                                 <nav className="site-footer-nav" aria-labelledby="footer-info-label">
                                     <button
@@ -66,10 +68,10 @@ const Footer = () => {
                                         className="site-footer-link"
                                         onClick={() => setIsAddActivityOpen(true)}
                                     >
-                                        Dodaj aktivnost
+                                        {t('nav.addActivity')}
                                     </button>
-                                    <Link to="/politika-privatnosti" className="site-footer-link">
-                                        Politika privatnosti
+                                    <Link to={path.privacy} className="site-footer-link">
+                                        {t('footer.privacy')}
                                     </Link>
                                 </nav>
                             </div>
@@ -79,9 +81,9 @@ const Footer = () => {
                     <div className="site-footer-divider" aria-hidden="true" />
 
                     <div className="site-footer-bottom">
-                        <p className="site-footer-copyright">© 2026 KiddoKompas. Sva prava zadržana.</p>
+                        <p className="site-footer-copyright">{t('footer.copyright')}</p>
                         <p className="site-footer-disclaimer">
-                            Svi podaci su informativni — za tačne termine, cene i grupe kontaktirajte direktno školu ili organizatora.
+                            {t('footer.disclaimer')}
                         </p>
                     </div>
                 </div>

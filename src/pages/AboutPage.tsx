@@ -3,8 +3,10 @@ import jasminaWebp from '../assets/images/jasmina.webp'
 import jasminaJpeg from '../assets/images/jasmina.jpeg'
 import AddActivityModal from '../components/AddActivityModal'
 import Navbar from '../components/Navbar'
+import { useI18n } from '../i18n/useI18n'
 
 const AboutPage = () => {
+  const { t } = useI18n()
   const [isAddActivityOpen, setIsAddActivityOpen] = useState(false)
 
   return (
@@ -29,28 +31,20 @@ const AboutPage = () => {
           </div>
 
           <div className="about-intro-copy">
-            <p className="about-eyebrow">Zdravo</p>
-            <h1 className="about-title">Drago mi je što ste ovde.</h1>
+            <p className="about-eyebrow">{t('about.eyebrow')}</p>
+            <h1 className="about-title">{t('about.title')}</h1>
             <p className="about-name">Jasmina Fabijan</p>
-            <p className="about-role">Mama dve devojčice i autorka KiddoKompasa</p>
+            <p className="about-role">{t('about.role')}</p>
           </div>
         </header>
 
         <div className="about-body">
-          <p>
-            KiddoKompas je nastao iz jedne sasvim praktične roditeljske potrebe: da se na jednom mestu lakše pronađu aktivnosti za decu u vašem gradu.
-          </p>
-          <p>
-            Dok sam tražila aktivnosti za svoje devojčice, nedostajalo mi je jedno mesto koje bi olakšalo početak potrage — da mogu brzo da vidim koje aktivnosti su opcija, gde se održavaju i kojem uzrastu su namenjene.
-          </p>
+          <p>{t('about.p1')}</p>
+          <p>{t('about.p2')}</p>
 
-          <blockquote className="about-quote">
-            Kada su informacije pregledne, i izbor postaje lakši.
-          </blockquote>
+          <blockquote className="about-quote">{t('about.quote')}</blockquote>
 
-          <p>
-            Pošto je izrada web sajtova moj posao, odlučila sam da napravim upravo takvo mesto — za sebe i za sve roditelje koji traže aktivnosti za svoju decu.
-          </p>
+          <p>{t('about.p3')}</p>
 
           <aside className="about-notice" role="note">
             <span className="about-notice-icon" aria-hidden="true">
@@ -65,10 +59,7 @@ const AboutPage = () => {
                 <circle cx="12" cy="7.25" r="1.1" fill="currentColor" />
               </svg>
             </span>
-            <p>
-              KiddoKompas je katalog škola i klubova — ne sistem za upis. Cene, termine
-              i detaljnije informacije proverite kontaktirajući školu, klub ili organizatora.
-            </p>
+            <p>{t('about.notice')}</p>
           </aside>
         </div>
       </div>
@@ -76,17 +67,15 @@ const AboutPage = () => {
       <section className="about-cta" aria-labelledby="about-cta-title">
         <div className="about-cta-inner">
           <h2 id="about-cta-title" className="about-cta-title">
-            Znate školu ili klub koji nije na listi?
+            {t('about.ctaTitle')}
           </h2>
-          <p className="about-cta-text">
-            Ako vodite aktivnost za decu ili znate za školu, klub ili radionicu koju bi trebalo dodati, javite mi se.
-          </p>
+          <p className="about-cta-text">{t('about.ctaText')}</p>
           <button
             type="button"
             className="btn btn-primary about-cta-button"
             onClick={() => setIsAddActivityOpen(true)}
           >
-            Predložite aktivnost
+            {t('about.ctaButton')}
           </button>
         </div>
       </section>

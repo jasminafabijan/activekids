@@ -1,10 +1,17 @@
-import { useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useParams, useSearchParams } from 'react-router-dom'
 import BackLink from '../components/BackLink'
 import Navbar from '../components/Navbar'
 import SchoolCard from '../components/SchoolCard'
 import { getCityOptions } from '../data/cities'
-import { formatCategorySubtitle, getCategoryBySlug } from '../data/categories'
+import {
+  formatCategorySubtitle,
+  getCategoryBySlug,
+  getCategoryName,
+  getCategorySlug,
+} from '../data/categories'
 import { getSchoolsByCategory } from '../data/schools'
+import { categoryPath } from '../i18n/routes'
+import { useI18n } from '../i18n/useI18n'
 
 const getSelectedCity = (
   searchParams: URLSearchParams,
@@ -26,8 +33,9 @@ const getSelectedCity = (
 const CategoryPage = () => {
   const { slug } = useParams<{ slug: string }>()
   const [searchParams] = useSearchParams()
+  const { lang, path, t } = useI18n()
   const category = slug ? getCategoryBySlug(slug) : undefined
-  const categorySchools = slug ? getSchoolsByCategory(slug) : []
+  const categorySchools = category ? getSchoolsByCategory(category.id, lang) : []
   const categoryCities = [...new Set(categorySchools.map((school) => school.city))]
   const selectedCity = getSelectedCity(searchParams, categoryCities)
   const visibleSchools = categorySchools.filter((school) => school.city === selectedCity)
@@ -37,12 +45,23 @@ const CategoryPage = () => {
       <div className="page-shell">
         <Navbar />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-          <p className="text-muted">Kategorija nije pronađena.</p>
-          <BackLink to="/#kategorije" className="mt-4 inline-block text-sm font-semibold text-primary">
-            ← Nazad na početnu
+          <p className="text-muted">{t('category.notFound')}</p>
+          <BackLink to={path.homeCategories} className="mt-4 inline-block text-sm font-semibold text-primary">
+            ← {t('common.backHome')}
           </BackLink>
         </div>
       </div>
+    )
+  }
+
+  const canonicalSlug = getCategorySlug(category, lang)
+  if (slug !== canonicalSlug) {
+    const query = searchParams.toString()
+    return (
+      <Navigate
+        to={`${categoryPath(lang, category.id)}${query ? `?${query}` : ''}`}
+        replace
+      />
     )
   }
 
@@ -50,25 +69,25 @@ const CategoryPage = () => {
     <div className="page-shell">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <BackLink to="/#kategorije" className="category-page-back">
-          ← Nazad na početnu
+        <BackLink to={path.homeCategories} className="category-page-back">
+          ← {t('common.backHome')}
         </BackLink>
 
         <header className="category-page-header">
-          <h1 className="category-page-title">{category.name}</h1>
+          <h1 className="category-page-title">{getCategoryName(category, lang)}</h1>
           <p className="category-page-subtitle">
-            {formatCategorySubtitle(category, selectedCity)}
+            {formatCategorySubtitle(category, selectedCity, lang)}
           </p>
         </header>
 
         {visibleSchools.length > 0 ? (
           <div className="schools-grid">
             {visibleSchools.map((school) => (
-              <SchoolCard key={school.id} school={school} categoryContext={slug} />
+              <SchoolCard key={school.id} school={school} categoryContext={category.id} />
             ))}
           </div>
         ) : (
-          <p className="text-muted">Trenutno nema dostupnih škola u ovoj kategoriji.</p>
+          <p className="text-muted">{t('category.empty')}</p>
         )}
       </main>
     </div>

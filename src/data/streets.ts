@@ -1,0 +1,58 @@
+import { warnMissingEnglish } from '../i18n/helpers'
+import type { Lang } from '../i18n/types'
+
+/**
+ * English display for address strings that include a venue/type phrase.
+ * Translate the venue type only. Streets, official names and personal names
+ * keep original spelling (including diacritics).
+ */
+const STREET_LABELS: Record<string, string> = {
+  'Pavla Papa 16 (sala u dvorištu)': 'Pavla Papa 16 (hall in the courtyard)',
+  'Kopernikova 34 (sala u dvorištu)': 'Kopernikova 34 (hall in the courtyard)',
+  'OŠ "Svetozar Marković Toza", Janka Čmelika 89':
+    'Primary School "Svetozar Marković Toza", Janka Čmelika 89',
+  'OŠ "Vuk Karadžić", Radoja Domanovića 24':
+    'Primary School "Vuk Karadžić", Radoja Domanovića 24',
+  'OŠ "Nikola Tesla", Futoški put 25a': 'Primary School "Nikola Tesla", Futoški put 25a',
+  'OŠ „Vasa Stajić“, Pajevićeva': 'Primary School “Vasa Stajić”, Pajevićeva',
+  'OŠ „Kosta Trifković”, Berislava Berića 2':
+    'Primary School “Kosta Trifković”, Berislava Berića 2',
+  'Fakultet sporta (DIF), Lovćenska 16': 'Faculty of Sport (DIF), Lovćenska 16',
+  'Sala na Fakultetu sporta (DIF), Lovćenska 16':
+    'Hall at the Faculty of Sport (DIF), Lovćenska 16',
+  'Sala na Đačkom, Dr Vase Savića 3': 'Hall at Đačko, Dr Vase Savića 3',
+  'Đačko igralište, Jirečekova 2': 'Đačko playground, Jirečekova 2',
+  'Fudbalski centar „Vujadin Boškov”, Novosadski put 114':
+    'Football Center “Vujadin Boškov”, Novosadski put 114',
+  'Sportski centar RFK Novi Sad, Rumenačka 152':
+    'Sports Center RFK Novi Sad, Rumenačka 152',
+  'Mesna zajednica Bistrica, Braće Dronjak 11':
+    'Bistrica Community Center, Braće Dronjak 11',
+  'Bazeni SPENS-a, Sutjeska 2': 'SPENS pools, Sutjeska 2',
+  'Tehnička škola „Mileva Marić Anštajn”, Gagarinova 1':
+    'Technical School “Mileva Marić Anštajn”, Gagarinova 1',
+  'TC Pariski magazin, Kralja Aleksandra 12':
+    'Shopping Center Pariski magazin, Kralja Aleksandra 12',
+  'Kod autoputa A1': 'Near the A1 motorway',
+  'SC „Dejan Sremčević”, Školska 4': 'SC “Dejan Sremčević”, Školska 4',
+}
+
+const SERBIAN_VENUE_PHRASE =
+  /sala u dvorištu|OŠ |Fakultet sporta|Sala na |Fudbalski centar|Sportski centar|Mesna zajednica|Bazeni |Tehnička škola|Kod autoputa|igralište|TC /i
+
+export const getStreetName = (street: string, lang: Lang): string => {
+  if (lang !== 'en') {
+    return street
+  }
+
+  const mapped = STREET_LABELS[street]
+  if (mapped) {
+    return mapped
+  }
+
+  if (SERBIAN_VENUE_PHRASE.test(street)) {
+    warnMissingEnglish(`street:${street}`, 'needs an English venue label (keep original street spelling)')
+  }
+
+  return street
+}

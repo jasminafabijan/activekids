@@ -2,9 +2,11 @@ import {
   formatSchoolCategoryNames,
   getRecentlyAddedSchools,
 } from '../data/schools'
+import { useI18n } from '../i18n/useI18n'
 import SchoolCard from './SchoolCard'
 
 const RecentlyAddedSection = () => {
+  const { lang, t } = useI18n()
   const recentSchools = getRecentlyAddedSchools(3)
 
   if (recentSchools.length === 0) {
@@ -17,12 +19,12 @@ const RecentlyAddedSection = () => {
       aria-labelledby="recently-added-title"
     >
       <div className="categories-header">
-        <span className="tag tag--pill tag--mint">Rastemo</span>
+        <span className="tag tag--pill tag--mint">{t('recentlyAdded.tag')}</span>
         <h2 id="recently-added-title" className="categories-title">
-            Novo na KiddoKompasu
+            {t('recentlyAdded.title')}
         </h2>
         <p className="categories-subtitle">
-            Pogledajte škole i klubove koje smo nedavno dodali
+            {t('recentlyAdded.subtitle')}
         </p>
       </div>
 
@@ -31,7 +33,7 @@ const RecentlyAddedSection = () => {
           <SchoolCard
             key={school.id}
             school={school}
-            categoryLabel={formatSchoolCategoryNames(school)}
+            categoryLabel={formatSchoolCategoryNames(school, lang)}
             categoryContext={school.categorySlugs[0]}
           />
         ))}

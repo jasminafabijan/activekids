@@ -7,7 +7,10 @@ export const swimmingSchools: School[] = [
     {
         id: 'champ-07-plivanje',
         slug: 'champ-07-plivanje',
-        name: 'Champ 07',
+        name: {
+            sr: 'Champ 07',
+            en: 'Champ 07',
+        },
         categorySlugs: ['swimming'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
@@ -16,12 +19,20 @@ export const swimmingSchools: School[] = [
         ageLabel: '4+ godina',
         imageWebp: champ07Webp,
         imageFallback: champ07Jpg,
-        description: [
-            'Škola plivanja dečijeg sportskog kluba Champ 07 namenjena je pravilnom učenju plivačkih tehnika, čak i kada dete već zna da se održava na vodi.',
-            'Plivanje ravnomerno angažuje veliki broj mišića, a ne opterećuje zglobove, pa se često preporučuje i kao podrška zdravom držanju i razvoju.',
-            'Sa decom rade treneri Milorad Jakšić, Milan Molnar i Jelena Radojčić, u malim grupama — najviše petoro dece po treneru.',
-            'Program se odvija na bazenima SPENS-a, uz jasnu organizaciju prijave i rada u malom bazenu.',
-        ],
+        description: {
+            sr: [
+                'Škola plivanja dečijeg sportskog kluba Champ 07 namenjena je pravilnom učenju plivačkih tehnika, čak i kada dete već zna da se održava na vodi.',
+                'Plivanje ravnomerno angažuje veliki broj mišića, a ne opterećuje zglobove, pa se često preporučuje i kao podrška zdravom držanju i razvoju.',
+                'Sa decom rade treneri Milorad Jakšić, Milan Molnar i Jelena Radojčić, u malim grupama — najviše petoro dece po treneru.',
+                'Program se odvija na bazenima SPENS-a, uz jasnu organizaciju prijave i rada u malom bazenu.',
+            ],
+            en: [
+                'The swimming school of children’s sports club Champ 07 is for learning swimming technique properly, even when a child can already stay afloat.',
+                'Swimming works a large number of muscles evenly and does not load the joints, so it is often recommended as support for healthy posture and development.',
+                'Coaches Milorad Jakšić, Milan Molnar and Jelena Radojčić work with the children, in small groups — at most five children per coach.',
+                'The program takes place at the SPENS pools, with a clear enrollment process and work in the small pool.',
+            ],
+        },
         addresses: [
             {
                 street: 'Bazeni SPENS-a, Sutjeska 2',

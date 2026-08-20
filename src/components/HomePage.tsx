@@ -2,6 +2,8 @@ import { useEffect, useLayoutEffect, useState } from 'react'
 import { useLocation, useNavigate, useNavigationType } from 'react-router-dom'
 import { hasSavedScroll } from '../utils/scrollRestoration'
 import { jumpToCategories } from '../utils/scrollToElement'
+import { isCategoriesHash } from '../i18n/routes'
+import { useI18n } from '../i18n/useI18n'
 import {
   clearPendingHomeFilters,
   filtersToSearchParams,
@@ -17,10 +19,11 @@ const HomePage = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const navigationType = useNavigationType()
+  const { path } = useI18n()
   const [initialFilters] = useState(() => getInitialHomeFilters(location.state))
 
   useLayoutEffect(() => {
-    if (location.hash !== '#kategorije') {
+    if (!isCategoriesHash(location.hash)) {
       return
     }
 
@@ -51,7 +54,7 @@ const HomePage = () => {
 
   const handleFilterChange = (filters: FilterValues) => {
     const params = filtersToSearchParams(filters).toString()
-    navigate(`/pretraga${params ? `?${params}` : ''}`)
+    navigate(`${path.search}${params ? `?${params}` : ''}`)
   }
 
   return (

@@ -1,0 +1,25 @@
+---
+description: English UI is Latin-only; keep original spelling for people, streets, and brands
+globs: src/data/streets.ts,src/data/schoolCategories/**/*.ts,src/i18n/translations.ts
+alwaysApply: true
+---
+
+# English display
+
+In the English version:
+
+- **UI copy** is English, uses no Serbian letters (čćžšđ), and follows American spelling (center, behavior, program, catalog, organize, enrollment).
+- The **descriptive part** of a school/club name may be translated (škola → School, klub → Club, studio → Studio).
+- **Personal names** keep original spelling, including diacritics (Petar Mišić, Jovana Banić — not Misic, Banic).
+- **Street names and official addresses** stay original in both languages (Beogradski kej, Braće Dronjak — not Belgrade Quay, Brothers Dronjak).
+- **Districts** translate only descriptive parts that help locate the place: Stari Grad (Centar) → City Center, Severni Telep → North Telep, Južni Telep → South Telep. Keep recognizable names as-is (Grbavica, Liman, Detelinara, Novo naselje, Sajmište, Podbara, Adice). Do not use New Settlement, Fairground, or Old Town.
+- The **display name** of a school may use a more natural English word order, but **do not translate the brand or personal name** (Bubamara Chess Club, Mawashi Karate Club, Petar Mišić Tennis Club).
+
+Venue type in an address may still be translated; the rest of the line stays as written:
+
+- OŠ → Primary School
+- Mesna zajednica → Community Center
+- Fakultet sporta → Faculty of Sport
+- Sportski centar → Sports Center
+
+Put those venue labels in `src/data/streets.ts`. Unmapped streets are shown unchanged.

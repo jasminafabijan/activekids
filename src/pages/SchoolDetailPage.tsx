@@ -3,8 +3,12 @@ import { useLocation, useParams, useSearchParams } from 'react-router-dom'
 import BackLink from '../components/BackLink'
 import Navbar from '../components/Navbar'
 import SchoolMap from '../components/SchoolMap'
-import { getCategoryBySlug } from '../data/categories'
-import { formatSchoolAddress, formatPhoneHref, getMapsHref, getSchoolBySlug } from '../data/schools'
+import { getCategoryBySlug, getCategoryNameAccusative } from '../data/categories'
+import { categoryPath, getCategoryQueryValue, isHomePath, pagePath, PAGE_PATHS } from '../i18n/routes'
+import { getLocalizedParagraphs, schoolAgeLabel } from '../i18n/helpers'
+import { useI18n } from '../i18n/useI18n'
+import type { Lang } from '../i18n/types'
+import { formatSchoolAddress, formatPhoneHref, getMapsHref, getSchoolBySlug, getSchoolName } from '../data/schools'
 
 const ContactLocationIcon = () => (
   <svg
@@ -133,43 +137,53 @@ type SchoolLocationState = {
   from?: string
 }
 
+type TranslateFn = (key: string, vars?: Record<string, string | number>) => string
+
+const getFromPathname = (from: string | undefined) => from?.split(/[?#]/)[0] ?? ''
+
 const getSchoolBack = (
   from: string | undefined,
   categoryName: string | undefined,
-  categorySlug: string | undefined
+  categoryId: string | undefined,
+  lang: Lang,
+  t: TranslateFn
 ) => {
-  if (from === '/' || from?.startsWith('/#')) {
-    return { to: '/', label: 'Nazad na početnu' }
+  const fromPath = getFromPathname(from)
+
+  if (!from || isHomePath(fromPath) || from.startsWith('/#')) {
+    return { to: pagePath('home', lang), label: t('school.backHome') }
   }
 
-  if (from?.startsWith('/pretraga')) {
-    return { to: from, label: 'Nazad na pretragu' }
+  if (fromPath === PAGE_PATHS.search.sr || fromPath === PAGE_PATHS.search.en) {
+    return { to: from, label: t('school.backSearch') }
   }
 
-  if (from?.startsWith('/mapa')) {
-    return { to: from, label: 'Nazad na mapu' }
+  if (fromPath === PAGE_PATHS.map.sr || fromPath === PAGE_PATHS.map.en) {
+    return { to: from, label: t('school.backMap') }
   }
 
-  if (categorySlug) {
+  if (categoryId) {
     return {
-      to: `/kategorija/${categorySlug}`,
-      label: `Nazad na ${categoryName ?? categorySlug}`,
+      to: categoryPath(lang, categoryId),
+      label: t('school.backCategory', { category: categoryName ?? categoryId }),
     }
   }
 
-  return { to: '/', label: 'Nazad na početnu' }
+  return { to: pagePath('home', lang), label: t('school.backHome') }
 }
 
 const SchoolDetailPage = () => {
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
   const [searchParams] = useSearchParams()
+  const { lang, path, t } = useI18n()
   const school = slug ? getSchoolBySlug(slug) : undefined
   const from = (location.state as SchoolLocationState | null)?.from
-  const categorySlugFromQuery = searchParams.get('kategorija')
+  const queryCategory = getCategoryQueryValue(searchParams)
+  const categoryFromQuery = queryCategory ? getCategoryBySlug(queryCategory) : undefined
   const activeCategorySlug =
-    school && categorySlugFromQuery && school.categorySlugs.includes(categorySlugFromQuery)
-      ? categorySlugFromQuery
+    school && categoryFromQuery && school.categorySlugs.includes(categoryFromQuery.id)
+      ? categoryFromQuery.id
       : school?.categorySlugs[0]
   const category = activeCategorySlug ? getCategoryBySlug(activeCategorySlug) : undefined
 
@@ -178,9 +192,9 @@ const SchoolDetailPage = () => {
       <div className="page-shell">
         <Navbar />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-          <p className="text-muted">Škola nije pronađena.</p>
-          <BackLink to="/" className="mt-4 inline-block text-sm font-semibold text-primary">
-            ← Nazad na početnu
+          <p className="text-muted">{t('school.notFound')}</p>
+          <BackLink to={path.home} className="mt-4 inline-block text-sm font-semibold text-primary">
+            ← {t('school.backHome')}
           </BackLink>
         </div>
       </div>
@@ -261,10 +275,15 @@ const SchoolDetailPage = () => {
 
   const mapAddresses =
     school.addresses?.filter((address) => address.lat != null && address.lng != null) ?? []
+  const descriptionParagraphs = school.description
+    ? getLocalizedParagraphs(school.description, lang, `school:${school.id}:description`)
+    : []
   const back = getSchoolBack(
     from,
-    category?.nameAccusative ?? category?.name,
-    category?.slug
+    category ? getCategoryNameAccusative(category, lang) : undefined,
+    category?.id,
+    lang,
+    t
   )
 
   return (
@@ -277,12 +296,12 @@ const SchoolDetailPage = () => {
 
         <article className="school-detail">
           <header className="school-detail-header">
-            <h1 className="school-detail-title">{school.name}</h1>
+            <h1 className="school-detail-title">{getSchoolName(school, lang)}</h1>
 
             <div className="school-detail-tags">
               <span className="school-detail-tag school-detail-tag--age">
                 <UsersIcon />
-                {school.ageLabel}
+                {schoolAgeLabel(school, lang)}
               </span>
             </div>
           </header>
@@ -297,7 +316,7 @@ const SchoolDetailPage = () => {
                     <source srcSet={school.imageWebp} type="image/webp" />
                     <img
                       src={school.imageFallback}
-                      alt={school.name}
+                      alt={getSchoolName(school, lang)}
                       loading="eager"
                       decoding="async"
                       width={680}
@@ -308,13 +327,13 @@ const SchoolDetailPage = () => {
                 </div>
               </div>
 
-              {school.description && school.description.length > 0 && (
+              {descriptionParagraphs.length > 0 && (
                 <section className="school-detail-section" aria-labelledby="school-description">
                   <h2 id="school-description" className="school-detail-section-title">
-                    O programu
+                    {t('school.aboutProgram')}
                   </h2>
                   <div className="school-detail-description">
-                    {school.description.map((paragraph) => (
+                    {descriptionParagraphs.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
@@ -326,7 +345,7 @@ const SchoolDetailPage = () => {
               {contactLinks.length > 0 && (
                 <section className="school-detail-section" aria-labelledby="school-contact">
                   <h2 id="school-contact" className="school-detail-section-title">
-                    Kontakt
+                    {t('school.contact')}
                   </h2>
                   <ul className="school-detail-contact">
                     {contactLinks.map((link) => (
@@ -350,12 +369,12 @@ const SchoolDetailPage = () => {
               {(school.addresses?.length || mapAddresses.length > 0) && (
                 <section className="school-detail-section" aria-labelledby="school-location">
                   <h2 id="school-location" className="school-detail-section-title">
-                    {(school.addresses?.length ?? 0) > 1 ? 'Lokacije' : 'Lokacija'}
+                    {(school.addresses?.length ?? 0) > 1 ? t('school.locations') : t('school.location')}
                   </h2>
                   {school.addresses && school.addresses.length > 0 && (
                     <div className="school-detail-contact mb-4">
                       {school.addresses.map((address) => {
-                        const label = formatSchoolAddress(address)
+                        const label = formatSchoolAddress(address, lang)
 
                         return (
                           <a
@@ -377,7 +396,7 @@ const SchoolDetailPage = () => {
                   {mapAddresses.length > 0 && (
                     <SchoolMap
                       addresses={mapAddresses}
-                      school={{ name: school.name, ageLabel: school.ageLabel }}
+                      school={{ name: getSchoolName(school, lang), ageLabel: schoolAgeLabel(school, lang, true) }}
                     />
                   )}
                 </section>

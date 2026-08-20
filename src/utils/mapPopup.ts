@@ -1,4 +1,6 @@
 import type { PopupOptions } from 'leaflet'
+import { schoolPath } from '../i18n/routes'
+import type { Lang } from '../i18n/types'
 
 const escapeHtml = (value: string) =>
   value
@@ -7,13 +9,10 @@ const escapeHtml = (value: string) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
-export const formatPopupAge = (ageLabel: string) =>
-  ageLabel.replace(/\s*godina|\s*godine/g, ' god.').replace(/\s+/g, ' ').trim()
-
-export const schoolMapHref = (school: { slug: string; categorySlugs: string[] }) =>
-  school.categorySlugs[0]
-    ? `/skola/${school.slug}?kategorija=${school.categorySlugs[0]}`
-    : `/skola/${school.slug}`
+export const schoolMapHref = (
+  school: { slug: string; categorySlugs: string[] },
+  lang: Lang
+) => schoolPath(lang, school.slug, school.categorySlugs[0])
 
 export const schoolMapPopupOptions: PopupOptions = {
   maxWidth: 260,
@@ -28,7 +27,11 @@ type PopupSchool = {
   href?: string
 }
 
-export const buildSchoolMapPopupHtml = (street: string, schools: PopupSchool[]) => {
+export const buildSchoolMapPopupHtml = (
+  street: string,
+  schools: PopupSchool[],
+  seeDetailsLabel: string
+) => {
   if (schools.length === 0) {
     return `<div class="school-map-popup"><p class="school-map-popup-meta">${escapeHtml(street)}</p></div>`
   }
@@ -36,12 +39,12 @@ export const buildSchoolMapPopupHtml = (street: string, schools: PopupSchool[]) 
   const schoolsHtml = schools
     .map((school) => {
       const button = school.href
-        ? `<a class="school-map-popup-button" href="${escapeHtml(school.href)}">Vidi detalje</a>`
+        ? `<a class="school-map-popup-button" href="${escapeHtml(school.href)}">${escapeHtml(seeDetailsLabel)}</a>`
         : ''
 
       return `<div class="school-map-popup-school">
         <p class="school-map-popup-title">${escapeHtml(school.name)}</p>
-        <p class="school-map-popup-meta">${escapeHtml(formatPopupAge(school.ageLabel))}</p>
+        <p class="school-map-popup-meta">${escapeHtml(school.ageLabel)}</p>
         <p class="school-map-popup-meta">${escapeHtml(street)}</p>
         ${button}
       </div>`

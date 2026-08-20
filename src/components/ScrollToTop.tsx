@@ -5,6 +5,7 @@ import {
   saveScroll,
   setManualScrollRestoration,
 } from '../utils/scrollRestoration'
+import { isCategoriesHash, isHomePath } from '../i18n/routes'
 
 const ScrollToTop = () => {
     const location = useLocation()
@@ -49,7 +50,7 @@ const ScrollToTop = () => {
         }
 
         const isSamePathReplace = navigationType === 'REPLACE' && pathname === prevPath
-        const shouldJumpToCategories = pathname === '/' && hash === '#kategorije'
+        const shouldJumpToCategories = isHomePath(pathname) && isCategoriesHash(hash)
 
         if (!isSamePathReplace && !shouldJumpToCategories) {
             window.scrollTo(0, 0)

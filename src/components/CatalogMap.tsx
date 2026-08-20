@@ -6,6 +6,10 @@ import type { MapLocation } from '../utils/mapLocation'
 import { attachActivePinState } from '../utils/mapPin'
 import { attachMarkerOverlapZoom } from '../utils/mapOverlapZoom'
 import { buildSchoolMapPopupHtml, schoolMapHref, schoolMapPopupOptions } from '../utils/mapPopup'
+import { schoolAgeLabel } from '../i18n/helpers'
+import { useI18n } from '../i18n/useI18n'
+import { getSchoolName } from '../data/schools'
+import { getStreetName } from '../data/streets'
 import 'leaflet/dist/leaflet.css'
 
 const MAP_TILE_URL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
@@ -55,6 +59,7 @@ interface CatalogMapProps {
 const CatalogMap = ({ locations, selectedLocationId, onSelectLocation }: CatalogMapProps) => {
   const navigate = useNavigate()
   const routeLocation = useLocation()
+  const { lang, t } = useI18n()
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<L.Map | null>(null)
   const markersRef = useRef<MarkerWithLocations[]>([])
@@ -97,12 +102,13 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation }: Catalog
       marker.__locationIds = point.locations.map((item) => item.locationId)
       marker.bindPopup(
         buildSchoolMapPopupHtml(
-          point.locations[0].address.street,
+          getStreetName(point.locations[0].address.street, lang),
           uniqueSchools.map(({ school }) => ({
-            name: school.name,
-            ageLabel: school.ageLabel,
-            href: schoolMapHref(school),
-          }))
+            name: getSchoolName(school, lang),
+            ageLabel: schoolAgeLabel(school, lang, true),
+            href: schoolMapHref(school, lang),
+          })),
+          t('map.seeDetails')
         ),
         schoolMapPopupOptions
       )
@@ -175,7 +181,7 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation }: Catalog
       map.remove()
       mapInstanceRef.current = null
     }
-  }, [points])
+  }, [points, lang, t])
 
   useEffect(() => {
     const map = mapInstanceRef.current

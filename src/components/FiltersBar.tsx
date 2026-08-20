@@ -6,7 +6,9 @@ import {
   type SchoolFilters,
 } from '../data/schools'
 import { getCityOptions } from '../data/cities'
+import { districtMatchesQuery, getDistrictName } from '../data/districts'
 import { getDefaultFilters } from '../utils/searchFilters'
+import { useI18n } from '../i18n/useI18n'
 
 export type FilterValues = SchoolFilters
 
@@ -17,9 +19,6 @@ interface FiltersBarProps {
   applyOnChange?: boolean
 }
 
-const partsOfCityOptions = getDistrictOptions()
-const ageOptions = getAgeOptions()
-const activityOptions = getActivityOptions()
 const defaultFilters = getDefaultFilters()
 const cities = getCityOptions()
 
@@ -113,6 +112,10 @@ const FiltersBar = ({
   hideDistrict = false,
   applyOnChange = false,
 }: FiltersBarProps) => {
+  const { lang, t } = useI18n()
+  const ageOptions = getAgeOptions(lang)
+  const activityOptions = getActivityOptions(lang)
+  const partsOfCityOptions = getDistrictOptions(lang)
   const [filters, setFilters] = useState<FilterValues>(() => ({
     ...defaultFilters,
     ...initialFilters,
@@ -215,9 +218,8 @@ const FiltersBar = ({
     })
   }
 
-  const normalizedPartsQuery = partsQuery.trim().toLocaleLowerCase('sr')
   const filteredPartsOfCityOptions = partsOfCityOptions.filter((part) =>
-    part.toLocaleLowerCase('sr').includes(normalizedPartsQuery)
+    districtMatchesQuery(part, partsQuery)
   )
 
   const selectAllPartsOfCity = () => {
@@ -249,9 +251,9 @@ const FiltersBar = ({
     })
   }
 
-  const normalizedActivitiesQuery = activitiesQuery.trim().toLocaleLowerCase('sr')
+  const normalizedActivitiesQuery = activitiesQuery.trim().toLocaleLowerCase(lang)
   const filteredActivityOptions = activityOptions.filter((activity) =>
-    activity.name.toLocaleLowerCase('sr').includes(normalizedActivitiesQuery)
+    activity.name.toLocaleLowerCase(lang).includes(normalizedActivitiesQuery)
   )
 
   const selectAllActivities = () => {
@@ -272,15 +274,15 @@ const FiltersBar = ({
 
   const partsLabel =
     filters.partsOfCity.length === 0
-      ? 'Izaberite deo grada'
-      : filters.partsOfCity.join(', ')
+      ? t('filters.districtPlaceholder')
+      : filters.partsOfCity.map((part) => getDistrictName(part, lang)).join(', ')
 
   const selectedAgeOption = ageOptions.find((option) => option.value === filters.age)
-  const agesLabel = selectedAgeOption?.label ?? 'Svi uzrasti'
+  const agesLabel = selectedAgeOption?.label ?? t('filters.allAges')
 
   const activitiesLabel =
     filters.activities.length === 0
-      ? 'Izaberite aktivnost'
+      ? t('filters.activityPlaceholder')
       : filters.activities
           .map(
             (activitySlug) =>
@@ -309,7 +311,7 @@ const FiltersBar = ({
   return (
     <section
       className={`search-bar${hideDistrict ? ' search-bar--no-district' : ''}`}
-      aria-label="Pretraga aktivnosti"
+      aria-label={t('filters.ariaLabel')}
     >
       <div className="search-bar-panel">
         <div className="search-bar-grid">
@@ -317,7 +319,7 @@ const FiltersBar = ({
             <LocationIcon />
             <div className="search-field-content">
               <label htmlFor="city" className="search-field-label">
-                Grad
+                {t('filters.city')}
               </label>
               <select
                 id="city"
@@ -342,7 +344,7 @@ const FiltersBar = ({
             <MapIcon />
             <div className="search-field-content">
               <span id="partsOfCity-label" className="search-field-label">
-                Deo grada
+                {t('filters.district')}
               </span>
               <button
                 type="button"
@@ -364,9 +366,9 @@ const FiltersBar = ({
                       type="search"
                       value={partsQuery}
                       onChange={(e) => setPartsQuery(e.target.value)}
-                      placeholder="Pretraži deo grada..."
+                      placeholder={t('filters.districtSearch')}
                       className="search-field-menu-search-input"
-                      aria-label="Pretraži deo grada"
+                      aria-label={t('filters.districtSearch')}
                     />
                   </div>
                   <button
@@ -376,7 +378,7 @@ const FiltersBar = ({
                       filters.partsOfCity.length > 0 ? clearPartsOfCity : selectAllPartsOfCity
                     }
                   >
-                    {filters.partsOfCity.length > 0 ? 'Izbriši sve' : 'Označi sve'}
+                    {filters.partsOfCity.length > 0 ? t('filters.clearAll') : t('filters.selectAll')}
                   </button>
                   <div className="search-field-menu-options">
                     {filteredPartsOfCityOptions.length > 0 ? (
@@ -391,12 +393,12 @@ const FiltersBar = ({
                               checked={isChecked}
                               onChange={() => togglePartOfCity(part)}
                             />
-                            <span>{part}</span>
+                            <span>{getDistrictName(part, lang)}</span>
                           </label>
                         )
                       })
                     ) : (
-                      <p className="search-field-menu-empty">Nema rezultata</p>
+                      <p className="search-field-menu-empty">{t('filters.noResults')}</p>
                     )}
                   </div>
                 </div>
@@ -412,7 +414,7 @@ const FiltersBar = ({
             <UsersIcon />
             <div className="search-field-content">
               <span id="age-label" className="search-field-label">
-                Uzrast
+                {t('filters.age')}
               </span>
               <button
                 type="button"
@@ -434,7 +436,7 @@ const FiltersBar = ({
                       className={`search-field-option search-field-option-text ${filters.age == null ? 'search-field-option-active' : ''}`}
                       onClick={() => selectAge(null)}
                     >
-                      Svi uzrasti
+                      {t('filters.allAges')}
                     </button>
                     {ageOptions.map((option) => (
                       <button
@@ -459,7 +461,7 @@ const FiltersBar = ({
             <SparklesIcon />
             <div className="search-field-content">
               <span id="activity-label" className="search-field-label">
-                Aktivnost
+                {t('filters.activity')}
               </span>
               <button
                 type="button"
@@ -481,9 +483,9 @@ const FiltersBar = ({
                       type="search"
                       value={activitiesQuery}
                       onChange={(e) => setActivitiesQuery(e.target.value)}
-                      placeholder="Pretraži aktivnost..."
+                      placeholder={t('filters.activitySearch')}
                       className="search-field-menu-search-input"
-                      aria-label="Pretraži aktivnost"
+                      aria-label={t('filters.activitySearch')}
                     />
                   </div>
                   <button
@@ -493,7 +495,7 @@ const FiltersBar = ({
                       filters.activities.length > 0 ? clearActivities : selectAllActivities
                     }
                   >
-                    {filters.activities.length > 0 ? 'Izbriši sve' : 'Označi sve'}
+                    {filters.activities.length > 0 ? t('filters.clearAll') : t('filters.selectAll')}
                   </button>
                   <div className="search-field-menu-options">
                     {filteredActivityOptions.length > 0 ? (
@@ -513,7 +515,7 @@ const FiltersBar = ({
                         )
                       })
                     ) : (
-                      <p className="search-field-menu-empty">Nema rezultata</p>
+                      <p className="search-field-menu-empty">{t('filters.noResults')}</p>
                     )}
                   </div>
                 </div>
@@ -524,13 +526,13 @@ const FiltersBar = ({
           {applyOnChange ? null : (
             <button type="button" onClick={handleSearch} className="search-submit">
               <SearchIcon />
-              Pronađi
+              {t('filters.find')}
             </button>
           )}
         </div>
         {applyOnChange && hasActiveFilters ? (
           <button type="button" className="search-clear" onClick={clearFilters}>
-            Ukloni filter
+            {t('filters.clear')}
           </button>
         ) : null}
       </div>

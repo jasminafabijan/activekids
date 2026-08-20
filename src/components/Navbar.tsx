@@ -1,13 +1,17 @@
 import { useEffect, useId, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/images/kiddokompas-logo.png'
+import { isHomePath } from '../i18n/routes'
+import { useI18n } from '../i18n/useI18n'
 import { scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const Navbar = () => {
     const [isAddActivityOpen, setIsAddActivityOpen] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const location = useLocation()
+    const { t, path } = useI18n()
     const menuId = useId()
 
     useEffect(() => {
@@ -49,10 +53,10 @@ const Navbar = () => {
     const handleCategoriesClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         setIsMenuOpen(false)
 
-        if (location.pathname === '/') {
+        if (isHomePath(location.pathname)) {
             event.preventDefault()
             scrollToCategories()
-            window.history.replaceState(null, '', '/#kategorije')
+            window.history.replaceState(null, '', path.homeCategories)
         }
     }
 
@@ -60,7 +64,7 @@ const Navbar = () => {
         <>
             <nav className="site-navbar">
                 <div className="site-navbar-inner">
-                    <Link to="/" className="site-navbar-brand" onClick={() => setIsMenuOpen(false)}>
+                    <Link to={path.home} className="site-navbar-brand" onClick={() => setIsMenuOpen(false)}>
                         <img
                             src={logo}
                             alt="KiddoKompas logo"
@@ -68,20 +72,23 @@ const Navbar = () => {
                         />
                     </Link>
 
-                    <button
-                        type="button"
-                        className="site-navbar-toggle"
-                        aria-expanded={isMenuOpen}
-                        aria-controls={menuId}
-                        aria-label={isMenuOpen ? 'Zatvori meni' : 'Otvori meni'}
-                        onClick={() => setIsMenuOpen((open) => !open)}
-                    >
-                        <span className="site-navbar-toggle-icon" aria-hidden="true">
-                            <span className="site-navbar-toggle-bar" />
-                            <span className="site-navbar-toggle-bar site-navbar-toggle-bar--short" />
-                            <span className="site-navbar-toggle-bar" />
-                        </span>
-                    </button>
+                    <div className="site-navbar-tools">
+                        <LanguageSwitcher />
+                        <button
+                            type="button"
+                            className="site-navbar-toggle"
+                            aria-expanded={isMenuOpen}
+                            aria-controls={menuId}
+                            aria-label={isMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+                            onClick={() => setIsMenuOpen((open) => !open)}
+                        >
+                            <span className="site-navbar-toggle-icon" aria-hidden="true">
+                                <span className="site-navbar-toggle-bar" />
+                                <span className="site-navbar-toggle-bar site-navbar-toggle-bar--short" />
+                                <span className="site-navbar-toggle-bar" />
+                            </span>
+                        </button>
+                    </div>
 
                     <div
                         id={menuId}
@@ -89,28 +96,30 @@ const Navbar = () => {
                     >
                         <span className="site-navbar-menu-accent" aria-hidden="true" />
                         <Link
-                            to="/#kategorije"
+                            to={path.homeCategories}
                             onClick={handleCategoriesClick}
                             className="navbar-categories-link site-navbar-menu-link"
                         >
-                            Kategorije
+                            {t('nav.categories')}
                         </Link>
                         <NavLink
-                            to="/mapa"
+                            to={path.map}
                             end
                             onClick={() => setIsMenuOpen(false)}
                             className="navbar-categories-link site-navbar-menu-link"
                         >
-                            Mapa
+                            {t('nav.map')}
                         </NavLink>
                         <NavLink
-                            to="/o-nama"
+                            to={path.about}
                             end
                             onClick={() => setIsMenuOpen(false)}
                             className="navbar-categories-link site-navbar-menu-link"
                         >
-                            O nama
+                            {t('nav.about')}
                         </NavLink>
+                        <LanguageSwitcher className="site-navbar-lang-menu" />
+                        <span className="site-navbar-divider" aria-hidden="true" />
                         <button
                             type="button"
                             className="btn btn-primary site-navbar-cta"
@@ -119,7 +128,7 @@ const Navbar = () => {
                                 setIsAddActivityOpen(true)
                             }}
                         >
-                            Dodaj aktivnost
+                            {t('nav.addActivity')}
                         </button>
                     </div>
                 </div>
@@ -129,7 +138,7 @@ const Navbar = () => {
                 <button
                     type="button"
                     className="site-navbar-backdrop"
-                    aria-label="Zatvori meni"
+                    aria-label={t('nav.closeMenu')}
                     onClick={() => setIsMenuOpen(false)}
                 />
             ) : null}

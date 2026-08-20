@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { formatSchoolCategoryNames, getActivityOptions, schools } from '../data/schools'
+import { formatSchoolCategoryNames, getActivityOptions, getSchoolNameSr, schools } from '../data/schools'
 import './admin.css'
 
 const VERIFIED_STORAGE_KEY = 'kiddokompas-admin-verified'
@@ -39,7 +39,7 @@ const AdminPage = () => {
         return bySport
       }
 
-      return a.name.localeCompare(b.name, 'sr')
+      return getSchoolNameSr(a).localeCompare(getSchoolNameSr(b), 'sr')
     })
   }, [sportFilter])
 
@@ -116,13 +116,13 @@ const AdminPage = () => {
                       className="admin-table-checkbox"
                       checked={isVerified}
                       onChange={() => toggleVerified(school.id)}
-                      aria-label={`Provereno sa vlasnikom — ${school.name}`}
+                      aria-label={`Provereno sa vlasnikom — ${getSchoolNameSr(school)}`}
                     />
                   </td>
                   <td>{sportName}</td>
                   <td>
                     <Link to={`/skola/${school.slug}`} className="admin-table-school-link">
-                      {school.name}
+                      {getSchoolNameSr(school)}
                     </Link>
                   </td>
                   <td>

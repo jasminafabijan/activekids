@@ -1,10 +1,12 @@
 import L from 'leaflet'
 import { useEffect, useMemo, useRef } from 'react'
-import type { School, SchoolAddress } from '../data/schools'
+import type { SchoolAddress } from '../data/schools'
 import { getGoogleMapsOpenHref } from '../data/schools'
+import { getStreetName } from '../data/streets'
 import { attachActivePinState, mapPinIcon } from '../utils/mapPin'
 import { attachMarkerOverlapZoom } from '../utils/mapOverlapZoom'
 import { buildSchoolMapPopupHtml, schoolMapPopupOptions } from '../utils/mapPopup'
+import { useI18n } from '../i18n/useI18n'
 import 'leaflet/dist/leaflet.css'
 
 const MAP_TILE_URL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
@@ -17,12 +19,13 @@ const getMapZoom = (pointCount: number) => {
 
 interface SchoolMapProps {
   addresses: SchoolAddress[]
-  school?: Pick<School, 'name' | 'ageLabel'>
+  school?: { name: string; ageLabel: string }
 }
 
 const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<L.Map | null>(null)
+  const { lang, t } = useI18n()
 
   const points = useMemo(
     () =>
@@ -54,12 +57,15 @@ const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
 
     const markers = points.map((address) => {
       const marker = L.marker([address.lat, address.lng], { icon: mapPinIcon })
+      const streetLabel = getStreetName(address.street, lang)
       marker.bindPopup(
         school
-          ? buildSchoolMapPopupHtml(address.street, [
-              { name: school.name, ageLabel: school.ageLabel },
-            ])
-          : buildSchoolMapPopupHtml(address.street, []),
+          ? buildSchoolMapPopupHtml(
+              streetLabel,
+              [{ name: school.name, ageLabel: school.ageLabel }],
+              t('map.seeDetails')
+            )
+          : buildSchoolMapPopupHtml(streetLabel, [], t('map.seeDetails')),
         schoolMapPopupOptions
       )
       marker.addTo(map)
@@ -95,7 +101,7 @@ const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
       map.remove()
       mapInstanceRef.current = null
     }
-  }, [points, school])
+  }, [lang, points, school, t])
 
   if (points.length === 0) return null
 
@@ -109,7 +115,7 @@ const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
           rel="noopener noreferrer"
           className="school-detail-map-open-link"
         >
-          Otvori u Google Maps
+          {t('map.openInGoogleMaps')}
         </a>
       </div>
     </div>

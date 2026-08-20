@@ -1,3 +1,5 @@
+import type { LocalizedParagraphs, LocalizedText } from '../../i18n/types'
+
 export type SchoolFilters = {
     city: string
     partsOfCity: string[]
@@ -25,7 +27,7 @@ export type SchoolAddress = {
 export type School = {
     id: string
     slug: string
-    name: string
+    name: LocalizedText
     categorySlugs: string[]
     city: string
     district: string
@@ -34,7 +36,7 @@ export type School = {
     ageLabel: string
     imageWebp: string
     imageFallback: string
-    description?: string[]
+    description?: LocalizedParagraphs
     addresses?: SchoolAddress[]
     contact?: SchoolContact
 }

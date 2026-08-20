@@ -3,6 +3,14 @@
 
 <head>
     <meta charset="UTF-8" />
+    <script>
+        (function () {
+            var path = location.pathname
+            if (path === '/en' || path.indexOf('/en/') === 0) {
+                document.documentElement.lang = 'en'
+            }
+        })()
+    </script>
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -25,8 +33,9 @@
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- Cloudflare Web Analytics -->
-    <script type='defer' src='https://static.cloudflareinsights.com/beacon.min.js'
-        data-cf-beacon='{"token": "bbba72d424d64b09b9d61eea00ee4521"}'></script><!-- End Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "bbba72d424d64b09b9d61eea00ee4521"}'></script>
+    <!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>

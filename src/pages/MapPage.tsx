@@ -3,26 +3,14 @@ import CatalogMap from '../components/CatalogMap'
 import FiltersBar, { type FilterValues } from '../components/FiltersBar'
 import MapActivityCard from '../components/MapActivityCard'
 import Navbar from '../components/Navbar'
-import { getCityLocative } from '../data/cities'
-import { filterSchools } from '../data/schools'
+import { filterSchools, getSchoolName } from '../data/schools'
+import { formatMapCountLabel } from '../i18n/formatters'
+import { useI18n } from '../i18n/useI18n'
 import { getMapLocations } from '../utils/mapLocation'
 import { getDefaultFilters } from '../utils/searchFilters'
 
-const formatActivityCountLabel = (count: number, city: string) => {
-  const locative = getCityLocative(city)
-  const remainder10 = count % 10
-  const remainder100 = count % 100
-  const word =
-    remainder100 >= 11 && remainder100 <= 14
-      ? 'aktivnosti'
-      : remainder10 === 1
-        ? 'aktivnost'
-        : 'lokacija'
-
-  return `${count} ${word} u ${locative}`
-}
-
 const MapPage = () => {
+  const { lang, t } = useI18n()
   const [filters, setFilters] = useState<FilterValues>(getDefaultFilters)
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null)
   const cardRefs = useRef<Map<string, HTMLElement>>(new Map())
@@ -30,10 +18,10 @@ const MapPage = () => {
   const mappedLocations = useMemo(() => {
     const schools = visibleSchools
       .filter((school) => school.addresses?.some((address) => address.lat != null && address.lng != null))
-      .sort((a, b) => a.name.localeCompare(b.name, 'sr'))
+      .sort((a, b) => getSchoolName(a, lang).localeCompare(getSchoolName(b, lang), lang === 'en' ? 'en' : 'sr'))
 
     return getMapLocations(schools)
-  }, [visibleSchools])
+  }, [lang, visibleSchools])
 
   const handleFilterChange = useCallback((next: FilterValues) => {
     setFilters(next)
@@ -51,7 +39,7 @@ const MapPage = () => {
 
       <div className="map-page-intro">
         <header className="category-page-header map-page-header">
-          <h1 className="category-page-title">Mapa aktivnosti</h1>
+          <h1 className="category-page-title">{t('map.title')}</h1>
         </header>
 
         <FiltersBar hideDistrict applyOnChange onFilterChange={handleFilterChange} />
@@ -59,9 +47,9 @@ const MapPage = () => {
 
       {mappedLocations.length > 0 ? (
         <div className="map-page-body">
-          <aside className="map-page-list" aria-label="Lista aktivnosti">
+          <aside className="map-page-list" aria-label={t('map.listAria')}>
             <h2 className="map-page-list-title">
-              {formatActivityCountLabel(mappedLocations.length, filters.city)}
+              {formatMapCountLabel(mappedLocations.length, filters.city, lang)}
             </h2>
             <div className="map-page-list-cards">
               {mappedLocations.map((location) => (
@@ -94,7 +82,7 @@ const MapPage = () => {
         </div>
       ) : (
         <p className="map-page-empty">
-          Nema rezultata za izabrane kriterijume. Pokušajte da izmenite uzrast ili aktivnost.
+          {t('map.empty')}
         </p>
       )}
     </div>

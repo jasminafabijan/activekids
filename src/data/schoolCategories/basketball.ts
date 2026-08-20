@@ -15,7 +15,10 @@ export const basketballSchools: School[] = [
     {
         id: 'champ-07',
         slug: 'champ-07',
-        name: 'Champ 07',
+        name: {
+            sr: 'Champ 07',
+            en: 'Champ 07',
+        },
         categorySlugs: ['basketball'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
@@ -24,13 +27,22 @@ export const basketballSchools: School[] = [
         ageLabel: '7–12 godina',
         imageWebp: champ07Webp,
         imageFallback: champ07Jpg,
-        description: [
-            'Dečiji sportski klub Champ 07 već više od dve decenije radi sa decom kroz više sportskih programa, uključujući i košarku.',
-            'Treninzi košarke zasnivaju se na humanom, pedagoškom pristupu u kojem je svako dete u fokusu — na treningu i na utakmici.',
-            'Program nudi dozirano fizičko, intelektualno i emotivno opterećenje, uz naglasak na igru, radost i kvalitetno provedeno slobodno vreme.',
-            'Klub okuplja trenere posvećene radu sa mlađim uzrastima i stvaranju okruženja u kojem se greške i uspesi jednako doživljavaju kao deo učenja.',
-            'Pored redovnih treninga, Champ 07 decu uključuje i u šire sportske aktivnosti i druženja u okviru kluba.',
-        ],
+        description: {
+            sr: [
+                'Dečiji sportski klub Champ 07 već više od dve decenije radi sa decom kroz više sportskih programa, uključujući i košarku.',
+                'Treninzi košarke zasnivaju se na humanom, pedagoškom pristupu u kojem je svako dete u fokusu — na treningu i na utakmici.',
+                'Program nudi dozirano fizičko, intelektualno i emotivno opterećenje, uz naglasak na igru, radost i kvalitetno provedeno slobodno vreme.',
+                'Klub okuplja trenere posvećene radu sa mlađim uzrastima i stvaranju okruženja u kojem se greške i uspesi jednako doživljavaju kao deo učenja.',
+                'Pored redovnih treninga, Champ 07 decu uključuje i u šire sportske aktivnosti i druženja u okviru kluba.',
+            ],
+            en: [
+                'Children’s sports club Champ 07 has worked with children for more than two decades across several sports programs, including basketball.',
+                'Basketball training is based on a humane, pedagogical approach in which every child is the focus — in training and in the game.',
+                'The program offers measured physical, intellectual and emotional load, with an emphasis on play, joy and well-spent free time.',
+                'The club brings together coaches dedicated to younger age groups and to creating an environment where mistakes and successes are equally treated as part of learning.',
+                'Besides regular training, Champ 07 also includes children in broader sports activities and gatherings within the club.',
+            ],
+        },
         addresses: [
             {
                 street: 'Fakultet sporta (DIF), Lovćenska 16',
@@ -52,7 +64,10 @@ export const basketballSchools: School[] = [
     {
         id: 'kk-sports-world',
         slug: 'kk-sports-world',
-        name: "KK Sport's World",
+        name: {
+            sr: "KK Sport's World",
+            en: "Sport's World Basketball Club",
+        },
         categorySlugs: ['basketball'],
         city: 'Novi Sad',
         district: 'Salajka',
@@ -61,13 +76,22 @@ export const basketballSchools: School[] = [
         ageLabel: '6–16 godina',
         imageWebp: sportsWorldWebp,
         imageFallback: sportsWorldJpg,
-        description: [
-            "Košarkaški klub Sport's World postoji više od 35 godina i specijalizovan je za rad sa mlađim kategorijama.",
-            'U programu se naglašavaju trud, karakter i poštovanje — vrednosti koje pomažu deci da napreduju i na terenu i van njega.',
-            'Klub veruje da su kvalitetne košarkaške osnove u strogom, zabavnom i negujućem okruženju najbolji put ka dugoročnom uspehu.',
-            'Treninzi se održavaju po međunarodnom programu veština i evropskom kurikulumu, uz tim diplomiranih košarkaških trenera.',
-            'Polaznici učestvuju u takmičenjima na nivou grada, Vojvodine i Srbije, kroz uzrasne selekcije od minibasketa do kadeta.',
-        ],
+        description: {
+            sr: [
+                "Košarkaški klub Sport's World postoji više od 35 godina i specijalizovan je za rad sa mlađim kategorijama.",
+                'U programu se naglašavaju trud, karakter i poštovanje — vrednosti koje pomažu deci da napreduju i na terenu i van njega.',
+                'Klub veruje da su kvalitetne košarkaške osnove u strogom, zabavnom i negujućem okruženju najbolji put ka dugoročnom uspehu.',
+                'Treninzi se održavaju po međunarodnom programu veština i evropskom kurikulumu, uz tim diplomiranih košarkaških trenera.',
+                'Polaznici učestvuju u takmičenjima na nivou grada, Vojvodine i Srbije, kroz uzrasne selekcije od minibasketa do kadeta.',
+            ],
+            en: [
+                "Sport's World Basketball Club has existed for more than 35 years and specializes in work with younger age groups.",
+                'The program emphasises effort, character and respect — values that help children progress both on the court and off it.',
+                'The club believes that sound basketball foundations in a strict, fun and nurturing environment are the best path to long-term success.',
+                'Training follows an international skills program and a European curriculum, with a team of graduate basketball coaches.',
+                'Pupils take part in competitions at city, Vojvodina and Serbia level, through age selections from minibasket to cadets.',
+            ],
+        },
         addresses: [
             {
                 street: 'OŠ "Vuk Karadžić", Radoja Domanovića 24',
@@ -95,7 +119,10 @@ export const basketballSchools: School[] = [
     {
         id: 'kk-ld',
         slug: 'kk-ld',
-        name: 'Košarkaški klub LD',
+        name: {
+            sr: 'Košarkaški klub LD',
+            en: 'LD Basketball Club',
+        },
         categorySlugs: ['basketball'],
         city: 'Novi Sad',
         district: 'Telep',
@@ -104,13 +131,22 @@ export const basketballSchools: School[] = [
         ageLabel: '6–16 godina',
         imageWebp: kkLdWebp,
         imageFallback: kkLdJpg,
-        description: [
-            'Košarkaški klub LD osnovan je 2011. godine u Novom Sadu, sa ciljem da privuče i usmeri decu ka bavljenju košarkom.',
-            'Osnivači kluba svoj igrački i trenerski iskustvo prenose na dečake i devojčice koji tek otkrivaju prve košarkaške korake.',
-            'Rad je organizovan tako da svako dete ima priliku da ispolji talenat, druži se sa vršnjacima i uči kroz pobede i poraze.',
-            'U klubu se jednako cene košarkaški napredak, školski uspeh i odnos prema drugovima u timu.',
-            'Kroz treninge i takmičenja polaznici razvijaju radne navike, disciplinu, samostalnost i osećaj pripadnosti kolektivu.',
-        ],
+        description: {
+            sr: [
+                'Košarkaški klub LD osnovan je 2011. godine u Novom Sadu, sa ciljem da privuče i usmeri decu ka bavljenju košarkom.',
+                'Osnivači kluba svoj igrački i trenerski iskustvo prenose na dečake i devojčice koji tek otkrivaju prve košarkaške korake.',
+                'Rad je organizovan tako da svako dete ima priliku da ispolji talenat, druži se sa vršnjacima i uči kroz pobede i poraze.',
+                'U klubu se jednako cene košarkaški napredak, školski uspeh i odnos prema drugovima u timu.',
+                'Kroz treninge i takmičenja polaznici razvijaju radne navike, disciplinu, samostalnost i osećaj pripadnosti kolektivu.',
+            ],
+            en: [
+                'LD Basketball Club was founded in 2011 in Novi Sad, with the aim of attracting children and guiding them into basketball.',
+                'The club’s founders pass on their playing and coaching experience to boys and girls who are just taking their first basketball steps.',
+                'The work is organized so that every child has a chance to show talent, spend time with peers and learn through wins and losses.',
+                'The club values basketball progress, school success and how teammates treat one another equally.',
+                'Through training and competitions, pupils develop work habits, discipline, independence and a sense of belonging to the group.',
+            ],
+        },
         addresses: [
             {
                 street: 'OŠ "Nikola Tesla", Futoški put 25a',
@@ -138,7 +174,10 @@ export const basketballSchools: School[] = [
     {
         id: 'kk-star',
         slug: 'kk-star',
-        name: 'Košarkaški klub Star',
+        name: {
+            sr: 'Košarkaški klub Star',
+            en: 'Star Basketball Club',
+        },
         categorySlugs: ['basketball'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
@@ -147,12 +186,20 @@ export const basketballSchools: School[] = [
         ageLabel: '6+ godina',
         imageWebp: kkStarWebp,
         imageFallback: kkStarJpg,
-        description: [
-            'Košarkaški klub Star iz Novog Sada osnovan je 2004. godine i okuplja decu i mlade kroz školu košarke i rad mlađih kategorija.',
-            'Klub neguje ljubav prema košarci kroz redovne treninge, takmičenja i zajedničke sportske aktivnosti.',
-            'Program je namenjen deci koja žele da nauče osnove igre, napreduju u timu i razvijaju sportske navike.',
-            'Star je aktivan u lokalnoj košarkaškoj zajednici i redovno organizuje upise i programe za nove članove.',
-        ],
+        description: {
+            sr: [
+                'Košarkaški klub Star iz Novog Sada osnovan je 2004. godine i okuplja decu i mlade kroz školu košarke i rad mlađih kategorija.',
+                'Klub neguje ljubav prema košarci kroz redovne treninge, takmičenja i zajedničke sportske aktivnosti.',
+                'Program je namenjen deci koja žele da nauče osnove igre, napreduju u timu i razvijaju sportske navike.',
+                'Star je aktivan u lokalnoj košarkaškoj zajednici i redovno organizuje upise i programe za nove članove.',
+            ],
+            en: [
+                'Star Basketball Club from Novi Sad was founded in 2004 and brings together children and young people through a basketball school and younger age-group work.',
+                'The club nurtures a love of basketball through regular training, competitions and shared sports activities.',
+                'The program is for children who want to learn the basics of the game, progress in a team and develop sporting habits.',
+                'Star is active in the local basketball community and regularly organizes enrollment and programs for new members.',
+            ],
+        },
         addresses: [
             {
                 street: 'SPENS, Sutjeska 2',
@@ -173,7 +220,10 @@ export const basketballSchools: School[] = [
     {
         id: 'sport-key',
         slug: 'sport-key',
-        name: 'KK Sport-Key',
+        name: {
+            sr: 'KK Sport-Key',
+            en: 'Sport-Key Basketball Club',
+        },
         categorySlugs: ['basketball'],
         city: 'Novi Sad',
         district: 'Sajmište',
@@ -182,12 +232,20 @@ export const basketballSchools: School[] = [
         ageLabel: '6+ godina',
         imageWebp: sportKeyWebp,
         imageFallback: sportKeyJpg,
-        description: [
-            'KK Sport-Key je škola košarke i košarkaški klub u Novom Sadu, sa dugom tradicijom rada sa decom i mladima.',
-            'Klub neguje sportsko vaspitanje i razvoj ličnosti — pored košarkaških veština, naglasak je na vrednostima koje pomažu i van terena.',
-            'Treninzi i takmičenja odvijaju se u sopstvenom sportskom centru „Dejan Sremčević”, sa dve sale i kompletnom pratećom infrastrukturom.',
-            'Upis novih članova traje tokom cele godine, a rad je organizovan po uzrasnim grupama sa stručnim trenerskim kadrom.',
-        ],
+        description: {
+            sr: [
+                'KK Sport-Key je škola košarke i košarkaški klub u Novom Sadu, sa dugom tradicijom rada sa decom i mladima.',
+                'Klub neguje sportsko vaspitanje i razvoj ličnosti — pored košarkaških veština, naglasak je na vrednostima koje pomažu i van terena.',
+                'Treninzi i takmičenja odvijaju se u sopstvenom sportskom centru „Dejan Sremčević”, sa dve sale i kompletnom pratećom infrastrukturom.',
+                'Upis novih članova traje tokom cele godine, a rad je organizovan po uzrasnim grupama sa stručnim trenerskim kadrom.',
+            ],
+            en: [
+                'Sport-Key Basketball Club is a basketball school and basketball club in Novi Sad, with a long tradition of work with children and young people.',
+                'The club nurtures sports education and personal development — besides basketball skills, the emphasis is on values that help off the court as well.',
+                'Training and competitions take place in its own sports center “Dejan Sremčević”, with two halls and full supporting infrastructure.',
+                'Enrollment of new members runs throughout the year, and the work is organized by age groups with specialist coaching staff.',
+            ],
+        },
         addresses: [
             {
                 street: 'SC „Dejan Sremčević”, Školska 4',

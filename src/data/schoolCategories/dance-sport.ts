@@ -9,7 +9,10 @@ export const danceSportSchools: School[] = [
     {
         id: 'fiesta',
         slug: 'fiesta',
-        name: 'Plesna škola Fiesta',
+        name: {
+            sr: 'Plesna škola Fiesta',
+            en: 'Fiesta Dance School',
+        },
         categorySlugs: ['dance-sport'],
         city: 'Novi Sad',
         district: 'Severni Telep',
@@ -18,12 +21,20 @@ export const danceSportSchools: School[] = [
         ageLabel: '3+ godina',
         imageWebp: fiestaWebp,
         imageFallback: fiestaJpg,
-        description: [
-            'Plesna škola Fiesta u Novom Sadu nudi programe sportskog plesa, uključujući plesni vrtić, početne i srednje dečije grupe.',
-            'Na časovima deca uče osnove društvenih i latinoameričkih plesova — ča-ča-ča, valcer, rumbu, fokstrot — kroz igru, ritam i druženje.',
-            'Pedagoški obučeni instruktori razvijaju osećaj za pokret i muziku, timski rad, koordinaciju i pravilno držanje.',
-            'Klub ima iskustvo u vođenju dece ka takmičarskom sportskom plesu, kroz grupne i individualne časove.',
-        ],
+        description: {
+            sr: [
+                'Plesna škola Fiesta u Novom Sadu nudi programe sportskog plesa, uključujući plesni vrtić, početne i srednje dečije grupe.',
+                'Na časovima deca uče osnove društvenih i latinoameričkih plesova — ča-ča-ča, valcer, rumbu, fokstrot — kroz igru, ritam i druženje.',
+                'Pedagoški obučeni instruktori razvijaju osećaj za pokret i muziku, timski rad, koordinaciju i pravilno držanje.',
+                'Klub ima iskustvo u vođenju dece ka takmičarskom sportskom plesu, kroz grupne i individualne časove.',
+            ],
+            en: [
+                'Fiesta Dance School in Novi Sad offers DanceSport programs, including a dance kindergarten and beginner and intermediate children’s groups.',
+                'In class, children learn the basics of ballroom and Latin American dances — cha-cha-cha, waltz, rumba, foxtrot — through play, rhythm and social time.',
+                'Pedagogically trained instructors develop a sense of movement and music, teamwork, coordination and good posture.',
+                'The club has experience guiding children toward competitive DanceSport, through group and individual lessons.',
+            ],
+        },
         addresses: [
             {
                 street: 'Geri Karolja 5',
@@ -44,7 +55,10 @@ export const danceSportSchools: School[] = [
     {
         id: 'neo-dance',
         slug: 'neo-dance',
-        name: 'Plesni klub Neo Dance',
+        name: {
+            sr: 'Plesni klub Neo Dance',
+            en: 'Neo Dance Club',
+        },
         categorySlugs: ['dance-sport'],
         city: 'Novi Sad',
         district: 'Rotkvarija',
@@ -53,12 +67,20 @@ export const danceSportSchools: School[] = [
         ageLabel: '4–16 godina',
         imageWebp: neoDanceWebp,
         imageFallback: neoDanceJpg,
-        description: [
-            'Plesni klub Neo Dance osnovan je 2008. godine i član je Plesnog saveza Srbije, kao i vojvođanskog i novosadskog plesnog saveza.',
-            'Dečija grupa uči takmičarske latinoameričke i standardne plesove — među njima sambu, rumbu, ča-ča-ča, engleski i bečki valcer, tango i quickstep.',
-            'Stručni instruktori pripremaju decu za nastupe na plesnim festivalima i takmičenjima, uz rad i sa predškolcima i osnovcima.',
-            'Klub radi u Novom Sadu i okolnim mestima, a vode ga treneri sa dugogodišnjim takmičarskim i pedagoškim iskustvom.',
-        ],
+        description: {
+            sr: [
+                'Plesni klub Neo Dance osnovan je 2008. godine i član je Plesnog saveza Srbije, kao i vojvođanskog i novosadskog plesnog saveza.',
+                'Dečija grupa uči takmičarske latinoameričke i standardne plesove — među njima sambu, rumbu, ča-ča-ča, engleski i bečki valcer, tango i quickstep.',
+                'Stručni instruktori pripremaju decu za nastupe na plesnim festivalima i takmičenjima, uz rad i sa predškolcima i osnovcima.',
+                'Klub radi u Novom Sadu i okolnim mestima, a vode ga treneri sa dugogodišnjim takmičarskim i pedagoškim iskustvom.',
+            ],
+            en: [
+                'Neo Dance Club was founded in 2008 and is a member of the DanceSport Federation of Serbia, as well as the Vojvodina and Novi Sad dance federations.',
+                'The children’s group learns competitive Latin American and standard dances — among them samba, rumba, cha-cha-cha, English and Viennese waltz, tango and quickstep.',
+                'Specialist instructors prepare children for dance festivals and competitions, working with both preschoolers and primary-school pupils.',
+                'The club works in Novi Sad and nearby places, and is led by coaches with long competitive and teaching experience.',
+            ],
+        },
         addresses: [
             {
                 street: 'Vuka Karadžića 2',

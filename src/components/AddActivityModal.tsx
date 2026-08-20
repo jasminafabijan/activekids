@@ -1,28 +1,11 @@
 import { useEffect, useRef } from 'react'
 import clipboardCheckIcon from '../assets/icons/clipboard-check.svg'
-
-const CONTACT_EMAIL = 'info@kiddokompas.rs'
-const VIBER_PHONE = '38163590020'
-const GOOGLE_FORM_URL = 'https://forms.gle/wbNGCLzZQC1JKTtTA'
-
-const EMAIL_SUBJECT = 'Dodavanje aktivnosti na KiddoKompas'
-const EMAIL_BODY = `Zdravo,
-
-Želeo/la bih da dodam svoju školu/aktivnost na KiddoKompas.
-
-Naziv škole, kluba ili aktivnosti:
-Lokacija(e) održavanja aktivnosti:
-Uzrast kojem je aktivnost namenjena:
-Telefon:
-Sajt / Instagram / Facebook:
-Kratak opis:
-Link do fotografije ili napomena kako šaljete fotografiju:
-
-(Hvala!)`
+import { addActivityFormUrl, CONTACT_EMAIL, VIBER_PHONE } from '../i18n/config'
+import { useI18n } from '../i18n/useI18n'
 
 const submitItems = [
     {
-        label: 'Naziv škole, kluba ili aktivnosti',
+        key: 'name',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M10 12h4" strokeLinecap="round" strokeLinejoin="round" />
@@ -34,7 +17,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Lokacija(e) održavanja aktivnosti',
+        key: 'locations',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" strokeLinecap="round" strokeLinejoin="round" />
@@ -43,7 +26,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Uzrast kojem je aktivnost namenjena',
+        key: 'age',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
@@ -53,7 +36,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Telefon',
+        key: 'phone',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round" />
@@ -61,7 +44,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Link do sajta, Instagrama ili Facebooka',
+        key: 'links',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
@@ -71,7 +54,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Kratak opis',
+        key: 'description',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M12 20h9" strokeLinecap="round" strokeLinejoin="round" />
@@ -80,7 +63,7 @@ const submitItems = [
         ),
     },
     {
-        label: 'Fotografija koju smemo da koristimo',
+        key: 'photo',
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
@@ -91,13 +74,6 @@ const submitItems = [
     },
 ]
 
-const getEmailHref = () => {
-    const subject = encodeURIComponent(EMAIL_SUBJECT)
-    const body = encodeURIComponent(EMAIL_BODY)
-
-    return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-}
-
 const getViberHref = () => `viber://chat?number=${VIBER_PHONE}`
 
 interface AddActivityModalProps {
@@ -107,6 +83,8 @@ interface AddActivityModalProps {
 
 const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
     const closeButtonRef = useRef<HTMLButtonElement>(null)
+    const { lang, t } = useI18n()
+    const emailHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t('modal.emailSubject'))}&body=${encodeURIComponent(t('modal.emailBody'))}`
 
     useEffect(() => {
         if (!isOpen) {
@@ -140,7 +118,7 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
             <button
                 type="button"
                 className="add-activity-modal-backdrop"
-                aria-label="Zatvori prozor"
+                aria-label={t('common.closeWindow')}
                 onClick={onClose}
             />
 
@@ -154,7 +132,7 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                     ref={closeButtonRef}
                     type="button"
                     className="add-activity-modal-close"
-                    aria-label="Zatvori"
+                    aria-label={t('common.close')}
                     onClick={onClose}
                 >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -163,42 +141,39 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                 </button>
 
                 <h2 id="add-activity-modal-title" className="add-activity-modal-title">
-                    Dodajte svoju školicu na KiddoKompas
+                    {t('modal.title')}
                 </h2>
 
                 <div className="add-activity-modal-intro">
                     <p>
-                        Vodite školu, klub, radionicu ili aktivnost za decu? Pošaljite nam osnovne podatke i
-                        rado ćemo ih dodati u katalog. Cilj nam je da roditelji na jednom mestu lakše pronađu
-                        aktivnosti u svom gradu.
+                        {t('modal.intro')}
                     </p>
                     <p>
-                        <strong>Unos osnovnih podataka je besplatan.</strong>
+                        <strong>{t('modal.free')}</strong>
                     </p>
                 </div>
 
                 <div className="add-activity-modal-checklist">
-                    <h3 className="add-activity-modal-checklist-title">Šta da pošaljete</h3>
+                    <h3 className="add-activity-modal-checklist-title">{t('modal.checklistTitle')}</h3>
                     <ul className="add-activity-modal-checklist-list">
                         {submitItems.map((item) => (
-                            <li key={item.label} className="add-activity-modal-checklist-item">
+                            <li key={item.key} className="add-activity-modal-checklist-item">
                                 <span className="add-activity-modal-checklist-icon">{item.icon}</span>
-                                <span>{item.label}</span>
+                                <span>{t(`modal.${item.key}`)}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
 
                 <p className="add-activity-modal-note">
-                    Ne mora sve biti savršeno pripremljeno — dovoljno je da pošaljete osnovne informacije, a
-                    mi ćemo ih urediti za prikaz na sajtu.
+                    {t('modal.note')}
                 </p>
 
                 <div className="add-activity-modal-actions">
-                    <p className="add-activity-modal-actions-label">Izaberite način slanja</p>
+                    <p className="add-activity-modal-actions-label">{t('modal.sendHow')}</p>
 
                     <a
-                        href={GOOGLE_FORM_URL}
+                        href={addActivityFormUrl[lang]}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="add-activity-modal-option add-activity-modal-option--recommended"
@@ -214,11 +189,11 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                         </span>
                         <span className="add-activity-modal-option-copy">
                             <span className="add-activity-modal-option-title-row">
-                                <span className="add-activity-modal-option-title">Popunite formu</span>
-                                <span className="add-activity-modal-option-badge">Preporučeno</span>
+                                <span className="add-activity-modal-option-title">{t('modal.formTitle')}</span>
+                                <span className="add-activity-modal-option-badge">{t('modal.formBadge')}</span>
                             </span>
                             <span className="add-activity-modal-option-subtitle">
-                                Vodi vas kroz sva polja, oko 2 minuta
+                                {t('modal.formSubtitle')}
                             </span>
                         </span>
                         <span className="add-activity-modal-option-chevron" aria-hidden="true">
@@ -228,7 +203,7 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                         </span>
                     </a>
 
-                    <a href={getEmailHref()} className="add-activity-modal-option">
+                    <a href={emailHref} className="add-activity-modal-option">
                         <span className="add-activity-modal-option-icon add-activity-modal-option-icon--email" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <rect width="20" height="16" x="2" y="4" rx="2" />
@@ -236,9 +211,9 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                             </svg>
                         </span>
                         <span className="add-activity-modal-option-copy">
-                            <span className="add-activity-modal-option-title">Pošaljite email</span>
+                            <span className="add-activity-modal-option-title">{t('modal.emailTitle')}</span>
                             <span className="add-activity-modal-option-subtitle">
-                                Ako vam je lakše da napišete svojim rečima
+                                {t('modal.emailSubtitle')}
                             </span>
                         </span>
                         <span className="add-activity-modal-option-chevron" aria-hidden="true">
@@ -255,9 +230,9 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
                             </svg>
                         </span>
                         <span className="add-activity-modal-option-copy">
-                            <span className="add-activity-modal-option-title">Pošaljite poruku na Viber</span>
+                            <span className="add-activity-modal-option-title">{t('modal.viberTitle')}</span>
                             <span className="add-activity-modal-option-subtitle">
-                                Pošaljite podatke direktno u Viber poruku
+                                {t('modal.viberSubtitle')}
                             </span>
                         </span>
                         <span className="add-activity-modal-option-chevron" aria-hidden="true">

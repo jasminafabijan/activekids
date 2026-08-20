@@ -13,7 +13,10 @@ export const balletSchools: School[] = [
     {
         id: 'dobrila-novkov',
         slug: 'dobrila-novkov',
-        name: 'Baletska škola Dobrile Novkov „La Sylphide“',
+        name: {
+            sr: 'Baletska škola Dobrile Novkov „La Sylphide“',
+            en: 'Dobrila Novkov “La Sylphide” Ballet School',
+        },
         categorySlugs: ['ballet'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
@@ -22,13 +25,22 @@ export const balletSchools: School[] = [
         ageLabel: '3+ godina',
         imageWebp: dobrilaNovkovWebp,
         imageFallback: dobrilaNovkovPng,
-        description: [
-            'Privatna baletska škola Dobrile Novkov „La Sylphide“ u Novom Sadu više od tri decenije nudi klasično baletsko obrazovanje.',
-            'Nastava se izvodi po ruskom metodu Akademije Vaganove, uz rad na gipkosti, izdržljivosti, disciplini i pažnji na detalje.',
-            'Program obuhvata predškolske grupe, klase baletske osnovne škole sa verifikovanim svedočanstvima i pripremu za srednju baletsku školu.',
-            'Na kraju školske godine škola priređuje gala predstavu, a učenici nastupaju i na lokalnim manifestacijama i humanitarnim koncertima.',
-            'Školu je do sada pohađalo više od hiljadu učenika — od onih koji uživaju u baletu do onih koji nastavljaju profesionalni put.',
-        ],
+        description: {
+            sr: [
+                'Privatna baletska škola Dobrile Novkov „La Sylphide“ u Novom Sadu više od tri decenije nudi klasično baletsko obrazovanje.',
+                'Nastava se izvodi po ruskom metodu Akademije Vaganove, uz rad na gipkosti, izdržljivosti, disciplini i pažnji na detalje.',
+                'Program obuhvata predškolske grupe, klase baletske osnovne škole sa verifikovanim svedočanstvima i pripremu za srednju baletsku školu.',
+                'Na kraju školske godine škola priređuje gala predstavu, a učenici nastupaju i na lokalnim manifestacijama i humanitarnim koncertima.',
+                'Školu je do sada pohađalo više od hiljadu učenika — od onih koji uživaju u baletu do onih koji nastavljaju profesionalni put.',
+            ],
+            en: [
+                'The private ballet school of Dobrila Novkov “La Sylphide” in Novi Sad has offered classical ballet education for more than three decades.',
+                'Classes follow the Russian Vaganova Academy method, with work on flexibility, stamina, discipline and attention to detail.',
+                'The program includes preschool groups, elementary ballet school classes with verified certificates, and preparation for secondary ballet school.',
+                'At the end of the school year the school stages a gala performance, and pupils also appear at local events and charity concerts.',
+                'More than a thousand pupils have attended so far — from those who simply enjoy ballet to those who go on to a professional path.',
+            ],
+        },
         addresses: [
             {
                 street: 'Svetozara Miletića 47',
@@ -50,7 +62,10 @@ export const balletSchools: School[] = [
     {
         id: 'reverans',
         slug: 'reverans',
-        name: 'Baletski studio "Reverans"',
+        name: {
+            sr: 'Baletski studio "Reverans"',
+            en: 'Reverans Ballet Studio',
+        },
         categorySlugs: ['ballet'],
         city: 'Novi Sad',
         district: 'Rotkvarija',
@@ -59,14 +74,24 @@ export const balletSchools: School[] = [
         ageLabel: '3–7 godina',
         imageWebp: reveransWebp,
         imageFallback: reveransJpg,
-        description: [
-            'Baletski studio "Reverans" osnovan je 2017. godine i posluje u Novom Sadu i Kikindi.',
-            'Studio vodi diplomirana balerina Jovana Banić, koja kroz igru uči decu osnovama baleta, muzikalnosti i koordinacije.',
-            'Program razvija osećaj za ritam, gipkost i pravilno držanje, uz vežbe na parteru i u sredini sale.',
-            'Roditelji mogu da prate napredak dece na javnim nastupima i javnim časovima na kraju svakog polugodišta.',
-            'Kreativni deo programa uključuje improvizacije koje pomažu deci da otkriju sopstveni izraz i povežu ples sa pričom i muzikom.',
-            'Kroz igru deca uče disciplinu i koncentraciju, u toploj atmosferi koja neguje sigurnost i radoznalost.',
-        ],
+        description: {
+            sr: [
+                'Baletski studio "Reverans" osnovan je 2017. godine i posluje u Novom Sadu i Kikindi.',
+                'Studio vodi diplomirana balerina Jovana Banić, koja kroz igru uči decu osnovama baleta, muzikalnosti i koordinacije.',
+                'Program razvija osećaj za ritam, gipkost i pravilno držanje, uz vežbe na parteru i u sredini sale.',
+                'Roditelji mogu da prate napredak dece na javnim nastupima i javnim časovima na kraju svakog polugodišta.',
+                'Kreativni deo programa uključuje improvizacije koje pomažu deci da otkriju sopstveni izraz i povežu ples sa pričom i muzikom.',
+                'Kroz igru deca uče disciplinu i koncentraciju, u toploj atmosferi koja neguje sigurnost i radoznalost.',
+            ],
+            en: [
+                'Reverans Ballet Studio was founded in 2017 and operates in Novi Sad and Kikinda.',
+                'The studio is led by graduate ballerina Jovana Banić, who teaches children the basics of ballet, musicality and coordination through play.',
+                'The program develops a sense of rhythm, flexibility and good posture, with floor work and center-of-the-room exercises.',
+                'Parents can follow their children’s progress at public performances and open classes at the end of each term.',
+                'The creative part of the program includes improvisations that help children find their own expression and connect dance with story and music.',
+                'Through play, children learn discipline and concentration, in a warm atmosphere that nurtures safety and curiosity.',
+            ],
+        },
         addresses: [
             {
                 street: 'Dostojevskog 11',
@@ -87,7 +112,10 @@ export const balletSchools: School[] = [
     {
         id: 'ntc-balet',
         slug: 'ntc-balet',
-        name: 'NTC balet',
+        name: {
+            sr: 'NTC balet',
+            en: 'NTC Ballet',
+        },
         categorySlugs: ['ballet'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
@@ -96,14 +124,24 @@ export const balletSchools: School[] = [
         ageLabel: '3–7 godina',
         imageWebp: ntcBaletWebp,
         imageFallback: ntcBaletPng,
-        description: [
-            'NTC program baleta predstavlja inovativni pristup razvoju dece koji spaja elemente klasičnog baleta sa principima NTC sistema učenja.',
-            'Program je osmišljen od strane dr Ranka Rajovića i balerine Sare Đurakić, sa ciljem da deca kroz pokret razvijaju koordinaciju, motoriku i samopouzdanje.',
-            'Deca uče osnovne baletne pozicije, ritam i muzikalnost kroz igru, pri čemu se posebna pažnja posvećuje individualnom razvoju svakog deteta.',
-            'Grupe su manje, što omogućava nastavnicima da svakom detetu posvete dovoljno pažnje i podrške tokom časa.',
-            'Kroz kombinaciju igre, muzike i strukturisanih zadataka, deca uče da pokret povezuju sa emocijama i maštom.',
-            'Program podstiče samostalnost i radoznalost, uz okruženje u kojem je istraživanje pokreta podržano i svakom koraku dozvoljeno vreme.',
-        ],
+        description: {
+            sr: [
+                'NTC program baleta predstavlja inovativni pristup razvoju dece koji spaja elemente klasičnog baleta sa principima NTC sistema učenja.',
+                'Program je osmišljen od strane dr Ranka Rajovića i balerine Sare Đurakić, sa ciljem da deca kroz pokret razvijaju koordinaciju, motoriku i samopouzdanje.',
+                'Deca uče osnovne baletne pozicije, ritam i muzikalnost kroz igru, pri čemu se posebna pažnja posvećuje individualnom razvoju svakog deteta.',
+                'Grupe su manje, što omogućava nastavnicima da svakom detetu posvete dovoljno pažnje i podrške tokom časa.',
+                'Kroz kombinaciju igre, muzike i strukturisanih zadataka, deca uče da pokret povezuju sa emocijama i maštom.',
+                'Program podstiče samostalnost i radoznalost, uz okruženje u kojem je istraživanje pokreta podržano i svakom koraku dozvoljeno vreme.',
+            ],
+            en: [
+                'The NTC ballet program is an innovative approach to children’s development that combines elements of classical ballet with the principles of the NTC learning system.',
+                'The program was designed by Dr Ranko Rajović and ballerina Sara Đurakić, so that children develop coordination, motor skills and confidence through movement.',
+                'Children learn basic ballet positions, rhythm and musicality through play, with particular attention to each child’s individual development.',
+                'Groups are smaller, which allows teachers to give every child enough attention and support during class.',
+                'Through a mix of play, music and structured tasks, children learn to connect movement with emotion and imagination.',
+                'The program encourages independence and curiosity, in a setting where exploring movement is supported and every step is given time.',
+            ],
+        },
         addresses: [
             {
                 street: 'Augusta Cesarca 18',
@@ -130,7 +168,10 @@ export const balletSchools: School[] = [
     {
         id: 'pointe-dance-serbia',
         slug: 'pointe-dance-serbia',
-        name: 'Pointe Dance Serbia',
+        name: {
+            sr: 'Pointe Dance Serbia',
+            en: 'Pointe Dance Serbia',
+        },
         categorySlugs: ['ballet', 'jazz-ballet'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
@@ -139,11 +180,18 @@ export const balletSchools: School[] = [
         ageLabel: '3+ godina',
         imageWebp: pointeDanceWebp,
         imageFallback: pointeDancePng,
-        description: [
-            'Pointe Dance Serbia okuplja decu koja kroz ples razvijaju koordinaciju, muzikalnost i samopouzdanje u podržavajućem okruženju.',
-            'Program obuhvata klasičan balet i moderan ples, uz rad na tehnici, izražajnosti i kreativnom pokretu prilagođenom uzrastu.',
-            'Deca uče kroz strukturisane časove, koreografije i nastupe koji podstiču disciplinu, timski duh i ljubav prema plesu.',
-        ],
+        description: {
+            sr: [
+                'Pointe Dance Serbia okuplja decu koja kroz ples razvijaju koordinaciju, muzikalnost i samopouzdanje u podržavajućem okruženju.',
+                'Program obuhvata klasičan balet i moderan ples, uz rad na tehnici, izražajnosti i kreativnom pokretu prilagođenom uzrastu.',
+                'Deca uče kroz strukturisane časove, koreografije i nastupe koji podstiču disciplinu, timski duh i ljubav prema plesu.',
+            ],
+            en: [
+                'Pointe Dance Serbia brings together children who develop coordination, musicality and confidence through dance, in a supportive setting.',
+                'The program includes classical ballet and modern dance, with work on technique, expression and creative movement adapted to the group.',
+                'Children learn through structured classes, choreography and performances that encourage discipline, teamwork and a love of dance.',
+            ],
+        },
         addresses: [
             {
                 street: 'TC Pariski magazin, Kralja Aleksandra 12',

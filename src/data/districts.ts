@@ -1,0 +1,68 @@
+import { getLocalizedText, warnMissingEnglish } from '../i18n/helpers'
+import type { Lang, LocalizedText } from '../i18n/types'
+
+/** Canonical district names as stored on schools. English translates only directional/center labels. */
+export const DISTRICT_LABELS: Record<string, LocalizedText> = {
+  Adice: { sr: 'Adice', en: 'Adice' },
+  'Adamovićevo naselje': { sr: 'Adamovićevo naselje', en: 'Adamovićevo naselje' },
+  Banatić: { sr: 'Banatić', en: 'Banatić' },
+  Detelinara: { sr: 'Detelinara', en: 'Detelinara' },
+  Grbavica: { sr: 'Grbavica', en: 'Grbavica' },
+  Kamenjar: { sr: 'Kamenjar', en: 'Kamenjar' },
+  'Liman 1': { sr: 'Liman 1', en: 'Liman 1' },
+  'Novo naselje': { sr: 'Novo naselje', en: 'Novo naselje' },
+  Petrovaradin: { sr: 'Petrovaradin', en: 'Petrovaradin' },
+  Podbara: { sr: 'Podbara', en: 'Podbara' },
+  Rotkvarija: { sr: 'Rotkvarija', en: 'Rotkvarija' },
+  Sajmište: { sr: 'Sajmište', en: 'Sajmište' },
+  Salajka: { sr: 'Salajka', en: 'Salajka' },
+  Satelit: { sr: 'Satelit', en: 'Satelit' },
+  'Severni Telep': { sr: 'Severni Telep', en: 'North Telep' },
+  'Južni Telep': { sr: 'Južni Telep', en: 'South Telep' },
+  'Sremska Kamenica': { sr: 'Sremska Kamenica', en: 'Sremska Kamenica' },
+  'Stari Grad (Centar)': { sr: 'Stari Grad (Centar)', en: 'City Center' },
+  Telep: { sr: 'Telep', en: 'Telep' },
+  Veternik: { sr: 'Veternik', en: 'Veternik' },
+  Šangaj: { sr: 'Šangaj', en: 'Šangaj' },
+}
+
+export const stripSerbianDiacritics = (value: string): string =>
+  value
+    .replace(/đ/g, 'dj')
+    .replace(/Đ/g, 'Dj')
+    .replace(/č/g, 'c')
+    .replace(/Č/g, 'C')
+    .replace(/ć/g, 'c')
+    .replace(/Ć/g, 'C')
+    .replace(/ž/g, 'z')
+    .replace(/Ž/g, 'Z')
+    .replace(/š/g, 's')
+    .replace(/Š/g, 'S')
+
+export const getDistrictName = (district: string, lang: Lang): string => {
+  const mapped = DISTRICT_LABELS[district]
+
+  if (mapped) {
+    return getLocalizedText(mapped, lang, `district:${district}`)
+  }
+
+  if (lang === 'en') {
+    warnMissingEnglish(`district:${district}`, 'not in DISTRICT_LABELS')
+  }
+
+  return district
+}
+
+export const districtMatchesQuery = (district: string, query: string): boolean => {
+  const normalized = query.trim().toLocaleLowerCase('sr')
+
+  if (!normalized) {
+    return true
+  }
+
+  const sr = district.toLocaleLowerCase('sr')
+  const en = getDistrictName(district, 'en').toLocaleLowerCase('en')
+  const stripped = stripSerbianDiacritics(district).toLocaleLowerCase('en')
+
+  return sr.includes(normalized) || en.includes(normalized) || stripped.includes(normalized)
+}

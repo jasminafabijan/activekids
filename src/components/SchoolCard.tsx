@@ -1,5 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
-import { formatSchoolDistricts, type School } from '../data/schools'
+import { formatSchoolDistricts, getSchoolName, type School } from '../data/schools'
+import { schoolAgeLabel } from '../i18n/helpers'
+import { useI18n } from '../i18n/useI18n'
 
 const LocationIcon = () => (
   <svg
@@ -43,13 +45,11 @@ interface SchoolCardProps {
 
 const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps) => {
   const location = useLocation()
-  const schoolHref =
-    categoryContext != null
-      ? `/skola/${school.slug}?kategorija=${categoryContext}`
-      : `/skola/${school.slug}`
+  const { lang, path } = useI18n()
+  const schoolHref = path.school(school.slug, categoryContext)
   const from = `${location.pathname}${location.search}${location.hash}`
 
-  const locationLabel = [formatSchoolDistricts(school), school.city]
+  const locationLabel = [formatSchoolDistricts(school, lang), school.city]
     .filter((part) => part.length > 0)
     .join(', ')
 
@@ -63,7 +63,7 @@ const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps)
           <source srcSet={school.imageWebp} type="image/webp" />
           <img
             src={school.imageFallback}
-            alt={school.name}
+            alt={getSchoolName(school, lang)}
             loading="lazy"
             decoding="async"
             width={288}
@@ -74,7 +74,7 @@ const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps)
       </div>
 
       <div className="school-card-body">
-        <h3 className="school-card-title">{school.name}</h3>
+        <h3 className="school-card-title">{getSchoolName(school, lang)}</h3>
 
         <ul className="school-card-meta">
           <li className="school-card-meta-item">
@@ -83,7 +83,7 @@ const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps)
           </li>
           <li className="school-card-meta-item">
             <UsersIcon />
-            <span>{school.ageLabel}</span>
+            <span>{schoolAgeLabel(school, lang)}</span>
           </li>
         </ul>
       </div>

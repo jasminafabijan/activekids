@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { useI18n } from '../i18n/useI18n'
+import { getCategoryNameBySlug } from '../data/categories'
 import actingIcon from '../assets/icons/acting.svg'
 import balletIcon from '../assets/icons/ballet.svg'
 import basketballIcon from '../assets/icons/basketball.svg'
@@ -21,8 +23,6 @@ const CATEGORY_ICON_BASE_SIZE_PX = 64
 
 interface CategoryDisplay {
   id: string
-  name: string
-  slug: string
   iconBg: CategoryIconBg
   iconSrc?: string
   /** Extra pixels added to the base icon height (64px). */
@@ -30,33 +30,35 @@ interface CategoryDisplay {
 }
 
 const categoryDisplay: CategoryDisplay[] = [
-  { id: 'football', name: 'Fudbal', slug: 'football', iconBg: 'mint', iconSrc: footballIcon, iconSizeAdjustPx: -12 },
-  { id: 'basketball', name: 'Košarka', slug: 'basketball', iconBg: 'mint', iconSrc: basketballIcon, iconSizeAdjustPx: -4 },
-  { id: 'volleyball', name: 'Odbojka', slug: 'volleyball', iconBg: 'peach', iconSrc: volleyballIcon, iconSizeAdjustPx: -10 },
-  { id: 'tennis', name: 'Tenis', slug: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
-  { id: 'karate', name: 'Karate', slug: 'karate', iconBg: 'mint', iconSrc: karateIcon },
-  { id: 'boxing', name: 'Boks', slug: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
-  { id: 'chess', name: 'Šah', slug: 'chess', iconBg: 'mint', iconSrc: chessIcon, iconSizeAdjustPx: -4 },
-  { id: 'swimming', name: 'Plivanje', slug: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -18 },
-  { id: 'developmental-gymnastics', name: 'Razvojna gimnastika', slug: 'developmental-gymnastics', iconBg: 'peach', iconSrc: developmentalGymnasticsIcon, iconSizeAdjustPx: -6 },
-  { id: 'riding', name: 'Jahanje', slug: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
-  { id: 'ballet', name: 'Balet', slug: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
-  { id: 'jazz-ballet', name: 'Moderan ples', slug: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },
-  { id: 'dance-sport', name: 'Sportski ples', slug: 'dance-sport', iconBg: 'mint', iconSrc: danceSportIcon, iconSizeAdjustPx: 4 },
-  { id: 'folklore', name: 'Folklor', slug: 'folklore', iconBg: 'mint', iconSrc: folkloreIcon, iconSizeAdjustPx: 2 },
-  { id: 'acting', name: 'Gluma', slug: 'acting', iconBg: 'peach', iconSrc: actingIcon, iconSizeAdjustPx: -6 },
+  { id: 'football', iconBg: 'mint', iconSrc: footballIcon, iconSizeAdjustPx: -12 },
+  { id: 'basketball', iconBg: 'mint', iconSrc: basketballIcon, iconSizeAdjustPx: -4 },
+  { id: 'volleyball', iconBg: 'peach', iconSrc: volleyballIcon, iconSizeAdjustPx: -10 },
+  { id: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
+  { id: 'karate', iconBg: 'mint', iconSrc: karateIcon },
+  { id: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
+  { id: 'chess', iconBg: 'mint', iconSrc: chessIcon, iconSizeAdjustPx: -4 },
+  { id: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -18 },
+  { id: 'developmental-gymnastics', iconBg: 'peach', iconSrc: developmentalGymnasticsIcon, iconSizeAdjustPx: -6 },
+  { id: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
+  { id: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
+  { id: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },
+  { id: 'dance-sport', iconBg: 'mint', iconSrc: danceSportIcon, iconSizeAdjustPx: 4 },
+  { id: 'folklore', iconBg: 'mint', iconSrc: folkloreIcon, iconSizeAdjustPx: 2 },
+  { id: 'acting', iconBg: 'peach', iconSrc: actingIcon, iconSizeAdjustPx: -6 },
 ]
 
 const CategoryCards = () => {
+  const { lang, path, t } = useI18n()
+
   return (
     <section id="kategorije" className="categories-section" aria-labelledby="categories-title">
       <div className="categories-header">
-        <span className="tag tag--pill tag--peach">Kategorije</span>
+        <span className="tag tag--pill tag--peach">{t('categories.tag')}</span>
         <h2 id="categories-title" className="categories-title">
-          Istražite po interesovanjima
+          {t('categories.title')}
         </h2>
         <p className="categories-subtitle">
-          Odaberite oblast koja najviše odgovara vašem detetu i otkrijte programe u vašem kraju
+          {t('categories.subtitle')}
         </p>
       </div>
 
@@ -67,7 +69,7 @@ const CategoryCards = () => {
           return (
             <Link
               key={category.id}
-              to={`/kategorija/${category.slug}`}
+              to={path.category(category.id)}
               className="category-card"
             >
               <span className={`category-card-icon category-card-icon--${category.iconBg}`}>
@@ -78,7 +80,7 @@ const CategoryCards = () => {
                   style={{ height: iconSizePx, maxHeight: iconSizePx }}
                 />
               </span>
-              <span className="category-card-label">{category.name}</span>
+              <span className="category-card-label">{getCategoryNameBySlug(category.id, lang)}</span>
             </Link>
           )
         })}
