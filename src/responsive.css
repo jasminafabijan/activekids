@@ -22,11 +22,37 @@
     .school-detail-image-wrap {
         height: 340px;
     }
+
+    .hero-inner {
+        padding-block: 3.5rem;
+    }
 }
 
 @media (max-width: 639.98px) {
     .school-detail-image-wrap {
         height: 280px;
+    }
+
+    .hero-inner {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .add-activity-modal-close {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .add-activity-modal-title {
+        margin-top: 0.5rem;
+    }
+
+    .add-activity-modal-actions {
+        margin-bottom: 0;
+    }
+
+    .map-page-header {
+        margin-top: 2rem;
     }
 }
 
@@ -51,6 +77,23 @@
 
     .map-page-body .catalog-map-canvas {
         min-height: 18rem;
+    }
+}
+
+@media (max-width: 639.98px) {
+    .map-page-body {
+        height: auto;
+    }
+
+    .map-page-list {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .map-page-list-cards {
+        flex: none;
+        min-height: auto;
+        overflow: visible;
     }
 }
 
@@ -102,7 +145,6 @@
     }
 
     .hero-inner {
-        padding-block: 3.5rem;
         gap: 1.5rem;
     }
 
@@ -117,6 +159,11 @@
 
     .hero-lead {
         margin-inline: auto;
+    }
+
+    .search-field-select,
+    .search-field-menu-search-input {
+        font-size: 16px;
     }
 
     .hero-gradient--mint,
@@ -156,7 +203,7 @@
     }
 }
 
-@media (max-width: 639.98px) {
+@media (max-width: 679.98px) {
     .site-navbar-menu {
         position: absolute;
         top: calc(100% + 0.35rem);
@@ -273,7 +320,7 @@
     }
 }
 
-@media (min-width: 640px) {
+@media (min-width: 680px) {
     .site-navbar-inner {
         gap: 1.5rem;
         padding: 1rem 1.5rem;

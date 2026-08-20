@@ -15,6 +15,7 @@ import tennisIcon from '../assets/icons/tennis.svg'
 import volleyballIcon from '../assets/icons/volleyball.webp'
 import danceSportIcon from '../assets/icons/dance-sport.svg'
 import swimmingIcon from '../assets/icons/swimming.svg'
+import miniSportsIcon from '../assets/icons/mini-sports.svg'
 import developmentalGymnasticsIcon from '../assets/icons/developmental-gymnastics.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
@@ -38,6 +39,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
   { id: 'chess', iconBg: 'mint', iconSrc: chessIcon, iconSizeAdjustPx: -4 },
   { id: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -18 },
+  { id: 'mini-sports', iconBg: 'peach', iconSrc: miniSportsIcon },
   { id: 'developmental-gymnastics', iconBg: 'peach', iconSrc: developmentalGymnasticsIcon, iconSizeAdjustPx: -6 },
   { id: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
   { id: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },

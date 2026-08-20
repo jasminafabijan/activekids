@@ -47,3 +47,29 @@ export const scrollToElement = (elementId: string, duration = 900) => {
 export const scrollToCategories = () => scrollToElement('kategorije')
 
 export const jumpToCategories = () => scrollToElement('kategorije', 0)
+
+export const isHomeCategoriesSectionActive = () => {
+    const categories = document.getElementById('kategorije')
+
+    if (!categories) {
+        return false
+    }
+
+    const offset = getScrollOffset(categories) + 8
+    const categoriesTop = categories.getBoundingClientRect().top
+
+    if (categoriesTop > offset) {
+        return false
+    }
+
+    const recentlyAdded = document.querySelector('.recently-added-section')
+
+    if (
+        recentlyAdded instanceof HTMLElement &&
+        recentlyAdded.getBoundingClientRect().top <= offset
+    ) {
+        return false
+    }
+
+    return true
+}

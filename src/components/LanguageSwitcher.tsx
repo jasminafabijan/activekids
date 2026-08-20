@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useI18n } from '../i18n/useI18n'
 import type { Lang } from '../i18n/types'
 
@@ -10,6 +10,7 @@ type LanguageSwitcherProps = {
 
 const LanguageSwitcher = ({ className = '' }: LanguageSwitcherProps) => {
   const { lang, t, path } = useI18n()
+  const location = useLocation()
 
   return (
     <div
@@ -35,6 +36,8 @@ const LanguageSwitcher = ({ className = '' }: LanguageSwitcherProps) => {
             ) : (
               <Link
                 to={path.forLang[itemLang]}
+                replace
+                state={location.state}
                 className="lang-switch-option"
                 lang={itemLang}
                 hrefLang={itemLang}

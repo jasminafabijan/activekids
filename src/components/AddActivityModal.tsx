@@ -91,8 +91,25 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
             return
         }
 
-        const previousOverflow = document.body.style.overflow
+        const html = document.documentElement
+        const scrollY = window.scrollY
+        const previous = {
+            htmlOverflow: html.style.overflow,
+            bodyOverflow: document.body.style.overflow,
+            bodyPosition: document.body.style.position,
+            bodyTop: document.body.style.top,
+            bodyLeft: document.body.style.left,
+            bodyRight: document.body.style.right,
+            bodyWidth: document.body.style.width,
+        }
+
+        html.style.overflow = 'hidden'
         document.body.style.overflow = 'hidden'
+        document.body.style.position = 'fixed'
+        document.body.style.top = `-${scrollY}px`
+        document.body.style.left = '0'
+        document.body.style.right = '0'
+        document.body.style.width = '100%'
         closeButtonRef.current?.focus()
 
         const handleEscape = (event: KeyboardEvent) => {
@@ -104,8 +121,15 @@ const AddActivityModal = ({ isOpen, onClose }: AddActivityModalProps) => {
         document.addEventListener('keydown', handleEscape)
 
         return () => {
-            document.body.style.overflow = previousOverflow
+            html.style.overflow = previous.htmlOverflow
+            document.body.style.overflow = previous.bodyOverflow
+            document.body.style.position = previous.bodyPosition
+            document.body.style.top = previous.bodyTop
+            document.body.style.left = previous.bodyLeft
+            document.body.style.right = previous.bodyRight
+            document.body.style.width = previous.bodyWidth
             document.removeEventListener('keydown', handleEscape)
+            window.scrollTo(0, scrollY)
         }
     }, [isOpen, onClose])
 

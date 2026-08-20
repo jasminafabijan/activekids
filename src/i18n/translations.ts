@@ -2,6 +2,7 @@ import type { LocalizedText } from './types'
 
 export const translations = {
   nav: {
+    home: { sr: 'Početna', en: 'Home' },
     categories: { sr: 'Kategorije', en: 'Categories' },
     map: { sr: 'Mapa', en: 'Map' },
     about: { sr: 'O nama', en: 'About' },

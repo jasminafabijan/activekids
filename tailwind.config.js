@@ -24,6 +24,9 @@ export default {
         borderColor: {
             DEFAULT: 'var(--border)',
         },
+        screens: {
+            nav: '680px',
+        },
     },
   },
   plugins: [],

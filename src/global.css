@@ -218,7 +218,7 @@
     .site-navbar-tools {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1.25rem;
         z-index: 2;
         flex-shrink: 0;
     }
@@ -594,7 +594,7 @@
     }
 
     .search-field-menu-search-input {
-        @apply w-full rounded-lg border bg-white px-2.5 py-2 text-sm font-medium text-primary outline-none;
+        @apply w-full rounded-lg border bg-white px-2.5 py-2 text-base font-medium text-primary outline-none;
         border-color: rgba(11, 26, 59, 0.1);
     }
 
@@ -1328,6 +1328,14 @@
         color: var(--text-muted);
     }
 
+    .school-detail-description-link {
+        @apply font-semibold text-primary underline decoration-transparent underline-offset-2 transition-colors;
+    }
+
+    .school-detail-description-link:hover {
+        text-decoration-color: var(--peach);
+    }
+
     .school-detail-map {
         @apply relative z-0 overflow-hidden rounded-2xl border;
         border-color: var(--border);
@@ -1407,6 +1415,8 @@
 
     .add-activity-modal {
         @apply fixed inset-0 z-[1100] flex items-center justify-center p-4 sm:p-6;
+        overflow: hidden;
+        overscroll-behavior: none;
     }
 
     .add-activity-modal-backdrop {
@@ -1414,11 +1424,17 @@
         background-color: rgba(11, 26, 59, 0.45);
         backdrop-filter: blur(4px);
         cursor: pointer;
+        touch-action: none;
     }
 
     .add-activity-modal-dialog {
         @apply relative z-10 w-full max-w-2xl overflow-y-auto bg-white px-6 py-8 sm:px-10;
+        min-height: 0;
         max-height: calc(100vh - 2rem);
+        max-height: min(100%, calc(100dvh - 2rem));
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
         border-radius: 1.5rem;
         box-shadow: var(--shadow-card);
     }

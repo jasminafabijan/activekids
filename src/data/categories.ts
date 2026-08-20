@@ -151,6 +151,17 @@ export const categories: Category[] = [
     },
   },
   {
+    id: 'mini-sports',
+    name: { sr: 'Sportić', en: 'Mini Sports' },
+    slug: 'mini-sports',
+    slugs: { sr: 'sportic', en: 'mini-sports' },
+    subtitle: { sr: 'Školice sporta za najmlađe', en: 'Mini sports schools' },
+    pageSubtitle: {
+      sr: 'Istražite školice sporta u {city} — za prve pokrete, igru i ljubav prema sportu od malih nogu.',
+      en: 'Explore mini sports schools in {city} — for first movement skills, play and a love of sport from an early age.',
+    },
+  },
+  {
     id: 'developmental-gymnastics',
     name: { sr: 'Razvojna gimnastika', en: 'Developmental gymnastics' },
     nameAccusative: 'razvojnu gimnastiku',

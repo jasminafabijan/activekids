@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logoWhite from '../assets/images/kiddokompas-logo-white.png'
 import { isHomePath } from '../i18n/routes'
 import { useI18n } from '../i18n/useI18n'
@@ -9,7 +9,22 @@ import AddActivityModal from './AddActivityModal'
 const Footer = () => {
     const [isAddActivityOpen, setIsAddActivityOpen] = useState(false)
     const location = useLocation()
+    const navigate = useNavigate()
     const { t, path } = useI18n()
+
+    const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isHomePath(location.pathname)) {
+            return
+        }
+
+        event.preventDefault()
+
+        if (location.hash) {
+            navigate(path.home, { replace: true })
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
 
     const handleCategoriesClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         if (isHomePath(location.pathname)) {
@@ -25,7 +40,7 @@ const Footer = () => {
                 <div className="site-footer-inner">
                     <div className="site-footer-top">
                         <div className="site-footer-brand">
-                            <Link to={path.home} className="site-footer-logo-link">
+                            <Link to={path.home} className="site-footer-logo-link" onClick={handleHomeClick}>
                                 <img
                                     src={logoWhite}
                                     alt="KiddoKompas"
@@ -43,6 +58,13 @@ const Footer = () => {
                                     {t('footer.explore')}
                                 </div>
                                 <nav className="site-footer-nav" aria-labelledby="footer-explore-label">
+                                    <Link
+                                        to={path.home}
+                                        onClick={handleHomeClick}
+                                        className="site-footer-link"
+                                    >
+                                        {t('nav.home')}
+                                    </Link>
                                     <Link
                                         to={path.homeCategories}
                                         onClick={handleCategoriesClick}

@@ -4,7 +4,14 @@ import BackLink from '../components/BackLink'
 import Navbar from '../components/Navbar'
 import SchoolMap from '../components/SchoolMap'
 import { getCategoryBySlug, getCategoryNameAccusative } from '../data/categories'
-import { categoryPath, getCategoryQueryValue, isHomePath, pagePath, PAGE_PATHS } from '../i18n/routes'
+import {
+  categoryPath,
+  getCategoryQueryValue,
+  getLocalizedRoute,
+  isHomePath,
+  pagePath,
+  PAGE_PATHS,
+} from '../i18n/routes'
 import { getLocalizedParagraphs, schoolAgeLabel } from '../i18n/helpers'
 import { useI18n } from '../i18n/useI18n'
 import type { Lang } from '../i18n/types'
@@ -139,7 +146,50 @@ type SchoolLocationState = {
 
 type TranslateFn = (key: string, vars?: Record<string, string | number>) => string
 
+const DESCRIPTION_URL_RE = /(https?:\/\/[^\s)]+)/g
+
+const DescriptionParagraph = ({ text }: { text: string }) => {
+  const parts = text.split(DESCRIPTION_URL_RE)
+
+  return (
+    <p>
+      {parts.map((part, index) => {
+        if (!part.startsWith('http://') && !part.startsWith('https://')) {
+          return part
+        }
+
+        const href = part.replace(/[.,;:]+$/, '')
+        const trailing = part.slice(href.length)
+        const label = href.replace(/^https?:\/\/(www\.)?/, '')
+
+        return (
+          <span key={`${href}-${index}`}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="school-detail-description-link"
+            >
+              {label}
+            </a>
+            {trailing}
+          </span>
+        )
+      })}
+    </p>
+  )
+}
+
 const getFromPathname = (from: string | undefined) => from?.split(/[?#]/)[0] ?? ''
+
+const localizeFrom = (from: string, lang: Lang) => {
+  try {
+    const url = new URL(from, 'http://kiddokompas.local')
+    return getLocalizedRoute(url.pathname, lang, url.search, url.hash)
+  } catch {
+    return from
+  }
+}
 
 const getSchoolBack = (
   from: string | undefined,
@@ -155,11 +205,11 @@ const getSchoolBack = (
   }
 
   if (fromPath === PAGE_PATHS.search.sr || fromPath === PAGE_PATHS.search.en) {
-    return { to: from, label: t('school.backSearch') }
+    return { to: localizeFrom(from, lang), label: t('school.backSearch') }
   }
 
   if (fromPath === PAGE_PATHS.map.sr || fromPath === PAGE_PATHS.map.en) {
-    return { to: from, label: t('school.backMap') }
+    return { to: localizeFrom(from, lang), label: t('school.backMap') }
   }
 
   if (categoryId) {
@@ -334,7 +384,7 @@ const SchoolDetailPage = () => {
                   </h2>
                   <div className="school-detail-description">
                     {descriptionParagraphs.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
+                      <DescriptionParagraph key={paragraph} text={paragraph} />
                     ))}
                   </div>
                 </section>

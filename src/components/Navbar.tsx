@@ -1,25 +1,51 @@
-import { useEffect, useId, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useEffect, useId, useLayoutEffect, useState } from 'react'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../assets/images/kiddokompas-logo.png'
-import { isHomePath } from '../i18n/routes'
+import { isCategoriesHash, isCategoryPath, isHomePath } from '../i18n/routes'
 import { useI18n } from '../i18n/useI18n'
-import { scrollToCategories } from '../utils/scrollToElement'
+import { isHomeCategoriesSectionActive, scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
 import LanguageSwitcher from './LanguageSwitcher'
 
 const Navbar = () => {
     const [isAddActivityOpen, setIsAddActivityOpen] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isCategoriesSectionInView, setIsCategoriesSectionInView] = useState(false)
     const location = useLocation()
+    const navigate = useNavigate()
     const { t, path } = useI18n()
     const menuId = useId()
+    const isOnHome = isHomePath(location.pathname)
+    const isCategoriesActive =
+        isCategoryPath(location.pathname) || (isOnHome && isCategoriesSectionInView)
+    const isHomeActive = isOnHome && !isCategoriesActive
 
     useEffect(() => {
         setIsMenuOpen(false)
     }, [location.pathname, location.hash])
 
+    useLayoutEffect(() => {
+        if (!isHomePath(location.pathname)) {
+            setIsCategoriesSectionInView(false)
+            return
+        }
+
+        const update = () => {
+            setIsCategoriesSectionInView(isHomeCategoriesSectionActive())
+        }
+
+        update()
+        window.addEventListener('scroll', update, { passive: true })
+        window.addEventListener('resize', update)
+
+        return () => {
+            window.removeEventListener('scroll', update)
+            window.removeEventListener('resize', update)
+        }
+    }, [location.pathname])
+
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(min-width: 640px)')
+        const mediaQuery = window.matchMedia('(min-width: 680px)')
         const closeOnDesktop = () => {
             if (mediaQuery.matches) {
                 setIsMenuOpen(false)
@@ -50,13 +76,32 @@ const Navbar = () => {
         }
     }, [isMenuOpen])
 
+    const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        setIsMenuOpen(false)
+
+        if (!isHomePath(location.pathname)) {
+            return
+        }
+
+        event.preventDefault()
+
+        if (location.hash) {
+            navigate(path.home, { replace: true })
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
     const handleCategoriesClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         setIsMenuOpen(false)
 
         if (isHomePath(location.pathname)) {
             event.preventDefault()
             scrollToCategories()
-            window.history.replaceState(null, '', path.homeCategories)
+
+            if (!isCategoriesHash(location.hash)) {
+                navigate(path.homeCategories, { replace: true })
+            }
         }
     }
 
@@ -64,7 +109,7 @@ const Navbar = () => {
         <>
             <nav className="site-navbar">
                 <div className="site-navbar-inner">
-                    <Link to={path.home} className="site-navbar-brand" onClick={() => setIsMenuOpen(false)}>
+                    <Link to={path.home} className="site-navbar-brand" onClick={handleHomeClick}>
                         <img
                             src={logo}
                             alt="KiddoKompas logo"
@@ -96,9 +141,18 @@ const Navbar = () => {
                     >
                         <span className="site-navbar-menu-accent" aria-hidden="true" />
                         <Link
+                            to={path.home}
+                            onClick={handleHomeClick}
+                            className="navbar-categories-link site-navbar-menu-link"
+                            aria-current={isHomeActive ? 'page' : undefined}
+                        >
+                            {t('nav.home')}
+                        </Link>
+                        <Link
                             to={path.homeCategories}
                             onClick={handleCategoriesClick}
                             className="navbar-categories-link site-navbar-menu-link"
+                            aria-current={isCategoriesActive ? 'page' : undefined}
                         >
                             {t('nav.categories')}
                         </Link>

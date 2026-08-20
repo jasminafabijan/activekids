@@ -84,6 +84,8 @@ export const matchCategorySlug = (pathname: string): string | null => {
   return pathname.match(CATEGORY_RE[lang])?.[1] ?? null
 }
 
+export const isCategoryPath = (pathname: string) => matchCategorySlug(pathname) != null
+
 export const matchSchoolSlug = (pathname: string): string | null => {
   const lang = getLangFromPath(pathname)
   return pathname.match(SCHOOL_RE[lang])?.[1] ?? null

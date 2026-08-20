@@ -26,6 +26,8 @@ const STREET_LABELS: Record<string, string> = {
     'Football Center “Vujadin Boškov”, Novosadski put 114',
   'Sportski centar RFK Novi Sad, Rumenačka 152':
     'Sports Center RFK Novi Sad, Rumenačka 152',
+  'Sportski centar Sajmište, Hajduk Veljkova 11':
+    'Sajmište Sports Center, Hajduk Veljkova 11',
   'Mesna zajednica Bistrica, Braće Dronjak 11':
     'Bistrica Community Center, Braće Dronjak 11',
   'Bazeni SPENS-a, Sutjeska 2': 'SPENS pools, Sutjeska 2',

@@ -1,10 +1,12 @@
 import L from 'leaflet'
 
 const TEAM_BALL = '#BDEAC3'
-const MARTIAL = '#F7C6B7'
+const WATER = '#BDEAE1'
+const COURT_MOVEMENT = '#F7C6B7'
+const MARTIAL = '#EABDC5'
 const DANCE_MUSIC = '#C5BDEA'
-const ARTS = '#EAE3BD'
-const INDIVIDUAL = '#BDD7EA'
+const ACTING = '#DFBDEA'
+const CHESS = '#EAE3BD'
 const NATURE = '#C0E0CF'
 const LEARNING = '#BDCBEA'
 
@@ -12,20 +14,23 @@ const GROUP_COLOR: Record<string, string> = {
   football: TEAM_BALL,
   basketball: TEAM_BALL,
   volleyball: TEAM_BALL,
+  'mini-sports': TEAM_BALL,
+  swimming: WATER,
+  tennis: COURT_MOVEMENT,
+  athletics: COURT_MOVEMENT,
+  gymnastics: COURT_MOVEMENT,
+  'developmental-gymnastics': COURT_MOVEMENT,
   karate: MARTIAL,
   boxing: MARTIAL,
-  chess: LEARNING,
+  chess: CHESS,
   ballet: DANCE_MUSIC,
   'jazz-ballet': DANCE_MUSIC,
   'dance-sport': DANCE_MUSIC,
   folklore: DANCE_MUSIC,
   dance: DANCE_MUSIC,
   music: DANCE_MUSIC,
-  acting: ARTS,
-  art: ARTS,
-  tennis: INDIVIDUAL,
-  swimming: INDIVIDUAL,
-  'developmental-gymnastics': INDIVIDUAL,
+  acting: ACTING,
+  art: CHESS,
   riding: NATURE,
   nature: NATURE,
   languages: LEARNING,
@@ -52,7 +57,7 @@ const ICONS: Record<string, string> = {
     '<circle cx="12" cy="12" r="9"/><path d="M12 3C11 9 9 11 3 12M12 21C13 15 15 13 21 12"/>'
   ),
   karate: wrap(
-    '<circle cx="12" cy="4.6" r="2.1"/><path d="M9 22 12 12.5 15.5 22M12 8.2v4.3M5.5 10.5 12 12.5l6.8-5.2"/>'
+    '<circle cx="8.6" cy="5.2" r="2.1"/><path d="M9.4 7.4 11.3 13.8M11.3 13.8 10.9 21.5M11.3 13.8 20.5 5.2M9.5 9.2 18.2 3.8M9.3 8.8 3.8 14.6"/>'
   ),
   boxing: wrap(
     '<path d="M9.4 21.8h5.2c1 0 1.8-.8 1.8-1.8v-4.2c2.4-1 4-3.4 4-6.2C20.4 5.6 16.6 3.4 12 3.4S3.6 5.6 3.6 9.6c0 2.8 1.6 5.2 4 6.2V20c0 1 .8 1.8 1.8 1.8z"/><path d="M3.8 11.2c-1.6.4-2.4 1.8-2.4 3.2 0 1.4 1.2 2.6 2.6 2.6"/><path d="M10.2 17.6h3.6M10.2 19.6h3.6"/>'
@@ -62,6 +67,9 @@ const ICONS: Record<string, string> = {
   ),
   swimming: wrap(
     '<path d="M3 17.2c1.6-1.2 3.2-1.2 4.8 0s3.2 1.2 4.8 0 3.2-1.2 4.8 0 3.2 1.2 4.8 0"/><circle cx="16" cy="6.4" r="2"/><path d="M5.5 13.5 11 12l3.6-3.4M14.2 11.2 18 13.4"/>'
+  ),
+  'mini-sports': wrap(
+    '<circle cx="10.2" cy="5" r="2.1"/><path d="M6.6 21.2 10.2 11.4l3.6 9.8M6.4 13.6h7.6"/><circle cx="17.4" cy="17.6" r="2.6"/>'
   ),
   'developmental-gymnastics': wrap(
     '<circle cx="12" cy="4.8" r="2.1"/><path d="M4.5 11h15M8 21.2 12 11l4 10.2M12 11V8.6"/>'
@@ -110,7 +118,7 @@ const ICONS: Record<string, string> = {
 const DEFAULT_ICON = wrap('<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="#0b1a3b" stroke="none"/>')
 
 export const getMapCategoryColor = (slug?: string) =>
-  (slug && GROUP_COLOR[slug]) || INDIVIDUAL
+  (slug && GROUP_COLOR[slug]) || LEARNING
 
 export const getMapCategoryIconSvg = (slug?: string) =>
   (slug && ICONS[slug]) || DEFAULT_ICON

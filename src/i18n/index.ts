@@ -26,6 +26,7 @@ export {
   getLocalizedRoute,
   homeHashPath,
   isCategoriesHash,
+  isCategoryPath,
   isHomePath,
   localizeCategorySlug,
   matchCategorySlug,
