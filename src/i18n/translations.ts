@@ -174,6 +174,14 @@ export const translations = {
     close: { sr: 'Zatvori', en: 'Close' },
     closeWindow: { sr: 'Zatvori prozor', en: 'Close window' },
   },
+  notFound: {
+    title: { sr: 'Stranica nije pronađena', en: 'Page not found' },
+    text: {
+      sr: 'Link možda više ne postoji ili je adresa pogrešna.',
+      en: 'This link may no longer exist or the address may be incorrect.',
+    },
+    button: { sr: 'Nazad na početnu', en: 'Back to home' },
+  },
   modal: {
     title: { sr: 'Dodajte svoju školicu na KiddoKompas', en: 'Add your school to KiddoKompas' },
     intro: {

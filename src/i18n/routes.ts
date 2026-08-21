@@ -161,7 +161,13 @@ export const getLocalizedRoute = (
     return `${schoolPath(targetLang, schoolSlug)}${mapSearch(search, targetLang)}${mapHash(hash, targetLang)}`
   }
 
-  return PAGE_PATHS.home[targetLang]
+  if (targetLang === 'en') {
+    const enPath = pathname.startsWith('/en') ? pathname : `/en${pathname}`
+    return `${enPath}${mapSearch(search, targetLang)}${mapHash(hash, targetLang)}`
+  }
+
+  const srPath = pathname.startsWith('/en/') ? pathname.slice(3) || '/' : pathname
+  return `${srPath}${mapSearch(search, targetLang)}${mapHash(hash, targetLang)}`
 }
 
 export { getCategorySlug, localizeCategorySlug }

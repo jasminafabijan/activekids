@@ -4,6 +4,8 @@ import impulsWebp from '../../assets/images/schools/dance/impuls.webp'
 import impulsJpg from '../../assets/images/schools/dance/impuls.png'
 import laJazzWebp from '../../assets/images/schools/dance/la-jazz.webp'
 import laJazzJpg from '../../assets/images/schools/dance/la-jazz.jpg'
+import nsdkcWebp from '../../assets/images/schools/dance/nsdkc-savremeni-ples.webp'
+import nsdkcJpg from '../../assets/images/schools/dance/nsdkc-savremeni-ples.jpg'
 
 import type { School } from './types'
 
@@ -172,6 +174,53 @@ export const jazzBalletSchools: School[] = [
             email: 'lajazzstudio@gmail.com',
             facebook: 'https://www.facebook.com/p/La-Jazz-Studio-61558281309067/',
             instagram: 'https://www.instagram.com/la_jazz_studio/',
+        },
+    },
+    {
+        id: 'nsdkc-savremeni-ples',
+        slug: 'nsdkc-savremeni-ples',
+        name: {
+            sr: 'Novosadski dečiji kulturni centar',
+            en: 'Novi Sad Children\'s Cultural Center',
+        },
+        categorySlugs: ['jazz-ballet'],
+        city: 'Novi Sad',
+        district: 'Grbavica',
+        minAge: 7,
+        maxAge: 16,
+        ageLabel: '7–16 godina',
+        imageWebp: nsdkcWebp,
+        imageFallback: nsdkcJpg,
+        description: {
+            sr: [
+                'Radionice savremenog plesa u NSDKC-u otvaraju deci prostor da istražuju pokret, ritam, telo i muziku kroz različite plesne tehnike.',
+                'Pored vežbi, uče se koreografije koje vode ka scenskom nastupu, partnerskoj igri i osećaju za prostor i vreme.',
+                'Časove vode plesni pedagozi i koreografi Jovana Rakić i Željka Jakovljević, u grupama podeljenim po uzrastu, tokom cele školske godine.',
+                'Dva puta godišnje rad se prikazuje publici kroz koncert ili predstavu, uz saradnju sa drugim programima centra. Programi NSDKC-a besplatni su za polaznike.',
+            ],
+            en: [
+                'Contemporary dance workshops at NSDKC give children room to explore movement, rhythm, the body and music through different dance techniques.',
+                'Besides exercises, they learn choreography that leads toward stage performance, partner work and a sense of space and time.',
+                'Classes are led by dance pedagogues and choreographers Jovana Rakić and Željka Jakovljević, in groups split by age, throughout the school year.',
+                'Twice a year the work is shown to an audience as a concert or a play, with collaboration with the center’s other programs. NSDKC programs are free for participants.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'Radnička 20',
+                city: 'Novi Sad',
+                district: 'Grbavica',
+                lat: 45.2494564,
+                lng: 19.8501205,
+            },
+        ],
+        contact: {
+            phone: '021 521 447',
+            email: 'office@nsdkc.rs',
+            website: 'https://nsdkc.rs/portfolio/savremeni-ples/',
+            facebook: 'https://www.facebook.com/profile.php?id=61555926235874',
+            facebookLabel: 'NSDKC',
+            instagram: 'https://www.instagram.com/novosadskidecijikulturnicentar/',
         },
     },
 ]

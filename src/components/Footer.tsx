@@ -44,6 +44,9 @@ const Footer = () => {
                                 <img
                                     src={logoWhite}
                                     alt="KiddoKompas"
+                                    width={400}
+                                    height={160}
+                                    decoding="async"
                                     className="site-footer-logo"
                                 />
                             </Link>

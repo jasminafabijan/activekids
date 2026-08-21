@@ -58,12 +58,16 @@
     }
 
     .app-shell-main {
-        @apply flex-1;
+        @apply flex flex-1 flex-col;
     }
 
     .page-shell {
         @apply bg-white pt-20;
         padding-bottom: 30px;
+    }
+
+    .page-shell--fill {
+        @apply flex flex-1 flex-col;
     }
 
     .navbar-categories-link {
@@ -981,6 +985,26 @@
     .map-page-header {
         margin-top: 2.5rem;
         margin-bottom: 1.75rem;
+    }
+
+    .not-found {
+        @apply mx-auto flex max-w-xl flex-1 flex-col items-center justify-center px-4 py-8 text-center sm:px-6;
+    }
+
+    .not-found-title {
+        @apply font-extrabold leading-tight text-primary;
+        font-size: clamp(1.625rem, 1.15rem + 1.4vw, 2.125rem);
+    }
+
+    .not-found-text {
+        @apply mt-3 text-base leading-relaxed;
+        color: var(--text-muted);
+    }
+
+    .not-found-home {
+        @apply mx-auto mt-8 no-underline;
+        display: flex;
+        width: fit-content;
     }
 
     .search-empty {

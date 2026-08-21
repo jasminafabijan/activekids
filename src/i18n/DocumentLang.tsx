@@ -62,7 +62,7 @@ const DocumentLang = () => {
       return
     }
 
-    document.title = t('seo.homeTitle')
+    document.title = t('seo.pageTitle', { page: t('notFound.title') })
   }, [lang, pathname, t])
 
   return null

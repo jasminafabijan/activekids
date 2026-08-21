@@ -14,6 +14,7 @@ import ridingIcon from '../assets/icons/riding.svg'
 import folkloreIcon from '../assets/icons/folklore.svg'
 import tennisIcon from '../assets/icons/tennis.svg'
 import tableTennisIcon from '../assets/icons/table-tennis.svg'
+import athleticsIcon from '../assets/icons/athletics.svg'
 import volleyballIcon from '../assets/icons/volleyball.webp'
 import danceSportIcon from '../assets/icons/dance-sport.svg'
 import swimmingIcon from '../assets/icons/swimming.svg'
@@ -38,9 +39,10 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'volleyball', iconBg: 'peach', iconSrc: volleyballIcon, iconSizeAdjustPx: -10 },
   { id: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
   { id: 'table-tennis', iconBg: 'mint', iconSrc: tableTennisIcon, iconSizeAdjustPx: -6 },
+  { id: 'athletics', iconBg: 'peach', iconSrc: athleticsIcon },
   { id: 'karate', iconBg: 'mint', iconSrc: karateIcon },
-  { id: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
-  { id: 'chess', iconBg: 'mint', iconSrc: chessIcon, iconSizeAdjustPx: -4 },
+  { id: 'boxing', iconBg: 'peach', iconSrc: boxingIcon, iconSizeAdjustPx: -6 },
+  { id: 'chess', iconBg: 'mint', iconSrc: chessIcon, iconSizeAdjustPx: -10 },
   { id: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -18 },
   { id: 'mini-sports', iconBg: 'peach', iconSrc: miniSportsIcon },
   { id: 'developmental-gymnastics', iconBg: 'peach', iconSrc: developmentalGymnasticsIcon, iconSizeAdjustPx: -6 },
@@ -81,6 +83,9 @@ const CategoryCards = () => {
                 <img
                   src={category.iconSrc}
                   alt=""
+                  width={iconSizePx}
+                  height={iconSizePx}
+                  decoding="async"
                   className="category-card-icon-image"
                   style={{ height: iconSizePx, maxHeight: iconSizePx }}
                 />

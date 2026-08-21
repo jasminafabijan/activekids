@@ -37,6 +37,14 @@ const STREET_LABELS: Record<string, string> = {
     'Shopping Center Pariski magazin, Kralja Aleksandra 12',
   'Kod autoputa A1': 'Near the A1 motorway',
   'SC „Dejan Sremčević”, Školska 4': 'SC “Dejan Sremčević”, Školska 4',
+  'Sportski centar MarUK (BINS), Novosadskog sajma 37':
+    'Sports Center MarUK (BINS), Novosadskog sajma 37',
+  'OŠ „Prva vojvođanska brigada”, Seljačkih buna 51a':
+    'Primary School “Prva vojvođanska brigada”, Seljačkih buna 51a',
+  'OŠ „Dušan Radović”, Velebitska bb':
+    'Primary School “Dušan Radović”, Velebitska bb',
+  'OŠ „Dušan Radović 2”, Čenejska 61':
+    'Primary School “Dušan Radović 2”, Čenejska 61',
 }
 
 const SERBIAN_VENUE_PHRASE =

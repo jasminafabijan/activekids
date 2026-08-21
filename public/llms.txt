@@ -1,0 +1,42 @@
+# KiddoKompas
+
+> KiddoKompas is a catalog of kids’ activities in Novi Sad — schools, clubs and workshops filtered by age, neighborhood and interest. Serbian is the default language. English lives under `/en`.
+
+KiddoKompas helps parents find sports, dance and other programs in one place. Catalog information is for guidance; schedules, prices and group availability should be confirmed with each school. Contact: info@kiddokompas.rs
+
+## Pages
+
+- [Home](https://kiddokompas.rs/): Serbian homepage and category overview
+- [Search](https://kiddokompas.rs/pretraga): Filtered search results
+- [Map](https://kiddokompas.rs/mapa): Map of schools and clubs
+- [About](https://kiddokompas.rs/o-nama): About KiddoKompas
+- [Privacy policy](https://kiddokompas.rs/politika-privatnosti): Privacy policy
+
+## Categories
+
+- [Football](https://kiddokompas.rs/kategorija/fudbal): Football schools
+- [Basketball](https://kiddokompas.rs/kategorija/kosarka): Basketball schools
+- [Volleyball](https://kiddokompas.rs/kategorija/odbojka): Volleyball schools
+- [Tennis](https://kiddokompas.rs/kategorija/tenis): Tennis schools
+- [Table tennis](https://kiddokompas.rs/kategorija/stoni-tenis): Table tennis schools
+- [Athletics](https://kiddokompas.rs/kategorija/atletika): Athletics schools
+- [Karate](https://kiddokompas.rs/kategorija/karate): Karate clubs
+- [Boxing](https://kiddokompas.rs/kategorija/boks): Boxing schools
+- [Chess](https://kiddokompas.rs/kategorija/sah): Chess schools
+- [Swimming](https://kiddokompas.rs/kategorija/plivanje): Swimming schools
+- [Mini Sports](https://kiddokompas.rs/kategorija/sportic): Mini sports schools
+- [Developmental gymnastics](https://kiddokompas.rs/kategorija/razvojna-gimnastika): Developmental gymnastics schools
+- [Horse riding](https://kiddokompas.rs/kategorija/jahanje): Horse riding schools
+- [Ballet](https://kiddokompas.rs/kategorija/balet): Classical ballet schools
+- [Modern dance](https://kiddokompas.rs/kategorija/moderan-ples): Modern dance schools
+- [DanceSport](https://kiddokompas.rs/kategorija/sportski-ples): DanceSport schools
+- [Folklore](https://kiddokompas.rs/kategorija/folklor): Folklore schools
+- [Acting](https://kiddokompas.rs/kategorija/gluma): Acting schools
+
+## Optional
+
+- [English home](https://kiddokompas.rs/en): English homepage
+- [English search](https://kiddokompas.rs/en/search): English search results
+- [English map](https://kiddokompas.rs/en/map): English map
+- [English about](https://kiddokompas.rs/en/about): About KiddoKompas in English
+- [English privacy policy](https://kiddokompas.rs/en/privacy-policy): Privacy policy in English

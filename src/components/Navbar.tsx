@@ -35,12 +35,26 @@ const Navbar = () => {
         }
 
         update()
-        window.addEventListener('scroll', update, { passive: true })
-        window.addEventListener('resize', update)
+
+        let frame = 0
+        const scheduleUpdate = () => {
+            if (frame) {
+                return
+            }
+
+            frame = window.requestAnimationFrame(() => {
+                frame = 0
+                update()
+            })
+        }
+
+        window.addEventListener('scroll', scheduleUpdate, { passive: true })
+        window.addEventListener('resize', scheduleUpdate)
 
         return () => {
-            window.removeEventListener('scroll', update)
-            window.removeEventListener('resize', update)
+            window.cancelAnimationFrame(frame)
+            window.removeEventListener('scroll', scheduleUpdate)
+            window.removeEventListener('resize', scheduleUpdate)
         }
     }, [location.pathname])
 
@@ -113,6 +127,9 @@ const Navbar = () => {
                         <img
                             src={logo}
                             alt="KiddoKompas logo"
+                            width={400}
+                            height={160}
+                            decoding="async"
                             className="site-navbar-logo"
                         />
                     </Link>

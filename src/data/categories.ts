@@ -118,6 +118,18 @@ export const categories: Category[] = [
     },
   },
   {
+    id: 'athletics',
+    name: { sr: 'Atletika', en: 'Athletics' },
+    nameAccusative: 'atletiku',
+    slug: 'athletics',
+    slugs: { sr: 'atletika', en: 'athletics' },
+    subtitle: { sr: 'Škole atletike', en: 'Athletics schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole atletike u {city} — za trčanje, skokove, bacanja i ljubav prema kretanju.',
+      en: 'Explore athletics schools in {city} — for running, jumps, throws and a love of movement.',
+    },
+  },
+  {
     id: 'karate',
     name: { sr: 'Karate', en: 'Karate' },
     slug: 'karate',

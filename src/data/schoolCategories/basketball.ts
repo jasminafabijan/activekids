@@ -8,6 +8,8 @@ import kkStarWebp from '../../assets/images/schools/basketball/kk-star.webp'
 import kkStarJpg from '../../assets/images/schools/basketball/kk-star.jpg'
 import sportKeyWebp from '../../assets/images/schools/basketball/sport-key.webp'
 import sportKeyJpg from '../../assets/images/schools/basketball/sport-key.jpg'
+import kkKadetWebp from '../../assets/images/schools/basketball/kadet.webp'
+import kkKadetJpg from '../../assets/images/schools/basketball/kadet.jpg'
 
 import type { School } from './types'
 
@@ -260,6 +262,74 @@ export const basketballSchools: School[] = [
             facebook: 'https://www.facebook.com/p/sport-key-100042121190117/',
             facebookLabel: 'sport-key',
             instagram: 'https://www.instagram.com/kksportkey/',
+        },
+    },
+    {
+        id: 'kk-kadet',
+        slug: 'kk-kadet',
+        name: {
+            sr: 'KK „Kadet”',
+            en: 'Kadet Basketball Club',
+        },
+        categorySlugs: ['basketball'],
+        city: 'Novi Sad',
+        district: 'Sajmište',
+        minAge: 8,
+        maxAge: 15,
+        ageLabel: '8–15 godina',
+        imageWebp: kkKadetWebp,
+        imageFallback: kkKadetJpg,
+        description: {
+            sr: [
+                'Košarkaški klub Kadet okuplja decu kroz igru i druženje, uz košarkaško obrazovanje i vaspitanje u timu — častan i drugarski odnos u ekipi.',
+                'U klubu su ponikli igrači kao što su Nikola Milutinov, Luka Mitrović i Aleksej Pokuševski, koji je i promoter škole košarke.',
+                'Upis traje tokom cele godine, a klub prima i devojčice.',
+                'Selekcije se takmiče u Vojvođanskoj ligi, novosadskoj NSMK ligi i VIBA ligi, uz turnire u regionu i Evropi.',
+            ],
+            en: [
+                'Kadet Basketball Club brings children together through play and friendship, with basketball education and team upbringing — a fair, supportive attitude in the squad.',
+                'Players such as Nikola Milutinov, Luka Mitrović and Aleksej Pokuševski came up through the club; Pokuševski is also a promoter of the basketball school.',
+                'Enrollment runs year-round, and the club also welcomes girls.',
+                'Selections compete in the Vojvodina league, the Novi Sad NSMK league and the VIBA league, plus tournaments in the region and Europe.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'Sportski centar MarUK (BINS), Novosadskog sajma 37',
+                city: 'Novi Sad',
+                district: 'Sajmište',
+                lat: 45.2533682,
+                lng: 19.8252779,
+            },
+            {
+                street: 'OŠ „Prva vojvođanska brigada”, Seljačkih buna 51a',
+                city: 'Novi Sad',
+                district: 'Novo naselje',
+                lat: 45.2540205,
+                lng: 19.797913,
+            },
+            {
+                street: 'OŠ „Dušan Radović”, Velebitska bb',
+                city: 'Novi Sad',
+                district: 'Klisa',
+                lat: 45.2957157,
+                lng: 19.8261606,
+            },
+            {
+                street: 'OŠ „Dušan Radović 2”, Čenejska 61',
+                city: 'Novi Sad',
+                district: 'Slana bara',
+                lat: 45.2893606,
+                lng: 19.8268785,
+            },
+        ],
+        contact: {
+            phone: '062 409 616',
+            email: 'hodzic.selim@gmail.com',
+            website: 'https://kkkadet.com',
+            facebook: 'https://www.facebook.com/profile.php?id=100086423757996',
+            facebookLabel: 'KK Kadet',
+            instagram: 'https://www.instagram.com/k.k.kadet/',
         },
     },
 ]

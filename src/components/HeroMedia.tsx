@@ -10,12 +10,19 @@ type HeroImageProps = {
     fallback: string
     alt: string
     className: string
+    fetchPriority?: 'high' | 'low' | 'auto'
 }
 
-const HeroImage = ({ webp, fallback, alt, className }: HeroImageProps) => (
+const HeroImage = ({ webp, fallback, alt, className, fetchPriority }: HeroImageProps) => (
     <picture>
         <source srcSet={webp} type="image/webp" />
-        <img src={fallback} alt={alt} decoding="async" className={className} />
+        <img
+            src={fallback}
+            alt={alt}
+            decoding="async"
+            fetchPriority={fetchPriority}
+            className={className}
+        />
     </picture>
 )
 
@@ -26,6 +33,7 @@ const HeroMedia = () => (
                 webp={heroImg1Webp}
                 fallback={heroImg1}
                 alt="Atletika za decu"
+                fetchPriority="high"
                 className="hero-media-img hero-media-img--atletika shadow-card ring-4 ring-mint-soft"
             />
             <HeroImage

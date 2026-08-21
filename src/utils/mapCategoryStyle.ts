@@ -60,6 +60,9 @@ const ICONS: Record<string, string> = {
   'table-tennis': wrap(
     '<ellipse cx="9.4" cy="14.6" rx="5.1" ry="6.3" transform="rotate(-38 9.4 14.6)"/><path d="M6.2 19.4 4.2 21.6"/><circle cx="18.2" cy="6.2" r="2.2"/>'
   ),
+  athletics: wrap(
+    '<circle cx="14.6" cy="4.8" r="2"/><path d="M8.2 21.2 12.2 12.4 16.8 8.6M12.2 12.4 6.4 11.2M16.8 8.6 20.4 12.8M16.8 8.6 13.4 7.2"/>'
+  ),
   karate: wrap(
     '<circle cx="8.6" cy="5.2" r="2.1"/><path d="M9.4 7.4 11.3 13.8M11.3 13.8 10.9 21.5M11.3 13.8 20.5 5.2M9.5 9.2 18.2 3.8M9.3 8.8 3.8 14.6"/>'
   ),
