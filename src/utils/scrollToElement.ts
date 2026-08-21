@@ -1,3 +1,5 @@
+import { CATEGORIES_SECTION_ID } from '../i18n/routes'
+
 const getScrollOffset = (element: HTMLElement) => {
     const marginTop = parseFloat(getComputedStyle(element).scrollMarginTop)
 
@@ -44,12 +46,12 @@ export const scrollToElement = (elementId: string, duration = 900) => {
     requestAnimationFrame(step)
 }
 
-export const scrollToCategories = () => scrollToElement('kategorije')
+export const scrollToCategories = () => scrollToElement(CATEGORIES_SECTION_ID)
 
-export const jumpToCategories = () => scrollToElement('kategorije', 0)
+export const jumpToCategories = () => scrollToElement(CATEGORIES_SECTION_ID, 0)
 
 export const isHomeCategoriesSectionActive = () => {
-    const categories = document.getElementById('kategorije')
+    const categories = document.getElementById(CATEGORIES_SECTION_ID)
 
     if (!categories) {
         return false

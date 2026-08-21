@@ -1,5 +1,10 @@
 export { addActivityFormUrl, CONTACT_EMAIL, VIBER_PHONE } from './config'
-export { formatMapCountLabel, formatSchoolCountLabel, formatSearchSubtitle } from './formatters'
+export {
+  formatEmptyFilterMessage,
+  formatMapCountLabel,
+  formatSchoolCountLabel,
+  formatSearchSubtitle,
+} from './formatters'
 export {
   DEFAULT_LANG,
   OTHER_LANG,
@@ -15,6 +20,7 @@ export {
 } from './helpers'
 export {
   CATEGORY_ROUTE_PATH,
+  CATEGORIES_SECTION_ID,
   HASH,
   PAGE_PATHS,
   PATH_SEGMENT,

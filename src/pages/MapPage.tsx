@@ -4,10 +4,26 @@ import FiltersBar, { type FilterValues } from '../components/FiltersBar'
 import MapActivityCard from '../components/MapActivityCard'
 import Navbar from '../components/Navbar'
 import { filterSchools, getSchoolName } from '../data/schools'
-import { formatMapCountLabel } from '../i18n/formatters'
+import { formatEmptyFilterMessage, formatMapCountLabel } from '../i18n/formatters'
 import { useI18n } from '../i18n/useI18n'
 import { getMapLocations } from '../utils/mapLocation'
 import { getDefaultFilters } from '../utils/searchFilters'
+
+const scrollMapCardIntoView = (card: HTMLElement) => {
+  const list = card.closest('.map-page-list-cards')
+
+  if (list instanceof HTMLElement && list.scrollHeight > list.clientHeight + 2) {
+    const delta = card.getBoundingClientRect().top - list.getBoundingClientRect().top
+    list.scrollTo({ top: list.scrollTop + delta, behavior: 'smooth' })
+    return
+  }
+
+  const navbar = document.querySelector('.site-navbar')
+  const offset = (navbar instanceof HTMLElement ? navbar.offsetHeight : 80) + 12
+  const top = window.scrollY + card.getBoundingClientRect().top - offset
+
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+}
 
 const MapPage = () => {
   const { lang, t } = useI18n()
@@ -15,6 +31,10 @@ const MapPage = () => {
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null)
   const cardRefs = useRef<Map<string, HTMLElement>>(new Map())
   const visibleSchools = useMemo(() => filterSchools(filters), [filters])
+  const emptyMessage = useMemo(
+    () => formatEmptyFilterMessage(filters, lang, false),
+    [filters, lang]
+  )
   const mappedLocations = useMemo(() => {
     const schools = visibleSchools
       .filter((school) => school.addresses?.some((address) => address.lat != null && address.lng != null))
@@ -30,7 +50,18 @@ const MapPage = () => {
 
   const handleSelectLocation = (locationId: string) => {
     setSelectedLocationId(locationId)
-    cardRefs.current.get(locationId)?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }
+
+  const handleSelectLocationFromMap = (locationId: string) => {
+    setSelectedLocationId(locationId)
+
+    requestAnimationFrame(() => {
+      const card = cardRefs.current.get(locationId)
+
+      if (card) {
+        scrollMapCardIntoView(card)
+      }
+    })
   }
 
   return (
@@ -76,14 +107,15 @@ const MapPage = () => {
             <CatalogMap
               locations={mappedLocations}
               selectedLocationId={selectedLocationId}
-              onSelectLocation={handleSelectLocation}
+              onSelectLocation={handleSelectLocationFromMap}
             />
           </div>
         </div>
       ) : (
-        <p className="map-page-empty">
-          {t('map.empty')}
-        </p>
+        <div className="map-page-empty">
+          <p>{emptyMessage.title}</p>
+          <p>{emptyMessage.hint}</p>
+        </div>
       )}
     </div>
   )

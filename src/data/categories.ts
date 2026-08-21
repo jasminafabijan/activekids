@@ -107,6 +107,17 @@ export const categories: Category[] = [
     },
   },
   {
+    id: 'table-tennis',
+    name: { sr: 'Stoni tenis', en: 'Table tennis' },
+    slug: 'table-tennis',
+    slugs: { sr: 'stoni-tenis', en: 'table-tennis' },
+    subtitle: { sr: 'Škole stonog tenisa', en: 'Table tennis schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole stonog tenisa u {city} — za fokus, brzinu reakcije i sigurnost za stolom.',
+      en: 'Explore table tennis schools in {city} — for focus, reaction speed and confidence at the table.',
+    },
+  },
+  {
     id: 'karate',
     name: { sr: 'Karate', en: 'Karate' },
     slug: 'karate',

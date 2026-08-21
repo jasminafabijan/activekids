@@ -9,7 +9,7 @@ import {
   type School,
   type SchoolFilters,
 } from '../data/schools'
-import { formatSearchSubtitle } from '../i18n/formatters'
+import { formatEmptyFilterMessage, formatSearchSubtitle } from '../i18n/formatters'
 import type { Lang } from '../i18n/types'
 import { useI18n } from '../i18n/useI18n'
 import {
@@ -41,6 +41,7 @@ const SearchResultsPage = () => {
   const filters = getFiltersFromSearchParams(searchParams)
   const results = filterSchools(filters)
   const backState: HomeLocationState = { filters }
+  const emptyMessage = formatEmptyFilterMessage(filters, lang)
 
   return (
     <div className="page-shell">
@@ -85,9 +86,10 @@ const SearchResultsPage = () => {
             ))}
           </div>
         ) : (
-          <p className="text-muted text-center">
-            {t('search.empty')}
-          </p>
+          <div className="search-empty">
+            <p>{emptyMessage.title}</p>
+            <p>{emptyMessage.hint}</p>
+          </div>
         )}
       </main>
     </div>

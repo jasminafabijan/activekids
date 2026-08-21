@@ -29,13 +29,21 @@
 }
 
 @media (max-width: 639.98px) {
+    .school-detail {
+        margin-top: 1.5rem;
+    }
+
     .school-detail-image-wrap {
         height: 280px;
     }
 
+    .school-detail-image-frame {
+        margin-left: 1rem;
+    }
+
     .hero-inner {
-        padding-top: 2.5rem;
-        padding-bottom: 2.5rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 
     .add-activity-modal-close {
@@ -53,6 +61,10 @@
 
     .map-page-header {
         margin-top: 2rem;
+    }
+
+    .site-footer-inner {
+        padding-top: 2.5rem;
     }
 }
 
@@ -77,6 +89,10 @@
 
     .map-page-body .catalog-map-canvas {
         min-height: 18rem;
+    }
+
+    .about-intro-photo {
+        height: 300px;
     }
 }
 
@@ -159,11 +175,6 @@
 
     .hero-lead {
         margin-inline: auto;
-    }
-
-    .search-field-select,
-    .search-field-menu-search-input {
-        font-size: 16px;
     }
 
     .hero-gradient--mint,
@@ -314,7 +325,7 @@
         line-height: 1.75;
     }
 
-    .legal-body > h2 {
+    .legal-body>h2 {
         font-size: 1.25rem;
         margin-top: 2.5rem;
     }

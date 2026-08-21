@@ -6,6 +6,8 @@ import pointeDanceWebp from '../../assets/images/schools/ballet/pointe-dance.web
 import pointeDancePng from '../../assets/images/schools/ballet/pointe-dance.png'
 import dobrilaNovkovWebp from '../../assets/images/schools/ballet/dobrila-novkov.webp'
 import dobrilaNovkovPng from '../../assets/images/schools/ballet/dobrila-novkov.png'
+import ludensWebp from '../../assets/images/schools/ballet/ludens.webp'
+import ludensJpg from '../../assets/images/schools/ballet/ludens.jpg'
 
 import type { School } from './types'
 
@@ -207,5 +209,52 @@ export const balletSchools: School[] = [
             facebook: 'https://www.facebook.com/pointedanceserbia/',
             instagram: 'https://www.instagram.com/pointedanceserbia/',
         },
-    }
+    },
+    {
+        id: 'ludens',
+        slug: 'ludens',
+        name: {
+            sr: 'Baletski studio Ludens',
+            en: 'Ludens Ballet Studio',
+        },
+        categorySlugs: ['ballet'],
+        city: 'Novi Sad',
+        district: 'Podbara',
+        minAge: 3,
+        maxAge: null,
+        ageLabel: '3+ godina',
+        imageWebp: ludensWebp,
+        imageFallback: ludensJpg,
+        description: {
+            sr: [
+                'Baletski studio Ludens osnovala je 1994. Mira Ruškuc, solistkinja baleta SNP-a u penziji, i od tada vodi klasičan program za decu i odrasle.',
+                'Nema prijemnog ni selekcije — polaznici uče prve baletske korake, držanje, muzikalnost i disciplinu, a oni sa smislom za igru pripremaju se i za baletsku školu.',
+                'Nastava traje kroz školsku godinu, a u junu studio izvodi završnu predstavu u kojoj učestvuju svi polaznici.',
+                'Dva puta godišnje pripremaju i predstave u pozorištu; Mira Ruškuc je sa studijem uradila više od pedeset dečijih baletskih predstava i koreografija.',
+            ],
+            en: [
+                'Ludens Ballet Studio was founded in 1994 by Mira Ruškuc, a retired ballet soloist of the Serbian National Theatre in Novi Sad, and has since run a classical program for children and adults.',
+                'There is no entrance exam or selection — pupils learn the first ballet steps, posture, musicality and discipline, and those with a gift for dance also prepare for ballet school.',
+                'Classes run through the school year, and in June the studio stages a closing performance in which all pupils take part.',
+                'Twice a year they also prepare theater performances; Mira Ruškuc has created more than fifty children’s ballet productions and choreographies with the studio.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'Zlatne Grede 25',
+                city: 'Novi Sad',
+                district: 'Podbara',
+                lat: 45.2592145,
+                lng: 19.847808,
+            },
+        ],
+        contact: {
+            phone: '064 183 88 52',
+            email: 'baletskistudioludens@gmail.com',
+            website: 'https://studioludens.info/upis/',
+            facebook: 'https://www.facebook.com/BaletskiStudioLudens/',
+            facebookLabel: 'BaletskiStudioLudens',
+            instagram: 'https://www.instagram.com/baletskistudioludens/',
+        },
+    },
 ]

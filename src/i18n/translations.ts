@@ -74,9 +74,54 @@ export const translations = {
   search: {
     title: { sr: 'Rezultati pretrage', en: 'Search results' },
     back: { sr: 'Nazad na pretragu', en: 'Back to search' },
-    empty: {
-      sr: 'Nema rezultata za izabrane kriterijume. Pokušajte da izmenite uzrast, aktivnost ili deo grada.',
-      en: 'No results for the selected filters. Try changing the age, activity or neighborhood.',
+    emptyLead: { sr: 'Nema rezultata', en: 'No results' },
+    emptyGeneric: {
+      sr: 'Nema rezultata za izabrane kriterijume.',
+      en: 'No results for the selected filters.',
+    },
+    emptyForActivity: { sr: 'za aktivnost „{activity}”', en: 'for activity “{activity}”' },
+    emptyForActivities: { sr: 'za aktivnosti {activities}', en: 'for activities {activities}' },
+    emptyForSelectedActivities: {
+      sr: 'za izabrane aktivnosti',
+      en: 'for the selected activities',
+    },
+    emptyForAge: { sr: 'za uzrast {age}', en: 'for age {age}' },
+    emptyForDistrict: { sr: 'za deo grada „{district}”', en: 'for the “{district}” neighborhood' },
+    emptyForDistricts: { sr: 'za delove grada {districts}', en: 'for the {districts} neighborhoods' },
+    emptyForSelectedDistricts: {
+      sr: 'za izabrane delove grada',
+      en: 'for the selected neighborhoods',
+    },
+    emptyInDistrict: { sr: 'u delu grada „{district}”', en: 'in the “{district}” neighborhood' },
+    emptyInDistricts: { sr: 'u delovima grada {districts}', en: 'in the {districts} neighborhoods' },
+    emptyInSelectedDistricts: {
+      sr: 'u izabranim delovima grada',
+      en: 'in the selected neighborhoods',
+    },
+    emptyHintAge: { sr: 'Pokušajte da promenite uzrast.', en: 'Try changing the age.' },
+    emptyHintActivity: {
+      sr: 'Pokušajte da izaberete drugu aktivnost.',
+      en: 'Try choosing another activity.',
+    },
+    emptyHintDistrict: {
+      sr: 'Pokušajte da izaberete drugi deo grada.',
+      en: 'Try choosing another neighborhood.',
+    },
+    emptyHintAgeActivity: {
+      sr: 'Pokušajte da promenite uzrast ili izaberete drugu aktivnost.',
+      en: 'Try changing the age or choose another activity.',
+    },
+    emptyHintAgeDistrict: {
+      sr: 'Pokušajte da promenite uzrast ili deo grada.',
+      en: 'Try changing the age or neighborhood.',
+    },
+    emptyHintActivityDistrict: {
+      sr: 'Pokušajte da izaberete drugu aktivnost ili deo grada.',
+      en: 'Try choosing another activity or neighborhood.',
+    },
+    emptyHintAll: {
+      sr: 'Pokušajte da promenite uzrast, aktivnost ili deo grada.',
+      en: 'Try changing the age, activity or neighborhood.',
     },
     found: { sr: 'Pronašli smo {count}.', en: 'We found {count}.' },
     foundAge: {
@@ -101,10 +146,6 @@ export const translations = {
   },
   map: {
     title: { sr: 'Mapa aktivnosti', en: 'Activities map' },
-    empty: {
-      sr: 'Nema rezultata za izabrane kriterijume. Pokušajte da izmenite uzrast ili aktivnost.',
-      en: 'No results for the selected filters. Try changing the age or activity.',
-    },
     seeDetails: { sr: 'Vidi detalje', en: 'See details' },
     listAria: { sr: 'Lista aktivnosti', en: 'Activity list' },
     openInGoogleMaps: { sr: 'Otvori u Google Maps', en: 'Open in Google Maps' },

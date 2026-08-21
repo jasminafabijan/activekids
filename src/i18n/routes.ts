@@ -20,6 +20,9 @@ export const HASH = {
   categories: { sr: 'kategorije', en: 'categories' },
 } as const
 
+/** DOM id for the home categories section. URL hashes stay localized. */
+export const CATEGORIES_SECTION_ID = 'categories'
+
 export const QUERY = {
   category: { sr: 'kategorija', en: 'category' },
 } as const

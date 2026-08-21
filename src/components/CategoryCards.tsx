@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useI18n } from '../i18n/useI18n'
 import { getCategoryNameBySlug } from '../data/categories'
+import { CATEGORIES_SECTION_ID } from '../i18n/routes'
+import { useI18n } from '../i18n/useI18n'
 import actingIcon from '../assets/icons/acting.svg'
 import balletIcon from '../assets/icons/ballet.svg'
 import basketballIcon from '../assets/icons/basketball.svg'
@@ -12,6 +13,7 @@ import karateIcon from '../assets/icons/karate.svg'
 import ridingIcon from '../assets/icons/riding.svg'
 import folkloreIcon from '../assets/icons/folklore.svg'
 import tennisIcon from '../assets/icons/tennis.svg'
+import tableTennisIcon from '../assets/icons/table-tennis.svg'
 import volleyballIcon from '../assets/icons/volleyball.webp'
 import danceSportIcon from '../assets/icons/dance-sport.svg'
 import swimmingIcon from '../assets/icons/swimming.svg'
@@ -35,6 +37,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'basketball', iconBg: 'mint', iconSrc: basketballIcon, iconSizeAdjustPx: -4 },
   { id: 'volleyball', iconBg: 'peach', iconSrc: volleyballIcon, iconSizeAdjustPx: -10 },
   { id: 'tennis', iconBg: 'peach', iconSrc: tennisIcon },
+  { id: 'table-tennis', iconBg: 'mint', iconSrc: tableTennisIcon, iconSizeAdjustPx: -6 },
   { id: 'karate', iconBg: 'mint', iconSrc: karateIcon },
   { id: 'boxing', iconBg: 'peach', iconSrc: boxingIcon },
   { id: 'chess', iconBg: 'mint', iconSrc: chessIcon, iconSizeAdjustPx: -4 },
@@ -53,7 +56,7 @@ const CategoryCards = () => {
   const { lang, path, t } = useI18n()
 
   return (
-    <section id="kategorije" className="categories-section" aria-labelledby="categories-title">
+    <section id={CATEGORIES_SECTION_ID} className="categories-section" aria-labelledby="categories-title">
       <div className="categories-header">
         <span className="tag tag--pill tag--peach">{t('categories.tag')}</span>
         <h2 id="categories-title" className="categories-title">

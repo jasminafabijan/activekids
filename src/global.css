@@ -669,13 +669,13 @@
         text-decoration-color: var(--text-gray);
     }
 
-    .categories-section {
-        @apply py-12 md:py-16;
-        scroll-margin-top: 5.5rem;
+    .categories-section,
+    .recently-added-section {
+        @apply py-8 sm:py-12 md:py-16;
     }
 
-    .recently-added-section {
-        @apply py-12 md:py-16;
+    .categories-section {
+        scroll-margin-top: 5.5rem;
     }
 
     .categories-header {
@@ -983,9 +983,14 @@
         margin-bottom: 1.75rem;
     }
 
-    .map-page-empty {
-        @apply mx-auto max-w-3xl px-4 py-16 text-center text-base sm:px-6;
+    .search-empty {
+        @apply mx-auto max-w-2xl py-12 text-center text-base;
         color: var(--text-muted);
+    }
+
+    .search-empty p + p,
+    .map-page-empty p + p {
+        margin-top: 0.75rem;
     }
 
     .map-page-body {

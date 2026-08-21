@@ -17,6 +17,7 @@ const GROUP_COLOR: Record<string, string> = {
   'mini-sports': TEAM_BALL,
   swimming: WATER,
   tennis: COURT_MOVEMENT,
+  'table-tennis': COURT_MOVEMENT,
   athletics: COURT_MOVEMENT,
   gymnastics: COURT_MOVEMENT,
   'developmental-gymnastics': COURT_MOVEMENT,
@@ -55,6 +56,9 @@ const ICONS: Record<string, string> = {
   ),
   tennis: wrap(
     '<circle cx="12" cy="12" r="9"/><path d="M12 3C11 9 9 11 3 12M12 21C13 15 15 13 21 12"/>'
+  ),
+  'table-tennis': wrap(
+    '<ellipse cx="9.4" cy="14.6" rx="5.1" ry="6.3" transform="rotate(-38 9.4 14.6)"/><path d="M6.2 19.4 4.2 21.6"/><circle cx="18.2" cy="6.2" r="2.2"/>'
   ),
   karate: wrap(
     '<circle cx="8.6" cy="5.2" r="2.1"/><path d="M9.4 7.4 11.3 13.8M11.3 13.8 10.9 21.5M11.3 13.8 20.5 5.2M9.5 9.2 18.2 3.8M9.3 8.8 3.8 14.6"/>'

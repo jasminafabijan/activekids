@@ -68,7 +68,7 @@ const CategoryPage = () => {
   return (
     <div className="page-shell">
       <Navbar />
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      <main className="mx-auto max-w-7xl px-4 pt-6 pb-8 sm:px-6 sm:pt-8">
         <BackLink to={path.homeCategories} className="category-page-back">
           ← {t('common.backHome')}
         </BackLink>

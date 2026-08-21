@@ -32,7 +32,7 @@ const HomePage = () => {
       return
     }
 
-    // Direct visit / refresh of /#kategorije. Back/forward keeps saved scroll.
+    // Direct visit / refresh of the categories hash. Back/forward keeps saved scroll.
     if (navigationType === 'POP' && !hasSavedScroll(location.key)) {
       jumpToCategories()
     }
