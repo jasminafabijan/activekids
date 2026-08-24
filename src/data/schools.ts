@@ -21,6 +21,7 @@ import { swimmingSchools } from './schoolCategories/swimming'
 import { miniSportsSchools } from './schoolCategories/mini-sports'
 import { athleticsSchools } from './schoolCategories/athletics'
 import { developmentalGymnasticsSchools } from './schoolCategories/developmental-gymnastics'
+import { capoeiraSchools } from './schoolCategories/capoeira'
 import type { School, SchoolAddress, SchoolFilters } from './schoolCategories/types'
 
 export type { School, SchoolAddress, SchoolContact, SchoolFilters } from './schoolCategories/types'
@@ -37,6 +38,7 @@ export const schools: School[] = [
     ...volleyballSchools,
     ...karateSchools,
     ...boxingSchools,
+    ...capoeiraSchools,
     ...chessSchools,
     ...swimmingSchools,
     ...miniSportsSchools,
@@ -113,9 +115,9 @@ export const getSchoolsByCategory = (categorySlug: string, lang: Lang = 'sr') =>
 
 /** Newest first — prepend the school id here when adding a new school. */
 const RECENTLY_ADDED_SCHOOL_IDS = [
-    'kk-kadet',
-    'sportisimo-atletika',
-    'nsdkc-savremeni-ples',
+    'sportisimo-jazz-balet',
+    'kapuera-akademija-ns',
+    'kk-danubius',
 ] as const
 
 export const getRecentlyAddedSchools = (count = 3) =>

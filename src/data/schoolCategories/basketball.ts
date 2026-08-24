@@ -10,6 +10,8 @@ import sportKeyWebp from '../../assets/images/schools/basketball/sport-key.webp'
 import sportKeyJpg from '../../assets/images/schools/basketball/sport-key.jpg'
 import kkKadetWebp from '../../assets/images/schools/basketball/kadet.webp'
 import kkKadetJpg from '../../assets/images/schools/basketball/kadet.jpg'
+import kkDanubiusWebp from '../../assets/images/schools/basketball/kk-danubius.webp'
+import kkDanubiusJpg from '../../assets/images/schools/basketball/kk-danubius.jpg'
 
 import type { School } from './types'
 
@@ -330,6 +332,53 @@ export const basketballSchools: School[] = [
             facebook: 'https://www.facebook.com/profile.php?id=100086423757996',
             facebookLabel: 'KK Kadet',
             instagram: 'https://www.instagram.com/k.k.kadet/',
+        },
+    },
+    {
+        id: 'kk-danubius',
+        slug: 'kk-danubius',
+        name: {
+            sr: 'KK Danubius',
+            en: 'Danubius Basketball Club',
+        },
+        categorySlugs: ['basketball'],
+        city: 'Novi Sad',
+        district: 'Sajmište',
+        minAge: 6,
+        maxAge: null,
+        ageLabel: '6+ godina',
+        imageWebp: kkDanubiusWebp,
+        imageFallback: kkDanubiusJpg,
+        description: {
+            sr: [
+                'Košarkaški klub Danubius osnovan je 2000. godine, a osnivač je trener Nebojša Zeković. Nakon prvih sezona klub se okrenuo isključivo radu sa mlađim kategorijama — i ta koncepcija važi i danas.',
+                'Škola košarke okuplja više od 120 članova, uz stručne trenere, prilagođene programe, igru i takmičenja.',
+                'Klub ima niz titula u KSS, KSV i VIBA ligama, kao i na turnirima u Srbiji i inostranstvu, a kroz njega su prošli igrači kao što su Nikola Silađi, Vukašin Petković, Vasilije Vučetić, Dušan Bulut i Strahinja Stojačić.',
+                'Svake sezone organizuju se i pripreme na Tari i Zlatiboru, kao i na obalama Grčke.',
+            ],
+            en: [
+                'Danubius Basketball Club was founded in 2000 by coach Nebojša Zeković. After its first seasons the club turned exclusively to younger age groups — and that approach still holds.',
+                'The basketball school has more than 120 members, with specialist coaches, adapted programs, play and competitions.',
+                'The club has a string of titles in the KSS, KSV and VIBA leagues, as well as at tournaments in Serbia and abroad, and players such as Nikola Silađi, Vukašin Petković, Vasilije Vučetić, Dušan Bulut and Strahinja Stojačić came up through it.',
+                'Each season it also organizes training camps on Tara and Zlatibor, and on the coast of Greece.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'OŠ „Petefi Šandor”, Bore Prodanovića 15A',
+                city: 'Novi Sad',
+                district: 'Sajmište',
+                lat: 45.2541054,
+                lng: 19.8299933,
+            },
+        ],
+        contact: {
+            phone: '063 597 946',
+            email: 'kkdanubius2000@gmail.com',
+            website: 'https://kkdanubius.rs',
+            facebook: 'https://www.facebook.com/DanubiusSkolaKosarke/',
+            facebookLabel: 'DanubiusSkolaKosarke',
+            instagram: 'https://www.instagram.com/kkdanubius/',
         },
     },
 ]

@@ -152,6 +152,18 @@ export const categories: Category[] = [
     },
   },
   {
+    id: 'capoeira',
+    name: { sr: 'Kapuera', en: 'Capoeira' },
+    nameAccusative: 'kapueru',
+    slug: 'capoeira',
+    slugs: { sr: 'kapuera', en: 'capoeira' },
+    subtitle: { sr: 'Škole kapuere', en: 'Capoeira schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole kapuere u {city} — za spoj igre, muzike i borilačke veštine.',
+      en: 'Explore capoeira schools in {city} — for a blend of play, music and martial art.',
+    },
+  },
+  {
     id: 'chess',
     name: { sr: 'Šah', en: 'Chess' },
     slug: 'chess',

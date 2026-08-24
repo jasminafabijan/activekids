@@ -45,6 +45,8 @@ const STREET_LABELS: Record<string, string> = {
     'Primary School “Dušan Radović”, Velebitska bb',
   'OŠ „Dušan Radović 2”, Čenejska 61':
     'Primary School “Dušan Radović 2”, Čenejska 61',
+  'OŠ „Petefi Šandor”, Bore Prodanovića 15A':
+    'Primary School “Petefi Šandor”, Bore Prodanovića 15A',
 }
 
 const SERBIAN_VENUE_PHRASE =

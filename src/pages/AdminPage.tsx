@@ -3,20 +3,35 @@ import { Link } from 'react-router-dom'
 import { formatSchoolCategoryNames, getActivityOptions, getSchoolNameSr, schools } from '../data/schools'
 import './admin.css'
 
+const CONTACTED_STORAGE_KEY = 'kiddokompas-admin-contacted'
 const VERIFIED_STORAGE_KEY = 'kiddokompas-admin-verified'
 
-const loadVerifiedState = (): Record<string, boolean> => {
+const loadFlagState = (key: string): Record<string, boolean> => {
   try {
-    const stored = localStorage.getItem(VERIFIED_STORAGE_KEY)
+    const stored = localStorage.getItem(key)
     return stored ? (JSON.parse(stored) as Record<string, boolean>) : {}
   } catch {
     return {}
   }
 }
 
+const toggleFlag = (schoolId: string, current: Record<string, boolean>) => ({
+  ...current,
+  [schoolId]: !current[schoolId],
+})
+
 const AdminPage = () => {
   const [sportFilter, setSportFilter] = useState('')
-  const [verified, setVerified] = useState<Record<string, boolean>>(loadVerifiedState)
+  const [contacted, setContacted] = useState<Record<string, boolean>>(() =>
+    loadFlagState(CONTACTED_STORAGE_KEY)
+  )
+  const [verified, setVerified] = useState<Record<string, boolean>>(() =>
+    loadFlagState(VERIFIED_STORAGE_KEY)
+  )
+
+  useEffect(() => {
+    localStorage.setItem(CONTACTED_STORAGE_KEY, JSON.stringify(contacted))
+  }, [contacted])
 
   useEffect(() => {
     localStorage.setItem(VERIFIED_STORAGE_KEY, JSON.stringify(verified))
@@ -43,14 +58,8 @@ const AdminPage = () => {
     })
   }, [sportFilter])
 
+  const contactedCount = rows.filter((school) => contacted[school.id]).length
   const verifiedCount = rows.filter((school) => verified[school.id]).length
-
-  const toggleVerified = (schoolId: string) => {
-    setVerified((current) => ({
-      ...current,
-      [schoolId]: !current[schoolId],
-    }))
-  }
 
   return (
     <div className="admin-page">
@@ -61,11 +70,14 @@ const AdminPage = () => {
           </Link>
           <h1 className="admin-page-title">Admin — škole</h1>
           <p className="admin-page-subtitle">
-            Proveri kontakt podatke sa vlasnicima i označi red kada je sve potvrđeno.
+            Označi koga si kontaktirala, pa red kada su podaci potvrđeni.
           </p>
         </div>
 
         <div className="admin-page-stats">
+          <span className="admin-page-stat">
+            Kontaktirano: <strong>{contactedCount}</strong> / {rows.length}
+          </span>
           <span className="admin-page-stat">
             Provereno: <strong>{verifiedCount}</strong> / {rows.length}
           </span>
@@ -94,7 +106,10 @@ const AdminPage = () => {
           <thead>
             <tr>
               <th className="admin-table-col-check" scope="col">
-                <span className="sr-only">Provereno</span>
+                Kontakt
+              </th>
+              <th className="admin-table-col-check" scope="col">
+                Provera
               </th>
               <th scope="col">Aktivnost</th>
               <th scope="col">Škola</th>
@@ -106,23 +121,39 @@ const AdminPage = () => {
           <tbody>
             {rows.map((school) => {
               const sportName = formatSchoolCategoryNames(school)
+              const schoolName = getSchoolNameSr(school)
+              const isContacted = Boolean(contacted[school.id])
               const isVerified = Boolean(verified[school.id])
+              const rowClass = isVerified
+                ? 'admin-table-row--verified'
+                : isContacted
+                  ? 'admin-table-row--contacted'
+                  : ''
 
               return (
-                <tr key={school.id} className={isVerified ? 'admin-table-row--verified' : ''}>
+                <tr key={school.id} className={rowClass}>
+                  <td className="admin-table-col-check">
+                    <input
+                      type="checkbox"
+                      className="admin-table-checkbox"
+                      checked={isContacted}
+                      onChange={() => setContacted((current) => toggleFlag(school.id, current))}
+                      aria-label={`Kontaktirano — ${schoolName}`}
+                    />
+                  </td>
                   <td className="admin-table-col-check">
                     <input
                       type="checkbox"
                       className="admin-table-checkbox"
                       checked={isVerified}
-                      onChange={() => toggleVerified(school.id)}
-                      aria-label={`Provereno sa vlasnikom — ${getSchoolNameSr(school)}`}
+                      onChange={() => setVerified((current) => toggleFlag(school.id, current))}
+                      aria-label={`Provereno sa vlasnikom — ${schoolName}`}
                     />
                   </td>
                   <td>{sportName}</td>
                   <td>
                     <Link to={`/skola/${school.slug}`} className="admin-table-school-link">
-                      {getSchoolNameSr(school)}
+                      {schoolName}
                     </Link>
                   </td>
                   <td>

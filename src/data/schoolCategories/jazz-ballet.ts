@@ -6,6 +6,8 @@ import laJazzWebp from '../../assets/images/schools/dance/la-jazz.webp'
 import laJazzJpg from '../../assets/images/schools/dance/la-jazz.jpg'
 import nsdkcWebp from '../../assets/images/schools/dance/nsdkc-savremeni-ples.webp'
 import nsdkcJpg from '../../assets/images/schools/dance/nsdkc-savremeni-ples.jpg'
+import sportisimoWebp from '../../assets/images/schools/athletics/sportisimo.webp'
+import sportisimoJpg from '../../assets/images/schools/athletics/sportisimo.jpg'
 
 import type { School } from './types'
 
@@ -221,6 +223,53 @@ export const jazzBalletSchools: School[] = [
             facebook: 'https://www.facebook.com/profile.php?id=61555926235874',
             facebookLabel: 'NSDKC',
             instagram: 'https://www.instagram.com/novosadskidecijikulturnicentar/',
+        },
+    },
+    {
+        id: 'sportisimo-jazz-balet',
+        slug: 'sportisimo-jazz-balet',
+        name: {
+            sr: 'Sportisimo',
+            en: 'Sportisimo',
+        },
+        categorySlugs: ['jazz-ballet'],
+        city: 'Novi Sad',
+        district: 'Detelinara',
+        minAge: 4,
+        maxAge: 6,
+        ageLabel: '4–6 godina',
+        imageWebp: sportisimoWebp,
+        imageFallback: sportisimoJpg,
+        description: {
+            sr: [
+                'Na jazz baletu u Sportisimu deca upoznaju prve plesne i baletske korake, ritam i način da muziku prate celim telom.',
+                'Kroz ples postaju svesnija tela — uče kako da postave ruke, isprave koleno, usmere stopalo, zadrže ravnotežu i povežu više pokreta.',
+                'Dok pažljivo slušaju i istovremeno izvode pokret, vežbaju pažnju, pamćenje i koncentraciju, a muzici i pokretu pridružuje se i mašta.',
+                'Neke priče se čitaju; ovde ih ponekad i plešu. Može se doći i na probni trening.',
+            ],
+            en: [
+                'In jazz ballet at Sportisimo, children learn their first dance and ballet steps, rhythm, and how to follow music with the whole body.',
+                'Through dance they become more aware of the body — how to place the arms, straighten the knee, point the foot, keep balance and connect several movements.',
+                'While they listen carefully and move at the same time, they practice attention, memory and concentration, and imagination joins the music and movement.',
+                'Some stories are read; here they are sometimes danced as well. A trial class is available.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'Milenka Grčića 3a',
+                city: 'Novi Sad',
+                district: 'Detelinara',
+                lat: 45.2619586,
+                lng: 19.8123263,
+            },
+        ],
+        contact: {
+            phone: '064 236 15 94',
+            email: 'borjanaradonic@gmail.com',
+            website: 'https://sportisimo.org/deca/jazz-balet-5-6/',
+            facebook: 'https://www.facebook.com/sportisimosportskaporodica',
+            facebookLabel: 'Sportisimo sportska porodica',
+            instagram: 'https://www.instagram.com/sportisimo_sportska_porodica/',
         },
     },
 ]

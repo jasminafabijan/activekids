@@ -22,6 +22,7 @@ KiddoKompas helps parents find sports, dance and other programs in one place. Ca
 - [Athletics](https://kiddokompas.rs/kategorija/atletika): Athletics schools
 - [Karate](https://kiddokompas.rs/kategorija/karate): Karate clubs
 - [Boxing](https://kiddokompas.rs/kategorija/boks): Boxing schools
+- [Capoeira](https://kiddokompas.rs/kategorija/kapuera): Capoeira schools
 - [Chess](https://kiddokompas.rs/kategorija/sah): Chess schools
 - [Swimming](https://kiddokompas.rs/kategorija/plivanje): Swimming schools
 - [Mini Sports](https://kiddokompas.rs/kategorija/sportic): Mini sports schools

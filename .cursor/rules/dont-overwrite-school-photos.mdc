@@ -1,0 +1,15 @@
+---
+description: Never overwrite school photos the user already added
+globs: src/assets/images/schools/**/*,src/data/schoolCategories/**/*.ts
+alwaysApply: true
+---
+
+# Do not overwrite existing school photos
+
+Before downloading, exporting, or writing any school card image:
+
+1. **Look in the target folder first** (`src/assets/images/schools/<category>/`).
+2. Check for files that already match the school (`<id>`, `<slug>`, or a clear name like `danubius`, `kadet`).
+3. If jpg/webp/png **already exist**, use those. Do not replace them with a logo, a scrape from the website, or a re-export.
+
+Never write over an existing image path. If optimization is needed, ask first or save under a new filename and leave the original in place.
