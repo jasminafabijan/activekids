@@ -43,6 +43,13 @@ const STREET_LABELS: Record<string, string> = {
     'Primary School “Dušan Radović 2”, Čenejska 61',
   'OŠ „Petefi Šandor”, Bore Prodanovića 15A':
     'Primary School “Petefi Šandor”, Bore Prodanovića 15A',
+  'Mileve Marić 25 (iza zgrade, atomsko sklonište)':
+    'Mileve Marić 25 (behind the building, fallout shelter)',
+  'Mesna zajednica, Janošikova 1': 'Community Center, Janošikova 1',
+  'OŠ „Branko Radičević”, Futoška 5':
+    'Primary School “Branko Radičević”, Futoška 5',
+  'OŠ „Jovan Jovanović Zmaj”, Školska 3':
+    'Primary School “Jovan Jovanović Zmaj”, Školska 3',
 }
 
 const SERBIAN_VENUE_PHRASE =

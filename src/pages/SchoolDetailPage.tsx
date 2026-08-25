@@ -157,36 +157,74 @@ type TranslateFn = (key: string, vars?: Record<string, string | number>) => stri
 
 const DESCRIPTION_URL_RE = /(https?:\/\/[^\s)]+)/g
 
-const DescriptionParagraph = ({ text }: { text: string }) => {
+const DescriptionText = ({ text }: { text: string }) => {
   const parts = text.split(DESCRIPTION_URL_RE)
 
-  return (
-    <p>
-      {parts.map((part, index) => {
-        if (!part.startsWith('http://') && !part.startsWith('https://')) {
-          return part
+  return parts.map((part, index) => {
+    if (!part.startsWith('http://') && !part.startsWith('https://')) {
+      return <span key={`${part}-${index}`}>{part}</span>
+    }
+
+    const href = part.replace(/[.,;:]+$/, '')
+    const trailing = part.slice(href.length)
+    const label = href.replace(/^https?:\/\/(www\.)?/, '')
+
+    return (
+      <span key={`${href}-${index}`}>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="school-detail-description-link"
+        >
+          {label}
+        </a>
+        {trailing}
+      </span>
+    )
+  })
+}
+
+const DescriptionParagraph = ({ text }: { text: string }) => (
+  <p>
+    <DescriptionText text={text} />
+  </p>
+)
+
+type DescriptionBlock =
+  | { type: 'p'; text: string }
+  | { type: 'list'; heading?: string; items: string[] }
+
+const groupDescriptionParagraphs = (paragraphs: string[]): DescriptionBlock[] => {
+  const blocks: DescriptionBlock[] = []
+
+  for (const paragraph of paragraphs) {
+    if (paragraph.startsWith('- ')) {
+      const item = paragraph.slice(2)
+      const last = blocks[blocks.length - 1]
+
+      if (last?.type === 'list') {
+        last.items.push(item)
+        continue
+      }
+
+      if (last?.type === 'p' && last.text.endsWith(':')) {
+        blocks[blocks.length - 1] = {
+          type: 'list',
+          heading: last.text.slice(0, -1),
+          items: [item],
         }
+        continue
+      }
 
-        const href = part.replace(/[.,;:]+$/, '')
-        const trailing = part.slice(href.length)
-        const label = href.replace(/^https?:\/\/(www\.)?/, '')
+      blocks.push({ type: 'list', items: [item] })
+      continue
+    }
 
-        return (
-          <span key={`${href}-${index}`}>
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="school-detail-description-link"
-            >
-              {label}
-            </a>
-            {trailing}
-          </span>
-        )
-      })}
-    </p>
-  )
+    blocks.push({ type: 'p', text: paragraph })
+  }
+
+  return blocks
 }
 
 const getFromPathname = (from: string | undefined) => from?.split(/[?#]/)[0] ?? ''
@@ -401,9 +439,24 @@ const SchoolDetailPage = () => {
                     {t('school.aboutProgram')}
                   </h2>
                   <div className="school-detail-description">
-                    {descriptionParagraphs.map((paragraph) => (
-                      <DescriptionParagraph key={paragraph} text={paragraph} />
-                    ))}
+                    {groupDescriptionParagraphs(descriptionParagraphs).map((block, index) =>
+                      block.type === 'list' ? (
+                        <div key={`list-${index}`} className="school-detail-description-group">
+                          {block.heading ? (
+                            <p className="school-detail-description-heading">{block.heading}</p>
+                          ) : null}
+                          <ul className="school-detail-description-list">
+                            {block.items.map((item) => (
+                              <li key={item}>
+                                <DescriptionText text={item} />
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
+                        <DescriptionParagraph key={block.text} text={block.text} />
+                      )
+                    )}
                   </div>
                 </section>
               )}

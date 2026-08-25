@@ -155,7 +155,7 @@ export const volleyballSchools: School[] = [
             },
         ],
         contact: {
-            phone: '060 036 50 06',
+            phone: '065 228 92 48',
             email: 'zoknovisad@yahoo.com',
             website: 'https://zoknovisad.org.rs/',
             instagram: 'https://www.instagram.com/zoknovisad/',

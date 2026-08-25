@@ -1365,6 +1365,19 @@
         text-decoration-color: var(--peach);
     }
 
+    .school-detail-description-group {
+        @apply flex flex-col gap-1;
+    }
+
+    .school-detail-description-heading {
+        @apply m-0 text-base font-semibold md:text-lg;
+        color: var(--primary);
+    }
+
+    .school-detail-description-list {
+        @apply m-0 list-disc space-y-1 pl-5 text-base leading-relaxed md:text-lg;
+    }
+
     .school-detail-map {
         @apply relative z-0 overflow-hidden rounded-2xl border;
         border-color: var(--border);

@@ -34,7 +34,6 @@ const RecentlyAddedSection = () => {
             key={school.id}
             school={school}
             categoryLabel={formatSchoolCategoryNames(school, lang)}
-            categoryContext={school.categorySlugs[0]}
           />
         ))}
       </div>
