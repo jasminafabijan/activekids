@@ -16,6 +16,7 @@ import { getLocalizedParagraphs, schoolAgeLabel } from '../i18n/helpers'
 import { useI18n } from '../i18n/useI18n'
 import type { Lang } from '../i18n/types'
 import { formatSchoolAddress, formatPhoneHref, getMapsHref, getSchoolBySlug, getSchoolName } from '../data/schools'
+import { isWebpSrc } from '../utils/schoolImage'
 
 const ContactLocationIcon = () => (
   <svg
@@ -363,7 +364,9 @@ const SchoolDetailPage = () => {
                 <span aria-hidden="true" className="school-detail-deco school-detail-deco--square" />
                 <div className="school-detail-image-wrap">
                   <picture>
-                    <source srcSet={school.imageWebp} type="image/webp" />
+                    {isWebpSrc(school.imageWebp) && (
+                      <source srcSet={school.imageWebp} type="image/webp" />
+                    )}
                     <img
                       src={school.imageFallback}
                       alt={getSchoolName(school, lang)}

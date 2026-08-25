@@ -12,6 +12,7 @@ import { tableTennisSchools } from './schoolCategories/table-tennis'
 import { basketballSchools } from './schoolCategories/basketball'
 import { karateSchools } from './schoolCategories/karate'
 import { boxingSchools } from './schoolCategories/boxing'
+import { aikidoSchools } from './schoolCategories/aikido'
 import { chessSchools } from './schoolCategories/chess'
 import { ridingSchools } from './schoolCategories/riding'
 import { folkloreSchools } from './schoolCategories/folklore'
@@ -38,6 +39,7 @@ export const schools: School[] = [
     ...volleyballSchools,
     ...karateSchools,
     ...boxingSchools,
+    ...aikidoSchools,
     ...capoeiraSchools,
     ...chessSchools,
     ...swimmingSchools,
@@ -115,9 +117,9 @@ export const getSchoolsByCategory = (categorySlug: string, lang: Lang = 'sr') =>
 
 /** Newest first — prepend the school id here when adding a new school. */
 const RECENTLY_ADDED_SCHOOL_IDS = [
-    'sportisimo-jazz-balet',
-    'kapuera-akademija-ns',
-    'kk-danubius',
+    'veliko-kolo',
+    'aikido-ikeda-dojo',
+    'sportisimo-razvojna-gimnastika',
 ] as const
 
 export const getRecentlyAddedSchools = (count = 3) =>

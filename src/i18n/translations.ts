@@ -188,7 +188,7 @@ export const translations = {
       sr: 'Vodite školu, klub, radionicu ili aktivnost za decu? Pošaljite nam osnovne podatke i rado ćemo ih dodati u katalog. Cilj nam je da roditelji na jednom mestu lakše pronađu aktivnosti u svom gradu.',
       en: 'Do you run a school, club, workshop or kids’ activity? Send us the basic details and we will be glad to add them to the catalog. Our goal is to help parents find activities in their city in one place.',
     },
-    free: { sr: 'Unos osnovnih podataka je besplatan.', en: 'Submitting basic details is free.' },
+    free: { sr: 'Unos podataka je besplatan.', en: 'Submitting all details is free.' },
     name: { sr: 'Naziv škole, kluba ili aktivnosti', en: 'Name of the school, club or activity' },
     locations: { sr: 'Lokacija(e) održavanja aktivnosti', en: 'Location(s) where the activity takes place' },
     age: { sr: 'Uzrast kojem je aktivnost namenjena', en: 'Age group the activity is for' },

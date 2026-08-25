@@ -23,6 +23,7 @@ const GROUP_COLOR: Record<string, string> = {
   'developmental-gymnastics': COURT_MOVEMENT,
   karate: MARTIAL,
   boxing: MARTIAL,
+  aikido: MARTIAL,
   capoeira: MARTIAL,
   chess: CHESS,
   ballet: DANCE_MUSIC,
@@ -69,6 +70,9 @@ const ICONS: Record<string, string> = {
   ),
   boxing: wrap(
     '<path d="M9.4 21.8h5.2c1 0 1.8-.8 1.8-1.8v-4.2c2.4-1 4-3.4 4-6.2C20.4 5.6 16.6 3.4 12 3.4S3.6 5.6 3.6 9.6c0 2.8 1.6 5.2 4 6.2V20c0 1 .8 1.8 1.8 1.8z"/><path d="M3.8 11.2c-1.6.4-2.4 1.8-2.4 3.2 0 1.4 1.2 2.6 2.6 2.6"/><path d="M10.2 17.6h3.6M10.2 19.6h3.6"/>'
+  ),
+  aikido: wrap(
+    '<circle cx="8.6" cy="5.2" r="2"/><circle cx="16.6" cy="6.2" r="2"/><path d="M8.8 7.6 10.8 13.4 6.6 21.2M10.8 13.4 17.4 9.2M16.8 8.6c1.4 4.4-.6 8.6-4.2 11.2"/>'
   ),
   capoeira: wrap(
     '<circle cx="8.2" cy="5.2" r="2"/><path d="M8.4 7.6 10.6 13.4 7.2 21.2M10.6 13.4 18.8 6.2M8.8 9.4 16.6 4.2M8.6 9 3.6 14.8"/>'

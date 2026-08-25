@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { formatSchoolDistricts, getSchoolName, type School } from '../data/schools'
 import { schoolAgeLabel } from '../i18n/helpers'
 import { useI18n } from '../i18n/useI18n'
+import { isWebpSrc } from '../utils/schoolImage'
 
 const LocationIcon = () => (
   <svg
@@ -60,7 +61,9 @@ const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps)
           <span className="school-card-category-tag">{categoryLabel}</span>
         )}
         <picture>
-          <source srcSet={school.imageWebp} type="image/webp" />
+          {isWebpSrc(school.imageWebp) && (
+            <source srcSet={school.imageWebp} type="image/webp" />
+          )}
           <img
             src={school.imageFallback}
             alt={getSchoolName(school, lang)}

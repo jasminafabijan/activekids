@@ -1,0 +1,21 @@
+---
+description: For new schools, serve the smaller photo at similar quality (WebP or JPEG)
+globs: src/assets/images/schools/**/*,src/data/schoolCategories/**/*.ts
+alwaysApply: true
+---
+
+# Which school photo to display
+
+Applies to **new** schools only. Do not re-encode or rewire existing photos.
+
+Cards prefer `imageWebp` via `<picture>`. That is the file most browsers download. `imageFallback` is JPEG/PNG backup.
+
+Before wiring a new school:
+
+1. Check sizes: `wc -c src/assets/images/schools/<category>/<name>.*`
+2. Compare at **similar visual quality**, not KB alone.
+3. If WebP is larger, re-export it smaller (same look) **only as a new filename** if originals already exist — never overwrite.
+4. Wire `imageWebp` only to a real `.webp` that is **smaller or equal** to the fallback at similar quality.
+5. If JPEG/PNG is smaller and looks the same, use that file as `imageFallback`. Point `imageWebp` at the same smaller file (do not put JPEG in a fake WebP source on purpose — `<picture>` skips a WebP `<source>` unless the URL is `.webp`).
+
+Do not pick the smaller file if it looks worse (blocky, muddy, oversharpened).

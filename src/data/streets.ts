@@ -17,10 +17,6 @@ const STREET_LABELS: Record<string, string> = {
   'OŠ „Vasa Stajić“, Pajevićeva': 'Primary School “Vasa Stajić”, Pajevićeva',
   'OŠ „Kosta Trifković”, Berislava Berića 2':
     'Primary School “Kosta Trifković”, Berislava Berića 2',
-  'Fakultet sporta (DIF), Lovćenska 16': 'Faculty of Sport (DIF), Lovćenska 16',
-  'Sala na Fakultetu sporta (DIF), Lovćenska 16':
-    'Hall at the Faculty of Sport (DIF), Lovćenska 16',
-  'Sala na Đačkom, Dr Vase Savića 3': 'Hall at Đačko, Dr Vase Savića 3',
   'Đačko igralište, Jirečekova 2': 'Đačko playground, Jirečekova 2',
   'Fudbalski centar „Vujadin Boškov”, Novosadski put 114':
     'Football Center “Vujadin Boškov”, Novosadski put 114',

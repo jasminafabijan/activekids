@@ -2,6 +2,7 @@ import kudNeraWebp from '../../assets/images/schools/folklore/kud-nera.webp'
 import kudNeraJpg from '../../assets/images/schools/folklore/kud-nera.jpg'
 import folklorikaWebp from '../../assets/images/schools/folklore/folklorika.webp'
 import folklorikaJpg from '../../assets/images/schools/folklore/folklorika.png'
+import velikoKoloJpg from '../../assets/images/schools/folklore/veliko-kolo.jpg'
 
 import type { School } from './types'
 
@@ -100,6 +101,53 @@ export const folkloreSchools: School[] = [
             website: 'https://www.folklorika.rs/',
             facebook: 'https://www.facebook.com/udruzenjefolklorika/',
             instagram: 'https://www.instagram.com/_folklorika/',
+        },
+    },
+    {
+        id: 'veliko-kolo',
+        slug: 'veliko-kolo',
+        name: {
+            sr: 'Folklorno udruženje „Veliko kolo”',
+            en: 'Veliko Kolo Folklore Association',
+        },
+        categorySlugs: ['folklore'],
+        city: 'Novi Sad',
+        district: 'Rotkvarija',
+        minAge: 4,
+        maxAge: null,
+        ageLabel: '4+ godina',
+        imageWebp: velikoKoloJpg,
+        imageFallback: velikoKoloJpg,
+        description: {
+            sr: [
+                'Folklorno udruženje Veliko kolo osnovano je 2010. godine da sačuva kulturnu baštinu i prenese ljubav prema narodnoj igri na decu i mlade.',
+                'Kroz vrtić grupe, školu folklora, dečije sastave, inkluzivne grupe i narodni orkestar okuplja veliki broj članova, od prvih koraka u kolu do scenskih nastupa.',
+                'Udruženje je poznato po internacionalnom festivalu igre i muzike „Zov ravnice” i po Velikom kolu za Ginisa, kada je u Novom Sadu igralo najveće kolo na svetu.',
+                'Član je međunarodnog saveta CIOFF, a osnivač i umetnički voditelj je Milan Veselinović.',
+            ],
+            en: [
+                'Veliko Kolo Folklore Association was founded in 2010 to preserve cultural heritage and pass on a love of folk dance to children and young people.',
+                'Through preschool groups, a folklore school, children’s ensembles, inclusive groups and a folk orchestra, it brings together many members, from first steps in kolo to stage performances.',
+                'The association is known for the international dance and music festival “Zov ravnice” and for Veliko kolo za Ginisa, when the world’s largest kolo was danced in Novi Sad.',
+                'It is a member of the international council CIOFF, and founder and artistic director is Milan Veselinović.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'Bulevar oslobođenja 26',
+                city: 'Novi Sad',
+                district: 'Rotkvarija',
+                lat: 45.2592965,
+                lng: 19.8313751,
+            },
+        ],
+        contact: {
+            phone: '064 275 36 37',
+            email: 'velikokolo@gmail.com',
+            website: 'https://www.velikokolo.org',
+            facebook: 'https://www.facebook.com/velikokolo/',
+            facebookLabel: 'Veliko kolo',
+            instagram: 'https://www.instagram.com/kudvelikokolo/',
         },
     },
 ]

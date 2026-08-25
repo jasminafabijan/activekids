@@ -8,63 +8,12 @@ import rfkWebp from '../../assets/images/schools/football/rfk.webp'
 import rfkJpg from '../../assets/images/schools/football/rfk.jpg'
 import mladostGatWebp from '../../assets/images/schools/football/fk-mladost-gat.webp'
 import mladostGatJpg from '../../assets/images/schools/football/fk-mladost-gat.jpg'
-import champ07FootballWebp from '../../assets/images/schools/football/champ-07.webp'
-import champ07FootballPng from '../../assets/images/schools/football/champ-07.png'
 import bolesnikovWebp from '../../assets/images/schools/football/bolesnikov.webp'
 import bolesnikovJpg from '../../assets/images/schools/football/bolesnikov.jpg'
 
 import type { School } from './types'
 
 export const footballSchools: School[] = [
-    {
-        id: 'champ-07-fudbal',
-        slug: 'champ-07-fudbal',
-        name: {
-            sr: 'Champ 07',
-            en: 'Champ 07',
-        },
-        categorySlugs: ['football'],
-        city: 'Novi Sad',
-        district: 'Liman 1',
-        minAge: 5,
-        maxAge: 12,
-        ageLabel: '5–12 godina',
-        imageWebp: champ07FootballWebp,
-        imageFallback: champ07FootballPng,
-        description: {
-            sr: [
-                'Fudbalska sekcija dečijeg sportskog kluba Champ 07 u Novom Sadu namenjena je prvim fudbalskim koracima i rekreativnom sportu.',
-                'U klubu nema selekcije — svako dete ima svoje mesto u timu i važno je treneru grupe kojoj pripada.',
-                'Program se zasniva na igri i zabavi, bez pritiska lige, obaveznih turnira svakog vikenda i ugovora sa decom i roditeljima.',
-                'Cilj je zdravo i kvalitetno okruženje trenera, saigrača i roditelja, u kojem se uče vrednosti rekreativnog sporta.',
-                'Treninzi se održavaju u sali na Đačkom, a klub već godinama radi sa mladim zaljubljenicima u fudbal.',
-            ],
-            en: [
-                'The football section of children’s sports club Champ 07 in Novi Sad is for first football steps and recreational sport.',
-                'There is no selection at the club — every child has a place on the team and matters to the coach of their group.',
-                'The program is based on play and fun, without league pressure, obligatory weekend tournaments or contracts with children and parents.',
-                'The aim is a healthy, high-quality environment of coaches, teammates and parents, where the values of recreational sport are learned.',
-                'Training is held in the hall at Đačko, and the club has worked with young football fans for years.',
-            ],
-        },
-        addresses: [
-            {
-                street: 'Sala na Đačkom, Dr Vase Savića 3',
-                city: 'Novi Sad',
-                district: 'Liman 1',
-                lat: 45.2438472,
-                lng: 19.8519854,
-            },
-        ],
-        contact: {
-            phone: '064 65 21 282',
-            email: 'bobanch07@yahoo.com',
-            website: 'https://www.ch07.rs/sport/fudbal/',
-            facebook: 'https://www.facebook.com/SKLavovi07',
-            facebookLabel: 'SK Lavovi 07',
-            instagram: 'https://www.instagram.com/sc_champ_07/',
-        },
-    },
     {
         id: 'fk-mladost-gat',
         slug: 'fk-mladost-gat',
@@ -216,8 +165,8 @@ export const footballSchools: School[] = [
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
         minAge: 5,
-        maxAge: 14,
-        ageLabel: '5–14 godina',
+        maxAge: 16,
+        ageLabel: '5–16 godina',
         imageWebp: sinisaMihajlovicWebp,
         imageFallback: sinisaMihajlovicJpg,
         description: {
@@ -303,7 +252,6 @@ export const footballSchools: School[] = [
         ],
         contact: {
             phone: '063 76 85 080',
-            email: 'soccer.team84@yahoo.com',
             website: 'https://www.soccerteam.rs',
             facebook: 'https://www.facebook.com/soccerteamns',
             instagram: 'https://www.instagram.com/skola_fudbala_soker_tim',

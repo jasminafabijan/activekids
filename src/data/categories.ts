@@ -152,6 +152,17 @@ export const categories: Category[] = [
     },
   },
   {
+    id: 'aikido',
+    name: { sr: 'Aikido', en: 'Aikido' },
+    slug: 'aikido',
+    slugs: { sr: 'aikido', en: 'aikido' },
+    subtitle: { sr: 'Škole aikida', en: 'Aikido schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole aikida u {city} — za disciplinu, poštovanje i sklad pokreta.',
+      en: 'Explore aikido schools in {city} — for discipline, respect and harmony in movement.',
+    },
+  },
+  {
     id: 'capoeira',
     name: { sr: 'Kapuera', en: 'Capoeira' },
     nameAccusative: 'kapueru',

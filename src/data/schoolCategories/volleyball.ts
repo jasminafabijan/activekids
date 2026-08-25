@@ -1,5 +1,3 @@
-import champ07VolleyballWebp from '../../assets/images/schools/volleyball/champ-07.webp'
-import champ07VolleyballJpg from '../../assets/images/schools/volleyball/champ-07.jpg'
 import okVojvodinaWebp from '../../assets/images/schools/volleyball/ok-vojvodina.webp'
 import okVojvodinaJpg from '../../assets/images/schools/volleyball/ok-vojvodina.jpg'
 import nsTimWebp from '../../assets/images/schools/volleyball/ns-tim.webp'
@@ -63,55 +61,6 @@ export const volleyballSchools: School[] = [
             website: 'https://okvojvodina.org/akademija/',
             facebook: 'https://www.facebook.com/okvojvodina',
             instagram: 'https://www.instagram.com/okvojvodina/',
-        },
-    },
-    {
-        id: 'champ-07-odbojka',
-        slug: 'champ-07-odbojka',
-        name: {
-            sr: 'Champ 07',
-            en: 'Champ 07',
-        },
-        categorySlugs: ['volleyball'],
-        city: 'Novi Sad',
-        district: 'Stari Grad (Centar)',
-        minAge: 7,
-        maxAge: null,
-        ageLabel: '7+ godina',
-        imageWebp: champ07VolleyballWebp,
-        imageFallback: champ07VolleyballJpg,
-        description: {
-            sr: [
-                'Odbojka u dečijem sportskom klubu Champ 07 zauzima posebno mesto kao jedna od najbrojnijih zajednica u klubu, podeljenih u ženske i muške grupe — Lavove i Lavice.',
-                'Program kombinuje raznovrsne metode obuke koje motivišu i dugoročno vežu za sport.',
-                'Deca uče tehničke elemente koje mogu primeniti na utakmici, na plaži ili na igralištu sa drugarima iz škole.',
-                'Odbojka podržava pravilan rast i razvoj, formu i telesnu građu, uz druženje, utakmice i rad sa posvećenim trenerima.',
-                'Treninzi se održavaju u sali na Fakultetu sporta i fizičkog vaspitanja (DIF).',
-            ],
-            en: [
-                'Volleyball at children’s sports club Champ 07 has a special place as one of the club’s largest communities, split into girls’ and boys’ groups — Lavovi and Lavice.',
-                'The program combines varied training methods that motivate and create a lasting bond with the sport.',
-                'Children learn technical elements they can use in a match, on the beach or on the playground with school friends.',
-                'Volleyball supports healthy growth and development, fitness and physique, along with social time, matches and work with dedicated coaches.',
-                'Training is held in the hall at the Faculty of Sport and Physical Education (DIF).',
-            ],
-        },
-        addresses: [
-            {
-                street: 'Fakultet sporta (DIF), Lovćenska 16',
-                city: 'Novi Sad',
-                district: 'Stari Grad (Centar)',
-                lat: 45.2477013,
-                lng: 19.8477071,
-            },
-        ],
-        contact: {
-            phone: '064 65 21 282',
-            email: 'bobanch07@yahoo.com',
-            website: 'https://www.ch07.rs/sport/odbojka/',
-            facebook: 'https://www.facebook.com/SKLavovi07',
-            facebookLabel: 'SK Lavovi 07',
-            instagram: 'https://www.instagram.com/sc_champ_07/',
         },
     },
     {

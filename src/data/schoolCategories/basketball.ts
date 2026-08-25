@@ -2,8 +2,6 @@ import sportsWorldWebp from '../../assets/images/schools/basketball/sports-world
 import sportsWorldJpg from '../../assets/images/schools/basketball/sports-world.jpg'
 import kkLdWebp from '../../assets/images/schools/basketball/kk-ld.webp'
 import kkLdJpg from '../../assets/images/schools/basketball/kk-ld.jpg'
-import champ07Webp from '../../assets/images/schools/basketball/champ-07.webp'
-import champ07Jpg from '../../assets/images/schools/basketball/champ-07.jpg'
 import kkStarWebp from '../../assets/images/schools/basketball/kk-star.webp'
 import kkStarJpg from '../../assets/images/schools/basketball/kk-star.jpg'
 import sportKeyWebp from '../../assets/images/schools/basketball/sport-key.webp'
@@ -16,55 +14,6 @@ import kkDanubiusJpg from '../../assets/images/schools/basketball/kk-danubius.jp
 import type { School } from './types'
 
 export const basketballSchools: School[] = [
-    {
-        id: 'champ-07',
-        slug: 'champ-07',
-        name: {
-            sr: 'Champ 07',
-            en: 'Champ 07',
-        },
-        categorySlugs: ['basketball'],
-        city: 'Novi Sad',
-        district: 'Stari Grad (Centar)',
-        minAge: 7,
-        maxAge: 12,
-        ageLabel: '7–12 godina',
-        imageWebp: champ07Webp,
-        imageFallback: champ07Jpg,
-        description: {
-            sr: [
-                'Dečiji sportski klub Champ 07 već više od dve decenije radi sa decom kroz više sportskih programa, uključujući i košarku.',
-                'Treninzi košarke zasnivaju se na humanom, pedagoškom pristupu u kojem je svako dete u fokusu — na treningu i na utakmici.',
-                'Program nudi dozirano fizičko, intelektualno i emotivno opterećenje, uz naglasak na igru, radost i kvalitetno provedeno slobodno vreme.',
-                'Klub okuplja trenere posvećene radu sa mlađim uzrastima i stvaranju okruženja u kojem se greške i uspesi jednako doživljavaju kao deo učenja.',
-                'Pored redovnih treninga, Champ 07 decu uključuje i u šire sportske aktivnosti i druženja u okviru kluba.',
-            ],
-            en: [
-                'Children’s sports club Champ 07 has worked with children for more than two decades across several sports programs, including basketball.',
-                'Basketball training is based on a humane, pedagogical approach in which every child is the focus — in training and in the game.',
-                'The program offers measured physical, intellectual and emotional load, with an emphasis on play, joy and well-spent free time.',
-                'The club brings together coaches dedicated to younger age groups and to creating an environment where mistakes and successes are equally treated as part of learning.',
-                'Besides regular training, Champ 07 also includes children in broader sports activities and gatherings within the club.',
-            ],
-        },
-        addresses: [
-            {
-                street: 'Fakultet sporta (DIF), Lovćenska 16',
-                city: 'Novi Sad',
-                district: 'Stari Grad (Centar)',
-                lat: 45.2477013,
-                lng: 19.8477071,
-            },
-        ],
-        contact: {
-            phone: '064 65 21 282',
-            email: 'bobanch07@yahoo.com',
-            website: 'https://www.ch07.rs/sport/kosarka/',
-            facebook: 'https://www.facebook.com/SKLavovi07',
-            facebookLabel: 'SK Lavovi 07',
-            instagram: 'https://www.instagram.com/sc_champ_07/',
-        },
-    },
     {
         id: 'kk-sports-world',
         slug: 'kk-sports-world',
