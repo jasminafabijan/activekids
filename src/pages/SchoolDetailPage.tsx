@@ -15,7 +15,14 @@ import {
 import { getLocalizedParagraphs, schoolAgeLabel } from '../i18n/helpers'
 import { useI18n } from '../i18n/useI18n'
 import type { Lang } from '../i18n/types'
-import { formatSchoolAddress, formatPhoneHref, getMapsHref, getSchoolBySlug, getSchoolName } from '../data/schools'
+import {
+  formatSchoolAddress,
+  formatPhoneHref,
+  getContactPhones,
+  getMapsHref,
+  getSchoolBySlug,
+  getSchoolName,
+} from '../data/schools'
 import { isWebpSrc } from '../utils/schoolImage'
 
 const ContactLocationIcon = () => (
@@ -136,6 +143,7 @@ type ContactLink = {
   href: string
   icon: ReactNode
   external: boolean
+  extraHrefs?: Array<{ label: string; href: string }>
 }
 
 const isContactLink = (link: ContactLink | undefined): link is ContactLink =>
@@ -279,13 +287,20 @@ const SchoolDetailPage = () => {
     }
   }
 
+  const phones = getContactPhones(school.contact?.phone)
+  const [primaryPhone, ...extraPhones] = phones
+
   const contactLinkItems: Array<ContactLink | undefined> = [
-    school.contact?.phone
+    primaryPhone
       ? {
-          label: school.contact.phone,
-          href: formatPhoneHref(school.contact.phone),
+          label: primaryPhone,
+          href: formatPhoneHref(primaryPhone),
           icon: <PhoneIcon />,
           external: false,
+          extraHrefs: extraPhones.map((phone) => ({
+            label: phone,
+            href: formatPhoneHref(phone),
+          })),
         }
       : undefined,
     school.contact?.email
@@ -403,16 +418,35 @@ const SchoolDetailPage = () => {
                   <ul className="school-detail-contact">
                     {contactLinks.map((link) => (
                       <li key={link.label}>
-                        <a
-                          href={link.href}
-                          {...(link.external
-                            ? { target: '_blank', rel: 'noopener noreferrer' }
-                            : {})}
-                          className="school-detail-contact-link"
-                        >
-                          <span className="school-detail-contact-icon-wrap">{link.icon}</span>
-                          <span className="school-detail-contact-label">{link.label}</span>
-                        </a>
+                        {link.extraHrefs && link.extraHrefs.length > 0 ? (
+                          <div className="school-detail-contact-link">
+                            <span className="school-detail-contact-icon-wrap">{link.icon}</span>
+                            <span className="school-detail-contact-phones">
+                              <a href={link.href} className="school-detail-contact-phone">
+                                {link.label}
+                              </a>
+                              {link.extraHrefs.map((phone) => (
+                                <span key={phone.href}>
+                                  {', '}
+                                  <a href={phone.href} className="school-detail-contact-phone">
+                                    {phone.label}
+                                  </a>
+                                </span>
+                              ))}
+                            </span>
+                          </div>
+                        ) : (
+                          <a
+                            href={link.href}
+                            {...(link.external
+                              ? { target: '_blank', rel: 'noopener noreferrer' }
+                              : {})}
+                            className="school-detail-contact-link"
+                          >
+                            <span className="school-detail-contact-icon-wrap">{link.icon}</span>
+                            <span className="school-detail-contact-label">{link.label}</span>
+                          </a>
+                        )}
                       </li>
                     ))}
                   </ul>

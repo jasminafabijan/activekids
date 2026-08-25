@@ -3,6 +3,7 @@ import { getCategoryNameBySlug } from '../data/categories'
 import { CATEGORIES_SECTION_ID } from '../i18n/routes'
 import { useI18n } from '../i18n/useI18n'
 import actingIcon from '../assets/icons/acting.svg'
+import languagesIcon from '../assets/icons/languages.svg'
 import balletIcon from '../assets/icons/ballet.svg'
 import basketballIcon from '../assets/icons/basketball.svg'
 import boxingIcon from '../assets/icons/boxing.svg'
@@ -56,6 +57,7 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'dance-sport', iconBg: 'mint', iconSrc: danceSportIcon, iconSizeAdjustPx: 4 },
   { id: 'folklore', iconBg: 'mint', iconSrc: folkloreIcon, iconSizeAdjustPx: 2 },
   { id: 'acting', iconBg: 'peach', iconSrc: actingIcon, iconSizeAdjustPx: -6 },
+  { id: 'languages', iconBg: 'mint', iconSrc: languagesIcon, iconSizeAdjustPx: -6 },
 ]
 
 const CategoryCards = () => {

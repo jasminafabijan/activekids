@@ -2,6 +2,7 @@ import pkNoviSadWebp from '../../assets/images/schools/swimming/pk-novi-sad.webp
 import pkNoviSadJpg from '../../assets/images/schools/swimming/pk-novi-sad.jpg'
 import pkVojvodinaWebp from '../../assets/images/schools/swimming/pk-vojvodina.webp'
 import pkVojvodinaJpg from '../../assets/images/schools/swimming/pk-vojvodina.jpg'
+import plivanjeSpensJpg from '../../assets/images/schools/swimming/plivanje-spens.jpg'
 
 import type { School } from './types'
 
@@ -105,6 +106,53 @@ export const swimmingSchools: School[] = [
             facebook: 'https://www.facebook.com/plivackiklub.vojvodina/',
             facebookLabel: 'plivackiklub.vojvodina',
             instagram: 'https://www.instagram.com/pkvojvodina/',
+        },
+    },
+    {
+        id: 'plivanje-spens',
+        slug: 'plivanje-spens',
+        name: {
+            sr: 'Plivanje SPENS',
+            en: 'SPENS Swimming',
+        },
+        categorySlugs: ['swimming'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 3,
+        maxAge: 12,
+        ageLabel: '3–12 godina',
+        imageWebp: plivanjeSpensJpg,
+        imageFallback: plivanjeSpensJpg,
+        description: {
+            sr: [
+                'Plivanje SPENS je školica sporta JP Sportskog i poslovnog centra Vojvodina. Časove vodi Pro akva 021 — osnovni kurs obuke neplivača, u grupama za predškolce i školarce.',
+                'Za najmlađe postoji i program Tata–mama plivajte sa nama, u kom je roditelj u bazenu sa detetom.',
+                'Grupe se održavaju uveče tokom radne nedelje, a jedna i subotom ujutru. Stariji školarci imaju i grupu dva puta nedeljno. Broj polaznika je ograničen.',
+                'Upis i uplate su kod trenera u holu bazena, pola sata pre i posle termina. Rezervacija SMS-om je obavezna.',
+            ],
+            en: [
+                'SPENS Swimming is a sports school program of JP Sports and Business Center Vojvodina. Classes are run by Pro akva 021 — a basic learn-to-swim course for non-swimmers, in groups for preschoolers and schoolchildren.',
+                'For the youngest there is also Tata–mama plivajte sa nama, a parent-and-child program with the parent in the pool.',
+                'Groups meet in the evening on weekdays, and one also on Saturday morning. Older schoolchildren have a twice-weekly group as well. Places are limited.',
+                'Enrollment and payment are with the coach in the pool hall, half an hour before and after the session. An SMS reservation is required.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'Bazeni SPENS-a, Sutjeska 2',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2471273,
+                lng: 19.8454852,
+            },
+        ],
+        contact: {
+            phone: '069 709 986',
+            email: 'biljana.avramovic021@gmail.com',
+            website: 'https://spens.rs/home-2/skolice-sporta-i-termini-za-gradjane/',
+            facebook: 'https://www.facebook.com/AkvarobikObukaNeplivaca',
+            facebookLabel: 'AkvarobikObukaNeplivaca',
+            instagram: 'https://www.instagram.com/skolicaplivanja_akvafitness/',
         },
     },
 ]

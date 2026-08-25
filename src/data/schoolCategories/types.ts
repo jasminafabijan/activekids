@@ -8,7 +8,7 @@ export type SchoolFilters = {
 }
 
 export type SchoolContact = {
-    phone?: string
+    phone?: string | string[]
     email?: string
     website?: string
     facebook?: string

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { useI18n } from '../i18n/useI18n'
+import { RESET_SCROLL_STATE } from '../utils/scrollRestoration'
 
 const NotFoundPage = () => {
   const { path, t } = useI18n()
@@ -13,7 +14,7 @@ const NotFoundPage = () => {
           {t('notFound.title')}
         </h1>
         <p className="not-found-text">{t('notFound.text')}</p>
-        <Link to={path.home} className="btn btn-primary not-found-home">
+        <Link to={path.home} state={RESET_SCROLL_STATE} className="btn btn-primary not-found-home">
           {t('notFound.button')}
         </Link>
       </main>

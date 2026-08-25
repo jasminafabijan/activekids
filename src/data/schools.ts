@@ -23,6 +23,7 @@ import { miniSportsSchools } from './schoolCategories/mini-sports'
 import { athleticsSchools } from './schoolCategories/athletics'
 import { developmentalGymnasticsSchools } from './schoolCategories/developmental-gymnastics'
 import { capoeiraSchools } from './schoolCategories/capoeira'
+import { languagesSchools } from './schoolCategories/languages'
 import type { School, SchoolAddress, SchoolFilters } from './schoolCategories/types'
 
 export type { School, SchoolAddress, SchoolContact, SchoolFilters } from './schoolCategories/types'
@@ -48,10 +49,19 @@ export const schools: School[] = [
     ...developmentalGymnasticsSchools,
     ...ridingSchools,
     ...folkloreSchools,
+    ...languagesSchools,
 ]
 
 export const formatSchoolAddress = (address: SchoolAddress, lang: Lang = 'sr') =>
     `${getStreetName(address.street, lang)}, ${address.city}`
+
+export const getContactPhones = (phone?: string | string[]) => {
+    if (!phone) {
+        return []
+    }
+
+    return Array.isArray(phone) ? phone : [phone]
+}
 
 export const formatPhoneHref = (phone: string) => {
     const digits = phone.replace(/\D/g, '')
@@ -117,9 +127,9 @@ export const getSchoolsByCategory = (categorySlug: string, lang: Lang = 'sr') =>
 
 /** Newest first — prepend the school id here when adding a new school. */
 const RECENTLY_ADDED_SCHOOL_IDS = [
+    'plivanje-spens',
+    'eltisi',
     'veliko-kolo',
-    'aikido-ikeda-dojo',
-    'sportisimo-razvojna-gimnastika',
 ] as const
 
 export const getRecentlyAddedSchools = (count = 3) =>

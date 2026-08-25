@@ -1425,6 +1425,18 @@
         @apply min-w-0 truncate;
     }
 
+    .school-detail-contact-phones {
+        @apply min-w-0;
+    }
+
+    .school-detail-contact-phone {
+        @apply text-sm font-semibold text-primary no-underline;
+    }
+
+    .school-detail-contact-phone:hover {
+        text-decoration: underline;
+    }
+
     .school-detail-contact-link:hover {
         background-color: var(--surface-muted);
     }

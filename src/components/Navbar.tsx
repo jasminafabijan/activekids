@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../assets/images/kiddokompas-logo.png'
 import { isCategoriesHash, isCategoryPath, isHomePath } from '../i18n/routes'
 import { useI18n } from '../i18n/useI18n'
+import { HOME_SCROLL_KEY, RESET_SCROLL_STATE, saveScroll } from '../utils/scrollRestoration'
 import { isHomeCategoriesSectionActive, scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -100,9 +101,10 @@ const Navbar = () => {
         event.preventDefault()
 
         if (location.hash) {
-            navigate(path.home, { replace: true })
+            navigate(path.home, { replace: true, state: RESET_SCROLL_STATE })
         }
 
+        saveScroll(HOME_SCROLL_KEY, 0)
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
@@ -123,7 +125,12 @@ const Navbar = () => {
         <>
             <nav className="site-navbar">
                 <div className="site-navbar-inner">
-                    <Link to={path.home} className="site-navbar-brand" onClick={handleHomeClick}>
+                    <Link
+                        to={path.home}
+                        state={RESET_SCROLL_STATE}
+                        className="site-navbar-brand"
+                        onClick={handleHomeClick}
+                    >
                         <img
                             src={logo}
                             alt="KiddoKompas logo"
@@ -159,6 +166,7 @@ const Navbar = () => {
                         <span className="site-navbar-menu-accent" aria-hidden="true" />
                         <Link
                             to={path.home}
+                            state={RESET_SCROLL_STATE}
                             onClick={handleHomeClick}
                             className="navbar-categories-link site-navbar-menu-link"
                             aria-current={isHomeActive ? 'page' : undefined}

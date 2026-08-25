@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logoWhite from '../assets/images/kiddokompas-logo-white.png'
 import { isHomePath } from '../i18n/routes'
 import { useI18n } from '../i18n/useI18n'
+import { HOME_SCROLL_KEY, RESET_SCROLL_STATE, saveScroll } from '../utils/scrollRestoration'
 import { scrollToCategories } from '../utils/scrollToElement'
 import AddActivityModal from './AddActivityModal'
 
@@ -20,9 +21,10 @@ const Footer = () => {
         event.preventDefault()
 
         if (location.hash) {
-            navigate(path.home, { replace: true })
+            navigate(path.home, { replace: true, state: RESET_SCROLL_STATE })
         }
 
+        saveScroll(HOME_SCROLL_KEY, 0)
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
@@ -40,7 +42,12 @@ const Footer = () => {
                 <div className="site-footer-inner">
                     <div className="site-footer-top">
                         <div className="site-footer-brand">
-                            <Link to={path.home} className="site-footer-logo-link" onClick={handleHomeClick}>
+                            <Link
+                                to={path.home}
+                                state={RESET_SCROLL_STATE}
+                                className="site-footer-logo-link"
+                                onClick={handleHomeClick}
+                            >
                                 <img
                                     src={logoWhite}
                                     alt="KiddoKompas"
@@ -63,6 +70,7 @@ const Footer = () => {
                                 <nav className="site-footer-nav" aria-labelledby="footer-explore-label">
                                     <Link
                                         to={path.home}
+                                        state={RESET_SCROLL_STATE}
                                         onClick={handleHomeClick}
                                         className="site-footer-link"
                                     >

@@ -265,9 +265,14 @@ export const categories: Category[] = [
   {
     id: 'languages',
     name: { sr: 'Jezici', en: 'Languages' },
+    nameAccusative: 'jezike',
     slug: 'languages',
     slugs: { sr: 'jezici', en: 'languages' },
     subtitle: { sr: 'Škole stranih jezika', en: 'Foreign language schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole stranih jezika u {city} — za igru, govor i prve korake u novom jeziku.',
+      en: 'Explore foreign language schools in {city} — for play, speaking and first steps in a new language.',
+    },
   },
   {
     id: 'science',

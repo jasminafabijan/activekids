@@ -34,6 +34,7 @@ KiddoKompas helps parents find sports, dance and other programs in one place. Ca
 - [DanceSport](https://kiddokompas.rs/kategorija/sportski-ples): DanceSport schools
 - [Folklore](https://kiddokompas.rs/kategorija/folklor): Folklore schools
 - [Acting](https://kiddokompas.rs/kategorija/gluma): Acting schools
+- [Languages](https://kiddokompas.rs/kategorija/jezici): Foreign language schools
 
 ## Optional
 

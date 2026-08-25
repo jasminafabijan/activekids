@@ -62,7 +62,7 @@ export const basketballSchools: School[] = [
             },
         ],
         contact: {
-            phone: '063 77 33 365',
+            phone: ['063 77 33 365', '063 771 38 73'],
             email: 'dragpan@gmail.com',
             website: 'https://kksportsworld.com',
             facebook: 'https://www.facebook.com/kksportsworld',

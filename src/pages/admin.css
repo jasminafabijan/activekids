@@ -176,6 +176,10 @@
     text-decoration: none;
 }
 
+.admin-table-phones {
+    display: inline;
+}
+
 .admin-table-school-link:hover,
 .admin-table-link:hover {
     text-decoration: underline;

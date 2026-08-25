@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { formatSchoolCategoryNames, getActivityOptions, getSchoolNameSr, schools } from '../data/schools'
+import { formatSchoolCategoryNames, formatPhoneHref, getActivityOptions, getContactPhones, getSchoolNameSr, schools } from '../data/schools'
 import './admin.css'
 
 const CONTACTED_STORAGE_KEY = 'kiddokompas-admin-contacted'
@@ -130,6 +130,8 @@ const AdminPage = () => {
                   ? 'admin-table-row--contacted'
                   : ''
 
+              const phones = getContactPhones(school.contact?.phone)
+
               return (
                 <tr key={school.id} className={rowClass}>
                   <td className="admin-table-col-check">
@@ -180,10 +182,17 @@ const AdminPage = () => {
                     )}
                   </td>
                   <td>
-                    {school.contact?.phone ? (
-                      <a href={`tel:${school.contact.phone.replace(/\s/g, '')}`} className="admin-table-link">
-                        {school.contact.phone}
-                      </a>
+                    {phones.length > 0 ? (
+                      <span className="admin-table-phones">
+                        {phones.map((phone, index) => (
+                          <span key={phone}>
+                            {index > 0 ? ', ' : null}
+                            <a href={formatPhoneHref(phone)} className="admin-table-link">
+                              {phone}
+                            </a>
+                          </span>
+                        ))}
+                      </span>
                     ) : (
                       <span className="admin-table-empty">—</span>
                     )}

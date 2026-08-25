@@ -21,14 +21,14 @@ export const capoeiraSchools: School[] = [
         imageFallback: kapueraAkademijaJpg,
         description: {
             sr: [
-                'Kapuera akademija radi u okviru Capoeira asocijacije Srbije, u grupi Nova Ginga — uz poštovanje, disciplinu, radost i zajedništvo.',
+                'Kapuera akademija radi u okviru Capoeira asocijacije Srbije — uz poštovanje, disciplinu, radost i zajedništvo.',
                 'Kapuera je brazilska borilačka veština koja spaja borbu, akrobatiku, igru i muziku, uz tradicionalne instrumente kao što su berimbau i atabaque.',
-                'Sa decom rade treneri iz asocijacije, uključujući Professor Touro Branco, kroz prilagođene programe koji grade telo, ritam i samopouzdanje.',
+                'Sa decom rade treneri iz asocijacije, uključujući Professor Cantiga, kroz prilagođene programe koji grade telo, ritam i samopouzdanje.',
             ],
             en: [
-                'Kapuera Academy is part of the Capoeira Association of Serbia, in the Nova Ginga group — with respect, discipline, joy and togetherness.',
+                'Kapuera Academy is part of the Capoeira Association of Serbia — with respect, discipline, joy and togetherness.',
                 'Capoeira is a Brazilian martial art that combines fighting, acrobatics, play and music, with traditional instruments such as the berimbau and atabaque.',
-                'Children train with association coaches, including Professor Touro Branco, through adapted programs that build the body, rhythm and confidence.',
+                'Children train with association coaches, including Professor Cantiga, through adapted programs that build the body, rhythm and confidence.',
             ],
         },
         addresses: [
@@ -41,8 +41,8 @@ export const capoeiraSchools: School[] = [
             },
         ],
         contact: {
-            phone: '062 963 69 56',
-            email: 'dusancapoeira@gmail.com',
+            phone: '069 211 19 86',
+            email: 'plancak.aljosa@gmail.com',
             facebook: 'https://www.facebook.com/kapueraakademija',
             facebookLabel: 'kapueraakademija',
             instagram: 'https://www.instagram.com/kapueranovisad/',
