@@ -25,23 +25,6 @@ const cities = getCityOptions()
 const isSearchMenuTarget = (target: EventTarget | null) =>
   target instanceof Element && Boolean(target.closest('.search-field-menu'))
 
-const openNativeSelect = (select: HTMLSelectElement | null) => {
-  if (!select) {
-    return
-  }
-
-  if (typeof select.showPicker === 'function') {
-    try {
-      select.showPicker()
-      return
-    } catch {
-      // showPicker throws if the select is not activated by a user gesture
-    }
-  }
-
-  select.focus()
-}
-
 const LocationIcon = () => (
   <svg
     aria-hidden="true"
@@ -147,7 +130,6 @@ const FiltersBar = ({
   const partsDropdownRef = useRef<HTMLDivElement>(null)
   const ageDropdownRef = useRef<HTMLDivElement>(null)
   const activityDropdownRef = useRef<HTMLDivElement>(null)
-  const citySelectRef = useRef<HTMLSelectElement>(null)
   const partsSearchRef = useRef<HTMLInputElement>(null)
   const activitiesSearchRef = useRef<HTMLInputElement>(null)
   const skipLiveApply = useRef(true)
@@ -345,29 +327,29 @@ const FiltersBar = ({
     >
       <div className="search-bar-panel">
         <div className="search-bar-grid">
-          <div
-            className="search-field"
-            onClick={() => openNativeSelect(citySelectRef.current)}
-          >
+          <div className="search-field">
             <LocationIcon />
             <div className="search-field-content">
-              <label htmlFor="city" className="search-field-label">
+              <span id="city-label" className="search-field-label">
                 {t('filters.city')}
-              </label>
-              <select
-                id="city"
-                ref={citySelectRef}
-                value={filters.city}
-                onChange={(e) => handleCityChange(e.target.value)}
-                className="search-field-select"
-              >
-                {cities.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
+              </span>
+              <span className="search-field-select" aria-hidden="true">
+                {filters.city}
+              </span>
             </div>
+            <select
+              id="city"
+              aria-labelledby="city-label"
+              value={filters.city}
+              onChange={(e) => handleCityChange(e.target.value)}
+              className="search-field-native-select"
+            >
+              {cities.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
           </div>
 
           {!hideDistrict && (

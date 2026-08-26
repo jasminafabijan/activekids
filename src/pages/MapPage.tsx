@@ -67,7 +67,7 @@ const MapPage = () => {
   }
 
   return (
-    <div className="page-shell map-page">
+    <div className="page-shell page-shell--fill map-page">
       <Navbar />
 
       <div className="map-page-intro">
