@@ -1,7 +1,5 @@
-import { getCityOptions } from '../data/cities'
+import { DEFAULT_CITY } from '../data/cities'
 import type { SchoolFilters } from '../data/schools'
-
-const DEFAULT_CITY = getCityOptions()[0] ?? ''
 
 const getArrayParam = (value: string | null) => {
   if (!value) {

@@ -1,10 +1,31 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { formatSchoolCategoryNames, formatPhoneHref, getActivityOptions, getContactPhones, getSchoolNameSr, schools } from '../data/schools'
+import { getCategoryNameBySlug } from '../data/categories'
+import { preLaunchSchools } from '../data/preLaunchSchools'
+import type { PreLaunchSchool } from '../data/preLaunchSchools'
+import { rejectedSchools } from '../data/rejectedSchools'
+import type { RejectedSchool } from '../data/rejectedSchools'
+import {
+  formatSchoolCategoryNames,
+  formatPhoneHref,
+  getActivityOptions,
+  getContactPhones,
+  getSchoolNameSr,
+  schools,
+} from '../data/schools'
+import type { School } from '../data/schools'
 import './admin.css'
 
 const CONTACTED_STORAGE_KEY = 'kiddokompas-admin-contacted'
 const VERIFIED_STORAGE_KEY = 'kiddokompas-admin-verified'
+
+type AdminTab = 'catalog' | 'prelaunch' | 'rejected'
+
+const TABS: { id: AdminTab; label: string; panelId: string }[] = [
+  { id: 'catalog', label: 'Škole', panelId: 'admin-tabpanel-catalog' },
+  { id: 'prelaunch', label: 'Pre sajta', panelId: 'admin-tabpanel-prelaunch' },
+  { id: 'rejected', label: 'Odbijeno', panelId: 'admin-tabpanel-rejected' },
+]
 
 const loadFlagState = (key: string): Record<string, boolean> => {
   try {
@@ -20,7 +41,136 @@ const toggleFlag = (schoolId: string, current: Record<string, boolean>) => ({
   [schoolId]: !current[schoolId],
 })
 
+const formatCategorySlugs = (slugs: string[]) =>
+  slugs.map((slug) => getCategoryNameBySlug(slug, 'sr')).join(', ')
+
+const sortAdminSchools = (list: School[]) =>
+  [...list].sort((a, b) => {
+    const bySport = formatSchoolCategoryNames(a).localeCompare(formatSchoolCategoryNames(b), 'sr')
+
+    if (bySport !== 0) {
+      return bySport
+    }
+
+    return getSchoolNameSr(a).localeCompare(getSchoolNameSr(b), 'sr')
+  })
+
+const sortPreLaunchSchools = (list: PreLaunchSchool[]) =>
+  [...list].sort((a, b) => {
+    const bySport = formatCategorySlugs(a.categorySlugs).localeCompare(
+      formatCategorySlugs(b.categorySlugs),
+      'sr'
+    )
+
+    if (bySport !== 0) {
+      return bySport
+    }
+
+    return a.name.localeCompare(b.name, 'sr')
+  })
+
+const sortRejectedSchools = (list: RejectedSchool[]) =>
+  [...list].sort((a, b) => {
+    const sportA = getCategoryNameBySlug(a.categorySlug, 'sr')
+    const sportB = getCategoryNameBySlug(b.categorySlug, 'sr')
+    const bySport = sportA.localeCompare(sportB, 'sr')
+
+    if (bySport !== 0) {
+      return bySport
+    }
+
+    return a.name.localeCompare(b.name, 'sr')
+  })
+
+const sportOptionsFromSlugs = (slugs: string[]) =>
+  [...new Set(slugs)]
+    .map((slug) => ({ slug, name: getCategoryNameBySlug(slug, 'sr') }))
+    .sort((a, b) => a.name.localeCompare(b.name, 'sr'))
+
+const displayWebsite = (website: string) => website.replace(/^https?:\/\/(www\.)?/, '')
+
+const AdminWebsiteCell = ({ website }: { website?: string }) => {
+  if (!website) {
+    return <span className="admin-table-empty">—</span>
+  }
+
+  return (
+    <a href={website} className="admin-table-link" target="_blank" rel="noreferrer">
+      {displayWebsite(website)}
+    </a>
+  )
+}
+
+const AdminEmailCell = ({ email }: { email?: string }) => {
+  if (!email) {
+    return <span className="admin-table-empty">—</span>
+  }
+
+  return (
+    <a href={`mailto:${email}`} className="admin-table-link">
+      {email}
+    </a>
+  )
+}
+
+const AdminPhonesCell = ({ phones }: { phones: string[] }) => {
+  if (phones.length === 0) {
+    return <span className="admin-table-empty">—</span>
+  }
+
+  return (
+    <span className="admin-table-phones">
+      {phones.map((phone, index) => (
+        <span key={phone}>
+          {index > 0 ? ', ' : null}
+          <a href={formatPhoneHref(phone)} className="admin-table-link">
+            {phone}
+          </a>
+        </span>
+      ))}
+    </span>
+  )
+}
+
+const AdminCheckboxes = ({
+  schoolId,
+  schoolName,
+  isContacted,
+  isVerified,
+  onToggleContacted,
+  onToggleVerified,
+}: {
+  schoolId: string
+  schoolName: string
+  isContacted: boolean
+  isVerified: boolean
+  onToggleContacted: (id: string) => void
+  onToggleVerified: (id: string) => void
+}) => (
+  <>
+    <td className="admin-table-col-check">
+      <input
+        type="checkbox"
+        className="admin-table-checkbox"
+        checked={isContacted}
+        onChange={() => onToggleContacted(schoolId)}
+        aria-label={`Kontaktirano — ${schoolName}`}
+      />
+    </td>
+    <td className="admin-table-col-check">
+      <input
+        type="checkbox"
+        className="admin-table-checkbox"
+        checked={isVerified}
+        onChange={() => onToggleVerified(schoolId)}
+        aria-label={`Provereno sa vlasnikom — ${schoolName}`}
+      />
+    </td>
+  </>
+)
+
 const AdminPage = () => {
+  const [tab, setTab] = useState<AdminTab>('catalog')
   const [sportFilter, setSportFilter] = useState('')
   const [contacted, setContacted] = useState<Record<string, boolean>>(() =>
     loadFlagState(CONTACTED_STORAGE_KEY)
@@ -37,29 +187,83 @@ const AdminPage = () => {
     localStorage.setItem(VERIFIED_STORAGE_KEY, JSON.stringify(verified))
   }, [verified])
 
-  const sportOptions = getActivityOptions()
+  const isCatalog = tab === 'catalog'
+  const isPrelaunch = tab === 'prelaunch'
+  const isRejected = tab === 'rejected'
+  const showChecks = isCatalog || isPrelaunch
 
-  const rows = useMemo(() => {
+  const catalogSportOptions = getActivityOptions()
+  const prelaunchSportOptions = useMemo(
+    () => sportOptionsFromSlugs(preLaunchSchools.flatMap((school) => school.categorySlugs)),
+    []
+  )
+  const rejectedSportOptions = useMemo(
+    () => sportOptionsFromSlugs(rejectedSchools.map((school) => school.categorySlug)),
+    []
+  )
+  const sportOptions = isCatalog
+    ? catalogSportOptions
+    : isPrelaunch
+      ? prelaunchSportOptions
+      : rejectedSportOptions
+
+  const catalogRows = useMemo(() => {
     const filtered =
       sportFilter === ''
         ? schools
         : schools.filter((school) => school.categorySlugs.includes(sportFilter))
 
-    return [...filtered].sort((a, b) => {
-      const sportA = formatSchoolCategoryNames(a)
-      const sportB = formatSchoolCategoryNames(b)
-      const bySport = sportA.localeCompare(sportB, 'sr')
-
-      if (bySport !== 0) {
-        return bySport
-      }
-
-      return getSchoolNameSr(a).localeCompare(getSchoolNameSr(b), 'sr')
-    })
+    return sortAdminSchools(filtered)
   }, [sportFilter])
 
-  const contactedCount = rows.filter((school) => contacted[school.id]).length
-  const verifiedCount = rows.filter((school) => verified[school.id]).length
+  const prelaunchRows = useMemo(() => {
+    const filtered =
+      sportFilter === ''
+        ? preLaunchSchools
+        : preLaunchSchools.filter((school) => school.categorySlugs.includes(sportFilter))
+
+    return sortPreLaunchSchools(filtered)
+  }, [sportFilter])
+
+  const rejectedRows = useMemo(() => {
+    const filtered =
+      sportFilter === ''
+        ? rejectedSchools
+        : rejectedSchools.filter((school) => school.categorySlug === sportFilter)
+
+    return sortRejectedSchools(filtered)
+  }, [sportFilter])
+
+  const trackedRows = isCatalog ? catalogRows : prelaunchRows
+  const contactedCount = trackedRows.filter((school) => contacted[school.id]).length
+  const verifiedCount = trackedRows.filter((school) => verified[school.id]).length
+  const rowsLength = isCatalog
+    ? catalogRows.length
+    : isPrelaunch
+      ? prelaunchRows.length
+      : rejectedRows.length
+
+  const emptyState = (() => {
+    if (isCatalog) {
+      return 'Nema škola za izabrani sport.'
+    }
+
+    if (isRejected) {
+      return 'Nema odbijenih škola za izabrani sport.'
+    }
+
+    if (preLaunchSchools.length === 0) {
+      return 'Još nema škola. Javi kada kontaktiraš neku, pa je dodajem ovde.'
+    }
+
+    return 'Nema škola za izabrani sport.'
+  })()
+
+  const subtitle = isCatalog
+    ? 'Označi koga si kontaktirala, pa red kada su podaci potvrđeni.'
+    : isPrelaunch
+      ? 'Škole koje si kontaktirala pre nego što je sajt postojao. Nisu na sajtu — samo evidencija.'
+      : 'Škole koje su bile u katalogu, a vlasnici su tražili uklanjanje. Ostaju samo kontakt podaci.'
 
   return (
     <div className="admin-page">
@@ -69,26 +273,56 @@ const AdminPage = () => {
             ← Nazad na sajt
           </Link>
           <h1 className="admin-page-title">Admin — škole</h1>
-          <p className="admin-page-subtitle">
-            Označi koga si kontaktirala, pa red kada su podaci potvrđeni.
-          </p>
+          <p className="admin-page-subtitle">{subtitle}</p>
         </div>
 
-        <div className="admin-page-stats">
-          <span className="admin-page-stat">
-            Kontaktirano: <strong>{contactedCount}</strong> / {rows.length}
-          </span>
-          <span className="admin-page-stat">
-            Provereno: <strong>{verifiedCount}</strong> / {rows.length}
-          </span>
-        </div>
+        {showChecks ? (
+          <div className="admin-page-stats">
+            <span className="admin-page-stat">
+              Kontaktirano: <strong>{contactedCount}</strong> / {trackedRows.length}
+            </span>
+            <span className="admin-page-stat">
+              Provereno: <strong>{verifiedCount}</strong> / {trackedRows.length}
+            </span>
+          </div>
+        ) : (
+          <div className="admin-page-stats">
+            <span className="admin-page-stat">
+              Odbijeno: <strong>{rejectedRows.length}</strong>
+            </span>
+          </div>
+        )}
       </header>
+
+      <div className="admin-tabs" role="tablist" aria-label="Admin tabele">
+        {TABS.map((item) => {
+          const isActive = tab === item.id
+
+          return (
+            <button
+              key={item.id}
+              type="button"
+              role="tab"
+              id={`admin-tab-${item.id}`}
+              aria-selected={isActive}
+              aria-controls={item.panelId}
+              className={`admin-tab${isActive ? ' is-active' : ''}`}
+              onClick={() => {
+                setTab(item.id)
+                setSportFilter('')
+              }}
+            >
+              {item.label}
+            </button>
+          )
+        })}
+      </div>
 
       <div className="admin-page-toolbar">
         <label className="admin-filter">
           <select
             className="admin-filter-select"
-            value={sportFilter}
+            value={sportOptions.some((option) => option.slug === sportFilter) ? sportFilter : ''}
             onChange={(event) => setSportFilter(event.target.value)}
           >
             <option value="">Sve aktivnosti</option>
@@ -101,16 +335,25 @@ const AdminPage = () => {
         </label>
       </div>
 
-      <div className="admin-table-wrap">
+      <div
+        className="admin-table-wrap"
+        role="tabpanel"
+        id={TABS.find((item) => item.id === tab)?.panelId}
+        aria-labelledby={`admin-tab-${tab}`}
+      >
         <table className="admin-table">
           <thead>
             <tr>
-              <th className="admin-table-col-check" scope="col">
-                Kontakt
-              </th>
-              <th className="admin-table-col-check" scope="col">
-                Provera
-              </th>
+              {showChecks ? (
+                <>
+                  <th className="admin-table-col-check" scope="col">
+                    Kontakt
+                  </th>
+                  <th className="admin-table-col-check" scope="col">
+                    Provera
+                  </th>
+                </>
+              ) : null}
               <th scope="col">Aktivnost</th>
               <th scope="col">Škola</th>
               <th scope="col">Websajt</th>
@@ -119,93 +362,106 @@ const AdminPage = () => {
             </tr>
           </thead>
           <tbody>
-            {rows.map((school) => {
-              const sportName = formatSchoolCategoryNames(school)
-              const schoolName = getSchoolNameSr(school)
-              const isContacted = Boolean(contacted[school.id])
-              const isVerified = Boolean(verified[school.id])
-              const rowClass = isVerified
-                ? 'admin-table-row--verified'
-                : isContacted
-                  ? 'admin-table-row--contacted'
-                  : ''
+            {isCatalog
+              ? catalogRows.map((school) => {
+                  const sportName = formatSchoolCategoryNames(school)
+                  const schoolName = getSchoolNameSr(school)
+                  const isContacted = Boolean(contacted[school.id])
+                  const isVerified = Boolean(verified[school.id])
+                  const rowClass = isVerified
+                    ? 'admin-table-row--verified'
+                    : isContacted
+                      ? 'admin-table-row--contacted'
+                      : ''
 
-              const phones = getContactPhones(school.contact?.phone)
+                  return (
+                    <tr key={school.id} className={rowClass}>
+                      <AdminCheckboxes
+                        schoolId={school.id}
+                        schoolName={schoolName}
+                        isContacted={isContacted}
+                        isVerified={isVerified}
+                        onToggleContacted={(id) =>
+                          setContacted((current) => toggleFlag(id, current))
+                        }
+                        onToggleVerified={(id) => setVerified((current) => toggleFlag(id, current))}
+                      />
+                      <td>{sportName}</td>
+                      <td>
+                        <Link to={`/skola/${school.slug}`} className="admin-table-school-link">
+                          {schoolName}
+                        </Link>
+                      </td>
+                      <td>
+                        <AdminWebsiteCell website={school.contact?.website} />
+                      </td>
+                      <td>
+                        <AdminEmailCell email={school.contact?.email} />
+                      </td>
+                      <td>
+                        <AdminPhonesCell phones={getContactPhones(school.contact?.phone)} />
+                      </td>
+                    </tr>
+                  )
+                })
+              : isPrelaunch
+                ? prelaunchRows.map((school) => {
+                    const sportName = formatCategorySlugs(school.categorySlugs)
+                    const isContacted = Boolean(contacted[school.id])
+                    const isVerified = Boolean(verified[school.id])
+                    const rowClass = isVerified
+                      ? 'admin-table-row--verified'
+                      : isContacted
+                        ? 'admin-table-row--contacted'
+                        : ''
 
-              return (
-                <tr key={school.id} className={rowClass}>
-                  <td className="admin-table-col-check">
-                    <input
-                      type="checkbox"
-                      className="admin-table-checkbox"
-                      checked={isContacted}
-                      onChange={() => setContacted((current) => toggleFlag(school.id, current))}
-                      aria-label={`Kontaktirano — ${schoolName}`}
-                    />
-                  </td>
-                  <td className="admin-table-col-check">
-                    <input
-                      type="checkbox"
-                      className="admin-table-checkbox"
-                      checked={isVerified}
-                      onChange={() => setVerified((current) => toggleFlag(school.id, current))}
-                      aria-label={`Provereno sa vlasnikom — ${schoolName}`}
-                    />
-                  </td>
-                  <td>{sportName}</td>
-                  <td>
-                    <Link to={`/skola/${school.slug}`} className="admin-table-school-link">
-                      {schoolName}
-                    </Link>
-                  </td>
-                  <td>
-                    {school.contact?.website ? (
-                      <a
-                        href={school.contact.website}
-                        className="admin-table-link"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {school.contact.website.replace(/^https?:\/\/(www\.)?/, '')}
-                      </a>
-                    ) : (
-                      <span className="admin-table-empty">—</span>
-                    )}
-                  </td>
-                  <td>
-                    {school.contact?.email ? (
-                      <a href={`mailto:${school.contact.email}`} className="admin-table-link">
-                        {school.contact.email}
-                      </a>
-                    ) : (
-                      <span className="admin-table-empty">—</span>
-                    )}
-                  </td>
-                  <td>
-                    {phones.length > 0 ? (
-                      <span className="admin-table-phones">
-                        {phones.map((phone, index) => (
-                          <span key={phone}>
-                            {index > 0 ? ', ' : null}
-                            <a href={formatPhoneHref(phone)} className="admin-table-link">
-                              {phone}
-                            </a>
-                          </span>
-                        ))}
-                      </span>
-                    ) : (
-                      <span className="admin-table-empty">—</span>
-                    )}
-                  </td>
-                </tr>
-              )
-            })}
+                    return (
+                      <tr key={school.id} className={rowClass}>
+                        <AdminCheckboxes
+                          schoolId={school.id}
+                          schoolName={school.name}
+                          isContacted={isContacted}
+                          isVerified={isVerified}
+                          onToggleContacted={(id) =>
+                            setContacted((current) => toggleFlag(id, current))
+                          }
+                          onToggleVerified={(id) =>
+                            setVerified((current) => toggleFlag(id, current))
+                          }
+                        />
+                        <td>{sportName}</td>
+                        <td>{school.name}</td>
+                        <td>
+                          <AdminWebsiteCell website={school.website} />
+                        </td>
+                        <td>
+                          <AdminEmailCell email={school.email} />
+                        </td>
+                        <td>
+                          <AdminPhonesCell phones={getContactPhones(school.phone)} />
+                        </td>
+                      </tr>
+                    )
+                  })
+                : rejectedRows.map((school) => (
+                    <tr key={school.id}>
+                      <td>{getCategoryNameBySlug(school.categorySlug, 'sr')}</td>
+                      <td>{school.name}</td>
+                      <td>
+                        <AdminWebsiteCell website={school.website} />
+                      </td>
+                      <td>
+                        <AdminEmailCell email={school.email} />
+                      </td>
+                      <td>
+                        <AdminPhonesCell phones={getContactPhones(school.phone)} />
+                      </td>
+                    </tr>
+                  ))}
           </tbody>
         </table>
 
-        {rows.length === 0 && (
-          <p className="admin-table-empty-state">Nema škola za izabrani sport.</p>
-        )}
+        {rowsLength === 0 && <p className="admin-table-empty-state">{emptyState}</p>}
       </div>
     </div>
   )

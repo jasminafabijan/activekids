@@ -22,6 +22,26 @@ interface FiltersBarProps {
 const defaultFilters = getDefaultFilters()
 const cities = getCityOptions()
 
+const isSearchMenuTarget = (target: EventTarget | null) =>
+  target instanceof Element && Boolean(target.closest('.search-field-menu'))
+
+const openNativeSelect = (select: HTMLSelectElement | null) => {
+  if (!select) {
+    return
+  }
+
+  if (typeof select.showPicker === 'function') {
+    try {
+      select.showPicker()
+      return
+    } catch {
+      // showPicker throws if the select is not activated by a user gesture
+    }
+  }
+
+  select.focus()
+}
+
 const LocationIcon = () => (
   <svg
     aria-hidden="true"
@@ -115,7 +135,6 @@ const FiltersBar = ({
   const { lang, t } = useI18n()
   const ageOptions = getAgeOptions(lang)
   const activityOptions = getActivityOptions(lang)
-  const partsOfCityOptions = getDistrictOptions(lang)
   const [filters, setFilters] = useState<FilterValues>(() => ({
     ...defaultFilters,
     ...initialFilters,
@@ -128,6 +147,7 @@ const FiltersBar = ({
   const partsDropdownRef = useRef<HTMLDivElement>(null)
   const ageDropdownRef = useRef<HTMLDivElement>(null)
   const activityDropdownRef = useRef<HTMLDivElement>(null)
+  const citySelectRef = useRef<HTMLSelectElement>(null)
   const partsSearchRef = useRef<HTMLInputElement>(null)
   const activitiesSearchRef = useRef<HTMLInputElement>(null)
   const skipLiveApply = useRef(true)
@@ -203,8 +223,18 @@ const FiltersBar = ({
     activitiesSearchRef.current?.focus()
   }, [isActivityOpen])
 
-  const handleChange = (field: 'city', value: string) => {
-    setFilters((prev) => ({ ...prev, [field]: value }))
+  const partsOfCityOptions = getDistrictOptions(lang, filters.city)
+
+  const handleCityChange = (value: string) => {
+    setFilters((prev) => {
+      const allowed = new Set(getDistrictOptions(lang, value))
+
+      return {
+        ...prev,
+        city: value,
+        partsOfCity: prev.partsOfCity.filter((part) => allowed.has(part)),
+      }
+    })
   }
 
   const togglePartOfCity = (part: string) => {
@@ -315,7 +345,10 @@ const FiltersBar = ({
     >
       <div className="search-bar-panel">
         <div className="search-bar-grid">
-          <div className="search-field">
+          <div
+            className="search-field"
+            onClick={() => openNativeSelect(citySelectRef.current)}
+          >
             <LocationIcon />
             <div className="search-field-content">
               <label htmlFor="city" className="search-field-label">
@@ -323,8 +356,9 @@ const FiltersBar = ({
               </label>
               <select
                 id="city"
+                ref={citySelectRef}
                 value={filters.city}
-                onChange={(e) => handleChange('city', e.target.value)}
+                onChange={(e) => handleCityChange(e.target.value)}
                 className="search-field-select"
               >
                 {cities.map((city) => (
@@ -340,6 +374,13 @@ const FiltersBar = ({
             <div
               ref={partsDropdownRef}
               className={`search-field search-field-dropdown search-field-dropdown-district ${isPartsOpen ? 'search-field-dropdown-open' : ''}`}
+              onClick={(event) => {
+                if (isSearchMenuTarget(event.target)) {
+                  return
+                }
+
+                setIsPartsOpen((open) => !open)
+              }}
             >
             <MapIcon />
             <div className="search-field-content">
@@ -352,7 +393,6 @@ const FiltersBar = ({
                 aria-labelledby="partsOfCity-label"
                 aria-expanded={isPartsOpen}
                 aria-controls="partsOfCity-menu"
-                onClick={() => setIsPartsOpen((open) => !open)}
                 className="search-field-trigger"
               >
                 {partsLabel}
@@ -410,6 +450,13 @@ const FiltersBar = ({
           <div
             ref={ageDropdownRef}
             className={`search-field search-field-dropdown ${isAgeOpen ? 'search-field-dropdown-open' : ''}`}
+            onClick={(event) => {
+              if (isSearchMenuTarget(event.target)) {
+                return
+              }
+
+              setIsAgeOpen((open) => !open)
+            }}
           >
             <UsersIcon />
             <div className="search-field-content">
@@ -422,7 +469,6 @@ const FiltersBar = ({
                 aria-labelledby="age-label"
                 aria-expanded={isAgeOpen}
                 aria-controls="age-menu"
-                onClick={() => setIsAgeOpen((open) => !open)}
                 className="search-field-trigger"
               >
                 {agesLabel}
@@ -457,6 +503,13 @@ const FiltersBar = ({
           <div
             ref={activityDropdownRef}
             className={`search-field search-field-dropdown ${isActivityOpen ? 'search-field-dropdown-open' : ''}`}
+            onClick={(event) => {
+              if (isSearchMenuTarget(event.target)) {
+                return
+              }
+
+              setIsActivityOpen((open) => !open)
+            }}
           >
             <SparklesIcon />
             <div className="search-field-content">
@@ -469,7 +522,6 @@ const FiltersBar = ({
                 aria-labelledby="activity-label"
                 aria-expanded={isActivityOpen}
                 aria-controls="activity-menu"
-                onClick={() => setIsActivityOpen((open) => !open)}
                 className="search-field-trigger"
               >
                 {activitiesLabel}

@@ -50,6 +50,10 @@ const STREET_LABELS: Record<string, string> = {
     'Primary School “Branko Radičević”, Futoška 5',
   'OŠ „Jovan Jovanović Zmaj”, Školska 3':
     'Primary School “Jovan Jovanović Zmaj”, Školska 3',
+  'Mesna zajednica, Vuka Karadžića 289':
+    'Community Center, Vuka Karadžića 289',
+  'OŠ „Jovan Popović”, Nikole Tesle 73':
+    'Primary School “Jovan Popović”, Nikole Tesle 73',
 }
 
 const SERBIAN_VENUE_PHRASE =

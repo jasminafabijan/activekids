@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { formatSchoolDistricts, getSchoolName, type School } from '../data/schools'
+import { formatSchoolLocationLabel, getSchoolName, type School } from '../data/schools'
 import { schoolAgeLabel } from '../i18n/helpers'
 import { useI18n } from '../i18n/useI18n'
 import { isWebpSrc } from '../utils/schoolImage'
@@ -50,9 +50,7 @@ const SchoolCard = ({ school, categoryLabel, categoryContext }: SchoolCardProps)
   const schoolHref = path.school(school.slug, categoryContext)
   const from = `${location.pathname}${location.search}${location.hash}`
 
-  const locationLabel = [formatSchoolDistricts(school, lang), school.city]
-    .filter((part) => part.length > 0)
-    .join(', ')
+  const locationLabel = formatSchoolLocationLabel(school, lang)
 
   return (
     <Link to={schoolHref} state={{ from }} className="school-card">

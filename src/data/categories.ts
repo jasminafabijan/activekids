@@ -125,8 +125,8 @@ export const categories: Category[] = [
     slugs: { sr: 'atletika', en: 'athletics' },
     subtitle: { sr: 'Škole atletike', en: 'Athletics schools' },
     pageSubtitle: {
-      sr: 'Istražite škole atletike u {city} — za trčanje, skokove, bacanja i ljubav prema kretanju.',
-      en: 'Explore athletics schools in {city} — for running, jumps, throws and a love of movement.',
+      sr: 'Istražite škole atletike u {city} — za razvoj brzine, izdržljivosti i pravilnog pokreta.',
+      en: 'Explore athletics schools in {city} — for developing speed, endurance and proper movement.',
     },
   },
   {
@@ -270,8 +270,8 @@ export const categories: Category[] = [
     slugs: { sr: 'jezici', en: 'languages' },
     subtitle: { sr: 'Škole stranih jezika', en: 'Foreign language schools' },
     pageSubtitle: {
-      sr: 'Istražite škole stranih jezika u {city} — za igru, govor i prve korake u novom jeziku.',
-      en: 'Explore foreign language schools in {city} — for play, speaking and first steps in a new language.',
+      sr: 'Istražite škole stranih jezika u {city} — za decu koja kroz igru i razgovor usvajaju novi jezik.',
+      en: 'Explore foreign language schools in {city} — for children who acquire a new language through play and conversation.',
     },
   },
   {

@@ -3,7 +3,7 @@ import CatalogMap from '../components/CatalogMap'
 import FiltersBar, { type FilterValues } from '../components/FiltersBar'
 import MapActivityCard from '../components/MapActivityCard'
 import Navbar from '../components/Navbar'
-import { filterSchools, getSchoolName } from '../data/schools'
+import { filterSchools, getSchoolName, venueBelongsToCity } from '../data/schools'
 import { formatEmptyFilterMessage, formatMapCountLabel } from '../i18n/formatters'
 import { useI18n } from '../i18n/useI18n'
 import { getMapLocations } from '../utils/mapLocation'
@@ -40,8 +40,10 @@ const MapPage = () => {
       .filter((school) => school.addresses?.some((address) => address.lat != null && address.lng != null))
       .sort((a, b) => getSchoolName(a, lang).localeCompare(getSchoolName(b, lang), lang === 'en' ? 'en' : 'sr'))
 
-    return getMapLocations(schools)
-  }, [lang, visibleSchools])
+    return getMapLocations(schools).filter((location) =>
+      venueBelongsToCity(location.school, location.address, filters.city)
+    )
+  }, [filters.city, lang, visibleSchools])
 
   const handleFilterChange = useCallback((next: FilterValues) => {
     setFilters(next)
@@ -108,6 +110,7 @@ const MapPage = () => {
               locations={mappedLocations}
               selectedLocationId={selectedLocationId}
               onSelectLocation={handleSelectLocationFromMap}
+              city={filters.city}
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { getCategoryBySlug, getCategoryName, getCategoryNameBySlug } from './categories'
+import { DEFAULT_CITY, getCityOptions } from './cities'
 import { getDistrictName, DISTRICT_LABELS } from './districts'
 import { getStreetName } from './streets'
 import { formatAgeLabel, formatAgeOptionLabel, getLocalizedText, warnMissingEnglish } from '../i18n/helpers'
@@ -52,8 +53,56 @@ export const schools: School[] = [
     ...languagesSchools,
 ]
 
-export const formatSchoolAddress = (address: SchoolAddress, lang: Lang = 'sr') =>
-    `${getStreetName(address.street, lang)}, ${address.city}`
+export const formatSchoolAddress = (address: SchoolAddress, lang: Lang = 'sr') => {
+    const street = getStreetName(address.street, lang)
+    const district = address.district ? getDistrictName(address.district, lang) : ''
+    const parts = [street, district, address.city].filter((part) => part.length > 0)
+
+    return [...new Set(parts)].join(', ')
+}
+
+const getSchoolAddressList = (school: School): SchoolAddress[] => {
+    if (school.addresses && school.addresses.length > 0) {
+        return school.addresses
+    }
+
+    return [
+        {
+            street: '',
+            city: school.city,
+            district: school.district,
+        },
+    ]
+}
+
+const catalogCities = () => new Set(getCityOptions())
+
+const addressBelongsToCity = (address: SchoolAddress, schoolCity: string, city: string) => {
+    if (address.city === city) {
+        return true
+    }
+
+    return !catalogCities().has(address.city) && schoolCity === city
+}
+
+export const getSchoolCities = (school: School) => {
+    const catalog = catalogCities()
+    const cities = new Set<string>()
+
+    for (const address of getSchoolAddressList(school)) {
+        if (catalog.has(address.city)) {
+            cities.add(address.city)
+        } else {
+            cities.add(school.city)
+        }
+    }
+
+    if (cities.size === 0) {
+        cities.add(school.city)
+    }
+
+    return [...cities]
+}
 
 export const getContactPhones = (phone?: string | string[]) => {
     if (!phone) {
@@ -81,7 +130,7 @@ export const getMapsHref = (address: SchoolAddress) => {
     const query =
         address.lat != null && address.lng != null
             ? `${address.lat},${address.lng}`
-            : `${address.street}, ${address.city}`
+            : [address.street, address.district, address.city].filter(Boolean).join(', ')
 
     return `https://maps.google.com/maps?q=${encodeURIComponent(query)}`
 }
@@ -158,15 +207,46 @@ export const getSchoolDistricts = (school: School) => {
     return [school.district]
 }
 
-export const formatSchoolDistricts = (school: School, lang: Lang = 'sr') =>
-    getSchoolDistricts(school)
-        .map((district) => getDistrictName(district, lang))
-        .join(', ')
+export const formatSchoolLocationLabel = (school: School, lang: Lang = 'sr') => {
+    const groups: { city: string; districts: string[] }[] = []
+    const cityIndex = new Map<string, number>()
 
-export const getDistrictOptions = (lang: Lang = 'sr') =>
-    [...new Set(schools.flatMap((school) => getSchoolDistricts(school)))].sort((a, b) =>
-        getDistrictName(a, lang).localeCompare(getDistrictName(b, lang), lang === 'en' ? 'en' : 'sr')
-    )
+    for (const address of getSchoolAddressList(school)) {
+        let index = cityIndex.get(address.city)
+
+        if (index == null) {
+            index = groups.length
+            cityIndex.set(address.city, index)
+            groups.push({ city: address.city, districts: [] })
+        }
+
+        if (address.district && !groups[index].districts.includes(address.district)) {
+            groups[index].districts.push(address.district)
+        }
+    }
+
+    return groups
+        .map(({ city, districts }) => {
+            const districtPart = districts
+                .map((district) => getDistrictName(district, lang))
+                .join(', ')
+
+            return districtPart ? `${districtPart}, ${city}` : city
+        })
+        .join(' · ')
+}
+
+export const getDistrictOptions = (lang: Lang = 'sr', city?: string) =>
+    [
+        ...new Set(
+            schools.flatMap((school) =>
+                getSchoolAddressList(school)
+                    .filter((address) => !city || addressBelongsToCity(address, school.city, city))
+                    .map((address) => address.district)
+                    .filter((district): district is string => district != null && district.length > 0)
+            )
+        ),
+    ].sort((a, b) => getDistrictName(a, lang).localeCompare(getDistrictName(b, lang), lang === 'en' ? 'en' : 'sr'))
 
 if (import.meta.env.DEV) {
     for (const district of getDistrictOptions('sr')) {
@@ -210,7 +290,11 @@ export const getActivityOptions = (lang: Lang = 'sr') =>
 
 export const filterSchools = (filters: SchoolFilters) =>
     schools.filter((school) => {
-        if (filters.city && school.city !== filters.city) {
+        const addresses = getSchoolAddressList(school).filter((address) =>
+            filters.city ? addressBelongsToCity(address, school.city, filters.city) : true
+        )
+
+        if (filters.city && addresses.length === 0) {
             return false
         }
 
@@ -229,9 +313,8 @@ export const filterSchools = (filters: SchoolFilters) =>
         }
 
         if (filters.partsOfCity.length > 0) {
-            const schoolDistricts = getSchoolDistricts(school)
-            const matchesDistrict = filters.partsOfCity.some((part) =>
-                schoolDistricts.includes(part)
+            const matchesDistrict = addresses.some(
+                (address) => address.district != null && filters.partsOfCity.includes(address.district)
             )
 
             if (!matchesDistrict) {
@@ -241,4 +324,7 @@ export const filterSchools = (filters: SchoolFilters) =>
 
         return true
     })
+
+export const venueBelongsToCity = (school: School, address: SchoolAddress, city?: string) =>
+    addressBelongsToCity(address, school.city, city || DEFAULT_CITY)
 

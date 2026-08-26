@@ -9,6 +9,7 @@ import { buildSchoolMapPopupHtml, schoolMapHref, schoolMapPopupOptions } from '.
 import { schoolAgeLabel } from '../i18n/helpers'
 import { useI18n } from '../i18n/useI18n'
 import { getSchoolName } from '../data/schools'
+import { CITY_MAP_VIEWS } from '../data/cities'
 import { getStreetName } from '../data/streets'
 import 'leaflet/dist/leaflet.css'
 
@@ -54,9 +55,10 @@ interface CatalogMapProps {
   locations: MapLocation[]
   selectedLocationId?: string | null
   onSelectLocation?: (locationId: string) => void
+  city?: string
 }
 
-const CatalogMap = ({ locations, selectedLocationId, onSelectLocation }: CatalogMapProps) => {
+const CatalogMap = ({ locations, selectedLocationId, onSelectLocation, city }: CatalogMapProps) => {
   const navigate = useNavigate()
   const routeLocation = useLocation()
   const { lang, t } = useI18n()
@@ -153,6 +155,13 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation }: Catalog
 
       map.invalidateSize()
 
+      const cityView = city ? CITY_MAP_VIEWS[city] : undefined
+
+      if (cityView) {
+        map.setView(cityView.center, cityView.zoom)
+        return
+      }
+
       if (markers.length === 1) {
         map.setView([points[0].lat, points[0].lng], 14)
         return
@@ -181,7 +190,7 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation }: Catalog
       map.remove()
       mapInstanceRef.current = null
     }
-  }, [points, lang, t])
+  }, [city, points, lang, t])
 
   useEffect(() => {
     const map = mapInstanceRef.current

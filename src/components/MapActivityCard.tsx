@@ -29,8 +29,13 @@ const LocationIcon = () => (
 const getLocationLabel = (item: MapLocation, lang: Lang) => {
   const { address, school } = item
   const district = address.district ? getDistrictName(address.district, lang) : undefined
+  const city = address.city || school.city
 
-  return [getStreetName(address.street, lang), district].filter(Boolean).join(', ') || school.city
+  if (district) {
+    return `${district}, ${city}`
+  }
+
+  return [getStreetName(address.street, lang), city].filter(Boolean).join(', ') || city
 }
 
 interface MapActivityCardProps {

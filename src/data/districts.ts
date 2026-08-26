@@ -22,6 +22,8 @@ export const DISTRICT_LABELS: Record<string, LocalizedText> = {
   'Severni Telep': { sr: 'Severni Telep', en: 'North Telep' },
   'Južni Telep': { sr: 'Južni Telep', en: 'South Telep' },
   'Sremska Kamenica': { sr: 'Sremska Kamenica', en: 'Sremska Kamenica' },
+  Čenej: { sr: 'Čenej', en: 'Čenej' },
+  Susek: { sr: 'Susek', en: 'Susek' },
   'Stari Grad (Centar)': { sr: 'Stari Grad (Centar)', en: 'City Center' },
   Telep: { sr: 'Telep', en: 'Telep' },
   Veternik: { sr: 'Veternik', en: 'Veternik' },

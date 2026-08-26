@@ -55,10 +55,10 @@ export const translations = {
   },
   filters: {
     ariaLabel: { sr: 'Pretraga aktivnosti', en: 'Search activities' },
-    city: { sr: 'Grad', en: 'City' },
-    district: { sr: 'Deo grada', en: 'Neighborhood' },
-    districtPlaceholder: { sr: 'Izaberite deo grada', en: 'Choose a neighborhood' },
-    districtSearch: { sr: 'Pretraži deo grada...', en: 'Search neighborhoods...' },
+    city: { sr: 'Grad / opština', en: 'City / municipality' },
+    district: { sr: 'Naselje / deo grada', en: 'Settlement / neighborhood' },
+    districtPlaceholder: { sr: 'Izaberite naselje / deo grada', en: 'Choose a settlement / neighborhood' },
+    districtSearch: { sr: 'Pretraži naselje / deo grada...', en: 'Search settlements / neighborhoods...' },
     age: { sr: 'Uzrast', en: 'Age' },
     allAges: { sr: 'Svi uzrasti', en: 'All ages' },
     activity: { sr: 'Aktivnost', en: 'Activity' },
@@ -86,17 +86,17 @@ export const translations = {
       en: 'for the selected activities',
     },
     emptyForAge: { sr: 'za uzrast {age}', en: 'for age {age}' },
-    emptyForDistrict: { sr: 'za deo grada „{district}”', en: 'for the “{district}” neighborhood' },
-    emptyForDistricts: { sr: 'za delove grada {districts}', en: 'for the {districts} neighborhoods' },
+    emptyForDistrict: { sr: 'za naselje „{district}”', en: 'for the “{district}” settlement' },
+    emptyForDistricts: { sr: 'za naselja {districts}', en: 'for the {districts} settlements' },
     emptyForSelectedDistricts: {
-      sr: 'za izabrane delove grada',
-      en: 'for the selected neighborhoods',
+      sr: 'za izabrana naselja',
+      en: 'for the selected settlements',
     },
-    emptyInDistrict: { sr: 'u delu grada „{district}”', en: 'in the “{district}” neighborhood' },
-    emptyInDistricts: { sr: 'u delovima grada {districts}', en: 'in the {districts} neighborhoods' },
+    emptyInDistrict: { sr: 'u naselju „{district}”', en: 'in the “{district}” settlement' },
+    emptyInDistricts: { sr: 'u naseljima {districts}', en: 'in the {districts} settlements' },
     emptyInSelectedDistricts: {
-      sr: 'u izabranim delovima grada',
-      en: 'in the selected neighborhoods',
+      sr: 'u izabranim naseljima',
+      en: 'in the selected settlements',
     },
     emptyHintAge: { sr: 'Pokušajte da promenite uzrast.', en: 'Try changing the age.' },
     emptyHintActivity: {
@@ -104,24 +104,24 @@ export const translations = {
       en: 'Try choosing another activity.',
     },
     emptyHintDistrict: {
-      sr: 'Pokušajte da izaberete drugi deo grada.',
-      en: 'Try choosing another neighborhood.',
+      sr: 'Pokušajte da izaberete drugo naselje ili deo grada.',
+      en: 'Try choosing another settlement or neighborhood.',
     },
     emptyHintAgeActivity: {
       sr: 'Pokušajte da promenite uzrast ili izaberete drugu aktivnost.',
       en: 'Try changing the age or choose another activity.',
     },
     emptyHintAgeDistrict: {
-      sr: 'Pokušajte da promenite uzrast ili deo grada.',
-      en: 'Try changing the age or neighborhood.',
+      sr: 'Pokušajte da promenite uzrast ili naselje / deo grada.',
+      en: 'Try changing the age or settlement / neighborhood.',
     },
     emptyHintActivityDistrict: {
-      sr: 'Pokušajte da izaberete drugu aktivnost ili deo grada.',
-      en: 'Try choosing another activity or neighborhood.',
+      sr: 'Pokušajte da izaberete drugu aktivnost ili naselje / deo grada.',
+      en: 'Try choosing another activity or settlement / neighborhood.',
     },
     emptyHintAll: {
-      sr: 'Pokušajte da promenite uzrast, aktivnost ili deo grada.',
-      en: 'Try changing the age, activity or neighborhood.',
+      sr: 'Pokušajte da promenite uzrast, aktivnost ili naselje / deo grada.',
+      en: 'Try changing the age, activity or settlement / neighborhood.',
     },
     found: { sr: 'Pronašli smo {count}.', en: 'We found {count}.' },
     foundAge: {
@@ -130,11 +130,11 @@ export const translations = {
     },
     foundLocation: {
       sr: 'Pronašli smo {count} na izabranoj lokaciji.',
-      en: 'We found {count} in the selected neighborhood.',
+      en: 'We found {count} in the selected area.',
     },
     foundAgeLocation: {
       sr: 'Pronašli smo {count} prema izabranom uzrastu i lokaciji.',
-      en: 'We found {count} matching the selected age and neighborhood.',
+      en: 'We found {count} matching the selected age and area.',
     },
     foundActivity: {
       sr: 'Pronašli smo {count} za izabranu aktivnost.',

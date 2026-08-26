@@ -9,7 +9,7 @@ import {
   getCategoryName,
   getCategorySlug,
 } from '../data/categories'
-import { getSchoolsByCategory } from '../data/schools'
+import { getSchoolCities, getSchoolsByCategory } from '../data/schools'
 import { categoryPath } from '../i18n/routes'
 import { useI18n } from '../i18n/useI18n'
 
@@ -36,9 +36,11 @@ const CategoryPage = () => {
   const { lang, path, t } = useI18n()
   const category = slug ? getCategoryBySlug(slug) : undefined
   const categorySchools = category ? getSchoolsByCategory(category.id, lang) : []
-  const categoryCities = [...new Set(categorySchools.map((school) => school.city))]
+  const categoryCities = [...new Set(categorySchools.flatMap((school) => getSchoolCities(school)))]
   const selectedCity = getSelectedCity(searchParams, categoryCities)
-  const visibleSchools = categorySchools.filter((school) => school.city === selectedCity)
+  const visibleSchools = categorySchools.filter((school) =>
+    getSchoolCities(school).includes(selectedCity)
+  )
 
   if (!category) {
     return (

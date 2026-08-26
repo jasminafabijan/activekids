@@ -1,7 +1,7 @@
 import L from 'leaflet'
 
 const TEAM_BALL = '#BDEAC3'
-const WATER = '#BDEAE1'
+const WATER = '#BDD7EA'
 const COURT_MOVEMENT = '#F7C6B7'
 const MARTIAL = '#EABDC5'
 const DANCE_MUSIC = '#C5BDEA'
@@ -71,12 +71,8 @@ const ICONS: Record<string, string> = {
   boxing: wrap(
     '<path d="M9.4 21.8h5.2c1 0 1.8-.8 1.8-1.8v-4.2c2.4-1 4-3.4 4-6.2C20.4 5.6 16.6 3.4 12 3.4S3.6 5.6 3.6 9.6c0 2.8 1.6 5.2 4 6.2V20c0 1 .8 1.8 1.8 1.8z"/><path d="M3.8 11.2c-1.6.4-2.4 1.8-2.4 3.2 0 1.4 1.2 2.6 2.6 2.6"/><path d="M10.2 17.6h3.6M10.2 19.6h3.6"/>'
   ),
-  aikido: wrap(
-    '<circle cx="8.6" cy="5.2" r="2"/><circle cx="16.6" cy="6.2" r="2"/><path d="M8.8 7.6 10.8 13.4 6.6 21.2M10.8 13.4 17.4 9.2M16.8 8.6c1.4 4.4-.6 8.6-4.2 11.2"/>'
-  ),
-  capoeira: wrap(
-    '<circle cx="8.2" cy="5.2" r="2"/><path d="M8.4 7.6 10.6 13.4 7.2 21.2M10.6 13.4 18.8 6.2M8.8 9.4 16.6 4.2M8.6 9 3.6 14.8"/>'
-  ),
+  aikido: `<svg viewBox="0 0 24 24" fill="#0b1a3b" stroke="#0b1a3b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="4.8" r="2.15" stroke="none"/><path fill="none" d="M13.6 7.2 11.2 14.1M13.4 7.9 21.3 7.3M13.1 8.2 7.6 6.5 11.3 11.3M11.2 14.1 16.7 16.5 15.4 21.5M11.2 14.1 4.5 21.3"/></svg>`,
+  capoeira: `<svg viewBox="0 0 24 24" fill="#0b1a3b" stroke="#0b1a3b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16.2" cy="15.6" r="2.1" stroke="none"/><path fill="none" d="M9.8 21.4 12.2 13.2M12.2 13.2 6.8 14.8M12.2 13.2 12.8 7.4M12.8 7.4 6.2 2.8M12.8 7.4 20.8 3.2"/></svg>`,
   chess: wrap(
     '<path d="M12 3.2v3.2M10.4 4.8h3.2"/><path d="M8.4 7.4h7.2v2H8.4z"/><path d="M9.2 9.4 8.2 17.8h7.6L14.8 9.4"/><path d="M6.8 17.8h10.4v2.4H6.8z"/>'
   ),
@@ -89,9 +85,7 @@ const ICONS: Record<string, string> = {
   'developmental-gymnastics': wrap(
     '<circle cx="12" cy="4.8" r="2.1"/><path d="M4.5 11h15M8 21.2 12 11l4 10.2M12 11V8.6"/>'
   ),
-  riding: wrap(
-    '<path d="M5.5 19c.8-5.4 2.4-9.2 6.4-11.2.8-2.6 3.2-3.8 4.4-4 .2 1.8-1.2 2.8-1.1 4.4 2.6.8 4.6 3.4 4.8 6.2-1.6.1-2.6.6-3.4 1.8L16 19h-2.2l-.8-3.4C10.6 16.6 8 18 5.5 19z"/><path d="M14.8 8.2c1.2.2 2.2-.6 2.6-1.6"/>'
-  ),
+  riding: `<svg viewBox="0 0 24 24" fill="none" stroke="#0b1a3b" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="2.3" r="1.9"/><path d="M13 4.3V10.2"/><path d="M13 6.5 8 9.5"/><path d="M13 10.2 15.6 12.5V16.6"/><path d="M5.4 7 4.4 5.3"/><path d="M7.2 8.6C5.6 5.5 2.1 6 1.5 9.1 1.1 11 2.8 12.3 5.5 11.6 6.7 11.3 7.3 10 7.2 8.6"/><path d="M7.2 8.6C9.8 9.8 12.6 10.2 15.2 10.2H19.8"/><path d="M19.8 10.2Q22.2 11.6 21.3 15.6"/><path d="M4 14.8 3 18.4 2.5 22.4"/><path d="M8.6 14.2 9.2 22.5"/><path d="M13.5 14.2 12.8 22.5"/><path d="M17.4 14.2 18.6 22.3"/></svg>`,
   ballet: wrap(
     '<circle cx="12" cy="4.6" r="2"/><path d="M12 7.2v5M12 12.2V21.2M12 12.2 8 14.8 11.2 17.4M12 12.2 5.8 8.8M12 12.2 19 7.6"/>'
   ),
@@ -146,14 +140,14 @@ export const getMapCategoryStyle = (slug?: string) => ({
 const pinCache = new Map<string, L.DivIcon>()
 
 export const getCatalogMapPin = (slug?: string) => {
-  const key = slug ?? 'default'
+  const { color, svg } = getMapCategoryStyle(slug)
+  const key = `${slug ?? 'default'}:${svg}`
   const cached = pinCache.get(key)
 
   if (cached) {
     return cached
   }
 
-  const { color, svg } = getMapCategoryStyle(slug)
   const icon = L.divIcon({
     className: 'catalog-map-pin-wrap',
     html: `<span class="catalog-map-pin" style="background:${color}">${svg}</span>`,
