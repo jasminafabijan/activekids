@@ -104,7 +104,9 @@ export const attachMarkerOverlapZoom = (
       const overlapping = getOverlappingMarkers(map, marker, typedMarkers, overlapPx)
 
       if (overlapping.length < 2) {
-        marker.openPopup()
+        if (marker.getPopup()) {
+          marker.openPopup()
+        }
         return
       }
 

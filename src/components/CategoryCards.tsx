@@ -22,7 +22,9 @@ import volleyballIcon from '../assets/icons/volleyball.webp'
 import danceSportIcon from '../assets/icons/dance-sport.svg'
 import swimmingIcon from '../assets/icons/swimming.svg'
 import miniSportsIcon from '../assets/icons/mini-sports.svg'
+import kidsSportsIcon from '../assets/icons/kids-sports.svg'
 import developmentalGymnasticsIcon from '../assets/icons/developmental-gymnastics.svg'
+import teenWorkoutIcon from '../assets/icons/teen-workout.svg'
 
 type CategoryIconBg = 'mint' | 'peach'
 
@@ -49,8 +51,10 @@ const categoryDisplay: CategoryDisplay[] = [
   { id: 'aikido', iconBg: 'peach', iconSrc: aikidoIcon },
   { id: 'chess', iconBg: 'mint', iconSrc: chessIcon, iconSizeAdjustPx: -10 },
   { id: 'swimming', iconBg: 'mint', iconSrc: swimmingIcon, iconSizeAdjustPx: -18 },
-  { id: 'mini-sports', iconBg: 'peach', iconSrc: miniSportsIcon, iconSizeAdjustPx: 2 },
+  { id: 'mini-sports', iconBg: 'peach', iconSrc: miniSportsIcon },
+  { id: 'kids-sports', iconBg: 'mint', iconSrc: kidsSportsIcon },
   { id: 'developmental-gymnastics', iconBg: 'peach', iconSrc: developmentalGymnasticsIcon, iconSizeAdjustPx: -6 },
+  { id: 'teen-workout', iconBg: 'mint', iconSrc: teenWorkoutIcon },
   { id: 'riding', iconBg: 'peach', iconSrc: ridingIcon },
   { id: 'ballet', iconBg: 'mint', iconSrc: balletIcon, iconSizeAdjustPx: 4 },
   { id: 'jazz-ballet', iconBg: 'peach', iconSrc: jazzDanceIcon, iconSizeAdjustPx: 4 },

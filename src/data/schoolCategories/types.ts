@@ -22,12 +22,16 @@ export type SchoolAddress = {
     district?: string
     lat?: number
     lng?: number
+    /** Opens this Google listing instead of a coordinate search that can snap to a nearby place. */
+    mapsUrl?: string
 }
 
 export type School = {
     id: string
     slug: string
     name: LocalizedText
+    /** Keep the record, but omit from the public catalog, map, search and school page. */
+    hidden?: boolean
     categorySlugs: string[]
     city: string
     district: string

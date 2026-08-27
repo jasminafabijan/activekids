@@ -21,8 +21,10 @@ import { volleyballSchools } from './schoolCategories/volleyball'
 import { danceSportSchools } from './schoolCategories/dance-sport'
 import { swimmingSchools } from './schoolCategories/swimming'
 import { miniSportsSchools } from './schoolCategories/mini-sports'
+import { kidsSportsSchools } from './schoolCategories/kids-sports'
 import { athleticsSchools } from './schoolCategories/athletics'
 import { developmentalGymnasticsSchools } from './schoolCategories/developmental-gymnastics'
+import { teenWorkoutSchools } from './schoolCategories/teen-workout'
 import { capoeiraSchools } from './schoolCategories/capoeira'
 import { languagesSchools } from './schoolCategories/languages'
 import type { School, SchoolAddress, SchoolFilters } from './schoolCategories/types'
@@ -46,12 +48,16 @@ export const schools: School[] = [
     ...chessSchools,
     ...swimmingSchools,
     ...miniSportsSchools,
+    ...kidsSportsSchools,
     ...athleticsSchools,
     ...developmentalGymnasticsSchools,
+    ...teenWorkoutSchools,
     ...ridingSchools,
     ...folkloreSchools,
     ...languagesSchools,
 ]
+
+const listedSchools = schools.filter((school) => !school.hidden)
 
 export const formatSchoolAddress = (address: SchoolAddress, lang: Lang = 'sr') => {
     const street = getStreetName(address.street, lang)
@@ -126,24 +132,26 @@ export const formatPhoneHref = (phone: string) => {
     return `tel:${digits}`
 }
 
-export const getMapsHref = (address: SchoolAddress) => {
-    const query =
-        address.lat != null && address.lng != null
-            ? `${address.lat},${address.lng}`
-            : [address.street, address.district, address.city].filter(Boolean).join(', ')
+export const getMapsHref = (address: SchoolAddress, placeName?: string) => {
+    if (address.mapsUrl) {
+        return address.mapsUrl
+    }
 
-    return `https://maps.google.com/maps?q=${encodeURIComponent(query)}`
+    const query =
+        [placeName, address.street, address.city].filter(Boolean).join(', ') ||
+        (address.lat != null && address.lng != null ? `${address.lat},${address.lng}` : '')
+
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
 }
 
-export const getGoogleMapsOpenHref = (addresses: SchoolAddress[]) => {
+export const getGoogleMapsOpenHref = (addresses: SchoolAddress[], placeName?: string) => {
     const withCoords = addresses.filter(
         (address): address is SchoolAddress & { lat: number; lng: number } =>
             address.lat != null && address.lng != null
     )
 
     if (withCoords.length === 1) {
-        const { lat, lng } = withCoords[0]
-        return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
+        return getMapsHref(withCoords[0], placeName)
     }
 
     if (withCoords.length > 1) {
@@ -155,7 +163,7 @@ export const getGoogleMapsOpenHref = (addresses: SchoolAddress[]) => {
     }
 
     if (addresses.length > 0) {
-        return getMapsHref(addresses[0])
+        return getMapsHref(addresses[0], placeName)
     }
 
     return 'https://www.google.com/maps'
@@ -169,7 +177,7 @@ export const getSchoolName = (school: Pick<School, 'id' | 'name'>, lang: Lang): 
 export const getSchoolsByCategory = (categorySlug: string, lang: Lang = 'sr') => {
     const categoryId = getCategoryBySlug(categorySlug)?.id ?? categorySlug
 
-    return schools
+    return listedSchools
         .filter((school) => school.categorySlugs.includes(categoryId))
         .sort((a, b) => getSchoolName(a, lang).localeCompare(getSchoolName(b, lang), lang === 'en' ? 'en' : 'sr'))
 }
@@ -183,7 +191,7 @@ const RECENTLY_ADDED_SCHOOL_IDS = [
 
 export const getRecentlyAddedSchools = (count = 3) =>
     RECENTLY_ADDED_SCHOOL_IDS.slice(0, count)
-        .map((id) => schools.find((school) => school.id === id))
+        .map((id) => listedSchools.find((school) => school.id === id))
         .filter((school): school is School => school != null)
 
 export const formatSchoolCategoryNames = (school: School, lang: Lang = 'sr') =>
@@ -192,7 +200,7 @@ export const formatSchoolCategoryNames = (school: School, lang: Lang = 'sr') =>
         .join(', ')
 
 export const getSchoolBySlug = (slug: string) =>
-    schools.find((school) => school.slug === slug)
+    listedSchools.find((school) => school.slug === slug)
 
 export const getSchoolDistricts = (school: School) => {
     const fromAddresses =
@@ -239,7 +247,7 @@ export const formatSchoolLocationLabel = (school: School, lang: Lang = 'sr') => 
 export const getDistrictOptions = (lang: Lang = 'sr', city?: string) =>
     [
         ...new Set(
-            schools.flatMap((school) =>
+            listedSchools.flatMap((school) =>
                 getSchoolAddressList(school)
                     .filter((address) => !city || addressBelongsToCity(address, school.city, city))
                     .map((address) => address.district)
@@ -263,12 +271,12 @@ if (import.meta.env.DEV) {
 }
 
 export const getAgeOptions = (lang: Lang = 'sr') => {
-    const minAge = Math.min(...schools.map((school) => school.minAge))
-    const finiteMaxAges = schools
+    const minAge = Math.min(...listedSchools.map((school) => school.minAge))
+    const finiteMaxAges = listedSchools
         .map((school) => school.maxAge)
         .filter((age): age is number => age != null)
     const maxFiniteAge = Math.max(...finiteMaxAges)
-    const hasOpenEndedRange = schools.some((school) => school.maxAge == null)
+    const hasOpenEndedRange = listedSchools.some((school) => school.maxAge == null)
     const finalAge = hasOpenEndedRange ? maxFiniteAge + 1 : maxFiniteAge
 
     return Array.from({ length: finalAge - minAge + 1 }, (_, index) => {
@@ -280,7 +288,7 @@ export const getAgeOptions = (lang: Lang = 'sr') => {
 }
 
 export const getActivityOptions = (lang: Lang = 'sr') =>
-    [...new Set(schools.flatMap((school) => school.categorySlugs))]
+    [...new Set(listedSchools.flatMap((school) => school.categorySlugs))]
         .map((slug) => {
             const category = getCategoryBySlug(slug)
             return category ? { slug, name: getCategoryName(category, lang) } : null
@@ -289,7 +297,7 @@ export const getActivityOptions = (lang: Lang = 'sr') =>
         .sort((a, b) => a.name.localeCompare(b.name, lang === 'en' ? 'en' : 'sr'))
 
 export const filterSchools = (filters: SchoolFilters) =>
-    schools.filter((school) => {
+    listedSchools.filter((school) => {
         const addresses = getSchoolAddressList(school).filter((address) =>
             filters.city ? addressBelongsToCity(address, school.city, filters.city) : true
         )

@@ -201,10 +201,22 @@ export const categories: Category[] = [
     name: { sr: 'Sportić', en: 'Mini Sports' },
     slug: 'mini-sports',
     slugs: { sr: 'sportic', en: 'mini-sports' },
-    subtitle: { sr: 'Školice sporta za najmlađe', en: 'Mini sports schools' },
+    subtitle: { sr: 'Prvi samostalni treninzi', en: 'First independent training' },
     pageSubtitle: {
-      sr: 'Istražite školice sporta u {city} — za prve pokrete, igru i ljubav prema sportu od malih nogu.',
-      en: 'Explore mini sports schools in {city} — for first movement skills, play and a love of sport from an early age.',
+      sr: 'Istražite programe Sportića u {city} — za prve samostalne treninge kroz igru, priču i navikavanje na grupu.',
+      en: 'Explore Sportić programs in {city} — for first independent training through play, story and getting used to a group.',
+    },
+  },
+  {
+    id: 'kids-sports',
+    name: { sr: 'Školica sporta', en: 'Kids’ Sports' },
+    nameAccusative: 'školicu sporta',
+    slug: 'kids-sports',
+    slugs: { sr: 'skolica-sporta', en: 'kids-sports' },
+    subtitle: { sr: 'Školice sporta za predškolce', en: 'Sports programs for preschoolers' },
+    pageSubtitle: {
+      sr: 'Istražite školice sporta u {city} — za raznovrsno kretanje i dobru osnovu pre izbora jednog sporta.',
+      en: 'Explore kids’ sports programs in {city} — for varied movement and a solid foundation before choosing one sport.',
     },
   },
   {
@@ -217,6 +229,18 @@ export const categories: Category[] = [
     pageSubtitle: {
       sr: 'Istražite škole razvojne gimnastike u {city} — za koordinaciju, držanje i motoričku osnovu kroz igru.',
       en: 'Explore developmental gymnastics schools in {city} — for coordination, posture and a motor foundation through play.',
+    },
+  },
+  {
+    id: 'teen-workout',
+    name: { sr: 'Fitnes za tinejdžere', en: 'Teen workout' },
+    nameAccusative: 'fitnes za tinejdžere',
+    slug: 'teen-workout',
+    slugs: { sr: 'fitnes-za-tinejdzere', en: 'teen-workout' },
+    subtitle: { sr: 'Treninzi za tinejdžere', en: 'Workouts for teenagers' },
+    pageSubtitle: {
+      sr: 'Istražite treninge za tinejdžere u {city} — za snagu, pokretljivost i aktivnost bez pritiska.',
+      en: 'Explore teen workouts in {city} — for strength, mobility and staying active without the pressure.',
     },
   },
   {

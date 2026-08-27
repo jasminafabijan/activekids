@@ -388,9 +388,13 @@ const AdminPage = () => {
                       />
                       <td>{sportName}</td>
                       <td>
-                        <Link to={`/skola/${school.slug}`} className="admin-table-school-link">
-                          {schoolName}
-                        </Link>
+                        {school.hidden ? (
+                          `${schoolName} (sakriveno)`
+                        ) : (
+                          <Link to={`/skola/${school.slug}`} className="admin-table-school-link">
+                            {schoolName}
+                          </Link>
+                        )}
                       </td>
                       <td>
                         <AdminWebsiteCell website={school.contact?.website} />

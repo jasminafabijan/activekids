@@ -8,7 +8,6 @@ import rfkWebp from '../../assets/images/schools/football/rfk.webp'
 import rfkJpg from '../../assets/images/schools/football/rfk.jpg'
 import mladostGatWebp from '../../assets/images/schools/football/fk-mladost-gat.webp'
 import mladostGatJpg from '../../assets/images/schools/football/fk-mladost-gat.jpg'
-import bolesnikovWebp from '../../assets/images/schools/football/bolesnikov.webp'
 import bolesnikovJpg from '../../assets/images/schools/football/bolesnikov.jpg'
 
 import type { School } from './types'
@@ -151,7 +150,6 @@ export const footballSchools: School[] = [
             email: 'cedomir.kopcanski.nfk@gmail.com',
             website: 'https://rfknovisad.com/omladinska-skola/',
             facebook: 'https://www.facebook.com/NoviSadFK/',
-            instagram: 'https://www.instagram.com/rfknovisad1921/',
         },
     },
     {
@@ -270,7 +268,7 @@ export const footballSchools: School[] = [
         minAge: 5,
         maxAge: 13,
         ageLabel: '5–13 godina',
-        imageWebp: bolesnikovWebp,
+        imageWebp: bolesnikovJpg,
         imageFallback: bolesnikovJpg,
         description: {
             sr: [
@@ -293,6 +291,7 @@ export const footballSchools: School[] = [
                 district: 'Adamovićevo naselje',
                 lat: 45.2311365,
                 lng: 19.8047405,
+                mapsUrl: 'https://www.google.com/maps?cid=765396299816107800',
             },
         ],
         contact: {

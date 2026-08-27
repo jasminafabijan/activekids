@@ -21,16 +21,14 @@ export const athleticsSchools: School[] = [
         imageFallback: sportisimoJpg,
         description: {
             sr: [
-                'Atletska škola Sportisima vodi decu kroz trčanje, skokove i bacanja — pokrete koji su im već prirodni, a sada ih uče da izvode pravilnije i sigurnije.',
-                'Na treninzima se radi tehnika trčanja, start i ubrzanje, trčanje preko prepreka, štafete i osnovne atletske discipline, uz licencirane trenere.',
-                'Svaki pokušaj je prilika da dete potrči brže, skoči dalje ili baci preciznije, u atmosferi igre i postepenog napretka.',
-                'Program daje čvrstu osnovu za kasniji izbor sporta, a tokom godine klub organizuje Sportijadu, sportske dane, kampove i posete manifestacijama.',
+                'Na Atletici učimo ono što deca već vole da rade — da trče, skaču i bacaju — ali kroz nove zadatke i pravilnije izvođenje.',
+                'Vežbamo različite načine trčanja, startove i promene pravca, skokove u dalj i vis, preskakanje prepreka i različita bacanja. Kroz trening dete otkriva kako može da bude brže, spretnije i sigurnije u pokretu.',
+                'Atletika je u ovom uzrastu odlična osnova i za dete koje će je kasnije izabrati kao svoj sport, ali i za gotovo svaki drugi sport kojim će se baviti.',
             ],
             en: [
-                'Sportisimo’s athletics school takes children through running, jumps and throws — movements that already feel natural to them, now learned with better technique and more confidence.',
-                'Training covers running technique, the start and acceleration, running over obstacles, relays and basic athletics events, with licensed coaches.',
-                'Every attempt is a chance to run faster, jump farther or throw more accurately, in an atmosphere of play and gradual progress.',
-                'The program gives a solid foundation for later sport choices, and during the year the club organizes Sportijada, sports days, camps and visits to events.',
+                'In Athletics we teach what children already love to do — run, jump and throw — but through new tasks and cleaner technique.',
+                'We practice different ways of running, starts and changes of direction, long and high jumps, jumping over obstacles and different throws. Through training the child discovers how to be faster, more agile and more confident in movement.',
+                'At this age, athletics is an excellent foundation both for a child who will later choose it as their sport, and for almost any other sport they will take up.',
             ],
         },
         addresses: [

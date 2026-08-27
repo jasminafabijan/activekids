@@ -519,7 +519,7 @@ const SchoolDetailPage = () => {
                         return (
                           <a
                             key={label}
-                            href={getMapsHref(address)}
+                            href={getMapsHref(address, getSchoolName(school, lang))}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="school-detail-contact-link"
@@ -536,7 +536,7 @@ const SchoolDetailPage = () => {
                   {mapAddresses.length > 0 && (
                     <SchoolMap
                       addresses={mapAddresses}
-                      school={{ name: getSchoolName(school, lang), ageLabel: schoolAgeLabel(school, lang, true) }}
+                      placeName={getSchoolName(school, lang)}
                     />
                   )}
                 </section>

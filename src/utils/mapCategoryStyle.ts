@@ -15,12 +15,14 @@ const GROUP_COLOR: Record<string, string> = {
   basketball: TEAM_BALL,
   volleyball: TEAM_BALL,
   'mini-sports': TEAM_BALL,
+  'kids-sports': TEAM_BALL,
   swimming: WATER,
   tennis: COURT_MOVEMENT,
   'table-tennis': COURT_MOVEMENT,
   athletics: COURT_MOVEMENT,
   gymnastics: COURT_MOVEMENT,
   'developmental-gymnastics': COURT_MOVEMENT,
+  'teen-workout': COURT_MOVEMENT,
   karate: MARTIAL,
   boxing: MARTIAL,
   aikido: MARTIAL,
@@ -82,8 +84,14 @@ const ICONS: Record<string, string> = {
   'mini-sports': wrap(
     '<circle cx="10.2" cy="5" r="2.1"/><path d="M6.6 21.2 10.2 11.4l3.6 9.8M6.4 13.6h7.6"/><circle cx="17.4" cy="17.6" r="2.6"/>'
   ),
+  'kids-sports': wrap(
+    '<circle cx="12" cy="5.2" r="2"/><path d="M4.8 8.6 12 11.6 19.2 8.6M12 11.6V14.8M6.6 21.2 12 14.8 17.4 21.2"/>'
+  ),
   'developmental-gymnastics': wrap(
     '<circle cx="12" cy="4.8" r="2.1"/><path d="M4.5 11h15M8 21.2 12 11l4 10.2M12 11V8.6"/>'
+  ),
+  'teen-workout': wrap(
+    '<circle cx="12" cy="4.6" r="2"/><path d="M12 7.2v6.2M7.4 21.2 12 13.4 16.6 21.2"/><path d="M5.4 9.6h13.2"/><circle cx="4.6" cy="9.6" r="1.3"/><circle cx="19.4" cy="9.6" r="1.3"/>'
   ),
   riding: `<svg viewBox="0 0 24 24" fill="none" stroke="#0b1a3b" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="2.3" r="1.9"/><path d="M13 4.3V10.2"/><path d="M13 6.5 8 9.5"/><path d="M13 10.2 15.6 12.5V16.6"/><path d="M5.4 7 4.4 5.3"/><path d="M7.2 8.6C5.6 5.5 2.1 6 1.5 9.1 1.1 11 2.8 12.3 5.5 11.6 6.7 11.3 7.3 10 7.2 8.6"/><path d="M7.2 8.6C9.8 9.8 12.6 10.2 15.2 10.2H19.8"/><path d="M19.8 10.2Q22.2 11.6 21.3 15.6"/><path d="M4 14.8 3 18.4 2.5 22.4"/><path d="M8.6 14.2 9.2 22.5"/><path d="M13.5 14.2 12.8 22.5"/><path d="M17.4 14.2 18.6 22.3"/></svg>`,
   ballet: wrap(

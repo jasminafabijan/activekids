@@ -45,7 +45,7 @@ export const ridingSchools: School[] = [
             },
         ],
         contact: {
-            phone: '062 817 3512',
+            phone: '062 817 35 12',
             email: 'granicarns@gmail.com',
             website: 'http://konjickiklubgranicar.com',
             facebook: 'https://www.facebook.com/granicar.konjicki/',

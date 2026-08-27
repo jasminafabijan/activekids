@@ -127,6 +127,7 @@ export const basketballSchools: School[] = [
     {
         id: 'kk-star',
         slug: 'kk-star',
+        hidden: true,
         name: {
             sr: 'Košarkaški klub Star',
             en: 'Star Basketball Club',

@@ -21,16 +21,14 @@ export const developmentalGymnasticsSchools: School[] = [
         imageFallback: sportisimoJpg,
         description: {
             sr: [
-                'Na razvojnoj gimnastici u Sportisimu deca jačaju celo telo kroz raznovrsne vežbe, uče nove pokrete i savladavaju gimnastičke zadatke koji postepeno postaju zahtevniji.',
-                'Vežbe nisu slučajne: cilj je da trening podrži telo dok dete raste, i da da osnovu za svakodnevno kretanje i druge sportske aktivnosti.',
-                'Kako je sve više vremena u školi, za stolom ili uz ekran, telu treba pametniji rad — a ono što se izgradi na treningu ostaje korisno i van sale.',
-                'Može se doći i na probni trening, da se program upozna pre odluke.',
+                'Sa polaskom u školu menja se i svakodnevica deteta — više vremena provodi sedeći, a telo nastavlja brzo da raste. Zato mu je i dalje potrebno mnogo različitog kretanja.',
+                'Na Razvojnoj gimnastici radimo vežbe snage prilagođene uzrastu, skokove, preskakanja, različite gimnastičke zadatke, vežbe na spravama i sa rekvizitima. Učimo i zahtevnije pokrete, povezujemo ih i postepeno savladavamo nove izazove.',
+                'Cilj je da dete kroz ovaj period nastavi da jača telo, proširuje ono što ume da uradi i stekne sigurnost i kontrolu u sve složenijim pokretima.',
             ],
             en: [
-                'In developmental gymnastics at Sportisimo, children strengthen the whole body through varied exercises, learn new movements and take on gymnastics tasks that gradually become more demanding.',
-                'The exercises are not random: training is meant to support the body as a child grows, and to build a foundation for everyday movement and other sports.',
-                'As more time is spent at school, at a desk or at a screen, the body needs smarter work — and what is built in class stays useful outside the hall as well.',
-                'A trial class is available, so the program can be tried before you decide.',
+                'Starting school also changes a child’s everyday life — they spend more time sitting, while the body keeps growing fast. That is why they still need a lot of varied movement.',
+                'In Developmental gymnastics we do age-appropriate strength exercises, jumps, vaults, different gymnastics tasks, work on apparatus and with props. We also learn more demanding movements, connect them and gradually take on new challenges.',
+                'The goal is for the child through this period to keep strengthening the body, expand what they can do, and gain confidence and control in increasingly complex movements.',
             ],
         },
         addresses: [

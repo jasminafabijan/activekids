@@ -2,10 +2,8 @@ import L from 'leaflet'
 import { useEffect, useMemo, useRef } from 'react'
 import type { SchoolAddress } from '../data/schools'
 import { getGoogleMapsOpenHref } from '../data/schools'
-import { getStreetName } from '../data/streets'
 import { attachActivePinState, mapPinIcon } from '../utils/mapPin'
 import { attachMarkerOverlapZoom } from '../utils/mapOverlapZoom'
-import { buildSchoolMapPopupHtml, schoolMapPopupOptions } from '../utils/mapPopup'
 import { useI18n } from '../i18n/useI18n'
 import 'leaflet/dist/leaflet.css'
 
@@ -19,13 +17,13 @@ const getMapZoom = (pointCount: number) => {
 
 interface SchoolMapProps {
   addresses: SchoolAddress[]
-  school?: { name: string; ageLabel: string }
+  placeName?: string
 }
 
-const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
+const SchoolMap = ({ addresses, placeName }: SchoolMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<L.Map | null>(null)
-  const { lang, t } = useI18n()
+  const { t } = useI18n()
 
   const points = useMemo(
     () =>
@@ -57,17 +55,6 @@ const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
 
     const markers = points.map((address) => {
       const marker = L.marker([address.lat, address.lng], { icon: mapPinIcon })
-      const streetLabel = getStreetName(address.street, lang)
-      marker.bindPopup(
-        school
-          ? buildSchoolMapPopupHtml(
-              streetLabel,
-              [{ name: school.name, ageLabel: school.ageLabel }],
-              t('map.seeDetails')
-            )
-          : buildSchoolMapPopupHtml(streetLabel, [], t('map.seeDetails')),
-        schoolMapPopupOptions
-      )
       marker.addTo(map)
       return marker
     })
@@ -101,7 +88,7 @@ const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
       map.remove()
       mapInstanceRef.current = null
     }
-  }, [lang, points, school, t])
+  }, [points])
 
   if (points.length === 0) return null
 
@@ -110,7 +97,7 @@ const SchoolMap = ({ addresses, school }: SchoolMapProps) => {
       <div ref={mapRef} className="school-detail-map-canvas" />
       <div className="school-detail-map-footer">
         <a
-          href={getGoogleMapsOpenHref(points)}
+          href={getGoogleMapsOpenHref(points, placeName)}
           target="_blank"
           rel="noopener noreferrer"
           className="school-detail-map-open-link"

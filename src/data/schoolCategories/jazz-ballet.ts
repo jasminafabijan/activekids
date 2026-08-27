@@ -242,16 +242,14 @@ export const jazzBalletSchools: School[] = [
         imageFallback: sportisimoJpg,
         description: {
             sr: [
-                'Na jazz baletu u Sportisimu deca upoznaju prve plesne i baletske korake, ritam i način da muziku prate celim telom.',
-                'Kroz ples postaju svesnija tela — uče kako da postave ruke, isprave koleno, usmere stopalo, zadrže ravnotežu i povežu više pokreta.',
-                'Dok pažljivo slušaju i istovremeno izvode pokret, vežbaju pažnju, pamćenje i koncentraciju, a muzici i pokretu pridružuje se i mašta.',
-                'Neke priče se čitaju; ovde ih ponekad i plešu. Može se doći i na probni trening.',
+                'Jazz balet je spoj muzike, ritma, plesa i igre prilagođen predškolskom uzrastu.',
+                'Učimo osnovne plesne korake i kratke koreografije, ali pokret često povezujemo i sa pričom, maštom i glumom. Dete sluša muziku, prepoznaje ritam, pamti šta sledi i pokušava da sve to poveže sa pokretom.',
+                'Upravo taj trenutak kada istovremeno treba slušati, zapamtiti i pokrenuti telo čini ples mnogo većim izazovom od samog učenja koraka.',
             ],
             en: [
-                'In jazz ballet at Sportisimo, children learn their first dance and ballet steps, rhythm, and how to follow music with the whole body.',
-                'Through dance they become more aware of the body — how to place the arms, straighten the knee, point the foot, keep balance and connect several movements.',
-                'While they listen carefully and move at the same time, they practice attention, memory and concentration, and imagination joins the music and movement.',
-                'Some stories are read; here they are sometimes danced as well. A trial class is available.',
+                'Jazz ballet is a mix of music, rhythm, dance and play adapted to preschool age.',
+                'We learn basic dance steps and short choreographies, but we often connect movement with story, imagination and acting as well. The child listens to the music, recognizes the rhythm, remembers what comes next and tries to connect all of that with movement.',
+                'That moment when they have to listen, remember and move the body at the same time is what makes dance a much bigger challenge than simply learning the steps.',
             ],
         },
         addresses: [
