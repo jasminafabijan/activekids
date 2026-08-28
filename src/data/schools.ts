@@ -2,6 +2,7 @@ import { getCategoryBySlug, getCategoryName, getCategoryNameBySlug } from './cat
 import { DEFAULT_CITY, getCityOptions } from './cities'
 import { getDistrictName, DISTRICT_LABELS } from './districts'
 import { isAdminVerified } from './adminStorage'
+import { VERIFIED_SCHOOL_IDS } from './verifiedSchoolIds'
 import { getStreetName } from './streets'
 import { formatAgeLabel, formatAgeOptionLabel, getLocalizedText, warnMissingEnglish } from '../i18n/helpers'
 import type { Lang } from '../i18n/types'
@@ -60,8 +61,18 @@ export const schools: School[] = [
     ...programmingSchools,
 ]
 
-const isPubliclyListed = (school: School) =>
-    !school.hidden && (school.verified === true || isAdminVerified(school.id))
+const isPubliclyListed = (school: School) => {
+    if (school.hidden) {
+        return false
+    }
+
+    // localhost: admin Provera checkboxes. kiddokompas.rs has no localStorage, so production uses VERIFIED_SCHOOL_IDS.
+    if (import.meta.env.DEV) {
+        return isAdminVerified(school.id)
+    }
+
+    return VERIFIED_SCHOOL_IDS.has(school.id)
+}
 
 const getListedSchools = () => schools.filter(isPubliclyListed)
 
