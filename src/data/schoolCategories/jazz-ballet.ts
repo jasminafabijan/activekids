@@ -187,7 +187,7 @@ export const jazzBalletSchools: School[] = [
         },
         categorySlugs: ['jazz-ballet'],
         city: 'Novi Sad',
-        district: 'Grbavica',
+        district: 'Stari Grad (Centar)',
         minAge: 7,
         maxAge: 16,
         ageLabel: '7–16 godina',
@@ -211,7 +211,7 @@ export const jazzBalletSchools: School[] = [
             {
                 street: 'Radnička 20',
                 city: 'Novi Sad',
-                district: 'Grbavica',
+                district: 'Stari Grad (Centar)',
                 lat: 45.2494564,
                 lng: 19.8501205,
             },

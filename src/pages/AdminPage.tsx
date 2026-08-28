@@ -23,7 +23,7 @@ type AdminTab = 'catalog' | 'prelaunch' | 'rejected'
 
 const TABS: { id: AdminTab; label: string; panelId: string }[] = [
   { id: 'catalog', label: 'Škole', panelId: 'admin-tabpanel-catalog' },
-  { id: 'prelaunch', label: 'Pre sajta', panelId: 'admin-tabpanel-prelaunch' },
+  { id: 'prelaunch', label: 'Upit za prikaz', panelId: 'admin-tabpanel-prelaunch' },
   { id: 'rejected', label: 'Odbijeno', panelId: 'admin-tabpanel-rejected' },
 ]
 
@@ -190,7 +190,6 @@ const AdminPage = () => {
   const isCatalog = tab === 'catalog'
   const isPrelaunch = tab === 'prelaunch'
   const isRejected = tab === 'rejected'
-  const showChecks = isCatalog || isPrelaunch
 
   const catalogSportOptions = getActivityOptions()
   const prelaunchSportOptions = useMemo(
@@ -234,9 +233,8 @@ const AdminPage = () => {
     return sortRejectedSchools(filtered)
   }, [sportFilter])
 
-  const trackedRows = isCatalog ? catalogRows : prelaunchRows
-  const contactedCount = trackedRows.filter((school) => contacted[school.id]).length
-  const verifiedCount = trackedRows.filter((school) => verified[school.id]).length
+  const contactedCount = catalogRows.filter((school) => contacted[school.id]).length
+  const verifiedCount = catalogRows.filter((school) => verified[school.id]).length
   const rowsLength = isCatalog
     ? catalogRows.length
     : isPrelaunch
@@ -262,7 +260,7 @@ const AdminPage = () => {
   const subtitle = isCatalog
     ? 'Označi koga si kontaktirala, pa red kada su podaci potvrđeni.'
     : isPrelaunch
-      ? 'Škole koje si kontaktirala pre nego što je sajt postojao. Nisu na sajtu — samo evidencija.'
+      ? 'Škole koje si pitala da se prikažu na sajtu. Nisu u katalogu — samo evidencija.'
       : 'Škole koje su bile u katalogu, a vlasnici su tražili uklanjanje. Ostaju samo kontakt podaci.'
 
   return (
@@ -276,19 +274,19 @@ const AdminPage = () => {
           <p className="admin-page-subtitle">{subtitle}</p>
         </div>
 
-        {showChecks ? (
+        {isCatalog ? (
           <div className="admin-page-stats">
             <span className="admin-page-stat">
-              Kontaktirano: <strong>{contactedCount}</strong> / {trackedRows.length}
+              Kontaktirano: <strong>{contactedCount}</strong> / {catalogRows.length}
             </span>
             <span className="admin-page-stat">
-              Provereno: <strong>{verifiedCount}</strong> / {trackedRows.length}
+              Provereno: <strong>{verifiedCount}</strong> / {catalogRows.length}
             </span>
           </div>
         ) : (
           <div className="admin-page-stats">
             <span className="admin-page-stat">
-              Odbijeno: <strong>{rejectedRows.length}</strong>
+              {isPrelaunch ? 'Škola' : 'Odbijeno'}: <strong>{rowsLength}</strong>
             </span>
           </div>
         )}
@@ -344,7 +342,7 @@ const AdminPage = () => {
         <table className="admin-table">
           <thead>
             <tr>
-              {showChecks ? (
+              {isCatalog ? (
                 <>
                   <th className="admin-table-col-check" scope="col">
                     Kontakt
@@ -409,44 +407,21 @@ const AdminPage = () => {
                   )
                 })
               : isPrelaunch
-                ? prelaunchRows.map((school) => {
-                    const sportName = formatCategorySlugs(school.categorySlugs)
-                    const isContacted = Boolean(contacted[school.id])
-                    const isVerified = Boolean(verified[school.id])
-                    const rowClass = isVerified
-                      ? 'admin-table-row--verified'
-                      : isContacted
-                        ? 'admin-table-row--contacted'
-                        : ''
-
-                    return (
-                      <tr key={school.id} className={rowClass}>
-                        <AdminCheckboxes
-                          schoolId={school.id}
-                          schoolName={school.name}
-                          isContacted={isContacted}
-                          isVerified={isVerified}
-                          onToggleContacted={(id) =>
-                            setContacted((current) => toggleFlag(id, current))
-                          }
-                          onToggleVerified={(id) =>
-                            setVerified((current) => toggleFlag(id, current))
-                          }
-                        />
-                        <td>{sportName}</td>
-                        <td>{school.name}</td>
-                        <td>
-                          <AdminWebsiteCell website={school.website} />
-                        </td>
-                        <td>
-                          <AdminEmailCell email={school.email} />
-                        </td>
-                        <td>
-                          <AdminPhonesCell phones={getContactPhones(school.phone)} />
-                        </td>
-                      </tr>
-                    )
-                  })
+                ? prelaunchRows.map((school) => (
+                    <tr key={school.id}>
+                      <td>{formatCategorySlugs(school.categorySlugs)}</td>
+                      <td>{school.name}</td>
+                      <td>
+                        <AdminWebsiteCell website={school.website} />
+                      </td>
+                      <td>
+                        <AdminEmailCell email={school.email} />
+                      </td>
+                      <td>
+                        <AdminPhonesCell phones={getContactPhones(school.phone)} />
+                      </td>
+                    </tr>
+                  ))
                 : rejectedRows.map((school) => (
                     <tr key={school.id}>
                       <td>{getCategoryNameBySlug(school.categorySlug, 'sr')}</td>

@@ -2,7 +2,6 @@ import mawashiWebp from '../../assets/images/schools/karate/mawashi.webp'
 import mawashiJpg from '../../assets/images/schools/karate/mawashi.jpg'
 import sokoWebp from '../../assets/images/schools/karate/soko.webp'
 import sokoJpg from '../../assets/images/schools/karate/soko.jpg'
-import karateKlubNoviSadWebp from '../../assets/images/schools/karate/karate-klub-novi-sad.webp'
 import karateKlubNoviSadJpg from '../../assets/images/schools/karate/karate-klub-novi-sad.jpg'
 
 import type { School } from './types'
@@ -71,7 +70,7 @@ export const karateSchools: School[] = [
         },
         categorySlugs: ['karate'],
         city: 'Novi Sad',
-        district: 'Satelit',
+        district: 'Novo naselje',
         minAge: 3,
         maxAge: null,
         ageLabel: '3+ godina',
@@ -95,7 +94,7 @@ export const karateSchools: School[] = [
             {
                 street: 'Iva Ćipika 17',
                 city: 'Novi Sad',
-                district: 'Satelit',
+                district: 'Novo naselje',
                 lat: 45.2487242,
                 lng: 19.8039351,
             },
@@ -117,10 +116,10 @@ export const karateSchools: School[] = [
         categorySlugs: ['karate'],
         city: 'Novi Sad',
         district: 'Stari Grad (Centar)',
-        minAge: 6,
+        minAge: 5,
         maxAge: null,
-        ageLabel: '6+ godina',
-        imageWebp: karateKlubNoviSadWebp,
+        ageLabel: '5+ godina',
+        imageWebp: karateKlubNoviSadJpg,
         imageFallback: karateKlubNoviSadJpg,
         description: {
             sr: [
