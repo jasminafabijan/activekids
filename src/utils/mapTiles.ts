@@ -1,23 +1,19 @@
 import type { TileLayerOptions } from 'leaflet'
 
-const CARTO_KEY = import.meta.env.VITE_CARTO_API_KEY?.trim()
+/**
+ * Public Carto basemap key (it is embedded in the client bundle either way).
+ * Override with VITE_CARTO_API_KEY when rotating the key.
+ */
+const CARTO_KEY =
+  import.meta.env.VITE_CARTO_API_KEY?.trim() || 'cb1_2gm0_1_8ead21add422c9d387070e8e'
 
 const OSM_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 
-/** Carto Voyager when a key is set; OSM otherwise (Carto watermarks raster tiles without a key). */
-export const MAP_TILE_URL = CARTO_KEY
-  ? `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${encodeURIComponent(CARTO_KEY)}`
-  : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+export const MAP_TILE_URL = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${encodeURIComponent(CARTO_KEY)}`
 
-export const MAP_TILE_OPTIONS: TileLayerOptions = CARTO_KEY
-  ? {
-      attribution: `${OSM_ATTRIBUTION} &copy; <a href="https://carto.com/attributions">CARTO</a>`,
-      subdomains: 'abcd',
-      maxZoom: 20,
-    }
-  : {
-      attribution: OSM_ATTRIBUTION,
-      subdomains: 'abc',
-      maxZoom: 19,
-    }
+export const MAP_TILE_OPTIONS: TileLayerOptions = {
+  attribution: `${OSM_ATTRIBUTION} &copy; <a href="https://carto.com/attributions">CARTO</a>`,
+  subdomains: 'abcd',
+  maxZoom: 20,
+}
