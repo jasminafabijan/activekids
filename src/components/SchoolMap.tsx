@@ -4,10 +4,9 @@ import type { SchoolAddress } from '../data/schools'
 import { getGoogleMapsOpenHref } from '../data/schools'
 import { attachActivePinState, mapPinIcon } from '../utils/mapPin'
 import { attachMarkerOverlapZoom } from '../utils/mapOverlapZoom'
+import { MAP_TILE_OPTIONS, MAP_TILE_URL } from '../utils/mapTiles'
 import { useI18n } from '../i18n/useI18n'
 import 'leaflet/dist/leaflet.css'
-
-const MAP_TILE_URL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
 
 const getMapZoom = (pointCount: number) => {
   if (pointCount === 1) return 16
@@ -46,12 +45,7 @@ const SchoolMap = ({ addresses, placeName }: SchoolMapProps) => {
       zoomControl: true,
     })
 
-    L.tileLayer(MAP_TILE_URL, {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 20,
-    }).addTo(map)
+    L.tileLayer(MAP_TILE_URL, MAP_TILE_OPTIONS).addTo(map)
 
     const markers = points.map((address) => {
       const marker = L.marker([address.lat, address.lng], { icon: mapPinIcon })

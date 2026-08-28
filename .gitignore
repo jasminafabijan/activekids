@@ -13,6 +13,11 @@ dist-ssr/
 .vite/
 *.local
 
+# Env
+.env
+.env.*
+!.env.example
+
 # macOS
 .DS_Store
 __MACOSX/

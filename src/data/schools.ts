@@ -27,6 +27,7 @@ import { developmentalGymnasticsSchools } from './schoolCategories/developmental
 import { teenWorkoutSchools } from './schoolCategories/teen-workout'
 import { capoeiraSchools } from './schoolCategories/capoeira'
 import { languagesSchools } from './schoolCategories/languages'
+import { programmingSchools } from './schoolCategories/programming'
 import type { School, SchoolAddress, SchoolFilters } from './schoolCategories/types'
 
 export type { School, SchoolAddress, SchoolContact, SchoolFilters } from './schoolCategories/types'
@@ -55,6 +56,7 @@ export const schools: School[] = [
     ...ridingSchools,
     ...folkloreSchools,
     ...languagesSchools,
+    ...programmingSchools,
 ]
 
 const listedSchools = schools.filter((school) => !school.hidden)
@@ -184,9 +186,9 @@ export const getSchoolsByCategory = (categorySlug: string, lang: Lang = 'sr') =>
 
 /** Newest first — prepend the school id here when adding a new school. */
 const RECENTLY_ADDED_SCHOOL_IDS = [
+    'dexters',
+    'fk-bistrica-05',
     'plivanje-spens',
-    'eltisi',
-    'veliko-kolo',
 ] as const
 
 export const getRecentlyAddedSchools = (count = 3) =>

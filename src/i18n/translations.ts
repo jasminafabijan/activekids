@@ -21,6 +21,7 @@ export const translations = {
       en: 'KiddoKompas helps parents quickly find activities that match their child’s age, location and interests.',
     },
     privacy: { sr: 'Politika privatnosti', en: 'Privacy policy' },
+    contact: { sr: 'Kontakt', en: 'Contact' },
     copyright: { sr: '© 2026 KiddoKompas. Sva prava zadržana.', en: '© 2026 KiddoKompas. All rights reserved.' },
     disclaimer: {
       sr: 'Svi podaci su informativni — za tačne termine, cene i grupe kontaktirajte direktno školu ili organizatora.',
@@ -326,8 +327,8 @@ export const translations = {
       en: 'We do not sell, rent or share personal data for marketing purposes. We may share data only when it is necessary for the operation of the site, processing suggestions or communicating with you.',
     },
     p5b: {
-      sr: 'Za prijem i obradu predloga možemo koristiti spoljne servise kao što su Google Forms, Google Sheets, Gmail/Google Workspace i Viber. Kada koristite te servise, na obradu podataka mogu se primenjivati i njihove politike privatnosti.',
-      en: 'For receiving and processing suggestions we may use external services such as Google Forms, Google Sheets, Gmail/Google Workspace and Viber. When you use those services, their privacy policies may also apply to the processing of data.',
+      sr: 'Za prijem i obradu predloga i poruka možemo koristiti spoljne servise kao što su EmailJS, Google Forms, Google Sheets, Gmail/Google Workspace i Viber. Kada koristite te servise, na obradu podataka mogu se primenjivati i njihove politike privatnosti.',
+      en: 'For receiving and processing suggestions and messages we may use external services such as EmailJS, Google Forms, Google Sheets, Gmail/Google Workspace and Viber. When you use those services, their privacy policies may also apply to the processing of data.',
     },
     p5c: {
       sr: 'Sajt može koristiti i tehničke servise neophodne za njegovo funkcionisanje, kao što su hosting, DNS, zaštita sajta, slanje emailova ili osnovna tehnička obrada podataka. Ti servisi mogu obrađivati samo one podatke koji su potrebni za pružanje konkretne usluge.',
@@ -384,6 +385,49 @@ export const translations = {
       en: 'You can read more about the project on the',
     },
     p11bAfter: { sr: '.', en: ' page.' },
+  },
+  contact: {
+    title: { sr: 'Pišite nam', en: 'Write to us' },
+    lead: {
+      sr: 'Imate pitanje, primetili ste netačan podatak ili nešto na sajtu ne radi kako treba? Pišite nam.',
+      en: 'Have a question, noticed incorrect information, or is something on the site not working as it should? Write to us.',
+    },
+    addIntro: {
+      sr: 'Vodite aktivnost za decu?',
+      en: 'Do you run an activity for children?',
+    },
+    addLead: {
+      sr: 'Pošaljite nam podatke za dodavanje na KiddoKompas. Prikaz je besplatan.',
+      en: 'Send us the details to add it to KiddoKompas. Listing is free.',
+    },
+    name: { sr: 'Ime', en: 'Name' },
+    namePlaceholder: { sr: 'Vaše ime', en: 'Your name' },
+    email: { sr: 'Email', en: 'Email' },
+    emailPlaceholder: { sr: 'vas@email.com', en: 'you@email.com' },
+    reason: { sr: 'Tema poruke', en: 'Message topic' },
+    reasonQuestion: { sr: 'Imam pitanje', en: 'I have a question' },
+    reasonSite: { sr: 'Poteškoća na sajtu', en: 'A problem on the site' },
+    reasonData: { sr: 'Podatak nije tačan', en: 'The information is incorrect' },
+    reasonActivity: { sr: 'Predlog aktivnosti', en: 'Activity suggestion' },
+    message: { sr: 'Poruka', en: 'Message' },
+    messagePlaceholder: {
+      sr: 'Napišite nam ukratko o čemu je reč.',
+      en: 'Tell us briefly what this is about.',
+    },
+    submit: { sr: 'Pošalji poruku', en: 'Send message' },
+    sending: { sr: 'Šaljemo…', en: 'Sending…' },
+    success: {
+      sr: 'Poruka je poslata. Hvala što ste nas kontaktirali.',
+      en: 'Message sent. Thank you for contacting us.',
+    },
+    error: {
+      sr: 'Nešto nije uspelo. Pokušajte ponovo ili nam pišite na {email}.',
+      en: 'Something went wrong. Please try again or write to us at {email}.',
+    },
+    note: {
+      sr: 'Odgovaramo u roku od 48h. Vašu adresu koristimo samo da vam odgovorimo — ništa drugo.',
+      en: 'We reply within 48 hours. We use your address only to reply — nothing else.',
+    },
   },
   seo: {
     homeTitle: { sr: 'KiddoKompas — Aktivnosti za decu', en: 'KiddoKompas — Kids’ activities' },

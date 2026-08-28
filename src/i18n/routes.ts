@@ -6,6 +6,7 @@ import type { Lang } from './types'
 export const PAGE_PATHS = {
   home: { sr: '/', en: '/en' },
   about: { sr: '/o-nama', en: '/en/about' },
+  contact: { sr: '/kontakt', en: '/en/contact' },
   privacy: { sr: '/politika-privatnosti', en: '/en/privacy-policy' },
   search: { sr: '/pretraga', en: '/en/search' },
   map: { sr: '/mapa', en: '/en/map' },

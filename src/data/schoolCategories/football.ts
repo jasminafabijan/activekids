@@ -9,6 +9,8 @@ import rfkJpg from '../../assets/images/schools/football/rfk.jpg'
 import mladostGatWebp from '../../assets/images/schools/football/fk-mladost-gat.webp'
 import mladostGatJpg from '../../assets/images/schools/football/fk-mladost-gat.jpg'
 import bolesnikovJpg from '../../assets/images/schools/football/bolesnikov.jpg'
+import bistrica05Webp from '../../assets/images/schools/football/fk-bistrica-05.webp'
+import bistrica05Jpg from '../../assets/images/schools/football/fk-bistrica-05.jpg'
 
 import type { School } from './types'
 
@@ -300,6 +302,50 @@ export const footballSchools: School[] = [
             facebook: 'https://www.facebook.com/fudbalskiklubprofesorbolesnikov',
             facebookLabel: 'FK Prof. Bolesnikov',
             instagram: 'https://www.instagram.com/fk_prof_bolesnikov_novi_sad/',
+        },
+    },
+    {
+        id: 'fk-bistrica-05',
+        slug: 'fk-bistrica-05',
+        name: {
+            sr: 'FK Bistrica 05',
+            en: 'Bistrica 05 Football Club',
+        },
+        categorySlugs: ['football'],
+        city: 'Novi Sad',
+        district: 'Sajmište',
+        minAge: 4,
+        maxAge: 13,
+        ageLabel: '4–13 godina',
+        imageWebp: bistrica05Webp,
+        imageFallback: bistrica05Jpg,
+        description: {
+            sr: [
+                'FK Bistrica 05 pomaže deci da razviju talenat, disciplinu i sportski duh.',
+                'Škola fudbala radi sa decom koja žele da podignu igru na viši nivo i da budu deo nove generacije talenata u klubu.',
+                'Može da se zakaže probni trening.',
+            ],
+            en: [
+                'FK Bistrica 05 helps children develop talent, discipline and a sporting spirit.',
+                'The football school works with children who want to take their game to a higher level and be part of a new generation of talent at the club.',
+                'A trial training session can be scheduled.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'Novosadskog sajma 60',
+                city: 'Novi Sad',
+                district: 'Sajmište',
+                lat: 45.254509,
+                lng: 19.826272,
+            },
+        ],
+        contact: {
+            phone: ['063 529 088', '063 7269 806'],
+            email: 'bistrica05@gmail.com',
+            facebook: 'https://www.facebook.com/fkbistrica05/',
+            facebookLabel: 'FK Bistrica 05',
+            instagram: 'https://www.instagram.com/fudbalski_klub_bistrica_05/',
         },
     },
 ]

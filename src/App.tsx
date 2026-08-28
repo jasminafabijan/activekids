@@ -7,6 +7,7 @@ import DocumentLang from './i18n/DocumentLang'
 import { CATEGORY_ROUTE_PATH, PAGE_PATHS, SCHOOL_ROUTE_PATH } from './i18n/routes'
 
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'))
 const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'))
 const MapPage = lazy(() => import('./pages/MapPage'))
@@ -32,6 +33,8 @@ function App() {
               <Route path={PAGE_PATHS.home.en} element={<HomePage />} />
               <Route path={PAGE_PATHS.about.sr} element={<AboutPage />} />
               <Route path={PAGE_PATHS.about.en} element={<AboutPage />} />
+              <Route path={PAGE_PATHS.contact.sr} element={<ContactPage />} />
+              <Route path={PAGE_PATHS.contact.en} element={<ContactPage />} />
               <Route path={PAGE_PATHS.privacy.sr} element={<PrivacyPolicyPage />} />
               <Route path={PAGE_PATHS.privacy.en} element={<PrivacyPolicyPage />} />
               <Route path={PAGE_PATHS.search.sr} element={<SearchResultsPage />} />

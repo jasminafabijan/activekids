@@ -163,6 +163,17 @@ export const categories: Category[] = [
     },
   },
   {
+    id: 'judo',
+    name: { sr: 'Džudo', en: 'Judo' },
+    slug: 'judo',
+    slugs: { sr: 'dzudo', en: 'judo' },
+    subtitle: { sr: 'Škole džudoa', en: 'Judo schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole džudoa u {city} — za disciplinu, ravnotežu i poštovanje.',
+      en: 'Explore judo schools in {city} — for discipline, balance and respect.',
+    },
+  },
+  {
     id: 'capoeira',
     name: { sr: 'Kapuera', en: 'Capoeira' },
     nameAccusative: 'kapueru',
@@ -296,6 +307,18 @@ export const categories: Category[] = [
     pageSubtitle: {
       sr: 'Istražite škole stranih jezika u {city} — za decu koja kroz igru i razgovor usvajaju novi jezik.',
       en: 'Explore foreign language schools in {city} — for children who acquire a new language through play and conversation.',
+    },
+  },
+  {
+    id: 'programming',
+    name: { sr: 'Programiranje', en: 'Programming' },
+    nameAccusative: 'programiranje',
+    slug: 'programming',
+    slugs: { sr: 'programiranje', en: 'programming' },
+    subtitle: { sr: 'Škole programiranja', en: 'Programming schools' },
+    pageSubtitle: {
+      sr: 'Istražite škole programiranja u {city} — za kod, logiku i prve korake u informatici.',
+      en: 'Explore programming schools in {city} — for code, logic and first steps in computer science.',
     },
   },
   {

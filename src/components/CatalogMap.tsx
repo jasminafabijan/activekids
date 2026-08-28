@@ -11,9 +11,8 @@ import { useI18n } from '../i18n/useI18n'
 import { getSchoolName } from '../data/schools'
 import { CITY_MAP_VIEWS } from '../data/cities'
 import { getStreetName } from '../data/streets'
+import { MAP_TILE_OPTIONS, MAP_TILE_URL } from '../utils/mapTiles'
 import 'leaflet/dist/leaflet.css'
-
-const MAP_TILE_URL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
 
 type MarkerWithLocations = L.Marker & { __locationIds?: string[] }
 
@@ -87,12 +86,7 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation, city }: C
       zoomSnap: 0.5,
     })
 
-    L.tileLayer(MAP_TILE_URL, {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 20,
-    }).addTo(map)
+    L.tileLayer(MAP_TILE_URL, MAP_TILE_OPTIONS).addTo(map)
 
     const markers = points.map((point) => {
       const uniqueSchools = point.locations.filter(

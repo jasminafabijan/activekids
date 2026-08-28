@@ -41,6 +41,12 @@ const DocumentLang = () => {
       return
     }
 
+    if (pathname === PAGE_PATHS.contact.sr || pathname === PAGE_PATHS.contact.en) {
+      document.title = t('seo.pageTitle', { page: t('footer.contact') })
+      setMetaDescription(t('contact.lead'))
+      return
+    }
+
     if (pathname === PAGE_PATHS.privacy.sr || pathname === PAGE_PATHS.privacy.en) {
       document.title = t('seo.pageTitle', { page: t('footer.privacy') })
       return

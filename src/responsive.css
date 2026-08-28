@@ -320,6 +320,19 @@
         padding-bottom: 3rem;
     }
 
+    .contact-inner {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .contact-form {
+        padding: 1.75rem 1.85rem 1.85rem;
+    }
+
+    .contact-form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .legal-body {
         font-size: 1.0625rem;
         line-height: 1.75;
@@ -328,6 +341,14 @@
     .legal-body>h2 {
         font-size: 1.25rem;
         margin-top: 2.5rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .contact-layout {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 4.5rem;
+        align-items: center;
     }
 }
 

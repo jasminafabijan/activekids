@@ -96,6 +96,9 @@ const Footer = () => {
                                     {t('footer.info')}
                                 </div>
                                 <nav className="site-footer-nav" aria-labelledby="footer-info-label">
+                                    <Link to={path.contact} className="site-footer-link">
+                                        {t('footer.contact')}
+                                    </Link>
                                     <button
                                         type="button"
                                         className="site-footer-link"

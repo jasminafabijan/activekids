@@ -26,6 +26,7 @@ const GROUP_COLOR: Record<string, string> = {
   karate: MARTIAL,
   boxing: MARTIAL,
   aikido: MARTIAL,
+  judo: MARTIAL,
   capoeira: MARTIAL,
   chess: CHESS,
   ballet: DANCE_MUSIC,
@@ -39,6 +40,7 @@ const GROUP_COLOR: Record<string, string> = {
   riding: NATURE,
   nature: NATURE,
   languages: LEARNING,
+  programming: LEARNING,
   science: LEARNING,
   technology: LEARNING,
 }
@@ -120,6 +122,9 @@ const ICONS: Record<string, string> = {
   ),
   languages: wrap(
     '<circle cx="12" cy="12" r="9"/><path d="M3.6 12h16.8M12 3c2.4 3.2 3.6 6.2 3.6 9s-1.2 5.8-3.6 9M12 3c-2.4 3.2-3.6 6.2-3.6 9s1.2 5.8 3.6 9"/>'
+  ),
+  programming: wrap(
+    '<rect x="3.6" y="5.2" width="16.8" height="11.2" rx="1.6"/><path d="M8.2 20.4h7.6M12 16.4v4"/><path d="M8.2 9.4 10.4 11.6 8.2 13.8M15.8 9.4 13.6 11.6 15.8 13.8"/>'
   ),
   science: wrap(
     '<path d="M9.2 3.5h5.6M10.2 3.5v6.4L5.4 19.2A2.2 2.2 0 0 0 7.3 22.5h9.4a2.2 2.2 0 0 0 1.9-3.3L13.8 9.9V3.5"/><path d="M8.6 14.8h6.8"/>'

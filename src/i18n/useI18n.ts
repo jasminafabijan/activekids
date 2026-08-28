@@ -25,6 +25,7 @@ export const useI18n = () => {
     () => ({
       home: pagePath('home', lang),
       about: pagePath('about', lang),
+      contact: pagePath('contact', lang),
       privacy: pagePath('privacy', lang),
       search: pagePath('search', lang),
       map: pagePath('map', lang),

@@ -58,9 +58,21 @@ export const preLaunchSchools: PreLaunchSchool[] = [
     website: 'https://www.facebook.com/malacnovisad',
   },
   {
-    id: 'dexters',
-    name: 'Dexter\'s',
-    categorySlugs: ['technology'],
-    website: 'https://www.facebook.com/programiranjezadecu',
+    id: 'zmajolina',
+    name: 'Zmajolina školica sporta',
+    categorySlugs: ['kids-sports'],
+    website: 'https://www.facebook.com/profile.php?id=61564116241897',
+  },
+  {
+    id: 'akademija-oxford',
+    name: 'Akademija Oxford Novi Sad',
+    categorySlugs: ['languages'],
+    website: 'https://www.instagram.com/akademijaoxfordnovisad/',
+  },
+  {
+    id: 'spartanac-ns',
+    name: 'Džudo klub Spartanac NS',
+    categorySlugs: ['judo'],
+    website: 'https://www.facebook.com/profile.php?id=100049294727475',
   },
 ]

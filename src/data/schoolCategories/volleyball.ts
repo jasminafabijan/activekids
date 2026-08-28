@@ -57,7 +57,7 @@ export const volleyballSchools: School[] = [
         ],
         contact: {
             phone: '064 146 4904',
-            email: 'okvojvodina@mts.rs',
+            email: 'office@okvojvodina.org',
             website: 'https://okvojvodina.org/akademija/',
             facebook: 'https://www.facebook.com/okvojvodina',
             instagram: 'https://www.instagram.com/okvojvodina/',
@@ -114,6 +114,7 @@ export const volleyballSchools: School[] = [
             phone: '069 477 04 74',
             email: 'odbojkaski.klub.ns.tim@gmail.com',
             website: 'https://odbojkaskiklubnsti.wixsite.com/ns-tim/about1-c1plb',
+            instagram: 'https://www.instagram.com/ns_tim_serbia/',
         },
     },
     {
