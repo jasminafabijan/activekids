@@ -14,6 +14,7 @@ import FiltersBar, { type FilterValues } from './FiltersBar'
 import Hero from './Hero'
 import Navbar from './Navbar'
 import RecentlyAddedSection from './RecentlyAddedSection'
+import { syncVerifiedSchoolsFromBrowser } from '../data/adminStorage'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -21,6 +22,10 @@ const HomePage = () => {
   const navigationType = useNavigationType()
   const { path } = useI18n()
   const [initialFilters] = useState(() => getInitialHomeFilters(location.state))
+
+  useEffect(() => {
+    syncVerifiedSchoolsFromBrowser()
+  }, [])
 
   useLayoutEffect(() => {
     if (!isCategoriesHash(location.hash)) {

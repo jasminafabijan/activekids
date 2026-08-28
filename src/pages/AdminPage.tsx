@@ -5,7 +5,7 @@ import { preLaunchSchools } from '../data/preLaunchSchools'
 import type { PreLaunchSchool } from '../data/preLaunchSchools'
 import { rejectedSchools } from '../data/rejectedSchools'
 import type { RejectedSchool } from '../data/rejectedSchools'
-import { CONTACTED_STORAGE_KEY, VERIFIED_STORAGE_KEY, loadAdminFlags } from '../data/adminStorage'
+import { CONTACTED_STORAGE_KEY, VERIFIED_STORAGE_KEY, loadAdminFlags, persistVerifiedSchoolIds, syncVerifiedSchoolsFromBrowser, verifiedIdsFromFlags } from '../data/adminStorage'
 import {
   formatSchoolCategoryNames,
   formatPhoneHref,
@@ -167,6 +167,10 @@ const AdminPage = () => {
   const [verified, setVerified] = useState<Record<string, boolean>>(() =>
     loadAdminFlags(VERIFIED_STORAGE_KEY)
   )
+
+  useEffect(() => {
+    syncVerifiedSchoolsFromBrowser()
+  }, [])
 
   useEffect(() => {
     localStorage.setItem(CONTACTED_STORAGE_KEY, JSON.stringify(contacted))
@@ -371,7 +375,13 @@ const AdminPage = () => {
                         onToggleContacted={(id) =>
                           setContacted((current) => toggleFlag(id, current))
                         }
-                        onToggleVerified={(id) => setVerified((current) => toggleFlag(id, current))}
+                        onToggleVerified={(id) =>
+                          setVerified((current) => {
+                            const next = toggleFlag(id, current)
+                            persistVerifiedSchoolIds(verifiedIdsFromFlags(next))
+                            return next
+                          })
+                        }
                       />
                       <td>{sportName}</td>
                       <td>
