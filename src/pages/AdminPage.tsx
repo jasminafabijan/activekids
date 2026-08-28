@@ -5,19 +5,17 @@ import { preLaunchSchools } from '../data/preLaunchSchools'
 import type { PreLaunchSchool } from '../data/preLaunchSchools'
 import { rejectedSchools } from '../data/rejectedSchools'
 import type { RejectedSchool } from '../data/rejectedSchools'
+import { CONTACTED_STORAGE_KEY, VERIFIED_STORAGE_KEY, loadAdminFlags } from '../data/adminStorage'
 import {
   formatSchoolCategoryNames,
   formatPhoneHref,
-  getActivityOptions,
+  getAdminActivityOptions,
   getContactPhones,
   getSchoolNameSr,
   schools,
 } from '../data/schools'
 import type { School } from '../data/schools'
 import './admin.css'
-
-const CONTACTED_STORAGE_KEY = 'kiddokompas-admin-contacted'
-const VERIFIED_STORAGE_KEY = 'kiddokompas-admin-verified'
 
 type AdminTab = 'catalog' | 'prelaunch' | 'rejected'
 
@@ -26,15 +24,6 @@ const TABS: { id: AdminTab; label: string; panelId: string }[] = [
   { id: 'prelaunch', label: 'Upit za prikaz', panelId: 'admin-tabpanel-prelaunch' },
   { id: 'rejected', label: 'Odbijeno', panelId: 'admin-tabpanel-rejected' },
 ]
-
-const loadFlagState = (key: string): Record<string, boolean> => {
-  try {
-    const stored = localStorage.getItem(key)
-    return stored ? (JSON.parse(stored) as Record<string, boolean>) : {}
-  } catch {
-    return {}
-  }
-}
 
 const toggleFlag = (schoolId: string, current: Record<string, boolean>) => ({
   ...current,
@@ -173,10 +162,10 @@ const AdminPage = () => {
   const [tab, setTab] = useState<AdminTab>('catalog')
   const [sportFilter, setSportFilter] = useState('')
   const [contacted, setContacted] = useState<Record<string, boolean>>(() =>
-    loadFlagState(CONTACTED_STORAGE_KEY)
+    loadAdminFlags(CONTACTED_STORAGE_KEY)
   )
   const [verified, setVerified] = useState<Record<string, boolean>>(() =>
-    loadFlagState(VERIFIED_STORAGE_KEY)
+    loadAdminFlags(VERIFIED_STORAGE_KEY)
   )
 
   useEffect(() => {
@@ -191,7 +180,7 @@ const AdminPage = () => {
   const isPrelaunch = tab === 'prelaunch'
   const isRejected = tab === 'rejected'
 
-  const catalogSportOptions = getActivityOptions()
+  const catalogSportOptions = getAdminActivityOptions()
   const prelaunchSportOptions = useMemo(
     () => sportOptionsFromSlugs(preLaunchSchools.flatMap((school) => school.categorySlugs)),
     []

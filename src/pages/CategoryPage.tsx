@@ -36,6 +36,11 @@ const CategoryPage = () => {
   const { lang, path, t } = useI18n()
   const category = slug ? getCategoryBySlug(slug) : undefined
   const categorySchools = category ? getSchoolsByCategory(category.id, lang) : []
+
+  if (category && categorySchools.length === 0) {
+    return <Navigate to={path.homeCategories} replace />
+  }
+
   const categoryCities = [...new Set(categorySchools.flatMap((school) => getSchoolCities(school)))]
   const selectedCity = getSelectedCity(searchParams, categoryCities)
   const visibleSchools = categorySchools.filter((school) =>

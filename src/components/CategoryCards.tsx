@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { getCategoryNameBySlug } from '../data/categories'
+import { getActivityOptions } from '../data/schools'
 import { CATEGORIES_SECTION_ID } from '../i18n/routes'
 import { useI18n } from '../i18n/useI18n'
 import actingIcon from '../assets/icons/acting.svg'
@@ -68,6 +69,12 @@ const categoryDisplay: CategoryDisplay[] = [
 
 const CategoryCards = () => {
   const { lang, path, t } = useI18n()
+  const listedCategoryIds = new Set(getActivityOptions(lang).map((option) => option.slug))
+  const visibleCategories = categoryDisplay.filter((category) => listedCategoryIds.has(category.id))
+
+  if (visibleCategories.length === 0) {
+    return null
+  }
 
   return (
     <section id={CATEGORIES_SECTION_ID} className="categories-section" aria-labelledby="categories-title">
@@ -82,7 +89,7 @@ const CategoryCards = () => {
       </div>
 
       <div className="categories-grid">
-        {categoryDisplay.map((category) => {
+        {visibleCategories.map((category) => {
           const iconSizePx = CATEGORY_ICON_BASE_SIZE_PX + (category.iconSizeAdjustPx ?? 0)
 
           return (

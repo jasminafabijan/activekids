@@ -1,6 +1,7 @@
 import { getCategoryBySlug, getCategoryName, getCategoryNameBySlug } from './categories'
 import { DEFAULT_CITY, getCityOptions } from './cities'
 import { getDistrictName, DISTRICT_LABELS } from './districts'
+import { isAdminVerified } from './adminStorage'
 import { getStreetName } from './streets'
 import { formatAgeLabel, formatAgeOptionLabel, getLocalizedText, warnMissingEnglish } from '../i18n/helpers'
 import type { Lang } from '../i18n/types'
@@ -59,7 +60,10 @@ export const schools: School[] = [
     ...programmingSchools,
 ]
 
-const listedSchools = schools.filter((school) => !school.hidden)
+const isPubliclyListed = (school: School) =>
+    !school.hidden && (school.verified === true || isAdminVerified(school.id))
+
+const getListedSchools = () => schools.filter(isPubliclyListed)
 
 export const formatSchoolAddress = (address: SchoolAddress, lang: Lang = 'sr') => {
     const street = getStreetName(address.street, lang)
@@ -179,7 +183,7 @@ export const getSchoolName = (school: Pick<School, 'id' | 'name'>, lang: Lang): 
 export const getSchoolsByCategory = (categorySlug: string, lang: Lang = 'sr') => {
     const categoryId = getCategoryBySlug(categorySlug)?.id ?? categorySlug
 
-    return listedSchools
+    return getListedSchools()
         .filter((school) => school.categorySlugs.includes(categoryId))
         .sort((a, b) => getSchoolName(a, lang).localeCompare(getSchoolName(b, lang), lang === 'en' ? 'en' : 'sr'))
 }
@@ -191,10 +195,13 @@ const RECENTLY_ADDED_SCHOOL_IDS = [
     'plivanje-spens',
 ] as const
 
-export const getRecentlyAddedSchools = (count = 3) =>
-    RECENTLY_ADDED_SCHOOL_IDS.slice(0, count)
-        .map((id) => listedSchools.find((school) => school.id === id))
+export const getRecentlyAddedSchools = (count = 3) => {
+    const listed = getListedSchools()
+
+    return RECENTLY_ADDED_SCHOOL_IDS.map((id) => listed.find((school) => school.id === id))
         .filter((school): school is School => school != null)
+        .slice(0, count)
+}
 
 export const formatSchoolCategoryNames = (school: School, lang: Lang = 'sr') =>
     school.categorySlugs
@@ -202,7 +209,7 @@ export const formatSchoolCategoryNames = (school: School, lang: Lang = 'sr') =>
         .join(', ')
 
 export const getSchoolBySlug = (slug: string) =>
-    listedSchools.find((school) => school.slug === slug)
+    getListedSchools().find((school) => school.slug === slug)
 
 export const getSchoolDistricts = (school: School) => {
     const fromAddresses =
@@ -249,7 +256,7 @@ export const formatSchoolLocationLabel = (school: School, lang: Lang = 'sr') => 
 export const getDistrictOptions = (lang: Lang = 'sr', city?: string) =>
     [
         ...new Set(
-            listedSchools.flatMap((school) =>
+            getListedSchools().flatMap((school) =>
                 getSchoolAddressList(school)
                     .filter((address) => !city || addressBelongsToCity(address, school.city, city))
                     .map((address) => address.district)
@@ -259,9 +266,11 @@ export const getDistrictOptions = (lang: Lang = 'sr', city?: string) =>
     ].sort((a, b) => getDistrictName(a, lang).localeCompare(getDistrictName(b, lang), lang === 'en' ? 'en' : 'sr'))
 
 if (import.meta.env.DEV) {
-    for (const district of getDistrictOptions('sr')) {
-        if (!(district in DISTRICT_LABELS)) {
-            warnMissingEnglish(`district:${district}`, 'not in DISTRICT_LABELS')
+    for (const school of schools) {
+        for (const district of getSchoolDistricts(school)) {
+            if (!(district in DISTRICT_LABELS)) {
+                warnMissingEnglish(`district:${district}`, 'not in DISTRICT_LABELS')
+            }
         }
     }
 
@@ -273,12 +282,18 @@ if (import.meta.env.DEV) {
 }
 
 export const getAgeOptions = (lang: Lang = 'sr') => {
-    const minAge = Math.min(...listedSchools.map((school) => school.minAge))
-    const finiteMaxAges = listedSchools
+    const listed = getListedSchools()
+
+    if (listed.length === 0) {
+        return []
+    }
+
+    const minAge = Math.min(...listed.map((school) => school.minAge))
+    const finiteMaxAges = listed
         .map((school) => school.maxAge)
         .filter((age): age is number => age != null)
-    const maxFiniteAge = Math.max(...finiteMaxAges)
-    const hasOpenEndedRange = listedSchools.some((school) => school.maxAge == null)
+    const maxFiniteAge = finiteMaxAges.length > 0 ? Math.max(...finiteMaxAges) : minAge
+    const hasOpenEndedRange = listed.some((school) => school.maxAge == null)
     const finalAge = hasOpenEndedRange ? maxFiniteAge + 1 : maxFiniteAge
 
     return Array.from({ length: finalAge - minAge + 1 }, (_, index) => {
@@ -289,8 +304,8 @@ export const getAgeOptions = (lang: Lang = 'sr') => {
     })
 }
 
-export const getActivityOptions = (lang: Lang = 'sr') =>
-    [...new Set(listedSchools.flatMap((school) => school.categorySlugs))]
+const activityOptionsFrom = (list: School[], lang: Lang) =>
+    [...new Set(list.flatMap((school) => school.categorySlugs))]
         .map((slug) => {
             const category = getCategoryBySlug(slug)
             return category ? { slug, name: getCategoryName(category, lang) } : null
@@ -298,8 +313,14 @@ export const getActivityOptions = (lang: Lang = 'sr') =>
         .filter((option): option is { slug: string; name: string } => option != null)
         .sort((a, b) => a.name.localeCompare(b.name, lang === 'en' ? 'en' : 'sr'))
 
+export const getActivityOptions = (lang: Lang = 'sr') =>
+    activityOptionsFrom(getListedSchools(), lang)
+
+/** All catalog schools, including hidden and unverified — for the admin filter. */
+export const getAdminActivityOptions = () => activityOptionsFrom(schools, 'sr')
+
 export const filterSchools = (filters: SchoolFilters) =>
-    listedSchools.filter((school) => {
+    getListedSchools().filter((school) => {
         const addresses = getSchoolAddressList(school).filter((address) =>
             filters.city ? addressBelongsToCity(address, school.city, filters.city) : true
         )

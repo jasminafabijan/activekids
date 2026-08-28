@@ -32,6 +32,11 @@ export type School = {
     name: LocalizedText
     /** Keep the record, but omit from the public catalog, map, search and school page. */
     hidden?: boolean
+    /**
+     * Public catalog only lists schools with Provera checked in admin
+     * (localStorage) or `verified: true` here. Records stay in `schools` / admin.
+     */
+    verified?: boolean
     categorySlugs: string[]
     city: string
     district: string
