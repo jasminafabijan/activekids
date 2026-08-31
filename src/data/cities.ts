@@ -8,6 +8,7 @@ export const DEFAULT_CITY = 'Novi Sad'
 export const cities: City[] = [
     { name: DEFAULT_CITY, locative: 'Novom Sadu' },
     { name: 'Beočin', locative: 'Beočinu' },
+    { name: 'Sombor', locative: 'Somboru' },
 ]
 
 export const getCityLocative = (cityName: string) => {
@@ -27,6 +28,7 @@ export const getCityOptions = () => {
 
 /** Default catalog-map camera. Novi Sad stays framed on the city, not outlying settlements. */
 export const CITY_MAP_VIEWS: Record<string, { center: [number, number]; zoom: number }> = {
-    [DEFAULT_CITY]: { center: [45.255, 19.833], zoom: 12.5 },
+    [DEFAULT_CITY]: { center: [45.252, 19.842], zoom: 13.5 },
+    Sombor: { center: [45.774, 19.115], zoom: 14 },
 }
 

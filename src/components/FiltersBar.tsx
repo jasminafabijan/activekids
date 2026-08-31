@@ -20,7 +20,6 @@ interface FiltersBarProps {
 }
 
 const defaultFilters = getDefaultFilters()
-const cities = getCityOptions()
 
 const isSearchMenuTarget = (target: EventTarget | null) =>
   target instanceof Element && Boolean(target.closest('.search-field-menu'))
@@ -116,6 +115,7 @@ const FiltersBar = ({
   applyOnChange = false,
 }: FiltersBarProps) => {
   const { lang, t } = useI18n()
+  const cities = getCityOptions()
   const ageOptions = getAgeOptions(lang)
   const activityOptions = getActivityOptions(lang)
   const [filters, setFilters] = useState<FilterValues>(() => ({

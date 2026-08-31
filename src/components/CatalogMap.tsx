@@ -137,17 +137,25 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation, city }: C
 
     map.on('popupopen', onPopupOpen)
 
+    let hasView = false
+
     const applyView = () => {
       if (!map.getContainer()?.isConnected) {
         return
       }
+
+      map.invalidateSize()
 
       const size = map.getSize()
       if (size.x < 80 || size.y < 80) {
         return
       }
 
-      map.invalidateSize()
+      if (hasView) {
+        return
+      }
+
+      hasView = true
 
       const cityView = city ? CITY_MAP_VIEWS[city] : undefined
 
@@ -157,12 +165,11 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation, city }: C
       }
 
       if (markers.length === 1) {
-        map.setView([points[0].lat, points[0].lng], 14)
+        map.setView(markers[0].getLatLng(), 15)
         return
       }
 
-      const bounds = L.featureGroup(markers).getBounds()
-      map.fitBounds(bounds, {
+      map.fitBounds(L.featureGroup(markers).getBounds(), {
         padding: [28, 28],
         maxZoom: 15,
       })
@@ -171,12 +178,15 @@ const CatalogMap = ({ locations, selectedLocationId, onSelectLocation, city }: C
     map.whenReady(applyView)
     const rafId = requestAnimationFrame(applyView)
     const timeoutId = window.setTimeout(applyView, 250)
+    const resizeObserver = new ResizeObserver(() => applyView())
+    resizeObserver.observe(map.getContainer())
 
     mapInstanceRef.current = map
 
     return () => {
       window.cancelAnimationFrame(rafId)
       window.clearTimeout(timeoutId)
+      resizeObserver.disconnect()
       map.off('popupopen', onPopupOpen)
       detachOverlapZoom()
       detachActivePin()

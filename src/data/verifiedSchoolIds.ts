@@ -16,6 +16,7 @@ export const VERIFIED_SCHOOL_IDS = new Set<string>([
   'kk-danubius',
   'kk-sports-world',
   'kud-nera',
+  'la-jazz',
   'master-dance',
   'ok-vojvodina-akademija',
   'plivanje-spens',

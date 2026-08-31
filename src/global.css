@@ -1222,8 +1222,8 @@
     }
 
     .map-page-header {
-        margin-top: 2.5rem;
-        margin-bottom: 1.75rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.25rem;
     }
 
     .not-found {
@@ -1280,8 +1280,8 @@
         z-index: 0;
         display: flex;
         align-items: stretch;
-        height: min(70vh, 44rem);
-        min-height: 28rem;
+        height: min(72vh, 48rem);
+        min-height: 32rem;
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
     }
@@ -1289,9 +1289,10 @@
     .map-page-list {
         display: flex;
         flex-direction: column;
-        width: 40%;
-        max-width: 480px;
-        min-width: 0;
+        flex: 0 0 22rem;
+        width: 22rem;
+        max-width: 42%;
+        min-width: 18rem;
         min-height: 0;
         background: #fff;
         border-right: 1px solid var(--border);
