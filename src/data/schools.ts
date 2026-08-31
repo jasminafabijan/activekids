@@ -208,8 +208,9 @@ export const formatSchoolCategoryNames = (school: School, lang: Lang = 'sr') =>
         .map((slug) => getCategoryNameBySlug(slug, lang))
         .join(', ')
 
+/** Direct `/skola/...` URLs stay reachable. Search, categories and the map use listed schools only. */
 export const getSchoolBySlug = (slug: string) =>
-    getListedSchools().find((school) => school.slug === slug)
+    schools.find((school) => !school.hidden && school.slug === slug)
 
 export const getSchoolDistricts = (school: School) => {
     const fromAddresses =

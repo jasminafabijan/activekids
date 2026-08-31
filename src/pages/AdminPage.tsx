@@ -5,7 +5,15 @@ import { preLaunchSchools } from '../data/preLaunchSchools'
 import type { PreLaunchSchool } from '../data/preLaunchSchools'
 import { rejectedSchools } from '../data/rejectedSchools'
 import type { RejectedSchool } from '../data/rejectedSchools'
-import { CONTACTED_STORAGE_KEY, VERIFIED_STORAGE_KEY, loadAdminFlags, persistVerifiedSchoolIds, syncVerifiedSchoolsFromBrowser, verifiedIdsFromFlags } from '../data/adminStorage'
+import {
+  CONTACTED_STORAGE_KEY,
+  VERIFIED_STORAGE_KEY,
+  loadContactedFlags,
+  loadVerifiedFlags,
+  persistContactedSchoolIds,
+  persistVerifiedSchoolIds,
+  verifiedIdsFromFlags,
+} from '../data/adminStorage'
 import {
   formatSchoolCategoryNames,
   formatPhoneHref,
@@ -161,19 +169,15 @@ const AdminCheckboxes = ({
 const AdminPage = () => {
   const [tab, setTab] = useState<AdminTab>('catalog')
   const [sportFilter, setSportFilter] = useState('')
-  const [contacted, setContacted] = useState<Record<string, boolean>>(() =>
-    loadAdminFlags(CONTACTED_STORAGE_KEY)
-  )
-  const [verified, setVerified] = useState<Record<string, boolean>>(() =>
-    loadAdminFlags(VERIFIED_STORAGE_KEY)
-  )
+  const [contacted, setContacted] = useState<Record<string, boolean>>(loadContactedFlags)
+  const [verified, setVerified] = useState<Record<string, boolean>>(loadVerifiedFlags)
 
   useEffect(() => {
-    syncVerifiedSchoolsFromBrowser()
-  }, [])
-
-  useEffect(() => {
+    const ids = verifiedIdsFromFlags(contacted)
     localStorage.setItem(CONTACTED_STORAGE_KEY, JSON.stringify(contacted))
+    if (ids.length > 0) {
+      persistContactedSchoolIds(ids)
+    }
   }, [contacted])
 
   useEffect(() => {
@@ -373,7 +377,11 @@ const AdminPage = () => {
                         isContacted={isContacted}
                         isVerified={isVerified}
                         onToggleContacted={(id) =>
-                          setContacted((current) => toggleFlag(id, current))
+                          setContacted((current) => {
+                            const next = toggleFlag(id, current)
+                            persistContactedSchoolIds(verifiedIdsFromFlags(next))
+                            return next
+                          })
                         }
                         onToggleVerified={(id) =>
                           setVerified((current) => {
