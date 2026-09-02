@@ -7,7 +7,7 @@ import SchoolCard from './SchoolCard'
 
 const RecentlyAddedSection = () => {
   const { lang, t } = useI18n()
-  const recentSchools = getRecentlyAddedSchools(3)
+  const recentSchools = getRecentlyAddedSchools()
 
   if (recentSchools.length === 0) {
     return null

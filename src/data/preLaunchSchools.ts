@@ -16,6 +16,12 @@ export const preLaunchSchools: PreLaunchSchool[] = [
     website: 'https://www.instagram.com/artedance.novisad/',
   },
   {
+    id: 'dream-dance',
+    name: 'Dream Dance',
+    categorySlugs: ['dance'],
+    website: 'https://www.facebook.com/p/Dream-Dance-61573529607537/',
+  },
+  {
     id: 'hattrick',
     name: 'Škola fudbala Hattrick',
     categorySlugs: ['football'],
@@ -49,7 +55,8 @@ export const preLaunchSchools: PreLaunchSchool[] = [
     id: 'naucna-kuhinjica',
     name: 'Naučna kuhinjica Novi Sad',
     categorySlugs: ['science'],
-    website: 'https://www.facebook.com/naucnakuhinjicanovisad',
+    website: 'https://naucnakuhinjica.com',
+    email: 'info@naucnakuhinjica.com',
   },
   {
     id: 'malac-genijalac',
@@ -61,13 +68,29 @@ export const preLaunchSchools: PreLaunchSchool[] = [
     id: 'zmajolina',
     name: 'Zmajolina školica sporta',
     categorySlugs: ['kids-sports'],
-    website: 'https://www.facebook.com/profile.php?id=61564116241897',
+    website: 'https://zmajolina.com',
+    email: 'zmajolinasport@gmail.com',
+  },
+  {
+    id: 'olimp-ladies-kids',
+    name: 'Ladies & kids fitness klub Olimp',
+    categorySlugs: ['developmental-gymnastics', 'kids-sports'],
+    website: 'https://www.facebook.com/ladieskidsolimp/',
+    email: 'teretanaolimpnovisad@gmail.com',
+    phone: '064 2300 581',
   },
   {
     id: 'akademija-oxford',
     name: 'Akademija Oxford Novi Sad',
     categorySlugs: ['languages'],
     website: 'https://www.instagram.com/akademijaoxfordnovisad/',
+  },
+  {
+    id: 'ns-pro-group',
+    name: 'Centar za edukaciju NS Pro Group',
+    categorySlugs: ['languages'],
+    website: 'https://www.centarzaedukaciju.rs',
+    email: 'info@nsprogroup.edu.rs',
   },
   {
     id: 'spartanac-ns',

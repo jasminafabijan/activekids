@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import jasminaWebp from '../assets/images/jasmina.webp'
-import jasminaJpeg from '../assets/images/jasmina.jpeg'
+import jasminaWebp from '../assets/images/img-5.webp'
+import jasminaJpg from '../assets/images/img-5.jpg'
 import AddActivityModal from '../components/AddActivityModal'
 import Navbar from '../components/Navbar'
 import { useI18n } from '../i18n/useI18n'
@@ -21,11 +21,11 @@ const AboutPage = () => {
             <picture>
               <source srcSet={jasminaWebp} type="image/webp" />
               <img
-                src={jasminaJpeg}
+                src={jasminaJpg}
                 alt="Jasmina Fabijan"
                 className="about-intro-photo"
-                width={420}
-                height={520}
+                width={840}
+                height={1262}
               />
             </picture>
           </div>

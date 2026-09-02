@@ -18,7 +18,30 @@
     }
 }
 
+@media (max-width: 1023.98px) {
+    .school-page .category-page-back {
+        position: sticky;
+        top: var(--site-navbar-height);
+        z-index: 40;
+        display: flex;
+        width: calc(100% + 2rem);
+        margin: 0 -1rem 0.25rem;
+        padding: 0.7rem 1rem;
+        box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+    }
+}
+
 @media (min-width: 640px) and (max-width: 1023.98px) {
+    .school-page .category-page-back {
+        width: calc(100% + 3rem);
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        padding-inline: 1.5rem;
+    }
+
     .school-detail-image-wrap {
         height: 340px;
     }
@@ -355,6 +378,10 @@
 }
 
 @media (min-width: 680px) {
+    :root {
+        --site-navbar-height: calc(1rem + 3.5rem + 1rem + 1px);
+    }
+
     .site-navbar-inner {
         gap: 1.5rem;
         padding: 1rem 1.5rem;

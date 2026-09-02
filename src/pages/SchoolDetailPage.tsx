@@ -391,7 +391,7 @@ const SchoolDetailPage = () => {
   )
 
   return (
-    <div className="page-shell">
+    <div className="page-shell school-page">
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 pt-6 pb-8 sm:px-6 sm:pt-8">
         <BackLink to={back.to} className="category-page-back">

@@ -193,9 +193,10 @@ const RECENTLY_ADDED_SCHOOL_IDS = [
     'dexters',
     'fk-bistrica-05',
     'plivanje-spens',
+    'la-jazz',
 ] as const
 
-export const getRecentlyAddedSchools = (count = 3) => {
+export const getRecentlyAddedSchools = (count = 4) => {
     const listed = getListedSchools()
 
     return RECENTLY_ADDED_SCHOOL_IDS.map((id) => listed.find((school) => school.id === id))
