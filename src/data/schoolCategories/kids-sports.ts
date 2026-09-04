@@ -1,5 +1,7 @@
 import sportisimoWebp from '../../assets/images/schools/athletics/sportisimo.webp'
 import sportisimoJpg from '../../assets/images/schools/athletics/sportisimo.jpg'
+import zverkoWebp from '../../assets/images/schools/kids-sports/zverko.webp'
+import zverkoPng from '../../assets/images/schools/kids-sports/zverko.png'
 
 import type { School } from './types'
 
@@ -47,6 +49,44 @@ export const kidsSportsSchools: School[] = [
             facebook: 'https://www.facebook.com/sportisimosportskaporodica',
             facebookLabel: 'Sportisimo sportska porodica',
             instagram: 'https://www.instagram.com/sportisimo_sportska_porodica/',
+        },
+    },
+    {
+        id: 'zverko',
+        slug: 'zverko',
+        name: {
+            sr: 'Školica sporta Zverko',
+            en: 'Zverko Kids’ Sports',
+        },
+        categorySlugs: ['kids-sports'],
+        city: 'Novi Sad',
+        district: 'Stari Grad (Centar)',
+        minAge: 3,
+        maxAge: 7,
+        ageLabel: '3–7 godina',
+        imageWebp: zverkoWebp,
+        imageFallback: zverkoPng,
+        description: {
+            sr: [
+                'Školica sporta namenjena uzrastu od 3 - 7 godina. Mesto gde deca uživaju u sportu.',
+            ],
+            en: [
+                'Kids’ sports program for ages 3–7. A place where children enjoy sport.',
+            ],
+        },
+        addresses: [
+            {
+                street: 'SPENS, Sutjeska 2',
+                city: 'Novi Sad',
+                district: 'Stari Grad (Centar)',
+                lat: 45.2471273,
+                lng: 19.8454852,
+            },
+        ],
+        contact: {
+            phone: '064 252 14 14',
+            email: 'vlajkovicana@yahoo.com',
+            instagram: 'https://www.instagram.com/zverko.trening/',
         },
     },
 ]

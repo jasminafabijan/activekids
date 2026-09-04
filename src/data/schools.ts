@@ -190,10 +190,10 @@ export const getSchoolsByCategory = (categorySlug: string, lang: Lang = 'sr') =>
 
 /** Newest first — prepend the school id here when adding a new school. */
 const RECENTLY_ADDED_SCHOOL_IDS = [
+    'zverko',
     'dexters',
     'fk-bistrica-05',
     'plivanje-spens',
-    'la-jazz',
 ] as const
 
 export const getRecentlyAddedSchools = (count = 4) => {

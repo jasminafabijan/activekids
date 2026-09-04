@@ -174,6 +174,13 @@ export const categories: Category[] = [
     },
   },
   {
+    id: 'taekwondo',
+    name: { sr: 'Tekvondo', en: 'Taekwondo' },
+    slug: 'taekwondo',
+    slugs: { sr: 'tekvondo', en: 'taekwondo' },
+    subtitle: { sr: 'Škole tekvondoa', en: 'Taekwondo schools' },
+  },
+  {
     id: 'capoeira',
     name: { sr: 'Kapuera', en: 'Capoeira' },
     nameAccusative: 'kapueru',
@@ -226,8 +233,8 @@ export const categories: Category[] = [
     slugs: { sr: 'skolica-sporta', en: 'kids-sports' },
     subtitle: { sr: 'Školice sporta za predškolce', en: 'Sports programs for preschoolers' },
     pageSubtitle: {
-      sr: 'Istražite školice sporta u {city} — za raznovrsno kretanje i dobru osnovu pre izbora jednog sporta.',
-      en: 'Explore kids’ sports programs in {city} — for varied movement and a solid foundation before choosing one sport.',
+      sr: 'Istražite školice sporta u {city} — za igru, razvoj motorike i prve sportske korake.',
+      en: 'Explore kids’ sports programs in {city} — for play, motor development and first steps in sport.',
     },
   },
   {

@@ -32,4 +32,5 @@ export const VERIFIED_SCHOOL_IDS = new Set<string>([
   'sportisimo-teen-workout',
   'veliko-kolo',
   'zok-novi-sad',
+  'zverko',
 ])
